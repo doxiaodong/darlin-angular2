@@ -38,6 +38,9 @@ function prependExt(extensions, args) {
   }, ['']);
 }
 
+exports.cdnStatic = 'static/';
+exports.static = 'static/';
+
 exports.defaults = defaults;
 exports.hasProcessFlag = hasProcessFlag;
 exports.gzipMaxLevel = gzipMaxLevel;

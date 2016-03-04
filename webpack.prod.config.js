@@ -44,9 +44,9 @@ module.exports = helpers.defaults({
   // Config for our build files
   output: {
     path: helpers.root('dist'),
-    filename: '[name].[chunkhash].js',
-    sourceMapFilename: '[name].[chunkhash].map',
-    chunkFilename: '[id].[chunkhash].chunk.js'
+    filename: helpers.cdnStatic + 'scripts/[name].[chunkhash].js',
+    sourceMapFilename: helpers.cdnStatic + 'scripts/[name].[chunkhash].map',
+    chunkFilename: helpers.cdnStatic + 'scripts/[id].[chunkhash].chunk.js'
   },
 
   resolve: {
@@ -118,14 +118,18 @@ module.exports = helpers.defaults({
     new OccurenceOrderPlugin(true),
     new CommonsChunkPlugin({
       name: 'polyfills',
-      filename: 'polyfills.[chunkhash].js',
+      filename: helpers.cdnStatic + 'scripts/polyfills.[chunkhash].js',
       chunks: Infinity
     }),
     // static assets
     new CopyWebpackPlugin([
       {
-        from: 'src/assets',
-        to: 'assets'
+        from: 'src/static',
+        to: 'static'
+      },
+      {
+        from: 'src/favicon.ico',
+        to: ''
       }
     ]),
     // generating html
