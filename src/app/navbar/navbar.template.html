@@ -1,5 +1,28 @@
 <header class="header">
-  <nav class="nav">
-    {{index}}
+  <nav class="nav" [attr.index]="index">
+    <div id="USER">
+      <div *ngIf="isSignin">
+        <div class="header-side">
+          <span>{{ user.nickname }}</span>
+          <span class="signout a" (click)="signOut()">退出</span>
+        </div>
+      </div>
+      <div *ngIf="!isSignin">
+        <div class="a header-side" (click)="signIn()">登录</div>
+      </div>
+    </div>
+    <div class="nav-list-container">
+      <div class="slider-nav" [attr.index]="index"></div>
+      <ul class="nav-list">
+        <li><a class="each-nav a" [class.active]="index===0">首页</a></li>
+        <li><a class="each-nav a" [class.active]="index===1">文章列表</a>
+        </li>
+        <li id="account_nav">
+          <a [hidden]="!user.isSignin" class="each-nav account a" [class.active]="index===2">账户中心</a>
+          <span [hidden]="user.isSignin" class="each-nav sign a">账户中心</span>
+        </li>
+        <li><a class="each-nav a" [class.active]="index===3">瞎扯淡</a></li>
+      </ul>
+    </div>
   </nav>
 </header>

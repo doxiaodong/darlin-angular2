@@ -1,0 +1,27 @@
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  // border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background-color: @active_color;
+  color: #fff;
+  .transition(0.5s);
+  &:hover, &:focus, &:active, &.active {
+    background-color: lighten(@active_color, 10%);
+  }
+}
