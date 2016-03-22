@@ -1,10 +1,13 @@
 import {Component} from 'angular2/core';
 import {Title} from 'angular2/platform/browser';
 
+import {NavbarComponent} from './navbar/navbar.component';
+
 @Component({
   selector: 'root-app',
   template: require('./app.template.html'),
-  providers: [Title]
+  providers: [Title],
+  directives: [NavbarComponent]
 })
 export class RootAppComponent {
   constructor(title: Title) {
