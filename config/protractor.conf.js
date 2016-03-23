@@ -1,4 +1,3 @@
-// @AngularClass
 require('ts-node/register');
 var helpers = require('./helpers');
 

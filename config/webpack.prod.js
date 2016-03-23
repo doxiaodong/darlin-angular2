@@ -1,7 +1,3 @@
-/**
- * @author: @AngularClass
- */
-
 var helpers = require('./helpers'); // Helper: root(), and rootDir() are defined at the bottom
 var webpack = require('webpack');
 
@@ -27,7 +23,6 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
   baseUrl: '/',
   host: HOST,
   port: PORT,

@@ -1,7 +1,3 @@
-/**
- * @author: @AngularClass
- */
-
 var webpack = require('webpack');
 var helpers = require('./helpers');
 
@@ -18,7 +14,6 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
   baseUrl: '/',
   host: 'localhost',
   port: 3000,

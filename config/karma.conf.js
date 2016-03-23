@@ -1,5 +1,3 @@
-// @AngularClass
-
 module.exports = function(config) {
   var testWebpackConfig = require('./webpack.test.js');
 
