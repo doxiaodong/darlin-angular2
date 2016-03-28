@@ -1,6 +1,8 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {Title} from 'angular2/platform/browser';
 
+import {TranslateService, TranslatePipe, LangChangeEvent} from 'ng2-translate/ng2-translate';
+
 import {NavbarComponent} from './navbar/navbar.component';
 
 @Component({
@@ -10,11 +12,20 @@ import {NavbarComponent} from './navbar/navbar.component';
   styles: [
     require('./base/styles/global.less')
   ],
-  providers: [Title],
+  providers: [Title, TranslateService],
   directives: [NavbarComponent]
 })
 export class RootAppComponent {
-  constructor(title: Title) {
+
+  onSignOut() {
+    console.log('signout-app')
+  }
+
+  constructor(title: Title, translate: TranslateService) {
+    translate.use('zh_CN');
+    translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log(event);
+    })
     console.log(title.getTitle());
     title.setTitle('darlin.me');
   }

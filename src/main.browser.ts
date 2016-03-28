@@ -1,9 +1,19 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {enableProdMode} from 'angular2/core';
+import {enableProdMode, provide} from 'angular2/core';
+import {HTTP_PROVIDERS, Http} from 'angular2/http';
+
+import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
 import {RootAppComponent} from './app/app.component';
 
 enableProdMode();
 
-bootstrap(RootAppComponent)
+bootstrap(RootAppComponent, [
+  HTTP_PROVIDERS,
+  provide(TranslateLoader, {
+    useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
+    deps: [Http]
+  }),
+  TranslateService
+])
 .catch(err => console.error(err));

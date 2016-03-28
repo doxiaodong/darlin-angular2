@@ -1,0 +1,92 @@
+{
+  "title": "Lovely House",
+  "langSetting": "语言设置",
+  "alertDefaultTitle": "Alert",
+  "alertDefaultOk": "Ok",
+  "search": "Search",
+  "pagination": {
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "signModal": {
+    "signin": "Signin",
+    "register": "Register",
+    "username": "User Name",
+    "usernameFlag": "6 to 20, use only letter/number and '_'",
+    "password": "Password",
+    "passwordFlag": "6 to 20, use only letter/number and '_'",
+    "email": "Email",
+    "emailFlag": "please input email",
+    "nickName": "Nick name",
+    "nickNameFlag": "max length is 10(not need)",
+    "forget": "Forget Password"
+  },
+  "navbar": {
+    "index": "Home",
+    "article": "Articles",
+    "account": "Account",
+    "fourth": "At Will",
+    "signin": "Signin",
+    "signout": "Signout"
+  },
+  "titles": {
+    "homeTitle": "Lovely House",
+    "articleListTitle": "Article List"
+  },
+  "pages": {
+    "home": {
+      "homeHeader": "Hot Articles"
+    },
+    "article": {
+      "articlesHeader": "Article List",
+      "articleCategory": "Category",
+      "replies": "replies",
+      "reply": "Reply",
+      "lowercaseReply": "reply",
+      "delete": "Delete",
+      "floor": "floor",
+      "replyArticle": "Comment",
+      "replyPlaceholder": "reply",
+      "commentPlaceholder": "Write your opinions~ and markdown supported",
+      "comment": "Comment",
+      "none": "No articles",
+      "isUp": "[TOP] "
+    },
+    "account": {
+      "infoTitle": "Account Center",
+      "profile": "Profile",
+      "change": "Change",
+      "email": "Email",
+      "lastSignin": "Last Signin",
+      "notification": "Notification",
+      "notificationArticle": "Articles' Comments",
+      "replyWord1": "replied you in",
+      "replyWord2": "",
+      "replyOfArticleWord": "replied your article",
+      "setting": "Setting",
+      "changeInfo": "Change Profile",
+      "username": "Username",
+      "nickname": "Nickname",
+      "sex": "Sex",
+      "male": "Male",
+      "female": "Female",
+      "pic": "Picture",
+      "save": "Save",
+      "fold": "Fold",
+      "expand": "Expand",
+      "changePassword": "Change Password",
+      "signout": "Signout"
+    },
+    "forget": {
+      "title": "Change Password",
+      "oldPassword": "Old Password",
+      "newPassword": "New Password",
+      "save": "Save"
+    },
+    "reset": {
+      "title": "Reset Password",
+      "newPassword": "New Password",
+      "save": "Save"
+    }
+  }
+}
