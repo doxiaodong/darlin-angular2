@@ -8,6 +8,7 @@ import {
 } from 'ng2-translate/ng2-translate';
 
 import {NavbarComponent} from './navbar/navbar.component';
+import {BaseApi} from './base/api/base.api';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,7 +18,7 @@ import {NavbarComponent} from './navbar/navbar.component';
     require('../../config/icon.font.json'),
     require('./base/styles/global.less')
   ],
-  providers: [Title, TranslateService],
+  providers: [Title, TranslateService, BaseApi],
   directives: [NavbarComponent]
 })
 export class RootAppComponent {
@@ -26,12 +27,21 @@ export class RootAppComponent {
     console.log('signout-app')
   }
 
-  constructor(title: Title, translate: TranslateService) {
+  overview(base: BaseApi) {
+    base.overview()
+    .subscribe((res) => {
+      console.log(res);
+    })
+  }
+
+  constructor(title: Title, translate: TranslateService, base: BaseApi) {
     translate.use('zh_CN');
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       console.log(event);
     })
     console.log(title.getTitle());
     title.setTitle('darlin.me');
+
+    this.overview(base);
   }
 }

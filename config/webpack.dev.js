@@ -254,7 +254,10 @@ module.exports = {
     },
     proxy: {
       "/api/*": {
-        target: 'http://localhost:7999'
+        target: 'http://localhost:9999',
+        rewrite: function(req) {
+          req.url = req.url.replace(/^\/api/, '');
+        }
       }
     }
   },
