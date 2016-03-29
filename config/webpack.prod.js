@@ -162,6 +162,9 @@ module.exports = {
         ]
       },
 
+      // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
+      {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
+
       // Json loader support for *.json files.
       //
       // See: https://github.com/webpack/json-loader

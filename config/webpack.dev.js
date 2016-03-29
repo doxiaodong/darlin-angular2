@@ -147,6 +147,9 @@ module.exports = {
       // See: https://github.com/s-panferov/awesome-typescript-loader
       {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/]},
 
+      // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
+      {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
+
       // Json loader support for *.json files.
       //
       // See: https://github.com/webpack/json-loader
@@ -164,7 +167,7 @@ module.exports = {
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]}
 
     ]
 
@@ -248,6 +251,11 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
+    },
+    proxy: {
+      "/api/*": {
+        target: 'http://localhost:7999'
+      }
     }
   },
 

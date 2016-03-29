@@ -1,7 +1,11 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {Title} from 'angular2/platform/browser';
 
-import {TranslateService, TranslatePipe, LangChangeEvent} from 'ng2-translate/ng2-translate';
+import {
+  TranslateService,
+  TranslatePipe,
+  LangChangeEvent
+} from 'ng2-translate/ng2-translate';
 
 import {NavbarComponent} from './navbar/navbar.component';
 
@@ -10,6 +14,7 @@ import {NavbarComponent} from './navbar/navbar.component';
   selector: 'root-app',
   template: require('./app.template.html'),
   styles: [
+    require('../../config/icon.font.json'),
     require('./base/styles/global.less')
   ],
   providers: [Title, TranslateService],
