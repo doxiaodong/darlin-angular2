@@ -14,7 +14,7 @@ export class BaseApi {
 
   constructor(http: Http) {
     this.http = http;
-    this.prefix = ApiPrefix.get('API_PREFIX')
+    this.prefix = ApiPrefix.get('API_PREFIX');
   }
 
 }

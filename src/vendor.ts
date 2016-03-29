@@ -13,6 +13,9 @@ import 'angular2/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+import 'marked';
+import 'highlight.js';
+
 // look in platform/directives and platform/providers
 
 if ('production' === ENV) {
