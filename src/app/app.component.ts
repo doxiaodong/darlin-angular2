@@ -6,7 +6,8 @@ import {MarkedService} from './base/marked/marked.service';
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
 import {MarkedComponent} from './base/marked/marked.component';
-import {BaseApi} from './base/api/base.api';
+
+import {UserService} from './user/user.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -16,33 +17,28 @@ import {BaseApi} from './base/api/base.api';
     require('../../config/icon.font.json'),
     require('./base/styles/global.less')
   ],
-  providers: [Title, BaseApi, MarkedService],
+  providers: [Title, MarkedService],
   directives: [NavbarComponent, FooterComponent, MarkedComponent]
 })
 export class RootAppComponent {
 
   public article: string;
 
-  onSignOut() {
-    console.log('signout-app')
-  }
-
-  overview(base: BaseApi) {
-    base.overview()
-    // .subscribe((res) => {
-    //   console.log(res);
-    // });
+  onUserInfoUpdate(userInfo) {
+    console.log('@output: ${userInfo}', userInfo);
   }
 
   constructor(
     title: Title,
-    base: BaseApi
+    us: UserService
   ) {
+
+    us.updateUser$.subscribe(userInfo => {
+      console.log(111, userInfo);
+    });
 
     console.log(title.getTitle());
     title.setTitle('darlin.me');
-
-    this.overview(base);
 
     this.article = require('./base/marked/marked.mock.md');
 

@@ -5,6 +5,7 @@ import {HTTP_PROVIDERS, Http} from 'angular2/http';
 import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
 import {LocalStorageService} from './app/base/local-storage/local-storage.service';
+import {UserService} from './app/user/user.service';
 
 import {RootAppComponent} from './app/app.component';
 
@@ -17,6 +18,7 @@ bootstrap(RootAppComponent, [
     deps: [Http]
   }),
   TranslateService,
-  LocalStorageService
+  LocalStorageService,
+  UserService
 ])
 .catch(err => console.error(err));

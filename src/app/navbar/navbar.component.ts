@@ -3,8 +3,9 @@ import {Component, Output, EventEmitter} from 'angular2/core';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
-import {USER_NULL} from '../user/user.null';
 import {USER} from '../user/user.mock';
+import {UserService} from '../user/user.service';
+import {BaseApi} from '../base/api/base.api';
 
 @Component({
   selector: '[navbar]',
@@ -12,6 +13,7 @@ import {USER} from '../user/user.mock';
   styles: [
     require('./navbar.less')
   ],
+  providers: [BaseApi],
   pipes: [TranslatePipe]
 })
 export class NavbarComponent {
@@ -19,22 +21,43 @@ export class NavbarComponent {
   public user: UserInterface;
   public isSignin: boolean = true;
 
-  @Output() signOutEmitter: EventEmitter<any> = new EventEmitter();
+  private userService: UserService;
+
+  @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter();
 
   signIn() {
     console.log('singin');
-    this.user = USER;
+    this.user = this.userService.save(USER);
     this.isSignin = true;
+
+    this.userInfoUpdateEmitter.emit(this.user);
+  }
+
+  overview(base: BaseApi) {
+    base.overview()
+    .then(userInfo => {
+      if (userInfo.user) {
+        this.user = this.userService.save(userInfo);
+      }
+    });
   }
 
   signOut() {
     console.log('signout');
-    this.signOutEmitter.emit(null);
-    this.user = USER_NULL;
+    this.user = this.userService.clear();
     this.isSignin = false;
+
+    this.userInfoUpdateEmitter.emit(this.user);
   }
 
-  constructor() {
+  constructor(us: UserService, base: BaseApi) {
+    this.userService = us;
     this.user = USER;
+
+    this.overview(base);
+
+    us.updateUser$.subscribe(userInfo => {
+      console.log(userInfo);
+    });
   }
 }

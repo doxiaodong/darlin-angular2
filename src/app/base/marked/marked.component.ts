@@ -1,30 +1,42 @@
-import {Component, Input, ViewEncapsulation} from 'angular2/core';
+import {Component, Input, ViewEncapsulation, OnChanges} from 'angular2/core';
 
 import {MarkedService} from './marked.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'marked',
+
+  // use ms(md) cause performance problem
+  // use Onchanges to relace
   template: `
-    <div [innerHTML]="ms(md)"></div>
+    <div [innerHTML]="html"></div>
   `,
   styles: [
     require('./markdown.less'),
     require('./tomorrow.night.css'),
-    require('./highlight.number.less'),
+    require('./highlight.number.less')
   ]
 })
 
-export class MarkedComponent {
+export class MarkedComponent implements OnChanges {
 
   @Input() md: string;
 
-  public ms: any;
+  private ms: any;
+
+  public html: string = '';
 
   constructor(ms: MarkedService) {
 
     this.ms = ms.init();
 
+  }
+
+  ngOnChanges(changes) {
+    console.log(changes);
+    if (changes.md != undefined && this.ms) {
+      this.html = this.ms(this.md);
+    }
   }
 
 }
