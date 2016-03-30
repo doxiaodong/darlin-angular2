@@ -13,13 +13,12 @@ export class MarkedService {
       render[o[l]] = obj[o[l]];
     }
     this.options.renderer = render;
-    console.log(this.options)
     marked.setOptions(this.options);
     return marked;
   }
 
   setOptions(obj: any) {
-    this.options = obj;
+    this.options = obj; // TODO: use merge;
   }
 
   init(): MarkedStatic {
@@ -29,22 +28,16 @@ export class MarkedService {
   constructor() {
     this.setOptions({
       highlight: (text, language) => {
-        console.log(11)
-        console.log(text, language)
-        let lang = '';
+        let lang: string = '';
         if (language) {
           lang = ' lang-' + language;
         }
-        let html = hljs.highlightAuto(text).value;
-        let lines = new Array(html.split(/\n/).length + 1).join('<span></span>');
+        let html: string = hljs.highlightAuto(text).value;
+        let lines: string = new Array(html.split(/\n/).length + 1).join('<span></span>');
 
-        return '<pre><code class="hljs'
-          + lang
-          + '"><span class="hjln">'
-          + lines
-          + '</span>'
-          + html
-          + '</code></pre>';
+        return `
+          <pre><code class="hljs${lang}"><span class="hjln">${lines}</span>${html}</code></pre>
+        `;
       }
     });
     this.setRenderer({
@@ -52,15 +45,9 @@ export class MarkedService {
         let ele = document.createElement('a');
         ele.innerHTML = text;
         //var encodeText = encodeURI(innerText);
-        return '<h'
-          + level
-          + ' id="'
-          + text
-          + '">'
-          + text
-          + '</h'
-          + level
-          + '>\n';
+        return `
+          <h${level} id="${text}">${text}</h${level}>\n
+        `;
       }
     });
   }

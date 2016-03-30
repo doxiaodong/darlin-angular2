@@ -20,3 +20,119 @@
 .pointer {
   cursor: pointer;
 }
+
+#bg-picture {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: -1;
+
+	background: url(../assets/images/bodybg-3.jpg) center;
+}
+
+article.container {
+  padding: @header_height 0 5px 0;
+  //  background-color: @bg_base;
+  min-height: 90%;
+  min-height: ~'-moz-calc(100% - 50px)';
+  min-height: ~'-webkit-calc(100% - 50px)';
+  min-height: ~'calc(100% - 50px)';
+}
+
+.standalone {
+  & {
+    header.header {
+      height: 70px;
+      padding-top: 20px;
+    }
+    article.container {
+      padding: @header_height+20px 0 5px 0;
+    }
+  }
+}
+
+pre {
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+::selection {
+  background: lighten(@active_color, 10%);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: lighten(@active_color, 10%);
+  color: #fff;
+}
+
+.mobile {
+  .qq-weibo {
+    display: none;
+  }
+}
+
+.btn {
+  &.main {
+    padding: 6px 40px;
+  }
+  &:hover {
+    color: #fff;
+    background-color: darken(@active_color, 10%);
+  }
+  &[disabled] {
+    &, &:hover {
+      background-color: @bg_base;
+    }
+  }
+}
+
+.xd.active {
+  color: @active_color;
+}
+
+.pull-left {
+  float: left!important;
+}
+.pull-right {
+  float: right!important;
+}
+.text-left {
+  text-align: left!important;
+}
+.text-center {
+  text-align: center!important;
+}
+.text-right {
+  text-align: right!important;
+}
+
+.pagination {
+  margin: 10px auto 0;
+  display: inline-block;
+  .clearfix;
+  & > li {
+    float: left;
+    &.active a {
+      color: @active_color;
+    }
+    a {
+      padding: 5px 8px;
+      line-height: 22px;
+    }
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-select {
+  .no-select;
+}
+

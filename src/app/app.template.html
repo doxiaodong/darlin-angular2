@@ -1,4 +1,9 @@
 <div navbar (signOutEmitter)="onSignOut()"></div>
 
-<i style="color: red; position: absolute; top: 100px;" class="xd xd-reply"></i>
-{{ articleText }}
+<article class="container">
+  <i style="color: red; position: absolute; top: 100px;" class="xd xd-reply"></i>
+  <marked [md]="article"></marked>
+</article>
+
+<div footer></div>
+<div id="bg-picture"></div>

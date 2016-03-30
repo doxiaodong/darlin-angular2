@@ -167,7 +167,9 @@ module.exports = {
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]}
+      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+
+      {test: /\.md$/, loader: 'raw-loader'}
 
     ]
 
