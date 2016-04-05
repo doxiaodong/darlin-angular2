@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
+import {RouteConfig} from 'angular2/router';
 import {Title} from 'angular2/platform/browser';
 
 import {MarkedService} from './base/marked/marked.service';
@@ -20,6 +21,9 @@ import {UserService} from './user/user.service';
   providers: [Title, MarkedService],
   directives: [NavbarComponent, FooterComponent, MarkedComponent]
 })
+@RouteConfig([
+  {path: '/', name: 'Index', component: ArticleListComponent}
+])
 export class RootAppComponent {
 
   public article: string;
