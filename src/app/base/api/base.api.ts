@@ -5,7 +5,6 @@ import {Http} from 'angular2/http';
 @Injectable()
 export class BaseApi {
 
-  private http: Http;
   private prefix: string;
 
   private handleError(error: any) {
@@ -26,8 +25,7 @@ export class BaseApi {
       .catch(this.handleError);
   }
 
-  constructor(http: Http) {
-    this.http = http;
+  constructor(private http: Http) {
     this.prefix = ApiPrefix.get('API_PREFIX');
   }
 

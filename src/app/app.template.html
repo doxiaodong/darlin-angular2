@@ -1,8 +1,9 @@
 <div navbar (userInfoUpdateEmitter)="onUserInfoUpdate($event)"></div>
 
 <article class="container">
+  <router-outlet></router-outlet>
   <i style="color: red; position: absolute; top: 100px;" class="xd xd-reply"></i>
-  <marked [md]="article"></marked>
+  <!--<marked [md]="article"></marked>-->
 </article>
 
 <div footer></div>

@@ -26,9 +26,11 @@ export class MarkedComponent implements OnChanges {
 
   public html: string = '';
 
-  constructor(ms: MarkedService) {
+  constructor(
+    private markedService: MarkedService
+  ) {
 
-    this.ms = ms.init();
+    this.ms = markedService.init();
 
   }
 

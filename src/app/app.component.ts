@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig} from 'angular2/router';
+import {Component, ViewEncapsulation, OnInit} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Title} from 'angular2/platform/browser';
 
 import {MarkedService} from './base/marked/marked.service';
@@ -7,6 +7,8 @@ import {MarkedService} from './base/marked/marked.service';
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
 import {MarkedComponent} from './base/marked/marked.component';
+
+import {ArticleListComponent} from './article/article-list.component';
 
 import {UserService} from './user/user.service';
 
@@ -19,12 +21,13 @@ import {UserService} from './user/user.service';
     require('./base/styles/global.less')
   ],
   providers: [Title, MarkedService],
-  directives: [NavbarComponent, FooterComponent, MarkedComponent]
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, MarkedComponent]
 })
 @RouteConfig([
-  {path: '/', name: 'Index', component: ArticleListComponent}
+  {path: '/', name: 'Index', component: ArticleListComponent},
+  {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent}
 ])
-export class RootAppComponent {
+export class RootAppComponent implements OnInit {
 
   public article: string;
 
@@ -34,12 +37,8 @@ export class RootAppComponent {
 
   constructor(
     title: Title,
-    us: UserService
+    private userService: UserService
   ) {
-
-    us.updateUser$.subscribe(userInfo => {
-      console.log(111, userInfo);
-    });
 
     console.log(title.getTitle());
     title.setTitle('darlin.me');
@@ -47,4 +46,13 @@ export class RootAppComponent {
     this.article = require('./base/marked/marked.mock.md');
 
   }
+
+  ngOnInit() {
+
+    this.userService.updateUser$.subscribe(userInfo => {
+      console.log(userInfo);
+    });
+
+  }
+
 }

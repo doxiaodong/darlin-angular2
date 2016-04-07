@@ -21,20 +21,16 @@ export class FooterComponent {
 
   public selectedKey: string
 
-  private translate: TranslateService;
-
-  private element: any;
-
-  translateInit(translate: TranslateService, local: LocalStorageService) {
-    local.setPrefix('xd.');
-    let current = local.get('language');
+  translateInit() {
+    this.local.setPrefix('xd.');
+    let current = this.local.get('language');
     if (current == undefined) {
       current = 'zh_CN';
     }
-    translate.use(current);
-    local.save('language', current);
-    translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      local.save('language', event.lang);
+    this.translate.use(current);
+    this.local.save('language', current);
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.local.save('language', event.lang);
     });
   }
 
@@ -50,11 +46,12 @@ export class FooterComponent {
     });
   }
 
-  constructor(translate: TranslateService, local: LocalStorageService) {
+  constructor(
+    private translate: TranslateService,
+    private local: LocalStorageService
+  ) {
 
-    this.translate = translate;
-
-    this.translateInit(translate, local);
+    this.translateInit();
 
     this.selectedKey = local.get('language');
 

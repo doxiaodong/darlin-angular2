@@ -8,10 +8,7 @@ import {LocalStorageService} from '../local-storage/local-storage.service';
 @Injectable()
 export class AccountApi {
 
-  private http: Http;
   private prefix: string;
-  private httpUtils: HttpUtilsService;
-  private local: LocalStorageService;
 
   private handleError(error: any) {
     return Promise.reject(error.message || error.json().error || 'Server error');
@@ -129,11 +126,12 @@ export class AccountApi {
       .catch(this.handleError);
   }
 
-  constructor(http: Http, httpUtils: HttpUtilsService, local: LocalStorageService) {
-    this.http = http;
+  constructor(
+    private http: Http,
+    private httpUtils: HttpUtilsService,
+    private local: LocalStorageService
+  ) {
     this.prefix = ApiPrefix.get('API_PREFIX');
-    this.httpUtils = httpUtils;
-    this.local = local;
   }
 
 }

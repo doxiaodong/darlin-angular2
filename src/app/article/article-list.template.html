@@ -1,0 +1,41 @@
+<div class="pages">
+  <div class="page-block side right">
+    <div class="right">
+      <div class="each-header clearfix">
+        <span class="big-size">{{ 'pages.article.articleCategory' | translate }}</span>
+      </div>
+      <div class="each-inner">
+        <ul class="side-list clearfix">
+          <li class="nowrap" *ngFor="#category of categories">
+            <a class="a type" [class.active]="articleCategory === category.key" [routerLink]="['ArticleList', {category: category.key}]">{{ category.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="left"></div>
+  </div>
+
+  <div class="page-block left">
+    <div class="each-header">
+      <span class="big-size">{{ 'pages.article.articlesHeader' | translate }}</span>
+    </div>
+    <div class="each-inner">
+
+      <ul class="articles">
+        <!--<li class="article">
+          <input type="text" class="form-control" [(ngModel)]="searchText.title">
+        </li>-->
+        <li class="article article-list-repeat" *ngFor="#article of articles">
+          <a class="a">
+            <div class="title">
+            <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
+            </div>
+            <div class="time">{{ article.createTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+          </a>
+        </li>
+        <li class="article" *ngIf="!articles.length">{{ 'pages.article.none' | translate }}</li>
+      </ul>
+
+    </div>
+  </div>
+</div>

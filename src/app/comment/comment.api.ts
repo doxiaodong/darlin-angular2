@@ -1,8 +1,8 @@
-import {ApiPrefix} from '../api-prefix/api-prefix.service';
+import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 
-import {HttpUtilsService} from '../utils/http-utils.service';
+import {HttpUtilsService} from '../base/utils/http-utils.service';
 
 @Injectable()
 export class CommentApi {
