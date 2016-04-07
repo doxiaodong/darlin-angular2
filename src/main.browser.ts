@@ -8,6 +8,11 @@ import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-tran
 import {LocalStorageService} from './app/base/local-storage/local-storage.service';
 import {UserService} from './app/user/user.service';
 
+// TODO: only need UrlSafeBase64Service
+import {Utf8Service} from './app/base/base64/utf8.service';
+import {Base64Service} from './app/base/base64/base64.service';
+import {UrlSafeBase64Service} from './app/base/base64/base64safe.service';
+
 import {RootAppComponent} from './app/app.component';
 
 enableProdMode();
@@ -20,6 +25,9 @@ bootstrap(RootAppComponent, [
     deps: [Http]
   }),
   TranslateService,
+  Utf8Service,
+  Base64Service,
+  UrlSafeBase64Service,
   LocalStorageService,
   UserService
 ])

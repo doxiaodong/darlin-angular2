@@ -35,7 +35,6 @@ export class MarkedComponent implements OnChanges {
   }
 
   ngOnChanges(changes) {
-    console.log(changes);
     if (changes.md != undefined && this.ms) {
       this.html = this.ms(this.md);
     }

@@ -26,20 +26,7 @@ export class MarkedService {
   }
 
   constructor() {
-    this.setOptions({
-      highlight: (text, language) => {
-        let lang: string = '';
-        if (language) {
-          lang = ' lang-' + language;
-        }
-        let html: string = hljs.highlightAuto(text).value;
-        let lines: string = new Array(html.split(/\n/).length + 1).join('<span></span>');
-
-        return `
-          <pre><code class="hljs${lang}"><span class="hjln">${lines}</span>${html}</code></pre>
-        `;
-      }
-    });
+    this.setOptions({});
     this.setRenderer({
       heading: (text, level) => {
         let ele = document.createElement('a');
@@ -47,6 +34,17 @@ export class MarkedService {
         //var encodeText = encodeURI(innerText);
         return `
           <h${level} id="${text}">${text}</h${level}>\n
+        `;
+      },
+      code: (text, language) => {
+        let lang: string = '';
+        if (language) {
+          lang = ' lang-' + language;
+        }
+        let html: string = hljs.highlightAuto(text).value;
+        let lines: string = new Array(html.split(/\n/).length + 1).join('<span></span>');
+        return `
+          <pre><code class="hljs${lang}"><span class="hjln">${lines}</span>${html}</code></pre>
         `;
       }
     });

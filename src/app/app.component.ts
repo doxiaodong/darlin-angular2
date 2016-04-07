@@ -8,7 +8,9 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
 import {MarkedComponent} from './base/marked/marked.component';
 
+import {IndexComponent} from './index/index.component';
 import {ArticleListComponent} from './article/article-list.component';
+import {ArticleDetailComponent} from './article/article-detail.component';
 
 import {UserService} from './user/user.service';
 
@@ -18,14 +20,16 @@ import {UserService} from './user/user.service';
   template: require('./app.template.html'),
   styles: [
     require('../../config/icon.font.json'),
-    require('./base/styles/global.less')
+    require('./base/styles/global.less'),
+    require('./article/article-list.less')
   ],
   providers: [Title, MarkedService],
   directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, MarkedComponent]
 })
 @RouteConfig([
-  {path: '/', name: 'Index', component: ArticleListComponent},
-  {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent}
+  {path: '/', name: 'Index', component: IndexComponent},
+  {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent},
+  {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent}
 ])
 export class RootAppComponent implements OnInit {
 

@@ -1,23 +1,21 @@
-import {Component, ViewEncapsulation, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {DatePipe} from 'angular2/common';
-import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 
-import {ArticleApi} from './article.api';
-
-import {ArticleCategoryComponent} from './category.component';
+import {ArticleApi} from '../article/article.api';
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  template: require('./article-list.template.html'),
+  template: require('./index.template.html'),
   providers: [ArticleApi],
   pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, ArticleCategoryComponent]
+  directives: [ROUTER_DIRECTIVES]
 })
 
-export class ArticleListComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   public articles: Array<Object> = [];
 
@@ -35,13 +33,6 @@ export class ArticleListComponent implements OnInit {
           isHot: a.hot
         };
 
-        // test list performance
-        // let r = 250;
-        // while (r > 1) {
-        //   r--;
-        //   this.articles.push(article);
-        // }
-
         this.articles.push(article);
 
       });
@@ -50,16 +41,14 @@ export class ArticleListComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams,
     private articleApi: ArticleApi,
     private b64: UrlSafeBase64Service
   ) {
-
   }
 
   ngOnInit() {
 
-    let category = this.routeParams.get('category');
+    let category = 'hot';
 
     this.getArticles(category);
   }
