@@ -1,5 +1,4 @@
 var path = require('path');
-var zlib = require('zlib');
 
 
 // Helper functions
@@ -9,10 +8,6 @@ console.log('root directory:', root());
 
 function hasProcessFlag(flag) {
   return process.argv.join('').indexOf(flag) > -1;
-}
-
-function gzipMaxLevel(buffer, callback) {
-  return zlib['gzip'](buffer, {level: 9}, callback);
 }
 
 function root(args) {
@@ -35,11 +30,42 @@ function prependExt(extensions, args) {
   }, ['']);
 }
 
+function packageSort(packages) {
+  // packages = ['polyfills', 'vendor', 'main']
+  var len = packages.length - 1;
+  var first = packages[0];
+  var last = packages[len];
+  return function sort(a, b) {
+    // polyfills always first
+    if (a.names[0] === first) {
+      return -1;
+    }
+    // main always last
+    if (a.names[0] === last) {
+      return 1;
+    }
+    // vendor before app
+    if (a.names[0] !== first && b.names[0] === last) {
+      return -1;
+    } else {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+}
+
+function reverse(arr) {
+  return arr.reverse();
+}
+
+exports.reverse = reverse;
 exports.hasProcessFlag = hasProcessFlag;
-exports.gzipMaxLevel = gzipMaxLevel;
 exports.root = root;
 exports.rootNode = rootNode;
 exports.prependExt = prependExt;
 exports.prepend = prependExt;
+exports.packageSort = packageSort;
+
 
 exports.static = 'static/';

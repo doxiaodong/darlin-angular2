@@ -1,4 +1,5 @@
 import {Component, Input, ViewEncapsulation, OnInit} from 'angular2/core';
+import {DatePipe} from 'angular2/common';
 import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -13,7 +14,7 @@ import {ArticleApi} from './article.api';
     require('./article-list.less')
   ],
   providers: [ArticleApi],
-  pipes: [TranslatePipe],
+  pipes: [DatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES]
 })
 
@@ -26,7 +27,6 @@ export class ArticleListComponent implements OnInit {
   getCategories() {
 
     let categories = JSON.parse(this.local.getSession('article.categories'));
-    console.log(categories);
     if (!categories) {
       this.articleApi.getArticleCategories()
       .then(data => {
@@ -61,18 +61,24 @@ export class ArticleListComponent implements OnInit {
         let article = {
           url: a.url,
           title: a.title,
-          createTime: a.create_time,
+          createTime: new Date(a.create_time),
           category: a.category.url,
           isUp: a.is_up,
           isHot: a.hot
         };
+
+        // test list performance
+        // let r = 250;
+        // while (r > 1) {
+        //   r--;
+        //   this.articles.push(article);
+        // }
 
         this.articles.push(article);
 
       });
     });
 
-    console.log(this.articles);
   }
 
   constructor(
@@ -93,7 +99,6 @@ export class ArticleListComponent implements OnInit {
     this.getCategories();
 
     this.getArticles(this.articleCategory);
-    console.log(category);
   }
 
 }

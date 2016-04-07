@@ -60,7 +60,8 @@ module.exports = {
       // See: https://github.com/webpack/source-map-loader
       {test: /\.js$/, loader: "source-map-loader", exclude: [
         // these packages have problems with their sourcemaps
-        helpers.root('node_modules/rxjs')
+        helpers.root('node_modules/rxjs'),
+        helpers.root('node_modules/@angular2-material')
       ]}
 
     ],
@@ -144,7 +145,16 @@ module.exports = {
     //
     // See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-    new DefinePlugin({'ENV': JSON.stringify(ENV), 'HMR': false})
+    new DefinePlugin({
+      'ENV': JSON.stringify(ENV),
+      'HMR': false,
+      'process.env': {
+        'ENV': JSON.stringify(ENV),
+        'NODE_ENV': JSON.stringify(ENV),
+        'HMR': false,
+      }
+    }),
+
 
   ],
 

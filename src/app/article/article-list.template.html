@@ -30,7 +30,7 @@
             <div class="title">
             <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
             </div>
-            <div class="time">{{ article.createTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+            <div class="time">{{ article.createTime | date }}</div>
           </a>
         </li>
         <li class="article" *ngIf="!articles.length">{{ 'pages.article.none' | translate }}</li>
