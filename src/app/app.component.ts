@@ -12,6 +12,8 @@ import {IndexComponent} from './index/index.component';
 import {ArticleListComponent} from './article/article-list.component';
 import {ArticleDetailComponent} from './article/article-detail.component';
 
+import {ArticlCom} from './article/articl.com'; // test child router
+
 import {UserService} from './user/user.service';
 
 @Component({
@@ -27,7 +29,8 @@ import {UserService} from './user/user.service';
   directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, MarkedComponent]
 })
 @RouteConfig([
-  {path: '/', name: 'Index', component: IndexComponent},
+  {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
+  {path: '/articl/...', name: 'Articl', component: ArticlCom}, // test child router
   {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent},
   {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent}
 ])

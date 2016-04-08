@@ -62,6 +62,7 @@ export class ArticleListComponent implements OnInit {
     let category = this.routeParams.get('category');
 
     this.getArticles(category);
+    console.log(category);
   }
 
 }
