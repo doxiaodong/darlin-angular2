@@ -77,11 +77,12 @@ export class AccountApi {
 
   changeProfile(obj: Object) {
     // {username: <string>}
-    return this.http.post(this.prefix + '/account/setting/', JSON.stringify(obj), {
-      headers: new Headers({
-       'Content-Type': undefined
+    return this.http.post(
+      this.prefix + '/account/setting/', JSON.stringify(obj), {
+        headers: new Headers({
+        'Content-Type': undefined
+        })
       })
-    })
       .toPromise()
       .then((res) => {
         let body = res.json();

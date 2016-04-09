@@ -7,6 +7,7 @@ import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-tran
 
 import {LocalStorageService} from './app/base/local-storage/local-storage.service';
 import {UserService} from './app/user/user.service';
+import {HttpUtilsService} from './app/base/utils/http-utils.service';
 
 // TODO: only need UrlSafeBase64Service
 import {Utf8Service} from './app/base/base64/utf8.service';
@@ -29,6 +30,7 @@ bootstrap(RootAppComponent, [
   Base64Service,
   UrlSafeBase64Service,
   LocalStorageService,
-  UserService
+  UserService,
+  HttpUtilsService
 ])
 .catch(err => console.error(err));

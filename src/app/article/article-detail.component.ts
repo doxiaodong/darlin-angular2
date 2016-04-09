@@ -8,13 +8,14 @@ import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 import {ArticleApi} from './article.api';
 
 import {ArticleCategoryComponent} from './category.component';
+import {CommentComponent} from '../comment/comment.component';
 import {MarkedComponent} from '../base/marked/marked.component';
 
 @Component({
   template: require('./article-detail.template.html'),
   providers: [ArticleApi],
   pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, ArticleCategoryComponent, MarkedComponent]
+  directives: [ROUTER_DIRECTIVES, ArticleCategoryComponent, CommentComponent, MarkedComponent]
 })
 
 export class ArticleDetailComponent implements OnInit {

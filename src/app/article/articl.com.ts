@@ -6,7 +6,6 @@ import {ArticleDetailComponent} from './article-detail.component';
 
 @Component({
   template: `
-    <div>hshshs</div>
     <router-outlet></router-outlet>
   `,
   directives: [ROUTER_DIRECTIVES]

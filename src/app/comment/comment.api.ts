@@ -1,6 +1,6 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, Headers} from 'angular2/http';
 
 import {HttpUtilsService} from '../base/utils/http-utils.service';
 
@@ -15,7 +15,7 @@ export class CommentApi {
     return Promise.reject(error.message || error.json().error || 'Server error');
   }
 
-  getArticleListCommentList(article: string) {
+  getArticleCommentList(article: string) {
     return this.http.get(this.prefix + `/comment/comments/${article}/`)
       .toPromise()
       .then((res) => {
@@ -57,7 +57,12 @@ export class CommentApi {
 
   addArticleReply(article: string, obj: Object) {
     // obj = {content: <string>}
-    return this.http.post(this.prefix + `/comments/add/${article}/`, this.httpUtils.paramPostBody(obj))
+    return this.http.post(
+      this.prefix + `/comments/add/${article}/`, this.httpUtils.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();
@@ -72,7 +77,12 @@ export class CommentApi {
 
   addSubReply(comment: string, obj: Object) {
     // obj = {content: <string>, reply_object: <string>}
-    return this.http.post(this.prefix + `/comments/add-sub/${comment}/`, this.httpUtils.paramPostBody(obj))
+    return this.http.post(
+      this.prefix + `/comments/add-sub/${comment}/`, this.httpUtils.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();

@@ -1,0 +1,63 @@
+
+<div class="each-header">
+  <span class="active-color count-replys">{{ articleReplies }}&nbsp;</span>{{ 'pages.article.replies' | translate }}
+</div>
+<div class="each-inner">
+  <ul class="replies">
+    <li class="each-reply root-reply" *ngFor="#comment of comments">
+      <img class="pic left" [attr.src]="comment.replyUser.pic" alt="">
+      <div class="right">
+        <div class="word">
+          <a class="a">{{ comment.replyUser.nickname }}</a>
+          <marked class="mes markdown" [md]="comment.content"></marked>
+        </div>
+        <div class="message">
+          <span class="time">{{ comment.time | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+          <span class="pointer xd xd-reply a" (click)="showReplyInput(comment, comment)">{{ 'pages.article.reply' | translate }}</span>
+          <span class="floor">{{ comment.index }}{{ 'pages.article.floor' | translate }}</span>
+        </div>
+      </div>
+      <ul class="sub-reply">
+        <li class="each-reply" *ngFor="#subReply of comment.replies">
+          <img class="pic left" [attr.src]="subReply.replyUser.pic" alt="">
+          <div class="right">
+            <div class="word">
+              <div>
+                <a class="a">{{ subReply.replyUser.nickname }}</a>
+                <span class="nomal-color">&nbsp;{{ 'pages.article.lowercaseReply' | translate }}&nbsp;</span>
+                <a class="a">{{ subReply.replyObject.nickname }}</a>：
+              </div>
+              <marked class="mes markdown" [md]="subReply.content"></marked>
+            </div>
+            <div class="message">
+              <span class="time">{{ subReply.time | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+              <span class="pointer xd xd-reply a" (click)="showReplyInput(comment, subReply)">{{ 'pages.article.reply' | translate }}</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="reply-floor show" *ngIf="comment.input.show">
+          <form class="form" #replyForm="ngForm" (ngSubmit)="reply(comment.url, {content: submitForm.replyContent, reply_object: comment.input.object}, comment.index)">
+            <div class="form-group clearfix">
+              <span>{{ 'pages.article.replyPlaceholder' | translate }}&nbsp;<a class="a">{{ comment.input.nickname }}</a>：</span>
+              <textarea [(ngModel)]="submitForm.replyContent" ngControl="replyInput" #replyInput="ngForm" class="form-control reply-textarea" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>
+              <button [disabled]="!replyForm.form.valid || requesting" class="btn reply-button" type="submit">{{ 'pages.article.reply' | translate }}</button>
+            </div>
+          </form>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="each-inner">
+  <p>{{ 'pages.article.replyArticle' | translate }}:</p>
+
+  <form (ngSubmit)="comment(article, {content: submitForm.commentContent})" #commentForm="ngForm" class="form">
+    <div class="form-group clearfix">
+      <label for="add_content"></label>
+      <textarea [(ngModel)]="submitForm.commentContent" ngControl="commentInput" #commentInput="ngForm" class="form-control reply-textarea" type="text" id="add_content" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>
+      <button [disabled]="!commentForm.form.valid || requesting" class="main btn reply-button" type="submit">{{ 'pages.article.comment' | translate }}</button>
+    </div>
+  </form>
+</div>
