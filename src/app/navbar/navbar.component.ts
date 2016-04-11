@@ -4,9 +4,11 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
-import {USER} from '../user/user.mock';
+import {USER_NULL} from '../user/user.null';
 import {UserService} from '../user/user.service';
 import {BaseApi} from '../base/api/base.api';
+import {AccountApi} from '../base/account/account.api';
+import {SignModalService} from '../sign-modal/sign-modal.service';
 
 @Component({
   selector: '[navbar]',
@@ -14,40 +16,39 @@ import {BaseApi} from '../base/api/base.api';
   styles: [
     require('./navbar.less')
   ],
-  providers: [BaseApi],
+  providers: [BaseApi, AccountApi],
   pipes: [TranslatePipe],
   directives: [ROUTER_DIRECTIVES]
 })
 export class NavbarComponent implements OnInit {
   public index: number = 0;
-  public user: UserInterface;
-  public isSignin: boolean = true;
+  public user: UserInterface = USER_NULL;
+  public isSignin: boolean = false;
 
-  @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter();
+  // @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter();
 
   signIn() {
-    console.log('singin');
-    this.user = this.userService.save(USER);
-    this.isSignin = true;
-
-    this.userInfoUpdateEmitter.emit(this.user);
+    this.signModalService.show();
   }
 
   overview() {
     this.base.overview()
     .then(userInfo => {
       if (userInfo.user) {
-        this.user = this.userService.save(userInfo);
+        let user: UserInterface = userInfo.user
+        this.user = this.userService.save(user);
+        this.isSignin = true;
       }
     });
   }
 
   signOut() {
-    console.log('signout');
-    this.user = this.userService.clear();
-    this.isSignin = false;
-
-    this.userInfoUpdateEmitter.emit(this.user);
+    // console.log('signout');
+    this.account.signout()
+    .then(data => {
+      this.user = this.userService.clear();
+    });
+    // this.userInfoUpdateEmitter.emit(this.user);
   }
 
   configIndexNumber(path: string) {
@@ -68,18 +69,22 @@ export class NavbarComponent implements OnInit {
   constructor(
     private userService: UserService,
     private base: BaseApi,
-    private router: Router
-  ) {
-    this.user = USER;
-
-  }
+    private account: AccountApi,
+    private router: Router,
+    private signModalService: SignModalService
+  ) {}
 
   ngOnInit() {
 
     this.overview();
 
     this.userService.updateUser$.subscribe(userInfo => {
-      console.log(userInfo);
+      this.user = userInfo;
+      if (this.user && this.user.username) {
+        this.isSignin = true;
+      } else {
+        this.isSignin = false;
+      }
     });
 
     this.router.subscribe((val) => {

@@ -4,6 +4,7 @@ import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
+import {AlertService} from '../base/alert/alert.service';
 
 import {CommentApi} from './comment.api';
 
@@ -121,8 +122,9 @@ export class CommentComponent implements OnInit {
       this.articleReplies += 1;
 
       this.requesting = false;
-    }).catch(() => {
+    }).catch((msg) => {
       this.requesting = false;
+      this.alert.show(msg);
     });
   }
 
@@ -139,15 +141,17 @@ export class CommentComponent implements OnInit {
       this.articleReplies += 1;
 
       this.requesting = false;
-    }).catch(() => {
+    }).catch((msg) => {
       this.requesting = false;
+      this.alert.show(msg);
     });
   }
 
   constructor(
     private routeParams: RouteParams,
     private commentApi: CommentApi,
-    private b64: UrlSafeBase64Service
+    private b64: UrlSafeBase64Service,
+    private alert: AlertService
   ) {
   }
 

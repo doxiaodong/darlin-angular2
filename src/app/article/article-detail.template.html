@@ -1,8 +1,8 @@
-<div class="pages">
+<div class="pages" *ngIf="article" [title]="article.articleDetailTitle">
   <div class="page-block side right" article-categories>
   </div>
 
-  <div class="page-block left" *ngIf="article">
+  <div class="page-block left">
     <div class="each-header">
       <span class="full-title big-size">{{ article.articleDetailTitle }}</span>
       <div class="changes">• {{ article.createTime | date: 'yyyy-MM-dd HH:mm:ss' }} • {{ article.category.name }}</div>

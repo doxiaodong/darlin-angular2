@@ -3,6 +3,7 @@ import {DatePipe} from 'angular2/common';
 import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {TitleDirective} from '../title/title.directive';
 import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 
 import {ArticleApi} from './article.api';
@@ -15,7 +16,7 @@ import {MarkedComponent} from '../base/marked/marked.component';
   template: require('./article-detail.template.html'),
   providers: [ArticleApi],
   pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, ArticleCategoryComponent, CommentComponent, MarkedComponent]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, CommentComponent, MarkedComponent]
 })
 
 export class ArticleDetailComponent implements OnInit {

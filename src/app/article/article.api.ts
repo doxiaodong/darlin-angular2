@@ -8,7 +8,7 @@ export class ArticleApi {
   private prefix: string;
 
   private handleError(error: any) {
-    return Promise.reject(error.message || error.json().error || 'Server error');
+    return Promise.reject(error.message || error.json().msg || 'Server error');
   }
 
   getArticleCategories() {

@@ -12,7 +12,7 @@ export class CommentApi {
   private httpUtils: HttpUtilsService;
 
   private handleError(error: any) {
-    return Promise.reject(error.message || error.json().error || 'Server error');
+    return Promise.reject(error.message || error.json().msg || 'Server error');
   }
 
   getArticleCommentList(article: string) {
@@ -67,9 +67,11 @@ export class CommentApi {
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
+          // TODO: ugly
+          body.data.comment.replyUser.nickname = body.data.comment.replyUser.nickName;
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
@@ -87,9 +89,12 @@ export class CommentApi {
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
+          // TODO: ugly
+          body.data.subComment.replyObject.nickname = body.data.subComment.replyObject.nickName;
+          body.data.subComment.replyUser.nickname = body.data.subComment.replyUser.nickName;
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);

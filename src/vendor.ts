@@ -16,6 +16,7 @@ import 'rxjs/add/operator/toPromise';
 
 import 'marked';
 import 'highlight.js';
+import 'js-md5';
 
 // look in platform/directives and platform/providers
 

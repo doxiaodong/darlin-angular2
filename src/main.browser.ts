@@ -1,6 +1,7 @@
 import {bootstrap} from 'angular2/platform/browser';
 import {enableProdMode, provide} from 'angular2/core';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {HTTP_PROVIDERS, Http, BrowserXhr} from 'angular2/http';
+import {CustomBrowserXhr} from './app/base/custom-browser-xhr/custom-browser-xhr.provide';
 import {ROUTER_PROVIDERS} from 'angular2/router';
 
 import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
@@ -18,10 +19,13 @@ import {SignModalService} from './app/sign-modal/sign-modal.service';
 
 import {RootAppComponent} from './app/app.component';
 
-// enableProdMode();
+enableProdMode();
 
 bootstrap(RootAppComponent, [
   HTTP_PROVIDERS,
+  provide(BrowserXhr, {
+    useClass: CustomBrowserXhr
+  }),
   ROUTER_PROVIDERS,
   provide(TranslateLoader, {
     useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),

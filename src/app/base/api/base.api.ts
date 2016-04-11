@@ -1,6 +1,6 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, BrowserXhr} from 'angular2/http';
 
 @Injectable()
 export class BaseApi {
@@ -8,7 +8,7 @@ export class BaseApi {
   private prefix: string;
 
   private handleError(error: any) {
-    return Promise.reject(error.message || error.json().error || 'Server error');
+    return Promise.reject(error.message || error.json().msg || 'Server error');
   }
 
   overview() {
@@ -19,7 +19,7 @@ export class BaseApi {
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);

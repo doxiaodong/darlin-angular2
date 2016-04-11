@@ -8,6 +8,8 @@ import {UserService} from '../user/user.service';
 import {SignModalService} from './sign-modal.service';
 import {LocalStorageService} from '../base/local-storage/local-storage.service';
 
+import {AlertService} from '../base/alert/alert.service';
+
 import {AccountApi} from '../base/account/account.api';
 
 interface signinInterface {
@@ -55,36 +57,51 @@ export class SignModalComponent implements OnInit {
   }
 
   doSignin(obj: Object) {
-    console.log('singin', obj);
-    this.user = this.userService.save(USER);
+    this.requesting = true;
+    this.accountApi.signin(obj)
+    .then(data => {
+      this.user = this.userService.save(data.user);
 
-    // sigin success
-    this.local.save('signin.user', JSON.stringify(this.signin));
+      // sigin success
+      this.local.save('signin.user', JSON.stringify(this.signin));
+      this.requesting = false;
+      this.closeShowModal();
+    }).catch((msg) => {
+      this.requesting = false;
+      this.alert.show(msg);
+    });
   }
 
-  doSignout() {
-    console.log('signout');
-    this.user = this.userService.clear();
-  }
-
-  doRegister(obj: Object) {
-    console.log('register', obj);
+  doRegister(obj: any) {
+    this.requesting = true;
+    this.accountApi.register(obj)
+    .then(data => {
+      this.user = this.userService.save(data.user);
+      this.signin = {
+        username: obj.username,
+        password: obj.password
+      };
+      // sigin success
+      this.local.save('signin.user', JSON.stringify(this.signin));
+      this.requesting = false;
+      this.closeShowModal();
+    }).catch((msg) => {
+      this.requesting = false;
+      this.alert.show(msg);
+    });
   }
 
   constructor(
     private userService: UserService,
     private signModalService: SignModalService,
     private local: LocalStorageService,
+    private alert: AlertService,
     private accountApi: AccountApi
   ) {
 
   }
 
   ngOnInit() {
-
-    this.userService.updateUser$.subscribe(userInfo => {
-      console.log(userInfo);
-    });
 
     this.signModalService.showSignModal$.subscribe(() => {
       this.showModal = true;
@@ -99,8 +116,6 @@ export class SignModalComponent implements OnInit {
         password: ''
       };
     }
-
-    this.signin = JSON.parse(this.local.get('signin.user'));
 
   }
 

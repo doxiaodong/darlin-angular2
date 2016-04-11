@@ -1,6 +1,7 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
+import * as md5 from 'js-md5';
 
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {LocalStorageService} from '../local-storage/local-storage.service';
@@ -11,36 +12,52 @@ export class AccountApi {
   private prefix: string;
 
   private handleError(error: any) {
-    return Promise.reject(error.message || error.json().error || 'Server error');
+    return Promise.reject(error.message || error.json().msg || 'Server error');
   }
 
-  signin(obj: Object) {
-    // TODO: password add md5
+  signin(obj: any) {
     // {username: <string>, password: <string>}
-    return this.http.post(this.prefix + '/account/signin/', this.httpUtils.paramPostBody(obj))
+    let _obj = {
+      username: obj.username,
+      password: md5(obj.password)
+    };
+    return this.http.post(this.prefix + '/account/signin/', this.httpUtils.paramPostBody(_obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
   }
 
-  register(obj: Object) {
-    // TODO: password add md5
+  register(obj: any) {
+    let _obj = {
+      username: obj.username,
+      password: md5(obj.password),
+      nickname: obj.nickname,
+      email: obj.email
+    };
     // {username: <string>, password: <string>, nickname: <string>, email: <string>}
-    return this.http.post(this.prefix + '/account/register/', this.httpUtils.paramPostBody(obj))
+    return this.http.post(this.prefix + '/account/register/', this.httpUtils.paramPostBody(_obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
@@ -54,7 +71,7 @@ export class AccountApi {
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
@@ -62,14 +79,18 @@ export class AccountApi {
 
   getUserInfo(obj: Object) {
     // {username: <string>}
-    return this.http.post(this.prefix + '/account/getUserInfo/', this.httpUtils.paramPostBody(obj))
+    return this.http.post(this.prefix + '/account/getUserInfo/', this.httpUtils.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
@@ -89,7 +110,7 @@ export class AccountApi {
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
@@ -98,14 +119,18 @@ export class AccountApi {
   changePassword(obj: Object) {
     // TODO: password add md5
     // {username: <string>, old_password: <string>, new_password: <string>}
-    return this.http.post(this.prefix + '/account/change/', this.httpUtils.paramPostBody(obj))
+    return this.http.post(this.prefix + '/account/change/', this.httpUtils.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);
@@ -114,14 +139,18 @@ export class AccountApi {
   resetPassword(obj: Object) {
     // TODO: password add md5
     // {username: <string>, new_password: <string>}
-    return this.http.post(this.prefix + '/account/reset/', this.httpUtils.paramPostBody(obj))
+    return this.http.post(this.prefix + '/account/reset/', this.httpUtils.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      })
       .toPromise()
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
         } else {
-          return Promise.reject(body);
+          return Promise.reject(res);
         }
       })
       .catch(this.handleError);

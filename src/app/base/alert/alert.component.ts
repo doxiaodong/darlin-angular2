@@ -59,7 +59,7 @@ export class AlertComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes) {
-    console.log(changes);
+    // console.log(changes);
   }
 
 }

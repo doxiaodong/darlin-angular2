@@ -3,6 +3,7 @@ import {DatePipe} from 'angular2/common';
 import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {TitleDirective} from '../title/title.directive';
 import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 
 import {ArticleApi} from './article.api';
@@ -14,7 +15,7 @@ import {ArticleCategoryComponent} from './category.component';
   template: require('./article-list.template.html'),
   providers: [ArticleApi],
   pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, ArticleCategoryComponent]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent]
 })
 
 export class ArticleListComponent implements OnInit {
@@ -62,7 +63,7 @@ export class ArticleListComponent implements OnInit {
     let category = this.routeParams.get('category');
 
     this.getArticles(category);
-    console.log(category);
+    // console.log(category);
   }
 
 }

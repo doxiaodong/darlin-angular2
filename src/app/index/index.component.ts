@@ -4,17 +4,17 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
+import {TitleDirective} from '../title/title.directive';
+
 import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 
 import {ArticleApi} from '../article/article.api';
-
-import {AlertService} from '../base/alert/alert.service';
 
 @Component({
   template: require('./index.template.html'),
   providers: [ArticleApi],
   pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES, TitleDirective]
 })
 
 export class IndexComponent implements OnInit {
@@ -44,8 +44,7 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private articleApi: ArticleApi,
-    private b64: UrlSafeBase64Service,
-    private alert: AlertService
+    private b64: UrlSafeBase64Service
   ) {
   }
 
@@ -54,11 +53,6 @@ export class IndexComponent implements OnInit {
     let category = 'hot';
 
     this.getArticles(category);
-
-    this.alert.show('alert1', () => {
-      console.log(1);
-      this.alert.show('alert2')
-    });
 
   }
 
