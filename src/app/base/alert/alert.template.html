@@ -1,0 +1,10 @@
+<div class="xd-alert" [class.shown]="showAlert" *ngIf="opts">
+  <div class="xd-container">
+    <header class="xd-header">{{ opts.title }}</header>
+    <article class="xd-article">{{ opts.content }}</article>
+    <footer class="xd-footer">
+      <button class="btn xd-alert-close-button" (click)="closeAlert()">{{ opts.ok }}</button>
+      </footer>
+    <i class="xd-alert-close xd xd-ios-close-empty" (click)="closeAlert()"></i>
+  </div>
+</div>

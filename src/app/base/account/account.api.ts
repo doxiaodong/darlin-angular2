@@ -46,7 +46,7 @@ export class AccountApi {
       .catch(this.handleError);
   }
 
-  signout(obj: Object) {
+  signout() {
     return this.http.post(this.prefix + '/account/signout/', '')
       .toPromise()
       .then((res) => {

@@ -18,7 +18,7 @@
 
 1. less/css  ViewEncapsulation
 
-2. component
+2. component/directive
 
 3. service /生命周期
 

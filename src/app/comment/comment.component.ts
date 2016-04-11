@@ -19,6 +19,8 @@ import {MarkedComponent} from '../base/marked/marked.component';
 
 export class CommentComponent implements OnInit {
 
+  public requesting: boolean = false;
+
   public comments;
   public articleReplies: number = 0;
 
@@ -98,6 +100,9 @@ export class CommentComponent implements OnInit {
   }
 
   comment(article: string, obj: Object) {
+
+    this.requesting = true;
+
     this.commentApi.addArticleReply(article, obj)
     .then(data => {
       this.clearSubmitForm();
@@ -114,10 +119,15 @@ export class CommentComponent implements OnInit {
       comment.replies = [];
       this.comments.push(comment);
       this.articleReplies += 1;
+
+      this.requesting = false;
+    }).catch(() => {
+      this.requesting = false;
     });
   }
 
   reply(comment: string, obj: Object, index: number) {
+    this.requesting = true;
     this.commentApi.addSubReply(comment, obj)
     .then(data => {
       this.clearSubmitForm();
@@ -127,6 +137,10 @@ export class CommentComponent implements OnInit {
       sub.time = new Date(sub.time);
       this.comments[index-1].replies.push(sub);
       this.articleReplies += 1;
+
+      this.requesting = false;
+    }).catch(() => {
+      this.requesting = false;
     });
   }
 

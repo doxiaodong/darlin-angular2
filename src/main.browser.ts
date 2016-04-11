@@ -13,10 +13,12 @@ import {HttpUtilsService} from './app/base/utils/http-utils.service';
 import {Utf8Service} from './app/base/base64/utf8.service';
 import {Base64Service} from './app/base/base64/base64.service';
 import {UrlSafeBase64Service} from './app/base/base64/base64safe.service';
+import {AlertService} from './app/base/alert/alert.service';
+import {SignModalService} from './app/sign-modal/sign-modal.service';
 
 import {RootAppComponent} from './app/app.component';
 
-enableProdMode();
+// enableProdMode();
 
 bootstrap(RootAppComponent, [
   HTTP_PROVIDERS,
@@ -31,6 +33,8 @@ bootstrap(RootAppComponent, [
   UrlSafeBase64Service,
   LocalStorageService,
   UserService,
+  AlertService,
+  SignModalService,
   HttpUtilsService
 ])
 .catch(err => console.error(err));

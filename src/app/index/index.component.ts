@@ -8,6 +8,8 @@ import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 
 import {ArticleApi} from '../article/article.api';
 
+import {AlertService} from '../base/alert/alert.service';
+
 @Component({
   template: require('./index.template.html'),
   providers: [ArticleApi],
@@ -42,7 +44,8 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private articleApi: ArticleApi,
-    private b64: UrlSafeBase64Service
+    private b64: UrlSafeBase64Service,
+    private alert: AlertService
   ) {
   }
 
@@ -51,6 +54,12 @@ export class IndexComponent implements OnInit {
     let category = 'hot';
 
     this.getArticles(category);
+
+    this.alert.show('alert1', () => {
+      console.log(1);
+      this.alert.show('alert2')
+    });
+
   }
 
 }

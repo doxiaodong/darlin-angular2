@@ -1,16 +1,19 @@
 import {Component, ViewEncapsulation, OnInit} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Title} from 'angular2/platform/browser';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {MarkedService} from './base/marked/marked.service';
 
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
 import {MarkedComponent} from './base/marked/marked.component';
+import {AlertComponent} from './base/alert/alert.component';
 
 import {IndexComponent} from './index/index.component';
 import {ArticleListComponent} from './article/article-list.component';
 import {ArticleDetailComponent} from './article/article-detail.component';
+import {SignModalComponent} from './sign-modal/sign-modal.component';
 
 import {ArticlCom} from './article/articl.com'; // test child router
 
@@ -25,8 +28,9 @@ import {UserService} from './user/user.service';
     require('./base/styles/global.less'),
     require('./article/article-list.less')
   ],
+  pipes: [TranslatePipe],
   providers: [Title, MarkedService],
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, MarkedComponent]
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, MarkedComponent, AlertComponent, SignModalComponent]
 })
 @RouteConfig([
   {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
