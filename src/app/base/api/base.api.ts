@@ -1,6 +1,6 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {Injectable} from 'angular2/core';
-import {Http, BrowserXhr} from 'angular2/http';
+import {Http} from 'angular2/http';
 
 @Injectable()
 export class BaseApi {
