@@ -1,5 +1,4 @@
 import {Component, OnInit} from 'angular2/core';
-import {DatePipe} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -9,12 +8,14 @@ import {TitleDirective} from '../title/title.directive';
 import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
 
 import {ArticleApi} from '../article/article.api';
+import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
+import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 @Component({
   template: require('./index.template.html'),
   providers: [ArticleApi],
-  pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective]
+  pipes: [XdDatePipe, TranslatePipe],
+  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective]
 })
 
 export class IndexComponent implements OnInit {
@@ -29,7 +30,7 @@ export class IndexComponent implements OnInit {
         let article = {
           url: this.b64.encode(a.url),
           title: a.title,
-          createTime: new Date(a.create_time),
+          createTime: a.create_time,
           category: a.category.url,
           isUp: a.is_up,
           isHot: a.hot

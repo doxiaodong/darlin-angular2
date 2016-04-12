@@ -12,7 +12,7 @@
           <marked class="mes markdown" [md]="comment.content"></marked>
         </div>
         <div class="message">
-          <span class="time">{{ comment.time | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+          <span class="time">{{ comment.time | xdDate }}</span>
           <span class="pointer xd xd-reply a" (click)="showReplyInput(comment, comment)">{{ 'pages.article.reply' | translate }}</span>
           <span class="floor">{{ comment.index }}{{ 'pages.article.floor' | translate }}</span>
         </div>
@@ -30,7 +30,7 @@
               <marked class="mes markdown" [md]="subReply.content"></marked>
             </div>
             <div class="message">
-              <span class="time">{{ subReply.time | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+              <span class="time">{{ subReply.time | xdDate }}</span>
               <span class="pointer xd xd-reply a" (click)="showReplyInput(comment, subReply)">{{ 'pages.article.reply' | translate }}</span>
             </div>
           </div>

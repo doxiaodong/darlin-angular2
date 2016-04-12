@@ -1,4 +1,4 @@
-<div class="pages" [title]="'titles.articleListTitle' | translate">
+<div class="pages" [title]="'titles.articleListTitle' | translate" page-animate>
   <div class="page-block side right" article-categories>
   </div>
 
@@ -17,7 +17,7 @@
             <div class="title">
             <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
             </div>
-            <div class="time">{{ article.createTime | date }}</div>
+            <div class="time">{{ article.createTime | xdDate }}</div>
           </a>
         </li>
         <li class="article" *ngIf="!articles.length">{{ 'pages.article.none' | translate }}</li>

@@ -28,8 +28,10 @@
 
 6. input/output
 
-7. form
+7. form pattern
 
 8. http promise/Observable
 
 9. Provider & Injector
+
+10. animate

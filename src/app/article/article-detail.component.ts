@@ -1,5 +1,4 @@
 import {Component, OnInit} from 'angular2/core';
-import {DatePipe} from 'angular2/common';
 import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -11,12 +10,21 @@ import {ArticleApi} from './article.api';
 import {ArticleCategoryComponent} from './category.component';
 import {CommentComponent} from '../comment/comment.component';
 import {MarkedComponent} from '../base/marked/marked.component';
+import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
+import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 @Component({
   template: require('./article-detail.template.html'),
   providers: [ArticleApi],
-  pipes: [DatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, CommentComponent, MarkedComponent]
+  pipes: [XdDatePipe, TranslatePipe],
+  directives: [
+    ROUTER_DIRECTIVES,
+    TitleDirective,
+    ArticleCategoryComponent,
+    CommentComponent,
+    MarkedComponent,
+    PageAnimateDirective
+  ]
 })
 
 export class ArticleDetailComponent implements OnInit {
@@ -32,7 +40,7 @@ export class ArticleDetailComponent implements OnInit {
           key: data.category.url,
           name: data.category.name
         },
-        createTime: new Date(data.create_time),
+        createTime: data.create_time,
         content: data.content
       };
 

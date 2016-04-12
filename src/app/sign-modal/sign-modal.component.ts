@@ -35,8 +35,8 @@ interface registerInterface {
 })
 export class SignModalComponent implements OnInit {
 
-  public usernamePattern = /^\w{6,20}$/;
-  public passwordPattern = /^\w{6,20}$/;
+  public usernamePattern = '^\w{6,20}$';
+  public passwordPattern = '^\w{6,20}$';
   public requesting: boolean = false;
   public showModal: boolean = false;
   public signinModel: boolean = true;
