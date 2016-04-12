@@ -156,7 +156,6 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    let category = this.routeParams.get('category');
     let url = this.b64.decode(this.routeParams.get('url'));
 
     this.getComments(url);

@@ -19,7 +19,22 @@ export class FooterComponent {
 
   public show: boolean = false;
 
-  public selectedKey: string
+  public selectedKey: string;
+
+  private htmlElement;
+
+  changeHtmlLang(current) {
+    let l: string;
+    switch (current) {
+      case 'en_US':
+        l = 'en';
+        break;
+      default:
+        l = 'zh-cmn-Hans';
+    }
+
+    this.htmlElement.setAttribute('lang', l);
+  }
 
   translateInit() {
     this.local.setPrefix('xd.');
@@ -28,9 +43,14 @@ export class FooterComponent {
       current = 'zh_CN';
     }
     this.translate.use(current);
+
+    this.htmlElement = document.querySelector('html');
+    this.changeHtmlLang(current);
+
     this.local.save('language', current);
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.local.save('language', event.lang);
+      this.changeHtmlLang(event.lang);
     });
   }
 
