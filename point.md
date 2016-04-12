@@ -4,7 +4,7 @@
 
 2. commonjs / systemjs
 
-3. typescript
+3. typescript function/=>
 
 4. typings
 

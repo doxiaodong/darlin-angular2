@@ -2,6 +2,7 @@ import {Component, Output, EventEmitter, OnInit} from 'angular2/core';
 import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {VisibilityDirective} from '../visibility/visibility.directive';
 
 import {UserInterface} from '../user/user.interface';
 import {USER_NULL} from '../user/user.null';
@@ -18,7 +19,7 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
   ],
   providers: [BaseApi, AccountApi],
   pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES, VisibilityDirective]
 })
 export class NavbarComponent implements OnInit {
   public index: number = 0;

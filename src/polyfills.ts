@@ -129,4 +129,10 @@ function patchTimer(
 
 require('zone.js/dist/long-stack-trace-zone');
 
+// TODO: remove when angular2 fixed
+// https://github.com/angular/angular/issues/3333
+require('intl');
+require('intl/locale-data/jsonp/en.js');
+
+
 /* tslint:enable */
