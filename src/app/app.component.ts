@@ -32,7 +32,8 @@ import {ArticlCom} from './article/articl.com'; // test child router
   {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
   {path: '/articl/...', name: 'Articl', component: ArticlCom}, // test child router
   {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent},
-  {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent}
+  {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent},
+  {path: '/*path', redirectTo: ['Index']}
 ])
 export class RootAppComponent implements OnInit {
 

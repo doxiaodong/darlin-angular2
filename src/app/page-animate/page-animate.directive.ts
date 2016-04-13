@@ -22,7 +22,6 @@ export class PageAnimateDirective implements OnInit {
     let _a = a.start(this._e.nativeElement);
     _a.onComplete(() => {
       a.removeClass('page-enter');
-      console.log(this._e.nativeElement)
       this._e.nativeElement.removeAttribute('style'); // Do not write inline styles in html
     });
 
