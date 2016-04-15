@@ -7,7 +7,6 @@ import {VisibilityDirective} from '../visibility/visibility.directive';
 import {UserInterface} from '../user/user.interface';
 import {USER_NULL} from '../user/user.null';
 import {UserService} from '../user/user.service';
-import {BaseApi} from '../base/api/base.api';
 import {AccountApi} from '../base/account/account.api';
 import {SignModalService} from '../sign-modal/sign-modal.service';
 
@@ -29,17 +28,6 @@ export class NavbarComponent implements OnInit {
 
   signIn() {
     SignModalService.show();
-  }
-
-  overview() {
-    BaseApi.overview()
-    .then(userInfo => {
-      if (userInfo.user) {
-        let user: UserInterface = userInfo.user
-        this.user = UserService.save(user);
-        this.isSignin = true;
-      }
-    });
   }
 
   signOut() {
@@ -72,15 +60,15 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.overview();
+    UserService.get()
+    .then(userInfo => {
+      this.user = UserService.save(userInfo);
+      this.isSignin = UserService.isSignin();
+    });
 
     UserService.updateUser$.subscribe(userInfo => {
       this.user = userInfo;
-      if (this.user && this.user.username) {
-        this.isSignin = true;
-      } else {
-        this.isSignin = false;
-      }
+      this.isSignin = UserService.isSignin()
     });
 
     this.router.subscribe((val) => {

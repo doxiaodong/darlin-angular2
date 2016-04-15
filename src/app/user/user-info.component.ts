@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, CanActivate, OnActivate} from 'angular2/router';
+import {Component, OnInit} from 'angular2/core';
+import {ROUTER_DIRECTIVES, CanActivate, OnActivate, Router} from 'angular2/router';
 import {SignModalService} from '../sign-modal/sign-modal.service';
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
@@ -10,26 +10,31 @@ import {UserService} from './user.service';
 })
 
 @CanActivate((next, prev) => {
-  if (!UserService.get() || UserService.get().id === -1) {
-
-    SignModalService.show();
-
-    return false;
-  }
-
-
-  return true;
+  return UserService.get().then(() => {
+    if (!UserService.isSignin()) {
+      SignModalService.show();
+    }
+    return Promise.resolve(UserService.isSignin());
+  });
 
 })
 
-export class UserInfoComponent implements OnActivate {
+export class UserInfoComponent implements OnActivate, OnInit {
 
   private user: UserInterface;
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   routerOnActivate(next) {
     this.user = UserService.get();
+  }
+
+  ngOnInit() {
+    UserService.updateUser$.subscribe(userInfo => {
+      this.router.navigate(['Index']);
+    });
   }
 
 }
