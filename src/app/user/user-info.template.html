@@ -1,1 +1,83 @@
-<div>User iNFO</div>
+<div class="pages account" [title]="'pages.account.infoTitle' | translate" page-animate>
+  <div class="page-block">
+    <div class="each-header">
+      <span class="big-size">{{ 'pages.account.profile' | translate }}</span>
+      <a *ngIf="itsMe" class="a pull-right" [routerLink]="['Index']">{{ 'pages.account.change' | translate }}</a>
+    </div>
+    <div class="each-inner" *ngIf="profile">
+      <div class="head clearfix">
+        <div class="head-pic pull-left">
+          <img [attr.src]="profile.pic" alt="">
+        </div>
+        <span class="name pull-left">{{ profile.nickName }}</span>
+      </div>
+      <div class="sex">{{ profile.sex.word }}</div>
+      <div class="email line">{{ 'pages.account.email' | translate }}：<a [href]="'mailto:' + profile.email">{{ profile.email }}</a></div>
+      <div class="last-login line">{{ 'pages.account.lastSignin' | translate }}：{{ profile.lastSignin | xdDate }}</div>
+      <div *ngIf="itsMe" class="line">
+        <button (click)="signout()" class="main btn">{{ 'pages.account.signout' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-block" *ngIf="itsMe">
+    <div class="each-header">
+      <span class="big-size">{{ 'pages.account.notification' | translate }}</span>
+      <span class="a pull-right no-select" (click)="replyContainerFold = !replyContainerFold">
+        <span *ngIf="!replyContainerFold">{{ 'pages.account.fold' | translate }}</span>
+        <span *ngIf="replyContainerFold">{{ 'pages.account.expand' | translate }}</span>
+      </span>
+    </div>
+    <div class="each-inner" *ngIf="!replyContainerFold">
+      <ul class="replies">
+        <li class="each-reply" *ngFor="#reply of replies">
+          <img class="pic left" [attr.src]="reply.replyUser.pic" alt="">
+          <div class="right">
+            <div class="word">
+              <div>
+                <a class="a" [routerLink]="['UserInfo', {user: reply.replyUser.username}]">{{ reply.replyUser.nickname }}</a>
+                <span class="normal-color">{{ 'pages.account.replyWord1' | translate }}</span>
+                <a class="a" [routerLink]="['ArticleDetail', {category: reply.article.category.url, url: encode(reply.article.url)}]">{{ reply.article.title }}</a>
+                {{ 'pages.account.replyWord2' | translate }}：
+              </div>
+              <marked class="mes markdown" [md]="reply.content"></marked>
+            </div>
+            <div class="message">
+              <span class="time">{{ reply.time | xdDate }}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-block" *ngIf="itsMe && supperUser">
+    <div class="each-header">
+      <span class="big-size">{{ 'pages.account.notificationArticle' | translate }}</span>
+      <span class="a pull-right no-select" (click)="commentContainerFold = !commentContainerFold">
+        <span *ngIf="!commentContainerFold">{{ 'pages.account.fold' | translate }}</span>
+        <span *ngIf="commentContainerFold">{{ 'pages.account.expand' | translate }}</span>
+      </span>
+    </div>
+    <div class="each-inner" *ngIf="!commentContainerFold">
+      <ul class="replies">
+        <li class="each-reply" *ngFor="#reply of repliesOfArticle">
+          <img class="pic left" [attr.src]="reply.replyUser.pic" alt="">
+          <div class="right">
+            <div class="word">
+              <div>
+                <a class="a" [routerLink]="['UserInfo', {user: reply.replyUser.username}]">{{ reply.replyUser.nickname }}</a>
+                <span class="normal-color">{{ 'pages.account.replyOfArticleWord' | translate }}</span>
+                <a class="a" [routerLink]="['ArticleDetail', {category: reply.article.category.url, url: encode(reply.article.url)}]">{{ reply.article.title }}</a>：
+              </div>
+              <marked class="mes markdown" [md]="reply.content"></marked>
+            </div>
+            <div class="message">
+              <span class="time">{{ reply.time | xdDate }}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,7 @@
       <img class="pic left" [attr.src]="comment.replyUser.pic" alt="">
       <div class="right">
         <div class="word">
-          <a class="a">{{ comment.replyUser.nickname }}</a>
+          <a class="a" [routerLink]="['UserInfo', {user: comment.replyUser.username}]">{{ comment.replyUser.nickname }}</a>
           <marked class="mes markdown" [md]="comment.content"></marked>
         </div>
         <div class="message">
@@ -23,9 +23,9 @@
           <div class="right">
             <div class="word">
               <div>
-                <a class="a">{{ subReply.replyUser.nickname }}</a>
+                <a class="a" [routerLink]="['UserInfo', {user: subReply.replyUser.username}]">{{ subReply.replyUser.nickname }}</a>
                 <span class="nomal-color">&nbsp;{{ 'pages.article.lowercaseReply' | translate }}&nbsp;</span>
-                <a class="a">{{ subReply.replyObject.nickname }}</a>：
+                <a class="a" [routerLink]="['UserInfo', {user: subReply.replyObject.username}]">{{ subReply.replyObject.nickname }}</a>：
               </div>
               <marked class="mes markdown" [md]="subReply.content"></marked>
             </div>
