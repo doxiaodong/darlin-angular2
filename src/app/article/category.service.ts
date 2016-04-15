@@ -1,18 +1,16 @@
-import {Injectable} from 'angular2/core';
 
 import {LocalStorageService} from '../base/local-storage/local-storage.service';
 
 import {ArticleApi} from './article.api';
 
-@Injectable()
 export class CategoryService {
 
   private categories: Array<Object> = [];
 
   getCategories():Array<Object> {
-    let categories = JSON.parse(this.local.getSession('article.categories'));
+    let categories = JSON.parse(LocalStorageService.getSession('article.categories'));
     if (!categories) {
-      this.articleApi.getArticleCategories()
+      ArticleApi.getArticleCategories()
       .then(data => {
 
         this.categories.push({
@@ -28,7 +26,7 @@ export class CategoryService {
           this.categories.push(category);
         });
 
-        this.local.saveSession('article.categories', JSON.stringify(this.categories));
+        LocalStorageService.saveSession('article.categories', JSON.stringify(this.categories));
 
       });
     } else {
@@ -39,10 +37,7 @@ export class CategoryService {
 
   }
 
-  constructor(
-    private articleApi: ArticleApi,
-    private local: LocalStorageService
-  ) {
+  constructor() {
 
   }
 

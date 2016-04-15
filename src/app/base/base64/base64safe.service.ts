@@ -159,10 +159,10 @@ var B64url = {
 
 /* tslint:enable */
 
-export class UrlSafeBase64Service {
+export default class UrlSafeBase64Service {
 
-  encode = B64url.encode;
-  decode = B64url.decode;
+  static encode = B64url.encode;
+  static decode = B64url.decode;
 
   constructor() {}
 

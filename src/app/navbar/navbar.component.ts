@@ -17,7 +17,6 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
   styles: [
     require('./navbar.less')
   ],
-  providers: [BaseApi, AccountApi],
   pipes: [TranslatePipe],
   directives: [ROUTER_DIRECTIVES, VisibilityDirective]
 })
@@ -29,15 +28,15 @@ export class NavbarComponent implements OnInit {
   // @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter();
 
   signIn() {
-    this.signModalService.show();
+    SignModalService.show();
   }
 
   overview() {
-    this.base.overview()
+    BaseApi.overview()
     .then(userInfo => {
       if (userInfo.user) {
         let user: UserInterface = userInfo.user
-        this.user = this.userService.save(user);
+        this.user = UserService.save(user);
         this.isSignin = true;
       }
     });
@@ -45,9 +44,9 @@ export class NavbarComponent implements OnInit {
 
   signOut() {
     // console.log('signout');
-    this.account.signout()
+    AccountApi.signout()
     .then(data => {
-      this.user = this.userService.clear();
+      this.user = UserService.clear();
     });
     // this.userInfoUpdateEmitter.emit(this.user);
   }
@@ -68,18 +67,14 @@ export class NavbarComponent implements OnInit {
   }
 
   constructor(
-    private userService: UserService,
-    private base: BaseApi,
-    private account: AccountApi,
-    private router: Router,
-    private signModalService: SignModalService
+    private router: Router
   ) {}
 
   ngOnInit() {
 
     this.overview();
 
-    this.userService.updateUser$.subscribe(userInfo => {
+    UserService.updateUser$.subscribe(userInfo => {
       this.user = userInfo;
       if (this.user && this.user.username) {
         this.isSignin = true;

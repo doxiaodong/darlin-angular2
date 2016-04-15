@@ -1,7 +1,6 @@
-import {Injectable} from 'angular2/core'
 import {Subject}    from 'rxjs/Subject';
 
-export class SignModalService {
+class SignModal {
 
   private _showSignModal = new Subject<any>();
   showSignModal$ = this._showSignModal.asObservable();
@@ -15,3 +14,5 @@ export class SignModalService {
   }
 
 }
+
+export var SignModalService = new SignModal();

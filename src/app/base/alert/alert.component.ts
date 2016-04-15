@@ -3,7 +3,6 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {AlertService} from './alert.service';
 
-
 interface AlertInterface {
   title: string;
   ok: string;
@@ -35,13 +34,12 @@ export class AlertComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor(
-    private alert: AlertService
-  ) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.alert.showAlert$.subscribe(_opts => {
+
+    AlertService.showAlert$.subscribe(_opts => {
       this.opts = {
         title: _opts.title ? _opts.title : this.alertTitle,
         ok: _opts.ok ? _opts.ok : this.alertOk,
@@ -56,6 +54,7 @@ export class AlertComponent implements OnInit, OnChanges {
       }
       this.showAlert = true;
     });
+
   }
 
   ngOnChanges(changes) {

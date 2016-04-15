@@ -1,9 +1,8 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
 
-@Injectable()
-export class ArticleApi {
+import {http} from '../base/injector/http-injector';
+
+class Api {
 
   private prefix: string;
 
@@ -12,7 +11,7 @@ export class ArticleApi {
   }
 
   getArticleCategories() {
-    return this.http.get(this.prefix + '/article/categories/')
+    return http.get(this.prefix + '/article/categories/')
       .toPromise()
       .then((res) => {
         let body = res.json();
@@ -22,7 +21,7 @@ export class ArticleApi {
   }
 
   getArticleList(category: string) {
-    return this.http.get(this.prefix + `/article/articles/${category}/`)
+    return http.get(this.prefix + `/article/articles/${category}/`)
       .toPromise()
       .then((res) => {
         let body = res.json();
@@ -32,7 +31,7 @@ export class ArticleApi {
   }
 
   getArticleDetail(url: string) {
-    return this.http.get(this.prefix + `/article/${url}/`)
+    return http.get(this.prefix + `/article/${url}/`)
       .toPromise()
       .then((res) => {
         let body = res.json();
@@ -41,8 +40,10 @@ export class ArticleApi {
       .catch(this.handleError);
   }
 
-  constructor(private http: Http) {
+  constructor() {
     this.prefix = ApiPrefix.get('API_PREFIX');
   }
 
 }
+
+export var ArticleApi = new Api();

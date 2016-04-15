@@ -1,13 +1,10 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
-import {Injectable} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
+import {Headers} from 'angular2/http';
 import * as md5 from 'js-md5';
-
 import {HttpUtilsService} from '../utils/http-utils.service';
-import {LocalStorageService} from '../local-storage/local-storage.service';
+import {http} from '../injector/http-injector';
 
-@Injectable()
-export class AccountApi {
+class Api {
 
   private prefix: string;
 
@@ -21,7 +18,7 @@ export class AccountApi {
       username: obj.username,
       password: md5(obj.password)
     };
-    return this.http.post(this.prefix + '/account/signin/', this.httpUtils.paramPostBody(_obj), {
+    return http.post(this.prefix + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })
@@ -46,7 +43,7 @@ export class AccountApi {
       email: obj.email
     };
     // {username: <string>, password: <string>, nickname: <string>, email: <string>}
-    return this.http.post(this.prefix + '/account/register/', this.httpUtils.paramPostBody(_obj), {
+    return http.post(this.prefix + '/account/register/', HttpUtilsService.paramPostBody(_obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })
@@ -64,7 +61,7 @@ export class AccountApi {
   }
 
   signout() {
-    return this.http.post(this.prefix + '/account/signout/', '')
+    return http.post(this.prefix + '/account/signout/', '')
       .toPromise()
       .then((res) => {
         let body = res.json();
@@ -79,7 +76,7 @@ export class AccountApi {
 
   getUserInfo(obj: Object) {
     // {username: <string>}
-    return this.http.post(this.prefix + '/account/getUserInfo/', this.httpUtils.paramPostBody(obj), {
+    return http.post(this.prefix + '/account/getUserInfo/', HttpUtilsService.paramPostBody(obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })
@@ -98,7 +95,7 @@ export class AccountApi {
 
   changeProfile(obj: Object) {
     // {username: <string>}
-    return this.http.post(
+    return http.post(
       this.prefix + '/account/setting/', JSON.stringify(obj), {
         headers: new Headers({
         'Content-Type': undefined
@@ -119,7 +116,7 @@ export class AccountApi {
   changePassword(obj: Object) {
     // TODO: password add md5
     // {username: <string>, old_password: <string>, new_password: <string>}
-    return this.http.post(this.prefix + '/account/change/', this.httpUtils.paramPostBody(obj), {
+    return http.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })
@@ -139,7 +136,7 @@ export class AccountApi {
   resetPassword(obj: Object) {
     // TODO: password add md5
     // {username: <string>, new_password: <string>}
-    return this.http.post(this.prefix + '/account/reset/', this.httpUtils.paramPostBody(obj), {
+    return http.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })
@@ -156,12 +153,10 @@ export class AccountApi {
       .catch(this.handleError);
   }
 
-  constructor(
-    private http: Http,
-    private httpUtils: HttpUtilsService,
-    private local: LocalStorageService
-  ) {
+  constructor() {
     this.prefix = ApiPrefix.get('API_PREFIX');
   }
 
 }
+
+export var AccountApi = new Api();

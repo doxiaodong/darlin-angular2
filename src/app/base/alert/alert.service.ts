@@ -1,4 +1,3 @@
-import {Injectable} from 'angular2/core'
 import {Subject}    from 'rxjs/Subject';
 
 interface OptsInterface {
@@ -6,7 +5,7 @@ interface OptsInterface {
   ok?: string;
 }
 
-export class AlertService {
+class Alert {
 
   private _showAlert = new Subject<any>();
   showAlert$ = this._showAlert.asObservable();
@@ -17,7 +16,6 @@ export class AlertService {
     if (typeof opts === 'function') {
       callbackOk = arguments[1];
     } else if (opts) {
-      // console.log(_opts);
       _opts.title = opts.title;
       _opts.ok = opts.ok;
     }
@@ -32,3 +30,5 @@ export class AlertService {
   }
 
 }
+
+export var AlertService = new Alert()

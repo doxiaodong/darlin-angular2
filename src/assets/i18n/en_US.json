@@ -16,6 +16,8 @@
     "usernameFlag": "6 to 20, use only letter/number and '_'",
     "password": "Password",
     "passwordFlag": "6 to 20, use only letter/number and '_'",
+    "rePassword": "Repeat password",
+    "rePasswordFlag": "The password is not same as before",
     "email": "Email",
     "emailFlag": "please input email",
     "nickName": "Nick name",

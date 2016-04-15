@@ -11,6 +11,8 @@ import {AlertComponent} from './base/alert/alert.component';
 import {IndexComponent} from './index/index.component';
 import {ArticleListComponent} from './article/article-list.component';
 import {ArticleDetailComponent} from './article/article-detail.component';
+import {UserInfoComponent} from './user/user-info.component';
+
 import {SignModalComponent} from './sign-modal/sign-modal.component';
 
 import {ArticlCom} from './article/articl.com'; // test child router
@@ -33,6 +35,8 @@ import {ArticlCom} from './article/articl.com'; // test child router
   {path: '/articl/...', name: 'Articl', component: ArticlCom}, // test child router
   {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent},
   {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent},
+  {path: '/account/info/:user', name: 'UserInfo', component: UserInfoComponent},
+
   {path: '/*path', redirectTo: ['Index']}
 ])
 export class RootAppComponent implements OnInit {

@@ -3,7 +3,7 @@ import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
-import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
+import b64 from '../base/base64/base64safe.service';
 
 import {ArticleApi} from './article.api';
 
@@ -15,7 +15,6 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 @Component({
   template: require('./article-detail.template.html'),
-  providers: [ArticleApi],
   pipes: [XdDatePipe, TranslatePipe],
   directives: [
     ROUTER_DIRECTIVES,
@@ -32,7 +31,7 @@ export class ArticleDetailComponent implements OnInit {
   public article: Object;
 
   getArticleDetail(url: string) {
-    this.articleApi.getArticleDetail(url)
+    ArticleApi.getArticleDetail(url)
     .then(data => {
       this.article = {
         articleDetailTitle: data.title,
@@ -49,14 +48,12 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams,
-    private articleApi: ArticleApi,
-    private b64: UrlSafeBase64Service
+    private routeParams: RouteParams
   ) {
   }
 
   ngOnInit() {
-    let url = this.b64.decode(this.routeParams.get('url'));
+    let url = b64.decode(this.routeParams.get('url'));
     this.getArticleDetail(url);
   }
 

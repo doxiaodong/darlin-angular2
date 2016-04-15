@@ -3,7 +3,7 @@ import {NgForm} from 'angular2/common';
 import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
+import b64 from '../base/base64/base64safe.service';
 import {AlertService} from '../base/alert/alert.service';
 
 import {CommentApi} from './comment.api';
@@ -14,7 +14,6 @@ import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 @Component({
   selector: '[article-comments]',
   template: require('./comment.template.html'),
-  providers: [CommentApi],
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, MarkedComponent]
 })
@@ -31,7 +30,7 @@ export class CommentComponent implements OnInit {
   public submitForm: Object;
 
   getReplies(head: string, comment) {
-    this.commentApi.getArticleSubComments(head)
+    CommentApi.getArticleSubComments(head)
     .then(subData => {
       comment.replies = []
       subData.results.map(r => {
@@ -57,7 +56,7 @@ export class CommentComponent implements OnInit {
   }
 
   getComments(url: string) {
-    this.commentApi.getArticleCommentList(url)
+    CommentApi.getArticleCommentList(url)
     .then(data => {
 
       this.comments = [];
@@ -105,7 +104,7 @@ export class CommentComponent implements OnInit {
 
     this.requesting = true;
 
-    this.commentApi.addArticleReply(article, obj)
+    CommentApi.addArticleReply(article, obj)
     .then(data => {
       this.clearSubmitForm();
       let n = this.comments.length;
@@ -125,13 +124,13 @@ export class CommentComponent implements OnInit {
       this.requesting = false;
     }).catch((msg) => {
       this.requesting = false;
-      this.alert.show(msg);
+      AlertService.show(msg);
     });
   }
 
   reply(comment: string, obj: Object, index: number) {
     this.requesting = true;
-    this.commentApi.addSubReply(comment, obj)
+    CommentApi.addSubReply(comment, obj)
     .then(data => {
       this.clearSubmitForm();
       let sub = data.subComment;
@@ -144,20 +143,17 @@ export class CommentComponent implements OnInit {
       this.requesting = false;
     }).catch((msg) => {
       this.requesting = false;
-      this.alert.show(msg);
+      AlertService.show(msg);
     });
   }
 
   constructor(
-    private routeParams: RouteParams,
-    private commentApi: CommentApi,
-    private b64: UrlSafeBase64Service,
-    private alert: AlertService
+    private routeParams: RouteParams
   ) {
   }
 
   ngOnInit() {
-    let url = this.b64.decode(this.routeParams.get('url'));
+    let url = b64.decode(this.routeParams.get('url'));
 
     this.getComments(url);
     this.article = url;

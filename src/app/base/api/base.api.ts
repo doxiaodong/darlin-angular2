@@ -1,9 +1,8 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
 
-@Injectable()
-export class BaseApi {
+import {http} from '../injector/http-injector';
+
+class Api {
 
   private prefix: string;
 
@@ -12,7 +11,7 @@ export class BaseApi {
   }
 
   overview() {
-    return this.http.get(this.prefix + '/initHomePage/')
+    return http.get(this.prefix + '/initHomePage/')
       .toPromise()
       .then((res) => {
         let body = res.json();
@@ -25,8 +24,10 @@ export class BaseApi {
       .catch(this.handleError);
   }
 
-  constructor(private http: Http) {
+  constructor() {
     this.prefix = ApiPrefix.get('API_PREFIX');
   }
 
 }
+
+export var BaseApi = new Api();

@@ -1,42 +1,37 @@
 export class LocalStorageService {
 
-  private localStorage: any;
+  static localStorage: any = window.localStorage;
 
-  private sessionStorage: any;
+  static sessionStorage: any = window.sessionStorage;
 
-  private prefix: string = '';
+  static prefix: string = '';
 
-  save(key: string, value: string) {
+  static save(key: string, value: string) {
     this.localStorage.setItem(this.prefix + key, value);
   }
 
-  get(key: string) {
+  static get(key: string) {
     return this.localStorage.getItem(this.prefix + key);
   }
 
-  remove(key: string) {
+  static remove(key: string) {
     this.localStorage.removeItem(this.prefix + key);
   }
 
-  saveSession(key: string, value: string) {
+  static saveSession(key: string, value: string) {
     this.sessionStorage.setItem(this.prefix + key, value);
   }
 
-  getSession(key: string) {
+  static getSession(key: string) {
     return this.sessionStorage.getItem(this.prefix + key);
   }
 
-  removeSession(key: string) {
+  static removeSession(key: string) {
     this.sessionStorage.removeItem(this.prefix + key);
   }
 
-  setPrefix(prefix: string) {
+  static setPrefix(prefix: string) {
     this.prefix = prefix;
-  }
-
-  constructor() {
-    this.localStorage = window.localStorage;
-    this.sessionStorage = window.sessionStorage;
   }
 
 }

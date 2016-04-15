@@ -37,8 +37,8 @@ export class FooterComponent {
   }
 
   translateInit() {
-    this.local.setPrefix('xd.');
-    let current = this.local.get('language');
+    LocalStorageService.setPrefix('xd.');
+    let current = LocalStorageService.get('language');
     if (current == undefined) {
       current = 'zh_CN';
     }
@@ -47,9 +47,9 @@ export class FooterComponent {
     this.htmlElement = document.querySelector('html');
     this.changeHtmlLang(current);
 
-    this.local.save('language', current);
+    LocalStorageService.save('language', current);
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.local.save('language', event.lang);
+      LocalStorageService.save('language', event.lang);
       this.changeHtmlLang(event.lang);
     });
   }
@@ -67,13 +67,12 @@ export class FooterComponent {
   }
 
   constructor(
-    private translate: TranslateService,
-    private local: LocalStorageService
+    private translate: TranslateService
   ) {
 
     this.translateInit();
 
-    this.selectedKey = local.get('language');
+    this.selectedKey = LocalStorageService.get('language');
 
     this.langs = [{
       key: 'zh_CN',

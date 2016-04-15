@@ -5,7 +5,7 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {TitleDirective} from '../title/title.directive';
 
-import {UrlSafeBase64Service} from '../base/base64/base64safe.service';
+import b64 from '../base/base64/base64safe.service';
 
 import {ArticleApi} from '../article/article.api';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
@@ -13,7 +13,6 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 @Component({
   template: require('./index.template.html'),
-  providers: [ArticleApi],
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective]
 })
@@ -23,12 +22,12 @@ export class IndexComponent implements OnInit {
   public articles: Array<Object> = [];
 
   getArticles(category: string) {
-    this.articleApi.getArticleList(category)
+    ArticleApi.getArticleList(category)
     .then(data => {
 
       data.results.map(a => {
         let article = {
-          url: this.b64.encode(a.url),
+          url: b64.encode(a.url),
           title: a.title,
           createTime: a.create_time,
           category: a.category.url,
@@ -43,10 +42,7 @@ export class IndexComponent implements OnInit {
 
   }
 
-  constructor(
-    private articleApi: ArticleApi,
-    private b64: UrlSafeBase64Service
-  ) {
+  constructor() {
   }
 
   ngOnInit() {

@@ -16,6 +16,8 @@
     "usernameFlag": "6到20位,必须是字母,数字或_",
     "password": "密码",
     "passwordFlag": "6到20位,必须是字母,数字或_",
+    "rePassword": "再次输入密码",
+    "rePasswordFlag": "密码不一致",
     "email": "邮箱",
     "emailFlag": "请输入邮箱地址",
     "nickName": "昵称",
