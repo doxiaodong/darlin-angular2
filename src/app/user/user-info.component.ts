@@ -79,7 +79,7 @@ export class UserInfoComponent implements OnActivate, OnInit {
   }
 
   getRepliesOfArticle(user: any): void {
-    if (+user.id === 1 || +user.id === 5) {
+    if (+user.id === 1 || +user.id === 2) {
       this.supperUser = true;
       CommentApi.getAllComments()
       .then((data) => {

@@ -1,5 +1,5 @@
 import {Component, OnInit, Injector, provide} from 'angular2/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators, RadioButtonState} from 'angular2/common';
+import {NgForm, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, RouteRegistry} from 'angular2/router';
 import {RootRouter} from 'angular2/src/router/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -15,7 +15,6 @@ import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constan
 
 @Component({
   template: require('./setting.template.html'),
-  styles: [require('./setting.less')],
   pipes: [TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, RADIO_GROUP_DIRECTIVES]
 })
@@ -96,7 +95,8 @@ export class UserSettingComponent implements OnActivate, OnInit {
     .then(data => {
       AlertService.show(data.msg);
       this.requesting = false;
-    }).catch(() => {
+    }).catch((msg) => {
+      AlertService.show(msg);
       this.requesting = false;
     });
   }

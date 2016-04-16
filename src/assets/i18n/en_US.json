@@ -34,7 +34,8 @@
   },
   "titles": {
     "homeTitle": "Lovely House",
-    "articleListTitle": "Article List"
+    "articleListTitle": "Article List",
+    "fourthIndexTitle": "Do Nothing"
   },
   "pages": {
     "home": {

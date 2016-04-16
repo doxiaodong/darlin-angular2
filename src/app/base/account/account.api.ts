@@ -122,17 +122,22 @@ class Api {
       if (data.status == 1) {
         return Promise.resolve(data);
       } else {
-        return Promise.reject(data);
+        return Promise.reject(data.msg);
       }
     })
-    .catch(this.handleError);
+    // .catch(this.handleError);
 
   }
 
-  changePassword(obj: Object) {
-    // TODO: password add md5
+  changePassword(obj: any) {
+
+    let _obj = {
+      username: obj.username,
+      old_password: md5(obj.oldPassword),
+      new_password: md5(obj.newPassword)
+    };
     // {username: <string>, old_password: <string>, new_password: <string>}
-    return http.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(obj), {
+    return http.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })
@@ -141,7 +146,7 @@ class Api {
       .then((res) => {
         let body = res.json();
         if (body.status == 1) {
-          return Promise.resolve(body.data);
+          return Promise.resolve(body);
         } else {
           return Promise.reject(res);
         }
@@ -149,10 +154,13 @@ class Api {
       .catch(this.handleError);
   }
 
-  resetPassword(obj: Object) {
-    // TODO: password add md5
+  resetPassword(obj: any) {
+    let _obj = {
+      username: obj.username,
+      new_password: md5(obj.newPassword)
+    };
     // {username: <string>, new_password: <string>}
-    return http.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(obj), {
+    return http.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded'
         })

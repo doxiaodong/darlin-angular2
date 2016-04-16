@@ -13,10 +13,12 @@ import {ArticleListComponent} from './article/article-list.component';
 import {ArticleDetailComponent} from './article/article-detail.component';
 import {UserInfoComponent} from './user/user-info.component';
 import {UserSettingComponent} from './user/setting.component';
-
+import {ChangePasswordComponent} from './user/change-password.component';
+import {ResetPasswordComponent} from './user/reset-password.component';
 import {SignModalComponent} from './sign-modal/sign-modal.component';
 
 import {ArticlCom} from './article/articl.com'; // test child router
+import {FourthIndexComponent} from './fourth/fourth.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -29,7 +31,7 @@ import {ArticlCom} from './article/articl.com'; // test child router
   ],
   pipes: [TranslatePipe],
   providers: [MarkedService],
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent, UserSettingComponent]
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent]
 })
 @RouteConfig([
   {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
@@ -40,6 +42,10 @@ import {ArticlCom} from './article/articl.com'; // test child router
 
   {path: '/account/info/:user', name: 'UserInfo', component: UserInfoComponent},
   {path: '/account/setting', name: 'UserSetting', component: UserSettingComponent},
+  {path: '/account/changePassword', name: 'ChangePassword', component: ChangePasswordComponent},
+  {path: '/account/resetPassword', name: 'ResetPassword', component: ResetPasswordComponent}, // admin
+
+  {path: '/self/waiting', name: 'FourthIndex', component: FourthIndexComponent},
 
   {path: '/*path', redirectTo: ['Index']}
 ])

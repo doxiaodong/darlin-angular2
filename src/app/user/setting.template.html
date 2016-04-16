@@ -1,8 +1,8 @@
-<div class="pages setting" [title]="'pages.account.setting' | translate">
+<div class="pages setting" [title]="'pages.account.setting' | translate" page-animate>
   <div class="page-block">
     <div class="each-header">
       <span class="big-size">{{ 'pages.account.changeInfo' | translate }}</span>
-      <a class="a pull-right">{{ 'pages.account.changePassword' | translate }}</a>
+      <a class="a pull-right" [routerLink]="['ChangePassword']">{{ 'pages.account.changePassword' | translate }}</a>
     </div>
     <div class="each-inner" *ngIf="setting">
 
