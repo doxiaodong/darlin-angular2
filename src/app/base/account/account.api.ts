@@ -3,6 +3,7 @@ import {Headers} from 'angular2/http';
 import * as md5 from 'js-md5';
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {http} from '../injector/http-injector';
+import {Observable} from 'rxjs';
 
 class Api {
 
@@ -93,24 +94,39 @@ class Api {
       .catch(this.handleError);
   }
 
+  // use XMLHttpRequest
   changeProfile(obj: Object) {
-    // {username: <string>}
-    return http.post(
-      this.prefix + '/account/setting/', JSON.stringify(obj), {
-        headers: new Headers({
-        'Content-Type': undefined
-        })
-      })
-      .toPromise()
-      .then((res) => {
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body.data);
-        } else {
-          return Promise.reject(res);
+
+    return Observable.create((observer) => {
+      let xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener("readystatechange", function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            observer.next(JSON.parse(xhr.response));
+            observer.complete();
+          } else {
+            observer.error(xhr.response);
+          }
         }
-      })
-      .catch(this.handleError);
+      });
+
+      xhr.open('POST', this.prefix + '/account/setting/');
+
+      xhr.send(obj);
+    })
+    .toPromise()
+    .then((res) => {
+      let data = res;
+      if (data.status == 1) {
+        return Promise.resolve(data);
+      } else {
+        return Promise.reject(data);
+      }
+    })
+    .catch(this.handleError);
+
   }
 
   changePassword(obj: Object) {

@@ -35,3 +35,9 @@
 9. Provider & Injector
 
 10. animate
+
+
+
+### TODO
+
+1. loading

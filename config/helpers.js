@@ -68,4 +68,4 @@ exports.prepend = prependExt;
 exports.packageSort = packageSort;
 
 
-exports.static = 'static/';
+exports.static = 'assets/';

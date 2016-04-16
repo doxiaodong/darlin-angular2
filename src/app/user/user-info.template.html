@@ -2,7 +2,7 @@
   <div class="page-block">
     <div class="each-header">
       <span class="big-size">{{ 'pages.account.profile' | translate }}</span>
-      <a *ngIf="itsMe" class="a pull-right" [routerLink]="['Index']">{{ 'pages.account.change' | translate }}</a>
+      <a *ngIf="itsMe" class="a pull-right" [routerLink]="['UserSetting']">{{ 'pages.account.change' | translate }}</a>
     </div>
     <div class="each-inner" *ngIf="profile">
       <div class="head clearfix">

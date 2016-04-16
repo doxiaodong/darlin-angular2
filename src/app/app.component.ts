@@ -12,6 +12,7 @@ import {IndexComponent} from './index/index.component';
 import {ArticleListComponent} from './article/article-list.component';
 import {ArticleDetailComponent} from './article/article-detail.component';
 import {UserInfoComponent} from './user/user-info.component';
+import {UserSettingComponent} from './user/setting.component';
 
 import {SignModalComponent} from './sign-modal/sign-modal.component';
 
@@ -28,14 +29,17 @@ import {ArticlCom} from './article/articl.com'; // test child router
   ],
   pipes: [TranslatePipe],
   providers: [MarkedService],
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent]
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent, UserSettingComponent]
 })
 @RouteConfig([
   {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
+
   {path: '/articl/...', name: 'Articl', component: ArticlCom}, // test child router
   {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent},
   {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent},
+
   {path: '/account/info/:user', name: 'UserInfo', component: UserInfoComponent},
+  {path: '/account/setting', name: 'UserSetting', component: UserSettingComponent},
 
   {path: '/*path', redirectTo: ['Index']}
 ])
