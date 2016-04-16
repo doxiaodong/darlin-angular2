@@ -1,0 +1,18 @@
+<div class="pages" *ngIf="article" [title]="article.articleDetailTitle" page-animate>
+  <div class="page-block side right" article-categories>
+  </div>
+
+  <div class="page-block left">
+    <div class="each-header">
+      <span class="full-title big-size">{{ article.articleDetailTitle }}</span>
+      <div class="changes">• {{ article.createTime | xdDate }} • {{ article.category.name }}</div>
+    </div>
+    <div class="each-inner">
+      <marked class="each-article markdown" [md]="article.content"></marked>
+    </div>
+  </div>
+
+  <div class="page-block left" article-comments>
+  </div>
+
+</div>

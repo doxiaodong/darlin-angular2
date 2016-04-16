@@ -1,0 +1,24 @@
+<header class="header" [visibility]="'visibilityTitle' | translate">
+  <nav class="nav" [attr.index]="index">
+    <div id="USER">
+      <div *ngIf="isSignin">
+        <div class="header-side">
+          <span>{{ user.nickname }}</span>
+          <span class="signout a" (click)="signOut()">{{ 'navbar.signout' | translate }}</span>
+        </div>
+      </div>
+      <div *ngIf="!isSignin">
+        <div class="a header-side" (click)="signIn()">{{ 'navbar.signin' | translate }}</div>
+      </div>
+    </div>
+    <div class="nav-list-container">
+      <div class="slider-nav" [attr.index]="index"></div>
+      <ul class="nav-list">
+        <li><a class="each-nav a" [routerLink]="['Index']" [class.active]="index===0">{{ 'navbar.index' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['ArticleList', {category: 'all'}]" [class.active]="index===1">{{ 'navbar.article' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['UserInfo', {user: user.username}]" [class.active]="index===2">{{ 'navbar.account' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['FourthIndex']" [class.active]="index===3">{{ 'navbar.fourth' | translate }}</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>

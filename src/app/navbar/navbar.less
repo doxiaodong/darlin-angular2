@@ -1,0 +1,112 @@
+@import '../base/styles/each';
+
+// header article footer
+// nav list
+.slider(@num) when (@num >=0) {
+  .slider(@num - 1);
+  .nav {
+    .slider-nav[index='@{num}'] {
+      .transform-translate(@num*100%, 0);
+    }
+  }
+}
+
+.slider(3);
+
+header.header {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999999;
+  //  overflow: hidden;
+  width: 100%;
+  height: @header_height;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
+  .background-gradient(top, @header-bg, @header-bg);
+  .nav {
+    height: 100%;
+    max-width: @max-width;
+    margin: auto;
+    position: relative;
+    padding-right: 200px;
+    .header-side {
+      position: absolute;
+      width: 200px;
+      height: 100%;
+      line-height: 50px;
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      right: 0;
+      text-align: right;
+      padding-right: 5px;
+      &:hover {
+        // color: @active_color;
+      }
+      .signout {
+        margin-left: 5px;
+      }
+    }
+    @media screen and (max-width: 500px) {
+      & {
+        padding-right: 0;
+      }
+
+      .header-side {
+        visibility: hidden;
+        width: 0;
+      }
+    }
+    .nav-list-container {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      .slider-nav {
+        background-color: @header-active;
+        width: 25%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+        //        z-index: -1;
+        .transition(@base_duration);
+        -webkit-transition-property: -webkit-transform;
+        transition-property: transform;
+      }
+      .nav-list {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        & > li {
+          float: left;
+          overflow: hidden;
+          width: 25%;
+          height: 100%;
+        }
+        .each-nav {
+          float: left;
+          cursor: pointer;
+          color: darken(rgb(255, 255, 255), 10%);
+          width: 100%;
+          height: 100%;
+          line-height: @header_height;
+          text-align: center;
+          &.active {
+            color: darken(#fff, 10%);
+          }
+          &:hover {
+            color: @active_color;
+          }
+        }
+      }
+    }
+
+  }
+
+}

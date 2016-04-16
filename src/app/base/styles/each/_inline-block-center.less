@@ -1,0 +1,16 @@
+// 未知高度和宽度实现垂直水平居中
+.inline-block-center(@content) {
+  font-size: 0;
+  text-align: center;
+  &:after {
+    content: "";
+    height: 100%;
+  }
+  &:after, .@{content} {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .@{content} {
+    font-size: 14px;
+  }
+}

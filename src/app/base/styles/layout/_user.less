@@ -1,0 +1,42 @@
+#ACCOUNT_SETTING {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+@pic-width: 60px;
+.head-pic {
+  display: block;
+  width: @pic-width;
+  height: @pic-width;
+  border-radius: 100%;
+  background-color: darken(#fff, 10%);
+  img {
+    width: @pic-width - 10px;
+    height: @pic-width - 10px;
+    border-radius: 100%;
+    margin: 5px;
+    display: inline-block;
+  }
+}
+
+.account {
+  .each-inner {
+    .name {
+      line-height: @pic-width;
+      padding: 0 10px;
+    }
+    .sex {
+      width: @pic-width;
+      text-align: center;
+    }
+    .line {
+      margin-top: 10px;
+    }
+  }
+}
+
+.reply {
+  .user {
+    color: tomato;
+  }
+}

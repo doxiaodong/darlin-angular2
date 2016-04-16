@@ -1,0 +1,96 @@
+{
+  "title": "毒枭东",
+  "visibilityTitle": "点我瞧瞧吧～",
+  "langSetting": "Language",
+  "alertDefaultTitle": "提示",
+  "alertDefaultOk": "确认",
+  "search": "搜索",
+  "pagination": {
+    "prev": "上一页",
+    "next": "下一页"
+  },
+  "signModal": {
+    "signin": "登录",
+    "register": "注册",
+    "username": "用户名",
+    "usernameFlag": "6到20位,必须是字母,数字或_",
+    "password": "密码",
+    "passwordFlag": "6到20位,必须是字母,数字或_",
+    "rePassword": "再次输入密码",
+    "rePasswordFlag": "密码不一致",
+    "email": "邮箱",
+    "emailFlag": "请输入邮箱地址",
+    "nickName": "昵称",
+    "nickNameFlag": "长度最大为10(选填)",
+    "forget": "忘记密码"
+  },
+  "navbar": {
+    "index": "首页",
+    "article": "文章列表",
+    "account": "账户中心",
+    "fourth": "瞎扯淡",
+    "signin": "登录",
+    "signout": "退出"
+  },
+  "titles": {
+    "homeTitle": "毒枭东",
+    "articleListTitle": "文章列表",
+    "fourthIndexTitle": "瞎扯淡"
+  },
+  "pages": {
+    "home": {
+      "homeHeader": "热门文章"
+    },
+    "article": {
+      "articlesHeader": "文章列表",
+      "articleCategory": "分类",
+      "replies": "回复",
+      "reply": "回复",
+      "lowercaseReply": "回复",
+      "delete": "删除",
+      "floor": "楼",
+      "replyArticle": "发表评论",
+      "replyPlaceholder": "回复",
+      "commentPlaceholder": "来交流下吧～支持markdown",
+      "comment": "发布",
+      "none": "暂无文章",
+      "isUp": "[置顶] "
+    },
+    "account": {
+      "infoTitle": "账户中心",
+      "profile": "个人资料",
+      "change": "修改",
+      "email": "邮箱",
+      "lastSignin": "上次登录",
+      "notification": "消息通知",
+      "notificationArticle": "文章评论",
+      "replyWord1": "在",
+      "replyWord2": "回复你",
+      "replyOfArticleWord": "回复了你的文章",
+      "setting": "设置",
+      "changeInfo": "修改个人资料",
+      "username": "用户名",
+      "nickname": "昵称",
+      "sex": "性别",
+      "male": "男",
+      "female": "女",
+      "pic": "头像",
+      "save": "保存设置",
+      "fold": "收起",
+      "expand": "展开",
+      "changePassword": "修改密码",
+      "signout": "退出登录"
+    },
+    "forget": {
+      "title": "修改密码",
+      "oldPassword": "原始密码",
+      "newPassword": "新密码",
+      "save": "确认修改"
+    },
+    "reset": {
+      "title": "重置密码",
+      "newPassword": "新密码",
+      "save": "确认重置"
+    }
+  }
+}
