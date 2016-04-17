@@ -13,7 +13,7 @@ export class HttpInterceptor extends XHRBackend {
 
         let connection = super.createConnection(request);
 
-        // connection.request.headers.set('xd-domain', 'darlin.me');
+        // connection.request.headers.set('Cache-Control', 'public, max-age=31536000');
 
         // connection.response.toPromise()
         // .then((res) => {
