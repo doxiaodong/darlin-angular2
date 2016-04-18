@@ -8,10 +8,6 @@
  * all here! Crazy huh. So we need to do some setup
 */
 Error.stackTraceLimit = Infinity;
-// require('phantomjs-polyfill');
-// require('es6-promise');
-// require('es6-shim');
-// require('es7-reflect-metadata');
 
 
 // Prefer CoreJS over the polyfills above
