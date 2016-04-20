@@ -1,32 +1,73 @@
-import {Request, XHRBackend, BrowserXhr, ResponseOptions, XHRConnection} from 'angular2/http';
+import {Request, XHRBackend, BrowserXhr, ResponseOptions, XHRConnection, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {Injectable} from 'angular2/core';
+import {LoadingService} from '../loading/loading.service';
+import {AlertService} from '../alert/alert.service';
+import {TranslatePipe, TranslateService} from 'ng2-translate/ng2-translate';
+import {LocalStorageService} from '../local-storage/local-storage.service';
 
 @Injectable()
 export class HttpInterceptor extends XHRBackend {
 
-    constructor(_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions){
-        super(_browserXHR, _baseResponseOptions);
-    }
+  constructor(_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions){
+    super(_browserXHR, _baseResponseOptions);
+  }
 
-    createConnection(request: Request): XHRConnection {
+  createConnection(request: Request): XHRConnection {
 
-        let connection = super.createConnection(request);
+    RequestHandler();
 
-        // connection.request.headers.set('Cache-Control', 'public, max-age=31536000');
+    let connection = super.createConnection(request);
 
-        // connection.response.toPromise()
-        // .then((res) => {
-        //   console.log(res, connection.request);
-        // });
-        // connection.response.subscribe((res) => {
-        //   console.log(res, connection.request);
-        // });
+    // connection.request.headers.set('Cache-Control', 'public, max-age=31536000');
 
-        return connection;
+
+    // this will call api twice
+    // connection.response.toPromise()
+    // .then((res) => {
+    //   console.log(res, connection.request);
+    // });
+
+    // connection.response.subscribe((res) => {
+    //   console.log(res, connection.request);
+    // });
+
+    return connection;
 
     }
 
 }
 
 // TODO: add response interceptor
+
+// need api call ResponseHandler and ErrorHandler
+
+export function ResponseHandler(response: Response | any) {
+//   console.log('http response');
+  LoadingService.hide();
+}
+
+export function RequestHandler(): void {
+//   console.log('http start');
+  LoadingService.show();
+}
+
+export function ErrorHandler(error: any) {
+  ResponseHandler(error);
+  // TODO: try to use translate to solve this
+  let lang: string = LocalStorageService.get('language');
+  let serverError: string = ''
+  switch (lang) {
+    case 'en_US':
+      serverError = 'Server error';
+      break;
+    case 'zh_CN':
+      serverError = '服务器错误';
+      break;
+    default:
+      serverError = 'Server error'
+  }
+
+  AlertService.show(serverError);
+  return Promise.reject(error.message || error.json().msg || serverError);
+}

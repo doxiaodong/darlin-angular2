@@ -5,13 +5,11 @@ import {HttpUtilsService} from '../utils/http-utils.service';
 import {http} from '../injector/http-injector';
 import {Observable} from 'rxjs';
 
+import {ResponseHandler, ErrorHandler, RequestHandler} from '../http-interceptor/http-interceptor.provider';
+
 class Api {
 
   private prefix: string;
-
-  private handleError(error: any) {
-    return Promise.reject(error.message || error.json().msg || 'Server error');
-  }
 
   signin(obj: any) {
     // {username: <string>, password: <string>}
@@ -26,6 +24,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
@@ -33,7 +32,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   register(obj: any) {
@@ -51,6 +50,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
@@ -58,13 +58,14 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   signout() {
     return http.post(this.prefix + '/account/signout/', '')
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
@@ -72,7 +73,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   getUserInfo(obj: Object) {
@@ -84,6 +85,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
@@ -91,12 +93,12 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   // use XMLHttpRequest
   changeProfile(obj: Object) {
-
+    RequestHandler()
     return Observable.create((observer) => {
       let xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
@@ -118,6 +120,7 @@ class Api {
     })
     .toPromise()
     .then((res) => {
+      ResponseHandler(res);
       let data = res;
       if (data.status == 1) {
         return Promise.resolve(data);
@@ -125,7 +128,7 @@ class Api {
         return Promise.reject(data.msg);
       }
     })
-    // .catch(this.handleError);
+    .catch(ErrorHandler);
 
   }
 
@@ -144,6 +147,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body);
@@ -151,7 +155,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   resetPassword(obj: any) {
@@ -167,6 +171,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
@@ -174,7 +179,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   constructor() {

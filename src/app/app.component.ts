@@ -16,6 +16,7 @@ import {UserSettingComponent} from './user/setting.component';
 import {ChangePasswordComponent} from './user/change-password.component';
 import {ResetPasswordComponent} from './user/reset-password.component';
 import {SignModalComponent} from './sign-modal/sign-modal.component';
+import {LoadingComponent} from './base/loading/loading.component';
 
 import {ArticlCom} from './article/articl.com'; // test child router
 import {FourthIndexComponent} from './fourth/fourth.component';
@@ -31,7 +32,7 @@ import {FourthIndexComponent} from './fourth/fourth.component';
   ],
   pipes: [TranslatePipe],
   providers: [MarkedService],
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent]
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent, LoadingComponent]
 })
 @RouteConfig([
   {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
