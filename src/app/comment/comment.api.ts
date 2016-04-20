@@ -3,53 +3,54 @@ import {Headers} from 'angular2/http';
 
 import {http} from '../base/injector/http-injector';
 import {HttpUtilsService} from '../base/utils/http-utils.service';
+import {ResponseHandler, ErrorHandler} from '../base/http-interceptor/http-interceptor.provider';
 
 class Api {
 
   private prefix: string;
 
-  private handleError(error: any) {
-    return Promise.reject(error.message || error.json().msg || 'Server error');
-  }
-
   getArticleCommentList(article: string) {
     return http.get(this.prefix + `/comment/comments/${article}/`)
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   getArticleSubComments(head: string) {
     return http.get(this.prefix + `/comment/subcomments/${head}/`)
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   getAccountSubComments(user: string) {
     return http.get(this.prefix + `/account/subcomments/${user}/`)
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   getAllComments() {
     return http.get(this.prefix + '/comments/')
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   addArticleReply(article: string, obj: Object) {
@@ -62,6 +63,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           // TODO: ugly
@@ -71,7 +73,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   addSubReply(comment: string, obj: Object) {
@@ -84,6 +86,7 @@ class Api {
       })
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           // TODO: ugly
@@ -94,7 +97,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   constructor() {

@@ -1,19 +1,16 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
-
 import {http} from '../injector/http-injector';
+import {ResponseHandler, ErrorHandler} from '../http-interceptor/http-interceptor.provider';
 
 class Api {
 
   private prefix: string;
 
-  private handleError(error: any) {
-    return Promise.reject(error.message || error.json().msg || 'Server error');
-  }
-
   overview() {
     return http.get(this.prefix + '/initHomePage/')
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         if (body.status == 1) {
           return Promise.resolve(body.data);
@@ -21,7 +18,7 @@ class Api {
           return Promise.reject(res);
         }
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   constructor() {

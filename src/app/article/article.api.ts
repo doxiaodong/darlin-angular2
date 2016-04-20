@@ -1,43 +1,43 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 
 import {http} from '../base/injector/http-injector';
+import {ResponseHandler, ErrorHandler} from '../base/http-interceptor/http-interceptor.provider';
 
 class Api {
 
   private prefix: string;
 
-  private handleError(error: any) {
-    return Promise.reject(error.message || error.json().msg || 'Server error');
-  }
-
   getArticleCategories() {
     return http.get(this.prefix + '/article/categories/')
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   getArticleList(category: string) {
     return http.get(this.prefix + `/article/articles/${category}/`)
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   getArticleDetail(url: string) {
     return http.get(this.prefix + `/article/${url}/`)
       .toPromise()
       .then((res) => {
+        ResponseHandler(res);
         let body = res.json();
         return Promise.resolve(body);
       })
-      .catch(this.handleError);
+      .catch(ErrorHandler);
   }
 
   constructor() {

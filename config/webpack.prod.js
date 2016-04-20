@@ -12,6 +12,9 @@ var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CompressionPlugin = require('compression-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 
+var ImageMinifyPlugin = require('./webpack-plugin/image-minify');
+var JsonMinifyPlugin = require('./webpack-plugin/json-minify');
+
 /**
  * Webpack Constants
  */
@@ -47,6 +50,9 @@ module.exports = webpackMerge(commonConfig, {
     // See: http://webpack.github.io/docs/configuration.html#output-path
     path: helpers.root('dist'),
 
+    // use static server
+    publicPath: "//static.darlin.me/",
+
     // Specifies the name of each output file on disk.
     // IMPORTANT: You must not specify an absolute path here!
     //
@@ -71,6 +77,17 @@ module.exports = webpackMerge(commonConfig, {
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
+
+    new ImageMinifyPlugin({
+      src: 'src/assets/images',
+      dest: 'dist/assets/images'
+      // https://github.com/imagemin/imagemin
+    }),
+
+    new JsonMinifyPlugin({
+      src: 'src/assets/i18n',
+      dest: 'assets/i18n'
+    }),
 
     // Plugin: WebpackMd5Hash
     // Description: Plugin to replace a standard webpack chunkhash with md5.
@@ -112,19 +129,6 @@ module.exports = webpackMerge(commonConfig, {
     // See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
     // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
     new UglifyJsPlugin({
-      // beautify: true, //debug
-      // mangle: false, //debug
-      // dead_code: false, //debug
-      // unused: false, //debug
-      // deadCode: false, //debug
-      // compress: {
-      //   screw_ie8: true,
-      //   keep_fnames: true,
-      //   drop_debugger: false,
-      //   dead_code: false,
-      //   unused: false
-      // }, // debug
-      // comments: true, //debug
 
       beautify: false, //prod
 
@@ -132,60 +136,6 @@ module.exports = webpackMerge(commonConfig, {
         screw_ie8 : true,
         keep_fnames: true
       }, //prod
-      /*
-      mangle: {
-        screw_ie8: true,
-        except: [
-            'App',
-            'About',
-            'Contact',
-            'Home',
-            'Menu',
-            'Footer',
-            'XLarge',
-            'RouterActive',
-            'RouterLink',
-            'RouterOutlet',
-            'NgFor',
-            'NgIf',
-            'NgClass',
-            'NgSwitch',
-            'NgStyle',
-            'NgSwitchDefault',
-            'NgControl',
-            'NgControlName',
-            'NgControlGroup',
-            'NgFormControl',
-            'NgModel',
-            'NgFormModel',
-            'NgForm',
-            'NgSelectOption',
-            'DefaultValueAccessor',
-            'NumberValueAccessor',
-            'CheckboxControlValueAccessor',
-            'SelectControlValueAccessor',
-            'RadioControlValueAccessor',
-            'NgControlStatus',
-            'RequiredValidator',
-            'MinLengthValidator',
-            'MaxLengthValidator',
-            'PatternValidator',
-            'AsyncPipe',
-            'DatePipe',
-            'JsonPipe',
-            'NumberPipe',
-            'DecimalPipe',
-            'PercentPipe',
-            'CurrencyPipe',
-            'LowerCasePipe',
-            'UpperCasePipe',
-            'SlicePipe',
-            'ReplacePipe',
-            'I18nPluralPipe',
-            'I18nSelectPipe'
-          ] // Needed for uglify RouterLink problem
-      }, // prod
-      */
       compress: {
         screw_ie8: true
       }, //prod

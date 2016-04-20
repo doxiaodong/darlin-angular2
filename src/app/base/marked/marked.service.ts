@@ -31,9 +31,10 @@ export class MarkedService {
       heading: (text, level) => {
         let ele = document.createElement('a');
         ele.innerHTML = text;
+        let innerText = ele.innerText;
         //var encodeText = encodeURI(innerText);
         return `
-          <h${level} id="${text}">${text}</h${level}>\n
+          <h${level} id="${innerText}">${text}</h${level}>\n
         `;
       },
       code: (text, language) => {

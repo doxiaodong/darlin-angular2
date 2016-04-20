@@ -43,7 +43,7 @@ module.exports = {
 
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'main': './src/main.browser.ts',
+    'main': './src/main.browser.ts'
 
   },
 
@@ -61,7 +61,7 @@ module.exports = {
     root: helpers.root('src'),
 
     // remove other default values
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: ['node_modules']
 
   },
 
@@ -173,7 +173,7 @@ module.exports = {
     // Copies project static assets.
     //
     // See: https://www.npmjs.com/package/copy-webpack-plugin
-    new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}, {from: 'src/favicon.ico', to: 'favicon.ico'}], {ignore: ['.DS_Store']}),
+    new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}, {from: 'src/favicon.ico', to: 'favicon.ico'}], {ignore: ['.DS_Store', 'images/**/*', 'i18n/**/*']}),
 
     // Plugin: HtmlWebpackPlugin
     // Description: Simplifies creation of HTML files to serve your webpack bundles.
@@ -198,5 +198,5 @@ module.exports = {
     module: false,
     clearImmediate: false,
     setImmediate: false
-  },
+  }
 };
