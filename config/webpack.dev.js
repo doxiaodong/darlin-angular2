@@ -121,7 +121,8 @@ module.exports = webpackMerge(commonConfig, {
           req.url = req.url.replace(/^\/api/, '');
         }
       }
-    }
+    },
+    outputPath: helpers.root('dist')
   },
 
   node: {
