@@ -2,8 +2,6 @@ import {Component, ViewEncapsulation, OnInit} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
-import {MarkedService} from './base/marked/marked.service';
-
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
 import {AlertComponent} from './base/alert/alert.component';
@@ -31,7 +29,6 @@ import {FourthIndexComponent} from './fourth/fourth.component';
     require('./article/article-list.less')
   ],
   pipes: [TranslatePipe],
-  providers: [MarkedService],
   directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent, LoadingComponent]
 })
 @RouteConfig([
