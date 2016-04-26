@@ -8,7 +8,7 @@ class Api {
   private prefix: string;
 
   getArticleCategories() {
-    return http.get(this.prefix + '/article/categories/')
+    return http.get(this.prefix + '/article/categories/?format=json')
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
@@ -19,7 +19,7 @@ class Api {
   }
 
   getArticleList(category: string) {
-    return http.get(this.prefix + `/article/articles/${category}/`)
+    return http.get(this.prefix + `/article/articles/${category}/?format=json`)
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
@@ -30,7 +30,7 @@ class Api {
   }
 
   getArticleDetail(url: string) {
-    return http.get(this.prefix + `/article/${url}/`)
+    return http.get(this.prefix + `/article/${url}/?format=json`)
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
