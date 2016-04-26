@@ -10,7 +10,7 @@ class Api {
   private prefix: string;
 
   getArticleCommentList(article: string) {
-    return http.get(this.prefix + `/comment/comments/${article}/`)
+    return http.get(this.prefix + `/comment/comments/${article}/?format=json`)
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
@@ -21,7 +21,7 @@ class Api {
   }
 
   getArticleSubComments(head: string) {
-    return http.get(this.prefix + `/comment/subcomments/${head}/`)
+    return http.get(this.prefix + `/comment/subcomments/${head}/?format=json`)
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
@@ -32,7 +32,7 @@ class Api {
   }
 
   getAccountSubComments(user: string) {
-    return http.get(this.prefix + `/account/subcomments/${user}/`)
+    return http.get(this.prefix + `/account/subcomments/${user}/?format=json`)
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
@@ -43,7 +43,7 @@ class Api {
   }
 
   getAllComments() {
-    return http.get(this.prefix + '/comments/')
+    return http.get(this.prefix + '/comments/?format=json')
       .toPromise()
       .then((res) => {
         ResponseHandler(res);
