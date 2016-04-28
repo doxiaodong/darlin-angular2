@@ -14,6 +14,12 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 export class FourthIndexComponent {
 
+	public links: any[] = [{
+		title: '大海碎碎念',
+		url: 'http://hiepsilon.com',
+    type: 'blog'
+	}];
+
   constructor() {}
 
 }

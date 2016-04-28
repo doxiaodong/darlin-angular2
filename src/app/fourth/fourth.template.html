@@ -1,81 +1,24 @@
-<div class="fourth-word" [title]="'titles.fourthIndexTitle' | translate" page-animate><pre>
-               X
-             X
-             X           XXXX  X X  XXX
-             X   XXXXX              XX
-XXXX X X X X XXX          X        X X
-             X            X  X X XXXXX
-            X             X     XX
-           XXXX          XXXX XXXX
-          X  X X                       XXX
-         X   X   XX      X         X XX
-       X     X     X     X  XXXX XX
-   XXX       X                XX X
-             X           X          X
-             X           X      XX     X
-             X               X X         X X
-                         XX X                X XXX
-                         X
+<div class="fourth-word pages" [title]="'titles.fourthIndexTitle' | translate" page-animate>
 
-</pre>
-<pre>
-                      X
-                    X
-                   X
-                   X
-            X  X   X  X X X X
-     XX  X       X X
-                XX X
-               X   XXX
-             XX       X
-            X       X  X X
-          X         X     X X
-       X X          X         X
-      X       XXX X X  X XXX    X X
-   XX               X               X
-XXX                 X                  XX XX
-                    X                       XX
-                    X
+  <div class="page-block">
+    <div class="each-header">
+      <span class="big-size">{{ 'pages.fourth.links' | translate }}</span>
+    </div>
+    <div class="each-inner">
 
-</pre>
-<pre>
-   X
-  XXX XX      X  XXXXXX
-       XX      X     X
-               X     X
-               X     XX
-X             XX      XXXXX
- XX X         X
-    XXX
-                      XXXXX
-            XXXXXX XX   XX
-               XX     X X
-      X          XX  X
-     XX           XX
-     X           XX  X
-    X           XX    X XX
-   X        XXXX          XXXX
-   X                          XXXXXX
+      <ul class="articles">
+        <li class="article article-list-repeat" *ngFor="#link of links; #i = index">
+          <a class="a" target="_blank" [attr.href]="link.url">
+            <div class="title">
+            {{ i+1 }}. {{ ('pages.fourth.type.' + link.type) | translate }} {{ link.title }}
+            </div>
+          </a>
+        </li>
+      </ul>
 
-</pre>
-<pre>
-           XX
-        XX      XX
-       X        X        X
-     XX         X        X
-    X X        X         X
- X X  X     XX X X XX   X
-X     X   XX   X      XX XXXXXXXXX
-      X        X     XXX   X
-      X        X     X X  X
-      X      XXXXXXX    XXX
-      X      XX    X      X
-      X       X  XXX     XXXX
-      X       XXXX       X
-      X                XX      XXX
-      X             XXX           XXXXXX
+    </div>
+  </div>
 
-</pre>
   <pre>
      _            _ _
   __| | __ _ _ __| (_)_ __    _ __ ___   ___

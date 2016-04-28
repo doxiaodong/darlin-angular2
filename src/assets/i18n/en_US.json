@@ -81,6 +81,13 @@
       "changePassword": "Change Password",
       "signout": "Signout"
     },
+    "fourth": {
+      "links": "Links",
+      "type": {
+        "blog": "[Blog]",
+        "shop": "[Shop]"
+      }
+    },
     "forget": {
       "title": "Change Password",
       "oldPassword": "Old Password",
