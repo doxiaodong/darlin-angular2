@@ -43,7 +43,7 @@ import {FourthIndexComponent} from './fourth/fourth.component';
   {path: '/account/changePassword', name: 'ChangePassword', component: ChangePasswordComponent},
   {path: '/account/resetPassword', name: 'ResetPassword', component: ResetPasswordComponent}, // admin
 
-  {path: '/self/waiting', name: 'FourthIndex', component: FourthIndexComponent},
+  {path: '/self/links', name: 'FourthIndex', component: FourthIndexComponent},
 
   {path: '/*path', redirectTo: ['Index']}
 ])

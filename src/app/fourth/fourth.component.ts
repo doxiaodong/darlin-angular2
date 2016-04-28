@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {LinksApi} from './links.api';
 
 @Component({
   template: require('./fourth.template.html'),
@@ -14,12 +15,17 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 export class FourthIndexComponent {
 
-	public links: any[] = [{
-		title: '大海碎碎念',
-		url: 'http://hiepsilon.com',
-    type: 'blog'
-	}];
+	public links: any[] = [];
 
-  constructor() {}
+  private getLinks() {
+    LinksApi.getLinks()
+    .then(data => {
+      this.links = data.results;
+    });
+  }
+
+  constructor() {
+    this.getLinks();
+  }
 
 }
