@@ -25,11 +25,11 @@
           </div>
           <div class="form-group" id="setting_sex">
             <label class="form-label" for="setting_sex">{{ 'pages.account.sex' | translate }}：</label>
+            <md-radio-group class="md-primary" [(ngModel)]="setting.sex.type" (change)="changeSex()">
+              <md-radio-button value="0"> {{ 'pages.account.male' | translate }}</md-radio-button>
+              <md-radio-button value="1"> {{ 'pages.account.female' | translate }}</md-radio-button>
+            </md-radio-group>
 
-            <radio-group [(model)]="setting.sex.type" (change)="changeSex()">
-              <input id="setting_sex_0" radio-box value="0"> {{ 'pages.account.male' | translate }}
-              <input id="setting_sex_1" radio-box value="1"> {{ 'pages.account.female' | translate }}
-            </radio-group>
           </div>
 
           <div class="form-group">
@@ -40,6 +40,7 @@
           <div class="form-group">
             <label class="form-label width-0"></label>
             <button [disabled]="canNotSubmit()" class="setting-button main btn" type="submit">{{ 'pages.account.save' | translate }}</button>
+            <!--<button md-button md-raised-button color="accent" [disabled]="canNotSubmit()" type="button">{{ 'pages.account.save' | translate }}</button>-->
           </div>
         </article>
       </form>

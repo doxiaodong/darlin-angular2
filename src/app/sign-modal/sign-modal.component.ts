@@ -63,11 +63,12 @@ export class SignModalComponent implements OnInit {
 
       // sigin success
       LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.requesting = false;
       this.closeShowModal();
     }).catch((msg) => {
-      this.requesting = false;
       AlertService.show(msg);
+    })
+    .then(() => {
+      this.requesting = false;
     });
   }
 
@@ -82,11 +83,12 @@ export class SignModalComponent implements OnInit {
       };
       // sigin success
       LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.requesting = false;
       this.closeShowModal();
     }).catch((msg) => {
-      this.requesting = false;
       AlertService.show(msg);
+    })
+    .then(() => {
+      this.requesting = false;
     });
   }
 

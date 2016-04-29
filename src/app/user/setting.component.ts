@@ -3,7 +3,9 @@ import {NgForm, Control, ControlGroup, FormBuilder, Validators} from 'angular2/c
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, RouteRegistry} from 'angular2/router';
 import {RootRouter} from 'angular2/src/router/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {RADIO_GROUP_DIRECTIVES} from "../base/radio-group/radio-group";
+import {MdRadioGroup, MdRadioButton, MdRadioDispatcher} from '@angular2-material/radio';
+import {MdButton, MdAnchor} from '@angular2-material/button';
+
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {TitleDirective} from '../title/title.directive';
@@ -16,7 +18,8 @@ import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constan
 @Component({
   template: require('./setting.template.html'),
   pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, RADIO_GROUP_DIRECTIVES]
+  providers: [MdRadioDispatcher],
+  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup, MdButton, MdAnchor]
 })
 
 @CanActivate((next, prev) => {
@@ -94,9 +97,10 @@ export class UserSettingComponent implements OnActivate, OnInit {
     AccountApi.changeProfile(formData)
     .then(data => {
       AlertService.show(data.msg);
-      this.requesting = false;
     }).catch((msg) => {
       AlertService.show(msg);
+    })
+    .then(() => {
       this.requesting = false;
     });
   }

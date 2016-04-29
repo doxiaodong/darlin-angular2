@@ -35,9 +35,10 @@ export class ResetPasswordComponent implements OnActivate, OnInit {
     AccountApi.resetPassword(this.data)
     .then(data => {
       AlertService.show(data.msg);
-      this.requesting = false;
     }).catch(msg => {
       AlertService.show(msg);
+    })
+    .then(() => {
       this.requesting = false;
     });
   }
