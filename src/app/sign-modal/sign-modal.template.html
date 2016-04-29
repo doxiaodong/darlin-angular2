@@ -1,5 +1,8 @@
 <div class="xd-modal" [class.shown]="showModal">
   <div class="xd-container">
+
+    <!-- TODO: [ngClass] error -->
+
     <form id="SIGNIN" [ngFormModel]="signinForm" class="form" [class.active]="signinModel" (ngSubmit)="doSignin(signin)">
 
       <header class="xd-header">{{ 'signModal.signin' | translate }}</header>

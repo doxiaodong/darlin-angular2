@@ -9,7 +9,15 @@ import {MarkedService} from './app/base/marked/marked.service';
 
 import {RootAppComponent} from './app/app.component';
 
-enableProdMode();
+if ('production' === ENV) {
+  // Production
+  enableProdMode();
+
+} else {
+  // Development
+  // enableProdMode();
+}
+
 
 bootstrap(RootAppComponent, [
   HTTP_PROVIDERS,

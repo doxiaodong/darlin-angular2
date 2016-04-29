@@ -4,7 +4,6 @@ import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, Ro
 import {RootRouter} from 'angular2/src/router/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {MdRadioGroup, MdRadioButton, MdRadioDispatcher} from '@angular2-material/radio';
-import {MdButton, MdAnchor} from '@angular2-material/button';
 
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
@@ -19,7 +18,7 @@ import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constan
   template: require('./setting.template.html'),
   pipes: [TranslatePipe],
   providers: [MdRadioDispatcher],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup, MdButton, MdAnchor]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup]
 })
 
 @CanActivate((next, prev) => {
