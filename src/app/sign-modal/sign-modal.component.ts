@@ -92,6 +92,15 @@ export class SignModalComponent implements OnInit {
     });
   }
 
+  githubLogin() {
+    if (this.requesting) {
+      return;
+    }
+    this.requesting = true;
+    AccountApi.githubLogin();
+    this.closeShowModal();
+  }
+
   constructor(
     private fb: FormBuilder
   ) {

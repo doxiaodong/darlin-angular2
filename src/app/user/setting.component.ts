@@ -80,7 +80,8 @@ export class UserSettingComponent implements OnActivate, OnInit {
       email: user.email,
       nickname: user.nickname,
       pic: STATIC_URL_HOST + user.pic + HEAD_PIC_STYLE,
-      sex: user.sex
+      sex: user.sex,
+      third: user.third
     };
     this.setting.sex.type += '';
   }

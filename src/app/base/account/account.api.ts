@@ -61,6 +61,11 @@ class Api {
       .catch(ErrorHandler);
   }
 
+  githubLogin() {
+    RequestHandler();
+    window.location.href = this.prefix + '/third/github/';
+  }
+
   signout() {
     return http.post(this.prefix + '/account/signout/', '')
       .toPromise()

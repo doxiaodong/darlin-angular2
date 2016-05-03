@@ -10,7 +10,7 @@
         <article class="xd-article">
           <div class="form-group" [ngClass]="{ 'has-error': !username.pristine && !username.valid }">
             <label class="form-label" for="setting_username">{{ 'pages.account.username' | translate }}：<span class="tomato" [hidden]="username.pristine || username.valid">*{{ 'signModal.usernameFlag' | translate }}</span></label>
-            <input class="form-control" [(ngModel)]="setting.username" #username="ngForm" ngControl="username" id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
+            <input class="form-control" [disabled]="setting.third !== 'none'" [(ngModel)]="setting.username" #username="ngForm" ngControl="username" id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
             <span [hidden]="username.pristine || !username.valid" class="xd xd-checkmark active"></span>
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': !email.pristine && !email.valid }">
