@@ -7,7 +7,7 @@
           <li class="a"
             (click)="changeLanguage(lang)"
             [class.active]="selectedKey===lang.key"
-            *ngFor="#lang of langs"
+            *ngFor="let lang of langs"
           >{{ lang.word }}</li>
         </ul>
       </div>

@@ -8,7 +8,7 @@ export class XdDatePipe extends DatePipe {
   transform(dateString: string): string {
 
     let date = new Date(dateString);
-    return super.transform(date, [checkDateFormate(date)]);
+    return super.transform(date, checkDateFormate(date));
   }
 
 }

@@ -1,4 +1,4 @@
-import {Injector, Provider} from 'angular2/core';
+import {ReflectiveInjector, Provider} from 'angular2/core';
 
 let provider: any;
 
@@ -11,6 +11,6 @@ if ('production' === ENV) {
   provider = new Provider("API_PREFIX", { useValue: '/api' });
 }
 
-export var ApiPrefix = Injector.resolveAndCreate([
+export var ApiPrefix = ReflectiveInjector.resolveAndCreate([
   provider
 ]);

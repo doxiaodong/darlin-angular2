@@ -1,4 +1,4 @@
-import {Component, OnInit, Injector, provide} from 'angular2/core';
+import {Component, OnInit, ReflectiveInjector, provide} from 'angular2/core';
 import {NgForm, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, RouteRegistry} from 'angular2/router';
 import {RootRouter} from 'angular2/src/router/router';
@@ -23,7 +23,7 @@ import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constan
 
 @CanActivate((next, prev) => {
 
-  // let injector = Injector.resolveAndCreate([
+  // let injector = ReflectiveInjector.resolveAndCreate([
   //   ROUTER_PROVIDERS,
   //   RouteRegistry,
   //   provide(Router, {useClass: RootRouter})
