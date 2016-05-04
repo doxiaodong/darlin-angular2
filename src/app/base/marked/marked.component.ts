@@ -1,4 +1,5 @@
 import {Component, Input, ViewEncapsulation, OnChanges} from 'angular2/core';
+// import * as emojione from 'emojione';
 
 import {MarkedService} from './marked.service';
 
@@ -36,7 +37,8 @@ export class MarkedComponent implements OnChanges {
 
   ngOnChanges(changes) {
     if (changes.md != undefined && this.ms) {
-      this.html = this.ms(this.md);
+      let emojiMd = emojione.toImage(this.md);
+      this.html = this.ms(emojiMd);
     }
   }
 

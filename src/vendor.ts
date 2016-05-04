@@ -11,7 +11,7 @@ import 'angular2/common';
 import 'angular2/http';
 import 'angular2/router';
 
-// RxJS
+// // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toPromise';
@@ -19,6 +19,7 @@ import 'rxjs/add/operator/toPromise';
 import 'marked';
 import 'highlight.js';
 import 'js-md5';
+// import 'emojione';
 
 // look in platform/directives and platform/providers
 
