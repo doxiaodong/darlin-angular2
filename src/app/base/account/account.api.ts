@@ -130,7 +130,7 @@ class Api {
       if (data.status == 1) {
         return Promise.resolve(data);
       } else {
-        return Promise.reject(data.msg);
+        return Promise.reject(data);
       }
     })
     .catch(ErrorHandler);

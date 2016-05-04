@@ -69,5 +69,5 @@ export function ErrorHandler(error: any) {
   }
 
   AlertService.show(serverError);
-  return Promise.reject(error.message || error.json().msg || serverError);
+  return Promise.reject(error.msg || error.json().msg || serverError);
 }

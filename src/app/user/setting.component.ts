@@ -55,7 +55,10 @@ export class UserSettingComponent implements OnActivate, OnInit {
   public formChanged: boolean = false;
   public setting: any;
 
-  public changeSex() {
+  public changeSex(e) {
+    if (!e.source) {
+      return;
+    }
     this.formChanged = true;
   }
 

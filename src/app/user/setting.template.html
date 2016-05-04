@@ -25,7 +25,7 @@
           </div>
           <div class="form-group" id="setting_sex">
             <label class="form-label" for="setting_sex">{{ 'pages.account.sex' | translate }}：</label>
-            <md-radio-group class="md-primary" [(ngModel)]="setting.sex.type" (change)="changeSex()">
+            <md-radio-group class="md-primary" [(ngModel)]="setting.sex.type" (change)="changeSex($event)">
               <md-radio-button value="0"> {{ 'pages.account.male' | translate }}</md-radio-button>
               <md-radio-button value="1"> {{ 'pages.account.female' | translate }}</md-radio-button>
             </md-radio-group>
