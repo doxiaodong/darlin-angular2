@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {TranslateService, TranslatePipe, LangChangeEvent} from 'ng2-translate/ng2-translate';
 
 import {LanguageInterface} from './language.interface';

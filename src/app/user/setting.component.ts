@@ -1,7 +1,7 @@
-import {Component, OnInit, ReflectiveInjector, provide} from 'angular2/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, RouteRegistry} from 'angular2/router';
-import {RootRouter} from 'angular2/src/router/router';
+import {Component, OnInit, ReflectiveInjector, provide} from '@angular/core';
+import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, RouteRegistry} from '@angular/router-deprecated';
+// import {RootRouter} from '@angular/src/router/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {MdRadioGroup, MdRadioButton, MdRadioDispatcher} from '@angular2-material/radio';
 

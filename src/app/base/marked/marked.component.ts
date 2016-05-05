@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation, OnChanges} from 'angular2/core';
+import {Component, Input, ViewEncapsulation, OnChanges} from '@angular/core';
 // import * as emojione from 'emojione';
 
 import {MarkedService} from './marked.service';

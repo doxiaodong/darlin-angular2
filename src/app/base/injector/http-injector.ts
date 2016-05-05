@@ -1,5 +1,5 @@
-import {ReflectiveInjector, provide} from 'angular2/core';
-import {HTTP_PROVIDERS, Http, XHRBackend, RequestOptions, BrowserXhr} from 'angular2/http';
+import {ReflectiveInjector, provide} from '@angular/core';
+import {HTTP_PROVIDERS, Http, XHRBackend, RequestOptions, BrowserXhr} from '@angular/http';
 import {CustomBrowserXhr} from '../custom-browser-xhr/custom-browser-xhr.provide';
 import {HttpInterceptor} from '../http-interceptor/http-interceptor.provider';
 

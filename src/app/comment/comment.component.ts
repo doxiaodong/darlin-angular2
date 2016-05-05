@@ -1,6 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
-import {NgForm} from 'angular2/common';
-import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/common';
+import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {MdButton, MdAnchor} from '@angular2-material/button';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';

@@ -2,9 +2,9 @@ import {
   it,
   inject,
   describe
-} from 'angular2/testing';
+} from '@angular/core/testing';
 
-import {Component, provide} from 'angular2/core';
+import {Component, provide} from '@angular/core';
 
 import b64 from './base64safe.service';
 

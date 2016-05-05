@@ -1,5 +1,6 @@
-import {Directive, ElementRef, OnInit} from 'angular2/core';
-import {Animation, AnimationBuilder} from 'angular2/animate';
+import {Directive, ElementRef, OnInit} from '@angular/core';
+import {Animation} from '@angular/platform-browser/src/animate/animation';
+import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 
 @Directive({
   selector: '[page-animate]',

@@ -1,4 +1,4 @@
-import {BrowserXhr} from 'angular2/http';
+import {BrowserXhr} from '@angular/http';
 
 export class CustomBrowserXhr extends BrowserXhr {
   build(): any {

@@ -1,5 +1,5 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
-import {Headers} from 'angular2/http';
+import {Headers} from '@angular/http';
 import * as md5 from 'js-md5';
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {http} from '../injector/http-injector';

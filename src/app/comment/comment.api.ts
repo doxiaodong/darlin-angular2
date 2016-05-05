@@ -1,5 +1,5 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
-import {Headers} from 'angular2/http';
+import {Headers} from '@angular/http';
 
 import {http} from '../base/injector/http-injector';
 import {HttpUtilsService} from '../base/utils/http-utils.service';

@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation, OnInit} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {NavbarComponent} from './navbar/navbar.component';

@@ -1,19 +1,20 @@
-import {Pipe} from 'angular2/core';
-import {DatePipe} from 'angular2/common';
+import {Pipe, PipeTransform} from '@angular/core';
+import {DatePipe} from '@angular/common';
 
 @Pipe({
   name: 'xdDate'
 })
-export class XdDatePipe extends DatePipe {
+export class XdDatePipe implements PipeTransform {
   transform(dateString: string): string {
 
     let date = new Date(dateString);
-    return super.transform(date, checkDateFormate(date));
+    return new DatePipe().transform(date, checkDateFormate(date));
+
   }
 
 }
 
-function checkDateFormate(date) :string {
+function checkDateFormate(date): string {
 
   let now = new Date().getTime();
   let time = date.getTime();
