@@ -1,5 +1,5 @@
 import {Component, Input, ViewEncapsulation, OnChanges} from '@angular/core';
-import {DomSanitizationService} from '@angular/platform-browser'
+// import {DomSanitizationService} from '@angular/platform-browser'
 // import * as emojione from 'emojione';
 
 import {MarkedService} from './marked.service';
@@ -26,11 +26,11 @@ export class MarkedComponent implements OnChanges {
 
   private ms: any;
 
-  public html: any;
+  public html: string = '';
 
   constructor(
-    private markedService: MarkedService,
-    private sanitizer: DomSanitizationService
+    private markedService: MarkedService
+    // private sanitizer: DomSanitizationService
   ) {
 
     this.ms = markedService.init();
@@ -40,7 +40,8 @@ export class MarkedComponent implements OnChanges {
   ngOnChanges(changes) {
     if (changes.md != undefined && this.ms) {
       let emojiMd = emojione.toImage(this.md);
-      this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
+      // this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
+      this.html = this.ms(emojiMd);
     }
   }
 
