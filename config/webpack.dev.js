@@ -38,7 +38,7 @@ module.exports = webpackMerge(commonConfig, {
   //
   // See: http://webpack.github.io/docs/configuration.html#devtool
   // See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
-  devtool: 'cheap-source-map', // 'cheap-module-eval-source-map' has to many log in chrome
+  devtool: 'cheap-module-source-map', // 'cheap-module-eval-source-map' has to many log in chrome
 
   // Options affecting the output of the compilation.
   //

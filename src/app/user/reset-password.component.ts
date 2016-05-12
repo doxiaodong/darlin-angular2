@@ -1,6 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
-import {ROUTER_DIRECTIVES, CanActivate, OnActivate, Router} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
+import {ROUTER_DIRECTIVES, CanActivate, OnActivate, Router} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
@@ -35,9 +35,10 @@ export class ResetPasswordComponent implements OnActivate, OnInit {
     AccountApi.resetPassword(this.data)
     .then(data => {
       AlertService.show(data.msg);
-      this.requesting = false;
     }).catch(msg => {
       AlertService.show(msg);
+    })
+    .then(() => {
       this.requesting = false;
     });
   }

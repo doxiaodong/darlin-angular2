@@ -1,7 +1,8 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {LinksApi} from './links.api';
 
 @Component({
   template: require('./fourth.template.html'),
@@ -14,6 +15,17 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 export class FourthIndexComponent {
 
-  constructor() {}
+	public links: any[] = [];
+
+  private getLinks() {
+    LinksApi.getLinks()
+    .then(data => {
+      this.links = data.results;
+    });
+  }
+
+  constructor() {
+    this.getLinks();
+  }
 
 }

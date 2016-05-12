@@ -41,8 +41,8 @@ module.exports = {
   // See: http://webpack.github.io/docs/configuration.html#entry
   entry: {
 
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
+    // 'polyfills': './src/polyfills.ts',
+    'lib': ['./src/polyfills.ts', './src/vendor.ts'],
     'main': './src/main.browser.ts'
 
   },
@@ -90,7 +90,8 @@ module.exports = {
         exclude: [
           // these packages have problems with their sourcemaps
           helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular2-material')
+          helpers.root('node_modules/@angular2-material'),
+          helpers.root('node_modules/@angular')
         ]
       }
 
@@ -163,7 +164,7 @@ module.exports = {
     // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
     new webpack.optimize.CommonsChunkPlugin({
-      name: helpers.reverse(['polyfills', 'vendor', 'main']),
+      name: helpers.reverse(['lib', 'main']),
       minChunks: Infinity
     }),
 
@@ -183,7 +184,7 @@ module.exports = {
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
+      chunksSortMode: helpers.packageSort(['lib', 'main'])
     })
 
   ],

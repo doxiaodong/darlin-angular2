@@ -5,5 +5,6 @@ export var USER_NULL = {
   nickname: "",
   pic: "",
   sex: 0, // male
-  username: ""
+  username: "",
+  third: 'none'
 };

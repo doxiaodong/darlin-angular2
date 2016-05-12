@@ -5,5 +5,6 @@ export var USER = {
   nickname: "毒枭东",
   pic: "media/user/duxiaodong/0ddf1f6bc53c63b6a5f8d38b015afa8f",
   sex: 0, // male
-  username: "duxiaodong"
+  username: "duxiaodong",
+  third: 'github'
 };

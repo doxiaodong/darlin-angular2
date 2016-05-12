@@ -1,6 +1,6 @@
-import {Request, XHRBackend, BrowserXhr, ResponseOptions, XHRConnection, Response} from 'angular2/http';
+import {Request, XHRBackend, BrowserXhr, ResponseOptions, XHRConnection, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {LoadingService} from '../loading/loading.service';
 import {AlertService} from '../alert/alert.service';
 import {TranslatePipe, TranslateService} from 'ng2-translate/ng2-translate';
@@ -69,5 +69,5 @@ export function ErrorHandler(error: any) {
   }
 
   AlertService.show(serverError);
-  return Promise.reject(error.message || error.json().msg || serverError);
+  return Promise.reject(error.msg || error.json().msg || serverError);
 }

@@ -4,7 +4,7 @@
 </div>
 <div class="each-inner">
   <ul class="replies">
-    <li class="each-reply root-reply" *ngFor="#comment of comments">
+    <li class="each-reply root-reply" *ngFor="let comment of comments">
       <img class="pic left" [attr.src]="comment.replyUser.pic" alt="">
       <div class="right">
         <div class="word">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <ul class="sub-reply">
-        <li class="each-reply" *ngFor="#subReply of comment.replies">
+        <li class="each-reply" *ngFor="let subReply of comment.replies">
           <img class="pic left" [attr.src]="subReply.replyUser.pic" alt="">
           <div class="right">
             <div class="word">

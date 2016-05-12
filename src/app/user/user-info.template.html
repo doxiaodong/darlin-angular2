@@ -30,7 +30,7 @@
     </div>
     <div class="each-inner" *ngIf="!replyContainerFold">
       <ul class="replies">
-        <li class="each-reply" *ngFor="#reply of replies">
+        <li class="each-reply" *ngFor="let reply of replies">
           <img class="pic left" [attr.src]="reply.replyUser.pic" alt="">
           <div class="right">
             <div class="word">
@@ -61,7 +61,7 @@
     </div>
     <div class="each-inner" *ngIf="!commentContainerFold">
       <ul class="replies">
-        <li class="each-reply" *ngFor="#reply of repliesOfArticle">
+        <li class="each-reply" *ngFor="let reply of repliesOfArticle">
           <img class="pic left" [attr.src]="reply.replyUser.pic" alt="">
           <div class="right">
             <div class="word">

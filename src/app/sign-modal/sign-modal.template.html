@@ -1,5 +1,6 @@
 <div class="xd-modal" [class.shown]="showModal">
   <div class="xd-container">
+
     <form id="SIGNIN" [ngFormModel]="signinForm" class="form" [class.active]="signinModel" (ngSubmit)="doSignin(signin)">
 
       <header class="xd-header">{{ 'signModal.signin' | translate }}</header>
@@ -9,7 +10,7 @@
           <input [(ngModel)]="signin.username" #username="ngForm" ngControl="username" class="form-control" id="username"  type="text" [attr.placeholder]="'signModal.username' | translate">
           <span [hidden]="!username.valid" class="xd xd-checkmark active"></span>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': !password.pristine && !password.valid }">
+        <div class="form-group" [class.has-error]="!password.pristine && !password.valid">
           <label for="password"></label>
           <input [(ngModel)]="signin.password" #password="ngForm" ngControl="password" class="form-control" id="password" type="password" [attr.placeholder]="'signModal.password' | translate">
           <span [hidden]="!password.valid" class="xd xd-checkmark active"></span>
@@ -18,6 +19,7 @@
       <footer class="xd-footer">
         <button [disabled]="!signinForm.valid || requesting" class="signin-button main btn" type="submit">{{ 'signModal.signin' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = false">{{ 'signModal.register' | translate }}</span>
+        <a class="a aside" (click)="githubLogin()">Github</a>
         <span onclick="alert('联系站猪!')" class="a aside">{{ 'signModal.forget' | translate }}</span>
       </footer>
       <i class="xd-modal-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>
@@ -28,7 +30,7 @@
 
       <header class="xd-header">{{ 'signModal.register' | translate }}</header>
       <article class="xd-article">
-        <div class="form-group" [ngClass]="{ 'has-error': !r_username.pristine && !r_username.valid }">
+        <div class="form-group" [class.has-error]="!r_username.pristine && !r_username.valid">
           <label for="register_username" class="form-label">{{ 'signModal.username' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="r_username.pristine || r_username.valid">&nbsp;{{ 'signModal.usernameFlag' | translate }}</span></label>
           <input #r_username="ngForm" [(ngModel)]="register.username" ngControl="r_username" class="form-control" id="register_username" type="text" [attr.placeholder]="'signModal.usernameFlag' | translate">
           <span [hidden]="r_username.pristine || !r_username.valid" class="xd xd-checkmark active"></span>
@@ -39,18 +41,18 @@
           <span [hidden]="email.pristine || !email.valid" class="xd xd-checkmark active"></span>
         </div>
         <div ngControlGroup="passwordRetry">
-          <div class="form-group" [ngClass]="{ 'has-error': !r_password.pristine && !r_password.valid }">
+          <div class="form-group" [class.has-error]="!r_password.pristine && !r_password.valid">
             <label for="register_pwd" class="form-label">{{ 'signModal.password' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="r_password.pristine || r_password.valid">&nbsp;{{ 'signModal.passwordFlag' | translate }}</span></label>
             <input #r_password="ngForm" [(ngModel)]="register.password" ngControl="r_password" class="form-control" id="register_pwd" type="password" [attr.placeholder]="'signModal.passwordFlag' | translate">
             <span [hidden]="r_password.pristine || !r_password.valid" class="xd xd-checkmark active"></span>
           </div>
-          <div class="form-group" [ngClass]="{ 'has-error': !r_rePassword.pristine && !r_rePassword.valid }">
+          <div class="form-group" [class.has-error]="!r_rePassword.pristine && !r_rePassword.valid">
             <label for="register_pwd" class="form-label">{{ 'signModal.rePassword' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="r_rePassword.pristine || r_rePassword.valid">&nbsp;{{ 'signModal.rePasswordFlag' | translate }}</span></label>
             <input #r_rePassword="ngForm" ngControl="r_rePassword" class="form-control" id="register_pwd" type="password" [attr.placeholder]="'signModal.rePasswordFlag' | translate">
             <span [hidden]="r_rePassword.pristine || !r_rePassword.valid" class="xd xd-checkmark active"></span>
           </div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': !nickname.pristine && !nickname.valid }">
+        <div class="form-group" [class.has-error]="!nickname.pristine && !nickname.valid">
           <label for="register_nickname" class="form-label">{{ 'signModal.nickName' | translate }}：<span class="tomato" [hidden]="nickname.pristine || nickname.valid">&nbsp;{{ 'signModal.nickNameFlag' | translate }}</span></label>
           <input #nickname="ngForm" [(ngModel)]="register.nickname" ngControl="nickname" maxlength="10" class="form-control" id="register_nickname" type="text" [attr.placeholder]="'signModal.nickNameFlag' | translate">
           <span [hidden]="!nickname.valid" class="xd xd-checkmark active"></span>

@@ -1,6 +1,7 @@
-import {Component, OnInit} from 'angular2/core';
-import {NgForm} from 'angular2/common';
-import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/common';
+import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {MdButton, MdAnchor} from '@angular2-material/button';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import b64 from '../base/base64/base64safe.service';
@@ -16,7 +17,7 @@ import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constan
   selector: '[article-comments]',
   template: require('./comment.template.html'),
   pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, MarkedComponent]
+  directives: [ROUTER_DIRECTIVES, MarkedComponent, MdButton, MdAnchor]
 })
 
 export class CommentComponent implements OnInit {
@@ -122,10 +123,11 @@ export class CommentComponent implements OnInit {
       this.comments.push(comment);
       this.articleReplies += 1;
 
-      this.requesting = false;
     }).catch((msg) => {
-      this.requesting = false;
       AlertService.show(msg);
+    })
+    .then(() => {
+      this.requesting = false;
     });
   }
 
@@ -141,10 +143,11 @@ export class CommentComponent implements OnInit {
       this.comments[index-1].replies.push(sub);
       this.articleReplies += 1;
 
-      this.requesting = false;
     }).catch((msg) => {
-      this.requesting = false;
       AlertService.show(msg);
+    })
+    .then(() => {
+      this.requesting = false;
     });
   }
 

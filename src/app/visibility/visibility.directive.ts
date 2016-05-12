@@ -1,5 +1,5 @@
-import {Directive, OnInit} from 'angular2/core';
-import {Title} from 'angular2/platform/browser';
+import {Directive, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 import {LocalStorageService} from '../base/local-storage/local-storage.service';
 

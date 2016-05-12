@@ -1,8 +1,8 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
-import {Headers} from 'angular2/http';
+import {Headers} from '@angular/http';
 import * as md5 from 'js-md5';
 import {HttpUtilsService} from '../utils/http-utils.service';
-import {http} from '../injector/http-injector';
+import {http, dhttp, dhttp2, dhttp3} from '../injector/http-injector';
 import {Observable} from 'rxjs';
 
 import {ResponseHandler, ErrorHandler, RequestHandler} from '../http-interceptor/http-interceptor.provider';
@@ -17,22 +17,11 @@ class Api {
       username: obj.username,
       password: md5(obj.password)
     };
-    return http.post(this.prefix + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
-        headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+    return dhttp.post(this.prefix + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body.data);
-        } else {
-          return Promise.reject(res);
-        }
-      })
-      .catch(ErrorHandler);
+    });
   }
 
   register(obj: any) {
@@ -43,57 +32,29 @@ class Api {
       email: obj.email
     };
     // {username: <string>, password: <string>, nickname: <string>, email: <string>}
-    return http.post(this.prefix + '/account/register/', HttpUtilsService.paramPostBody(_obj), {
-        headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+    return dhttp.post(this.prefix + '/account/register/', HttpUtilsService.paramPostBody(_obj), {
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body.data);
-        } else {
-          return Promise.reject(res);
-        }
-      })
-      .catch(ErrorHandler);
+    });
+  }
+
+  githubLogin() {
+    RequestHandler();
+    window.location.href = this.prefix + '/third/github/';
   }
 
   signout() {
-    return http.post(this.prefix + '/account/signout/', '')
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body.data);
-        } else {
-          return Promise.reject(res);
-        }
-      })
-      .catch(ErrorHandler);
+    return dhttp.post(this.prefix + '/account/signout/', '');
   }
 
   getUserInfo(obj: Object) {
     // {username: <string>}
-    return http.post(this.prefix + '/account/getUserInfo/', HttpUtilsService.paramPostBody(obj), {
-        headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+    return dhttp.post(this.prefix + '/account/getUserInfo/', HttpUtilsService.paramPostBody(obj), {
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body.data);
-        } else {
-          return Promise.reject(res);
-        }
-      })
-      .catch(ErrorHandler);
+    });
   }
 
   // use XMLHttpRequest
@@ -125,7 +86,7 @@ class Api {
       if (data.status == 1) {
         return Promise.resolve(data);
       } else {
-        return Promise.reject(data.msg);
+        return Promise.reject(data);
       }
     })
     .catch(ErrorHandler);
@@ -140,22 +101,11 @@ class Api {
       new_password: md5(obj.newPassword)
     };
     // {username: <string>, old_password: <string>, new_password: <string>}
-    return http.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
-        headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+    return dhttp3.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body);
-        } else {
-          return Promise.reject(res);
-        }
-      })
-      .catch(ErrorHandler);
+    });
   }
 
   resetPassword(obj: any) {
@@ -164,22 +114,11 @@ class Api {
       new_password: md5(obj.newPassword)
     };
     // {username: <string>, new_password: <string>}
-    return http.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {
-        headers: new Headers({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+    return dhttp3.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        if (body.status == 1) {
-          return Promise.resolve(body.data);
-        } else {
-          return Promise.reject(res);
-        }
-      })
-      .catch(ErrorHandler);
+    });
   }
 
   constructor() {

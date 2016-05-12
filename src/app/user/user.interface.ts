@@ -6,4 +6,5 @@ export interface UserInterface {
   pic: string;
   lastLogin: string;
   sex: number; // 0, male; 1, female
+  third: string;
 }

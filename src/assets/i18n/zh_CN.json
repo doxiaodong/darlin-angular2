@@ -81,6 +81,13 @@
       "changePassword": "修改密码",
       "signout": "退出登录"
     },
+    "fourth": {
+      "links": "友情链接",
+      "type": {
+        "blog": "[博客]",
+        "shop": "[小店]"
+      }
+    },
     "forget": {
       "title": "修改密码",
       "oldPassword": "原始密码",

@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
+import {Component, OnInit} from '@angular/core';
+import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
@@ -63,11 +63,12 @@ export class SignModalComponent implements OnInit {
 
       // sigin success
       LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.requesting = false;
       this.closeShowModal();
     }).catch((msg) => {
-      this.requesting = false;
       AlertService.show(msg);
+    })
+    .then(() => {
+      this.requesting = false;
     });
   }
 
@@ -82,12 +83,22 @@ export class SignModalComponent implements OnInit {
       };
       // sigin success
       LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.requesting = false;
       this.closeShowModal();
     }).catch((msg) => {
-      this.requesting = false;
       AlertService.show(msg);
+    })
+    .then(() => {
+      this.requesting = false;
     });
+  }
+
+  githubLogin() {
+    if (this.requesting) {
+      return;
+    }
+    this.requesting = true;
+    AccountApi.githubLogin();
+    this.closeShowModal();
   }
 
   constructor(

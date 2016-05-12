@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation, OnInit} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {NavbarComponent} from './navbar/navbar.component';
@@ -43,7 +43,7 @@ import {FourthIndexComponent} from './fourth/fourth.component';
   {path: '/account/changePassword', name: 'ChangePassword', component: ChangePasswordComponent},
   {path: '/account/resetPassword', name: 'ResetPassword', component: ResetPasswordComponent}, // admin
 
-  {path: '/self/waiting', name: 'FourthIndex', component: FourthIndexComponent},
+  {path: '/self/links', name: 'FourthIndex', component: FourthIndexComponent},
 
   {path: '/*path', redirectTo: ['Index']}
 ])

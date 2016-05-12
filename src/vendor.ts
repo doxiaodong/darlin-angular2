@@ -4,14 +4,17 @@
 // run `typings install x` where `x` is your module
 
 // Angular 2
-import 'angular2/platform/browser';
-import 'angular2/platform/common_dom';
-import 'angular2/core';
-import 'angular2/common';
-import 'angular2/http';
-import 'angular2/router';
+import '@angular/platform-browser';
+import '@angular/platform-browser-dynamic';
+import '@angular/core';
+import '@angular/common';
+import '@angular/http';
+import '@angular/router-deprecated';
 
-// RxJS
+// Angular 2 Material 2
+import '@angular2-material/radio';
+
+// // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toPromise';
@@ -19,6 +22,7 @@ import 'rxjs/add/operator/toPromise';
 import 'marked';
 import 'highlight.js';
 import 'js-md5';
+// import 'emojione';
 
 // look in platform/directives and platform/providers
 

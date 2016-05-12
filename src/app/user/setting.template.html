@@ -8,12 +8,12 @@
 
       <form id="ACCOUNT_SETTING" name="ACCOUNT_SETTING" [ngFormModel]="settingForm" class="form" (ngSubmit)="submit()">
         <article class="xd-article">
-          <div class="form-group" [ngClass]="{ 'has-error': !username.pristine && !username.valid }">
+          <div class="form-group" [class.has-error]="!username.pristine && !username.valid">
             <label class="form-label" for="setting_username">{{ 'pages.account.username' | translate }}：<span class="tomato" [hidden]="username.pristine || username.valid">*{{ 'signModal.usernameFlag' | translate }}</span></label>
-            <input class="form-control" [(ngModel)]="setting.username" #username="ngForm" ngControl="username" id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
+            <input class="form-control" [disabled]="setting.third !== 'none'" [(ngModel)]="setting.username" #username="ngForm" ngControl="username" id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
             <span [hidden]="username.pristine || !username.valid" class="xd xd-checkmark active"></span>
           </div>
-          <div class="form-group" [ngClass]="{ 'has-error': !email.pristine && !email.valid }">
+          <div class="form-group" [class.has-error]="!email.pristine && !email.valid">
             <label class="form-label" for="setting_email">{{ 'pages.account.email' | translate }}：<span class="tomato" [hidden]="email.pristine || email.valid">*{{ 'signModal.emailFlag' | translate }}</span></label>
             <input class="form-control" [(ngModel)]="setting.email" #email="ngForm" ngControl="email" id="setting_email" type="email" [attr.placeholder]="'pages.account.email' | translate">
             <span [hidden]="email.pristine || !email.valid" class="xd xd-checkmark active"></span>
@@ -25,11 +25,11 @@
           </div>
           <div class="form-group" id="setting_sex">
             <label class="form-label" for="setting_sex">{{ 'pages.account.sex' | translate }}：</label>
+            <md-radio-group class="md-primary" [(ngModel)]="setting.sex.type" (change)="changeSex($event)">
+              <md-radio-button value="0"> {{ 'pages.account.male' | translate }}</md-radio-button>
+              <md-radio-button value="1"> {{ 'pages.account.female' | translate }}</md-radio-button>
+            </md-radio-group>
 
-            <radio-group [(model)]="setting.sex.type" (change)="changeSex()">
-              <input id="setting_sex_0" radio-box value="0"> {{ 'pages.account.male' | translate }}
-              <input id="setting_sex_1" radio-box value="1"> {{ 'pages.account.female' | translate }}
-            </radio-group>
           </div>
 
           <div class="form-group">

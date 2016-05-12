@@ -1,5 +1,5 @@
-import {Directive, OnChanges} from 'angular2/core';
-import {Title} from 'angular2/platform/browser';
+import {Directive, OnChanges} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Directive({
   selector: '[title]',
