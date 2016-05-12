@@ -1,43 +1,21 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 
-import {http} from '../base/injector/http-injector';
-import {ResponseHandler, ErrorHandler} from '../base/http-interceptor/http-interceptor.provider';
+import {http, dhttp, dhttp2} from '../base/injector/http-injector';
 
 class Api {
 
   private prefix: string;
 
   getArticleCategories() {
-    return http.get(this.prefix + '/article/categories/?format=json')
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        return Promise.resolve(body);
-      })
-      .catch(ErrorHandler);
+    return dhttp2.get(this.prefix + '/article/categories/?format=json');
   }
 
   getArticleList(category: string) {
-    return http.get(this.prefix + `/article/articles/${category}/?format=json`)
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        return Promise.resolve(body);
-      })
-      .catch(ErrorHandler);
+    return dhttp2.get(this.prefix + `/article/articles/${category}/?format=json`);
   }
 
   getArticleDetail(url: string) {
-    return http.get(this.prefix + `/article/${url}/?format=json`)
-      .toPromise()
-      .then((res) => {
-        ResponseHandler(res);
-        let body = res.json();
-        return Promise.resolve(body);
-      })
-      .catch(ErrorHandler);
+    return dhttp2.get(this.prefix + `/article/${url}/?format=json`);
   }
 
   constructor() {

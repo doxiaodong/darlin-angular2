@@ -7,7 +7,7 @@
     <div class="each-inner">
 
       <ul class="articles">
-        <li class="article article-list-repeat" *ngFor="let link of links; #i = index">
+        <li class="article article-list-repeat" *ngFor="let link of links; let i = index">
           <a class="a" target="_blank" [attr.href]="link.url">
             <div class="title">
             {{ i+1 }}. {{ ('pages.fourth.type.' + link.type) | translate }} {{ link.title }}
