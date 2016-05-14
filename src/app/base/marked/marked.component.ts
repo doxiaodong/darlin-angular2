@@ -4,6 +4,10 @@ import {Component, Input, ViewEncapsulation, OnChanges} from '@angular/core';
 
 import {MarkedService} from './marked.service';
 
+require('./markdown.global.less');
+require('./tomorrow.night.global.css');
+require('./highlight.number.global.less');
+
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'marked',
@@ -14,9 +18,9 @@ import {MarkedService} from './marked.service';
     <div [innerHTML]="html"></div>
   `,
   styles: [
-    require('./markdown.less'),
-    require('./tomorrow.night.css'),
-    require('./highlight.number.less')
+    // require('./markdown.less'),
+    // require('./tomorrow.night.css'),
+    // require('./highlight.number.less')
   ]
 })
 

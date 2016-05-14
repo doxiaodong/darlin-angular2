@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -12,7 +12,6 @@ import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
   template: require('./article-list.template.html'),
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective]

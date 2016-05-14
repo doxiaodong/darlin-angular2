@@ -63,7 +63,7 @@ module.exports = webpackMerge(commonConfig, {
     // They are inside the output.path directory.
     //
     // See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
-    sourceMapFilename: helpers.static + '[name].[chunkhash].map',
+    sourceMapFilename: '[file].map',
 
     // The filename of non-entry chunks as relative path
     // inside the output.path directory.
