@@ -42,8 +42,9 @@ module.exports = {
   // See: http://webpack.github.io/docs/configuration.html#entry
   entry: {
 
-    // 'polyfills': './src/polyfills.ts',
-    'lib': ['./src/polyfills.ts', './src/vendor.ts'],
+    'polyfills': './src/polyfills.ts',
+    'vendor': './src/vendor.ts',
+    // 'lib': ['./src/polyfills.ts', './src/vendor.ts'],
     'main': './src/main.browser.ts'
 
   },
@@ -172,7 +173,7 @@ module.exports = {
     // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
     new webpack.optimize.CommonsChunkPlugin({
-      name: helpers.reverse(['lib', 'main']),
+      name: helpers.reverse(['polyfills', 'vendor', 'main']),
       minChunks: Infinity
     }),
 
@@ -192,7 +193,7 @@ module.exports = {
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      chunksSortMode: helpers.packageSort(['lib', 'main'])
+      chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
     })
 
   ],
