@@ -42,9 +42,9 @@ module.exports = {
   // See: http://webpack.github.io/docs/configuration.html#entry
   entry: {
 
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    // 'lib': ['./src/polyfills.ts', './src/vendor.ts'],
+    // 'polyfills': './src/polyfills.ts',
+    // 'vendor': './src/vendor.ts',
+    'lib': ['./src/polyfills.ts', './src/vendor.ts'],
     'main': './src/main.browser.ts'
 
   },
@@ -121,13 +121,13 @@ module.exports = {
       // See: https://github.com/webpack/json-loader
       {test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/]},
 
-      {test: /global\.css$/, loader: ExtractTextPlugin.extract("style", "css")},
+      {test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css")},
 
       // Raw loader support for *.css files
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.css$/, loader: 'raw-loader', exclude: [/global\.css$/]},
+      {test: /\.css$/, loader: 'raw-loader', exclude: [/(global|\.min)\.css$/]},
 
       {test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!less")},
 
@@ -150,7 +150,7 @@ module.exports = {
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
 
-    new ExtractTextPlugin(helpers.static + "global.[hash].css"),
+    new ExtractTextPlugin(helpers.static + "main.[hash].css"),
 
     // Plugin: ForkCheckerPlugin
     // Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -173,7 +173,8 @@ module.exports = {
     // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
     new webpack.optimize.CommonsChunkPlugin({
-      name: helpers.reverse(['polyfills', 'vendor', 'main']),
+      // name: helpers.reverse(['polyfills', 'vendor', 'main']),
+      name: helpers.reverse(['lib', 'main']),
       minChunks: Infinity
     }),
 
@@ -193,7 +194,12 @@ module.exports = {
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      },
+      // chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
+      chunksSortMode: helpers.packageSort(['lib', 'main'])
     })
 
   ],
