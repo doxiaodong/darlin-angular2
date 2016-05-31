@@ -11,7 +11,7 @@ import {CommentApi} from './comment.api';
 
 import {MarkedComponent} from '../base/marked/marked.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
-import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constant';
+import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: '[article-comments]',
@@ -38,12 +38,12 @@ export class CommentComponent implements OnInit {
       subData.results.map(r => {
         let reply = {
           replyUser: {
-            pic: STATIC_URL_HOST + r.reply_user.pic + HEAD_PIC_STYLE,
+            pic: PicUrl.getUrl(r.reply_user.pic),
             username: r.reply_user.username,
             nickname: r.reply_user.nickname
           },
           replyObject: {
-            pic: STATIC_URL_HOST + r.reply_object.pic+ HEAD_PIC_STYLE,
+            pic: PicUrl.getUrl(r.reply_object.pic),
             username: r.reply_object.username,
             nickname: r.reply_object.nickname
           },
@@ -65,7 +65,7 @@ export class CommentComponent implements OnInit {
       data.results.map(c => {
         let comment = {
           replyUser: {
-            pic: STATIC_URL_HOST + c.reply_user.pic + HEAD_PIC_STYLE,
+            pic: PicUrl.getUrl(c.reply_user.pic),
             username: c.reply_user.username,
             nickname: c.reply_user.nickname
           },
@@ -118,7 +118,7 @@ export class CommentComponent implements OnInit {
         comment.index = 1;
       }
       comment.input = {show: false};
-      comment.replyUser.pic = STATIC_URL_HOST + comment.replyUser.pic + HEAD_PIC_STYLE;
+      comment.replyUser.pic = PicUrl.getUrl(comment.replyUser.pic);
       comment.replies = [];
       this.comments.push(comment);
       this.articleReplies += 1;
@@ -137,8 +137,8 @@ export class CommentComponent implements OnInit {
     .then(data => {
       this.clearSubmitForm();
       let sub = data.subComment;
-      sub.replyObject.pic = STATIC_URL_HOST + sub.replyObject.pic + HEAD_PIC_STYLE;
-      sub.replyUser.pic = STATIC_URL_HOST + sub.replyUser.pic + HEAD_PIC_STYLE;
+      sub.replyObject.pic = PicUrl.getUrl(sub.replyObject.pic);
+      sub.replyUser.pic = PicUrl.getUrl(sub.replyUser.pic);
       sub.time = sub.time;
       this.comments[index-1].replies.push(sub);
       this.articleReplies += 1;

@@ -12,7 +12,7 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import validate from '../sign-modal/sign-modal.validate';
 import {AlertService} from '../base/alert/alert.service';
 import {AccountApi} from '../base/account/account.api';
-import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constant';
+import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   template: require('./setting.template.html'),
@@ -82,7 +82,7 @@ export class UserSettingComponent implements OnActivate, OnInit {
       username: user.username,
       email: user.email,
       nickname: user.nickname,
-      pic: STATIC_URL_HOST + user.pic + HEAD_PIC_STYLE,
+      pic: PicUrl.getUrl(user.pic),
       sex: user.sex,
       third: user.third
     };

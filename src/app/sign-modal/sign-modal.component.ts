@@ -101,6 +101,15 @@ export class SignModalComponent implements OnInit {
     this.closeShowModal();
   }
 
+  qqLogin() {
+    if (this.requesting) {
+      return;
+    }
+    this.requesting = true;
+    AccountApi.qqLogin();
+    this.closeShowModal();
+  }
+
   constructor(
     private fb: FormBuilder
   ) {

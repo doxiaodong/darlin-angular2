@@ -44,6 +44,11 @@ class Api {
     window.location.href = this.prefix + '/third/github/';
   }
 
+  qqLogin() {
+    RequestHandler();
+    window.location.href = this.prefix + '/third/qq/';
+  }
+
   signout() {
     return dhttp.post(this.prefix + '/account/signout/', '');
   }
