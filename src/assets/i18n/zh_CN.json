@@ -13,7 +13,7 @@
     "signin": "登录",
     "register": "注册",
     "username": "用户名",
-    "usernameFlag": "6到20位,必须是字母,数字或_",
+    "usernameFlag": "6到20位,必须是字母,数字或_,不能以「_」开始",
     "password": "密码",
     "passwordFlag": "6到20位,必须是字母,数字或_",
     "rePassword": "再次输入密码",

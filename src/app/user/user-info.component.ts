@@ -45,12 +45,16 @@ export class UserInfoComponent implements OnActivate, OnInit {
   public profile: any;
   public signout: Function;
 
+  public isThid: boolean = true;
+
   getUserInfo(username: string): void {
     AccountApi.getUserInfo({username: username})
     .then(data => {
       this.profile = data.user;
       this.profile.pic = PicUrl.getUrl(data.user.pic);
       this.profile.lastSignin = data.user.last_login;
+
+      this.isThid = data.user.third != 'none'
     }).catch(() => {
       this.router.navigate(['Index']);
     });
