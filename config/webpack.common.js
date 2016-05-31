@@ -173,7 +173,7 @@ module.exports = {
     // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['lib', 'main'].reverse()
+      name: ['lib'].reverse()
     }),
 
     // Plugin: CopyWebpackPlugin

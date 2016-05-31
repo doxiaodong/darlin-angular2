@@ -20,7 +20,7 @@
         <button [disabled]="!signinForm.valid || requesting" class="signin-button main btn" type="submit">{{ 'signModal.signin' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = false">{{ 'signModal.register' | translate }}</span>
         <a class="a aside" (click)="githubLogin()">Github</a>
-        <a class="a aside" (click)="qqLogin()">QQ</a>
+        <a class="a aside qq-weibo" (click)="qqLogin()"><img src="/assets/images/qq.png" alt="">QQ</a>
         <span onclick="alert('联系站猪!')" class="a aside">{{ 'signModal.forget' | translate }}</span>
       </footer>
       <i class="xd-modal-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>

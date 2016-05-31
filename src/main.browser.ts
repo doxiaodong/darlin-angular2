@@ -9,27 +9,31 @@ import {http} from './app/base/injector/http-injector';
 
 import {RootAppComponent} from './app/app.component';
 
-if ('production' === ENV) {
-  // Production
-  enableProdMode();
+function main(): Promise<any> {
 
-} else {
-  // Development
-  // enableProdMode();
+  if ('production' === ENV) {
+    // Production
+    enableProdMode();
+
+  } else {
+    // Development
+    // enableProdMode();
+  }
+
+  return bootstrap(RootAppComponent, [
+    HTTP_PROVIDERS,
+    ROUTER_PROVIDERS,
+    provide(TranslateLoader, {
+      useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
+      deps: [Http]
+    }),
+    // provide(TranslateLoader, {
+    //   useFactory: () => new TranslateStaticLoader(http, 'assets/i18n', '.json')
+    // }),
+    TranslateService,
+    MarkedService
+  ])
+  .catch(err => console.error(err));
 }
 
-
-bootstrap(RootAppComponent, [
-  HTTP_PROVIDERS,
-  ROUTER_PROVIDERS,
-  provide(TranslateLoader, {
-    useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
-    deps: [Http]
-  }),
-  // provide(TranslateLoader, {
-  //   useFactory: () => new TranslateStaticLoader(http, 'assets/i18n', '.json')
-  // }),
-  TranslateService,
-  MarkedService
-])
-.catch(err => console.error(err));
+document.addEventListener('DOMContentLoaded', () => main());

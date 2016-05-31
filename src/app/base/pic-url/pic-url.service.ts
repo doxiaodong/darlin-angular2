@@ -4,13 +4,9 @@ export class PicUrl {
 
   static getUrl(pic: string): string {
 
-    if (pic.slice(0, 4) != 'http') {
+    if (!new RegExp(THIRD_PIC_REG).test(pic)) {
       pic = STATIC_URL_HOST + pic + HEAD_PIC_STYLE;
     }
-
-    // if (!new RegExp(THIRD_PIC_REG).test(pic)) {
-    //   pic = STATIC_URL_HOST + pic + HEAD_PIC_STYLE;
-    // }
 
     return pic;
   }
