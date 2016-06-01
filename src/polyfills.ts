@@ -26,6 +26,7 @@ if ('production' === ENV) {
 // https://github.com/angular/angular/issues/3333
 require('intl');
 require('intl/locale-data/jsonp/en.js');
+require('./global.js');
 
 
 /* tslint:enable */

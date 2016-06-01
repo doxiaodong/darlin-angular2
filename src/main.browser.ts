@@ -18,6 +18,7 @@ function main(): Promise<any> {
   } else {
     // Development
     // enableProdMode();
+    GLOBAL_VALUE.PIC_STATIC_URL_HOST = '';
   }
 
   return bootstrap(RootAppComponent, [

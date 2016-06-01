@@ -139,7 +139,16 @@ module.exports = {
       // See: https://github.com/webpack/raw-loader
       {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
 
-      {test: /\.md$/, loader: 'raw-loader'}
+      {test: /\.md$/, loader: 'raw-loader'},
+
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+            // `file?hash=sha512&digest=hex&name=${helpers.static}[hash].[ext]`,
+            `file?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      }
 
     ]
 

@@ -116,3 +116,10 @@ interface Thenable<T> {
     onRejected?: (error: any) => void): Thenable<U>;
   catch<U>(onRejected?: (error: any) => U | Thenable<U>): Thenable<U>;
 }
+
+// Set global value in ./global.js
+interface GlobalValue {
+  PIC_STATIC_URL_HOST: string;
+}
+
+declare var GLOBAL_VALUE: GlobalValue;
