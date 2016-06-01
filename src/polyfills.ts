@@ -27,6 +27,3 @@ if ('production' === ENV) {
 require('intl');
 require('intl/locale-data/jsonp/en.js');
 require('./global.js');
-
-
-/* tslint:enable */
