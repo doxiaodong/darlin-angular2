@@ -1,5 +1,12 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {
+  Component,
+  ViewEncapsulation,
+  OnInit
+} from '@angular/core';
+import {
+  RouteConfig,
+  ROUTER_DIRECTIVES
+} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {NavbarComponent} from './navbar/navbar.component';
@@ -19,14 +26,18 @@ import {LoadingComponent} from './base/loading/loading.component';
 import {ArticlCom} from './article/articl.com'; // test child router
 import {FourthIndexComponent} from './fourth/fourth.component';
 
+require('../../config/icon.font.json');
+require('./base/styles/global.less');
+require('./article/article-list.global.less');
+
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'root-app',
   template: require('./app.template.html'),
   styles: [
-    require('../../config/icon.font.json'),
-    require('./base/styles/global.less'),
-    require('./article/article-list.less')
+    // require('../../config/icon.font.json'),
+    // require('./base/styles/global.less'),
+    // require('./article/article-list.less')
   ],
   pipes: [TranslatePipe],
   directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent, LoadingComponent]

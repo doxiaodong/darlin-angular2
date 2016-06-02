@@ -3,7 +3,7 @@ import {Control} from '@angular/common';
 export default class SignModalValidators {
 
   static checkUsername(c: Control): {[key: string]: boolean} {
-    let usernamePattern = /^\w{6,20}$/
+    let usernamePattern = /^[^_]\w{5,19}$/
 
     if (!usernamePattern.test(c.value)) {
       return {

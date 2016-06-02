@@ -13,7 +13,7 @@
     "signin": "Signin",
     "register": "Register",
     "username": "User Name",
-    "usernameFlag": "6 to 20, use only letter/number and '_'",
+    "usernameFlag": "6 to 20, use only letter/number and '_', begin without 「_」",
     "password": "Password",
     "passwordFlag": "6 to 20, use only letter/number and '_'",
     "rePassword": "Repeat password",
@@ -51,7 +51,7 @@
       "floor": "floor",
       "replyArticle": "Comment",
       "replyPlaceholder": "reply",
-      "commentPlaceholder": "Write your opinions~ and markdown supported",
+      "commentPlaceholder": "Write your opinions~ and markdown is supported",
       "comment": "Comment",
       "none": "No articles",
       "isUp": "[TOP] "

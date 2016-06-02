@@ -1,6 +1,10 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 
-import {http, dhttp, dhttp2} from '../base/injector/http-injector';
+import {
+  http,
+  dhttp,
+  dhttp2
+} from '../base/injector/http-injector';
 
 class Api {
 

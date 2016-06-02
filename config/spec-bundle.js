@@ -12,6 +12,7 @@ require('zone.js/dist/async-test');
 
 // RxJS
 require('rxjs/Rx');
+require('../src/global.js');
 
 var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');

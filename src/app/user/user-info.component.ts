@@ -1,5 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {ROUTER_DIRECTIVES, CanActivate, OnActivate, Router, RouteParams} from '@angular/router-deprecated';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  ROUTER_DIRECTIVES,
+  CanActivate,
+  OnActivate,
+  Router,
+  RouteParams
+} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {SignModalService} from '../sign-modal/sign-modal.service';
 import {UserInterface} from './user.interface';
@@ -13,7 +22,7 @@ import {MarkedComponent} from '../base/marked/marked.component';
 
 import {AccountApi} from '../base/account/account.api';
 import {CommentApi} from '../comment/comment.api';
-import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constant';
+import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   template: require('./user-info.template.html'),
@@ -45,12 +54,16 @@ export class UserInfoComponent implements OnActivate, OnInit {
   public profile: any;
   public signout: Function;
 
+  public isThid: boolean = true;
+
   getUserInfo(username: string): void {
     AccountApi.getUserInfo({username: username})
     .then(data => {
       this.profile = data.user;
-      this.profile.pic = STATIC_URL_HOST + data.user.pic + HEAD_PIC_STYLE;
+      this.profile.pic = PicUrl.getUrl(data.user.pic);
       this.profile.lastSignin = data.user.last_login;
+
+      this.isThid = data.user.third != 'none'
     }).catch(() => {
       this.router.navigate(['Index']);
     });
@@ -67,7 +80,7 @@ export class UserInfoComponent implements OnActivate, OnInit {
           replyUser: {
             nickname: self.reply_user.nickname,
             username: self.reply_user.username,
-            pic: STATIC_URL_HOST + self.reply_user.pic + HEAD_PIC_STYLE
+            pic: PicUrl.getUrl(self.reply_user.pic)
           },
           article: self.head.article,
           content: self.content,
@@ -88,7 +101,7 @@ export class UserInfoComponent implements OnActivate, OnInit {
           let reply = {
             replyUser: {
               nickname: self.reply_user.nickname,
-              pic: STATIC_URL_HOST + self.reply_user.pic + HEAD_PIC_STYLE,
+              pic: PicUrl.getUrl(self.reply_user.pic),
               username: self.reply_user.username
             },
             article: self.article,

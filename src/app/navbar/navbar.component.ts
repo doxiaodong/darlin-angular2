@@ -1,5 +1,13 @@
-import {Component, Output, EventEmitter, OnInit} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  OnInit
+} from '@angular/core';
+import {
+  ROUTER_DIRECTIVES,
+  Router
+} from '@angular/router-deprecated';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {VisibilityDirective} from '../visibility/visibility.directive';

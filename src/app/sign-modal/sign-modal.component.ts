@@ -1,5 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  NgForm,
+  Control,
+  ControlGroup,
+  FormBuilder,
+  Validators
+} from '@angular/common';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
@@ -40,7 +49,7 @@ export class SignModalComponent implements OnInit {
   public showModal: boolean = false;
   public signinModel: boolean = true;
 
-
+  public qqImageSrc: string = require('image-loader/qq.png');
   public user: UserInterface;
 
   public signin: signinInterface;
@@ -98,6 +107,15 @@ export class SignModalComponent implements OnInit {
     }
     this.requesting = true;
     AccountApi.githubLogin();
+    this.closeShowModal();
+  }
+
+  qqLogin() {
+    if (this.requesting) {
+      return;
+    }
+    this.requesting = true;
+    AccountApi.qqLogin();
     this.closeShowModal();
   }
 

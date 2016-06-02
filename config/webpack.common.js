@@ -8,6 +8,7 @@ var helpers = require('./helpers');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -42,6 +43,7 @@ module.exports = {
   entry: {
 
     // 'polyfills': './src/polyfills.ts',
+    // 'vendor': './src/vendor.ts',
     'lib': ['./src/polyfills.ts', './src/vendor.ts'],
     'main': './src/main.browser.ts'
 
@@ -111,20 +113,25 @@ module.exports = {
       {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/]},
 
       // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
-      {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
+      // {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
+      {test: /\.font\.json$/, loader: ExtractTextPlugin.extract("style", ["css", "fontgen"])},
 
       // Json loader support for *.json files.
       //
       // See: https://github.com/webpack/json-loader
-      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/]},
+
+      {test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css")},
 
       // Raw loader support for *.css files
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.css$/, loader: 'raw-loader'},
+      {test: /\.css$/, loader: 'raw-loader', exclude: [/(global|\.min)\.css$/]},
 
-      {test: /\.less$/, loader: "raw-loader!less"},
+      {test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!less")},
+
+      {test: /\.less$/, loader: "raw-loader!less", exclude: [/global\.less$/]},
 
       // Raw loader support for *.html
       // Returns file content as string
@@ -132,7 +139,16 @@ module.exports = {
       // See: https://github.com/webpack/raw-loader
       {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
 
-      {test: /\.md$/, loader: 'raw-loader'}
+      {test: /\.md$/, loader: 'raw-loader'},
+
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+            // `file?hash=sha512&digest=hex&name=${helpers.static}[hash].[ext]`,
+            `file?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      }
 
     ]
 
@@ -142,6 +158,8 @@ module.exports = {
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
+
+    new ExtractTextPlugin(helpers.static + "main.[hash].css"),
 
     // Plugin: ForkCheckerPlugin
     // Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -164,8 +182,7 @@ module.exports = {
     // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
     new webpack.optimize.CommonsChunkPlugin({
-      name: helpers.reverse(['lib', 'main']),
-      minChunks: Infinity
+      name: ['lib'].reverse()
     }),
 
     // Plugin: CopyWebpackPlugin
@@ -184,7 +201,11 @@ module.exports = {
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      chunksSortMode: helpers.packageSort(['lib', 'main'])
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      },
+      chunksSortMode: 'dependency'
     })
 
   ],

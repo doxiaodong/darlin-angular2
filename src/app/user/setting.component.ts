@@ -1,9 +1,31 @@
-import {Component, OnInit, ReflectiveInjector, provide} from '@angular/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate, OnActivate, Router, RouteRegistry} from '@angular/router-deprecated';
+import {
+  Component,
+  OnInit,
+  ReflectiveInjector,
+  provide
+} from '@angular/core';
+import {
+  NgForm,
+  Control,
+  ControlGroup,
+  FormBuilder,
+  Validators
+} from '@angular/common';
+import {
+  ROUTER_DIRECTIVES,
+  ROUTER_PROVIDERS,
+  CanActivate,
+  OnActivate,
+  Router,
+  RouteRegistry
+} from '@angular/router-deprecated';
 // import {RootRouter} from '@angular/src/router/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {MdRadioGroup, MdRadioButton, MdRadioDispatcher} from '@angular2-material/radio';
+import {
+  MdRadioGroup,
+  MdRadioButton,
+  MdRadioDispatcher
+} from '@angular2-material/radio';
 
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
@@ -12,7 +34,7 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import validate from '../sign-modal/sign-modal.validate';
 import {AlertService} from '../base/alert/alert.service';
 import {AccountApi} from '../base/account/account.api';
-import {STATIC_URL_HOST, HEAD_PIC_STYLE} from '../base/constants/picture.constant';
+import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   template: require('./setting.template.html'),
@@ -82,7 +104,7 @@ export class UserSettingComponent implements OnActivate, OnInit {
       username: user.username,
       email: user.email,
       nickname: user.nickname,
-      pic: STATIC_URL_HOST + user.pic + HEAD_PIC_STYLE,
+      pic: PicUrl.getUrl(user.pic),
       sex: user.sex,
       third: user.third
     };

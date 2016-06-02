@@ -1,9 +1,19 @@
-import {Request, XHRBackend, BrowserXhr, ResponseOptions, XHRConnection, Response} from '@angular/http';
+import {
+  Request,
+  XHRBackend,
+  BrowserXhr,
+  ResponseOptions,
+  XHRConnection,
+  Response
+} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {LoadingService} from '../loading/loading.service';
 import {AlertService} from '../alert/alert.service';
-import {TranslatePipe, TranslateService} from 'ng2-translate/ng2-translate';
+import {
+  TranslatePipe,
+  TranslateService
+} from 'ng2-translate/ng2-translate';
 import {LocalStorageService} from '../local-storage/local-storage.service';
 
 @Injectable()

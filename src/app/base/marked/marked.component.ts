@@ -1,8 +1,18 @@
-import {Component, Input, ViewEncapsulation, OnChanges} from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnChanges
+} from '@angular/core';
 // import {DomSanitizationService} from '@angular/platform-browser'
-// import * as emojione from 'emojione';
+import * as emojione from 'emojione';
 
 import {MarkedService} from './marked.service';
+
+require('./markdown.global.less');
+require('./tomorrow.night.global.css');
+require('./highlight.number.global.less');
+require('emojione/assets/css/emojione.min.css'); // use node_modules
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -14,9 +24,9 @@ import {MarkedService} from './marked.service';
     <div [innerHTML]="html"></div>
   `,
   styles: [
-    require('./markdown.less'),
-    require('./tomorrow.night.css'),
-    require('./highlight.number.less')
+    // require('./markdown.less'),
+    // require('./tomorrow.night.css'),
+    // require('./highlight.number.less')
   ]
 })
 

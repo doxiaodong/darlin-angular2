@@ -9,27 +9,39 @@ import {http} from './app/base/injector/http-injector';
 
 import {RootAppComponent} from './app/app.component';
 
-if ('production' === ENV) {
-  // Production
-  enableProdMode();
+function main(): Promise<any> {
 
-} else {
-  // Development
-  // enableProdMode();
+  if ('production' === ENV) {
+    // Production
+    enableProdMode();
+
+  } else {
+    // Development
+    // enableProdMode();
+    GLOBAL_VALUE.PIC_STATIC_URL_HOST = '';
+  }
+
+  return bootstrap(RootAppComponent, [
+    HTTP_PROVIDERS,
+    ROUTER_PROVIDERS,
+    provide(TranslateLoader, {
+      useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
+      deps: [Http]
+    }),
+    // provide(TranslateLoader, {
+    //   useFactory: () => new TranslateStaticLoader(http, 'assets/i18n', '.json')
+    // }),
+    TranslateService,
+    MarkedService
+  ])
+  .catch(err => console.error(err));
 }
 
-
-bootstrap(RootAppComponent, [
-  HTTP_PROVIDERS,
-  ROUTER_PROVIDERS,
-  provide(TranslateLoader, {
-    useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
-    deps: [Http]
-  }),
-  // provide(TranslateLoader, {
-  //   useFactory: () => new TranslateStaticLoader(http, 'assets/i18n', '.json')
-  // }),
-  TranslateService,
-  MarkedService
-])
-.catch(err => console.error(err));
+if ('development' === ENV && HMR === true) {
+  // activate hot module reload
+  let ngHmr = require('angular2-hmr');
+  ngHmr.hotModuleReplacement(main, module);
+} else {
+  // bootstrap when document is ready
+  document.addEventListener('DOMContentLoaded', () => main());
+}

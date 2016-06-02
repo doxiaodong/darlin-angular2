@@ -1,4 +1,7 @@
-import {Directive, OnInit} from '@angular/core';
+import {
+  Directive,
+  OnInit
+} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {LocalStorageService} from '../base/local-storage/local-storage.service';

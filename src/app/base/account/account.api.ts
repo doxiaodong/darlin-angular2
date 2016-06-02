@@ -2,10 +2,19 @@ import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {Headers} from '@angular/http';
 import * as md5 from 'js-md5';
 import {HttpUtilsService} from '../utils/http-utils.service';
-import {http, dhttp, dhttp2, dhttp3} from '../injector/http-injector';
+import {
+  http,
+  dhttp,
+  dhttp2,
+  dhttp3
+} from '../injector/http-injector';
 import {Observable} from 'rxjs';
 
-import {ResponseHandler, ErrorHandler, RequestHandler} from '../http-interceptor/http-interceptor.provider';
+import {
+  ResponseHandler,
+  ErrorHandler,
+  RequestHandler
+} from '../http-interceptor/http-interceptor.provider';
 
 class Api {
 
@@ -42,6 +51,11 @@ class Api {
   githubLogin() {
     RequestHandler();
     window.location.href = this.prefix + '/third/github/';
+  }
+
+  qqLogin() {
+    RequestHandler();
+    window.location.href = this.prefix + '/third/qq/';
   }
 
   signout() {

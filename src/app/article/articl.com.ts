@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {
+  RouteConfig,
+  ROUTER_DIRECTIVES
+} from '@angular/router-deprecated';
 
 import {ArticleListComponent} from './article-list.component';
 import {ArticleDetailComponent} from './article-detail.component';

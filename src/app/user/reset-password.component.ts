@@ -1,6 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
-import {ROUTER_DIRECTIVES, CanActivate, OnActivate, Router} from '@angular/router-deprecated';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  NgForm,
+  Control,
+  ControlGroup,
+  FormBuilder,
+  Validators
+} from '@angular/common';
+import {
+  ROUTER_DIRECTIVES,
+  CanActivate,
+  OnActivate,
+  Router
+} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';

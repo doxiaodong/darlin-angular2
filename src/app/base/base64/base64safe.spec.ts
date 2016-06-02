@@ -4,11 +4,14 @@ import {
   describe
 } from '@angular/core/testing';
 
-import {Component, provide} from '@angular/core';
+import {
+  Component,
+  provide
+} from '@angular/core';
 
 import b64 from './base64safe.service';
 
-describe('base64safe', () => {
+describe('base64safe.service.ts base64safe', () => {
 
   it('should encode correct', inject([], () => {
     expect(b64.encode('darlin.me')).toEqual('ZGFybGluLm1l');
