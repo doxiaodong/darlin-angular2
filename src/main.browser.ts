@@ -37,4 +37,11 @@ function main(): Promise<any> {
   .catch(err => console.error(err));
 }
 
-document.addEventListener('DOMContentLoaded', () => main());
+if ('development' === ENV && HMR === true) {
+  // activate hot module reload
+  let ngHmr = require('angular2-hmr');
+  ngHmr.hotModuleReplacement(main, module);
+} else {
+  // bootstrap when document is ready
+  document.addEventListener('DOMContentLoaded', () => main());
+}
