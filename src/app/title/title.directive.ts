@@ -1,4 +1,7 @@
-import {Directive, OnChanges} from '@angular/core';
+import {
+  Directive,
+  OnChanges
+} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 @Directive({

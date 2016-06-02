@@ -1,4 +1,8 @@
-import {Directive, ElementRef, OnInit} from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  OnInit
+} from '@angular/core';
 import {Animation} from '@angular/platform-browser/src/animate/animation';
 import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 

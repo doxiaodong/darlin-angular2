@@ -1,4 +1,9 @@
-import {Component, Input, ViewEncapsulation, OnChanges} from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnChanges
+} from '@angular/core';
 // import {DomSanitizationService} from '@angular/platform-browser'
 import * as emojione from 'emojione';
 

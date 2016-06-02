@@ -1,5 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {ROUTER_DIRECTIVES, CanActivate, OnActivate, Router, RouteParams} from '@angular/router-deprecated';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  ROUTER_DIRECTIVES,
+  CanActivate,
+  OnActivate,
+  Router,
+  RouteParams
+} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {SignModalService} from '../sign-modal/sign-modal.service';
 import {UserInterface} from './user.interface';

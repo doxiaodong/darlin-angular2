@@ -1,4 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';

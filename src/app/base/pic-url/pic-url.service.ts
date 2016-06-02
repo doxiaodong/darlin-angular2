@@ -1,4 +1,7 @@
-import {HEAD_PIC_STYLE, THIRD_PIC_REG} from '../constants/picture.constant';
+import {
+  HEAD_PIC_STYLE,
+  THIRD_PIC_REG
+} from '../constants/picture.constant';
 
 export class PicUrl {
 

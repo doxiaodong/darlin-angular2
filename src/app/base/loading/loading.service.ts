@@ -21,7 +21,7 @@ export class LoadingService {
 
   static _show() {
     if (this.timeout) {
-      clearTimeout(this.timeout)
+      clearTimeout(this.timeout);
     }
     this.isLoading = true;
   }

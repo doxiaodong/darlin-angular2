@@ -1,7 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {NgForm} from '@angular/common';
-import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {MdButton, MdAnchor} from '@angular2-material/button';
+import {
+  RouteParams,
+  ROUTER_DIRECTIVES
+} from '@angular/router-deprecated';
+import {
+  MdButton,
+  MdAnchor
+} from '@angular2-material/button';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import b64 from '../base/base64/base64safe.service';

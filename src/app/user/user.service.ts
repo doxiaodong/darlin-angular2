@@ -1,4 +1,4 @@
-import {Subject}    from 'rxjs/Subject';
+import {Subject} from 'rxjs/Subject';
 import {UserInterface} from './user.interface';
 import {USER_NULL} from './user.null';
 

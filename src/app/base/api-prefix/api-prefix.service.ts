@@ -1,4 +1,7 @@
-import {ReflectiveInjector, Provider} from '@angular/core';
+import {
+  ReflectiveInjector,
+  Provider
+} from '@angular/core';
 
 let provider: any;
 

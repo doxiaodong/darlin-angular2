@@ -1,7 +1,19 @@
-import {ReflectiveInjector, provide} from '@angular/core';
-import {HTTP_PROVIDERS, Http, XHRBackend, BrowserXhr} from '@angular/http';
+import {
+  ReflectiveInjector,
+  provide
+} from '@angular/core';
+import {
+  HTTP_PROVIDERS,
+  Http,
+  XHRBackend,
+  BrowserXhr
+} from '@angular/http';
 import {CustomBrowserXhr} from '../custom-browser-xhr/custom-browser-xhr.provide';
-import {HttpInterceptor, ResponseHandler, ErrorHandler} from '../http-interceptor/http-interceptor.provider';
+import {
+  HttpInterceptor,
+  ResponseHandler,
+  ErrorHandler
+} from '../http-interceptor/http-interceptor.provider';
 
 
 var injector = ReflectiveInjector.resolveAndCreate([

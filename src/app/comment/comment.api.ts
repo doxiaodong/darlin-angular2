@@ -1,7 +1,11 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 import {Headers} from '@angular/http';
 
-import {http, dhttp, dhttp2} from '../base/injector/http-injector';
+import {
+  http,
+  dhttp,
+  dhttp2
+} from '../base/injector/http-injector';
 import {HttpUtilsService} from '../base/utils/http-utils.service';
 
 class Api {

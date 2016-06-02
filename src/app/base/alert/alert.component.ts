@@ -1,4 +1,9 @@
-import {Component, Input, OnInit, OnChanges} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges
+} from '@angular/core';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {AlertService} from './alert.service';

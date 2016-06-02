@@ -1,5 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm, Control, ControlGroup, FormBuilder, Validators} from '@angular/common';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  NgForm,
+  Control,
+  ControlGroup,
+  FormBuilder,
+  Validators
+} from '@angular/common';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
