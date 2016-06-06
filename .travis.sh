@@ -2,6 +2,7 @@
 
 set -ev
 
+npm run lint
 npm run test
 
 # there is some problem with e2e test
