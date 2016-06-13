@@ -4,8 +4,9 @@
 // Prefer CoreJS over the polyfills above
 import 'core-js/es6';
 import 'core-js/es7/reflect';
-require('zone.js/dist/zone');
+import 'zone.js/dist/zone';
 
+import './global.js'
 // Typescript emit helpers polyfill
 import 'ts-helpers';
 
@@ -26,4 +27,3 @@ if ('production' === ENV) {
 // https://github.com/angular/angular/issues/3333
 require('intl');
 require('intl/locale-data/jsonp/en.js');
-require('./global.js');

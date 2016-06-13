@@ -9,7 +9,6 @@ var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
 var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-var CompressionPlugin = require('compression-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 
 var ImageMinifyPlugin = require('./webpack-plugin/image-minify');
@@ -134,24 +133,13 @@ module.exports = webpackMerge(commonConfig, {
       beautify: false, //prod
 
       mangle: {
-        screw_ie8 : true,
-        keep_fnames: true
+        screw_ie8 : true
       }, //prod
       compress: {
         screw_ie8: true
       }, //prod
       comments: false //prod
     }),
-
-    // Plugin: CompressionPlugin
-    // Description: Prepares compressed versions of assets to serve
-    // them with Content-Encoding
-    //
-    // See: https://github.com/webpack/compression-webpack-plugin
-    new CompressionPlugin({
-      regExp: /\.css$|\.html$|\.js$|\.map$/,
-      threshold: 2 * 1024
-    })
 
   ],
 

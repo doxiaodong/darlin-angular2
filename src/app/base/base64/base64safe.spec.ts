@@ -5,8 +5,7 @@ import {
 } from '@angular/core/testing';
 
 import {
-  Component,
-  provide
+  Component
 } from '@angular/core';
 
 import b64 from './base64safe.service';
