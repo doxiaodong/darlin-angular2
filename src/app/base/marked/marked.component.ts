@@ -5,7 +5,6 @@ import {
   OnChanges
 } from '@angular/core';
 // import {DomSanitizationService} from '@angular/platform-browser'
-import * as emojione from 'emojione';
 
 import {MarkedService} from './marked.service';
 

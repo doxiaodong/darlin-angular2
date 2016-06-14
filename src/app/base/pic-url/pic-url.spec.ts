@@ -4,9 +4,7 @@ import {
   describe
 } from '@angular/core/testing';
 
-import {
-  Component
-} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {
    PicUrl as pu

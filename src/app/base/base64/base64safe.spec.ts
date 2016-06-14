@@ -4,9 +4,7 @@ import {
   describe
 } from '@angular/core/testing';
 
-import {
-  Component
-} from '@angular/core';
+import {Component} from '@angular/core';
 
 import b64 from './base64safe.service';
 
