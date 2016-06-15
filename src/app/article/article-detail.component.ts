@@ -9,7 +9,6 @@ import {
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
-import b64 from '../base/base64/base64safe.service';
 
 import {ArticleApi} from './article.api';
 
@@ -59,7 +58,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    let url = b64.decode(this.routeParams.get('url'));
+    let url = base64.Base64.decode(this.routeParams.get('url'));
     this.getArticleDetail(url);
   }
 

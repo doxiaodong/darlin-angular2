@@ -19,6 +19,7 @@ import 'marked';
 import 'highlight.js';
 import 'js-md5';
 import 'emojione';
+import 'js-base64';
 
 // look in platform/directives and platform/providers
 

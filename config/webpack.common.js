@@ -164,7 +164,8 @@ module.exports = {
       marked: 'marked',
       hljs: 'highlight.js',
       md5: 'js-md5',
-      emojione: 'emojione'
+      emojione: 'emojione',
+      base64: 'js-base64'
     }),
 
     new ExtractTextPlugin(helpers.static + "main.[hash].css"),

@@ -16,7 +16,6 @@ import {UserService} from './user.service';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
-import b64 from '../base/base64/base64safe.service';
 
 import {MarkedComponent} from '../base/marked/marked.component';
 
@@ -44,7 +43,7 @@ export class UserInfoComponent implements OnActivate, OnInit {
 
   private user: UserInterface;
 
-  public encode: Function = b64.encode;
+  public encode: Function = base64.Base64.encodeURI;
   public itsMe: boolean = false;
   public replies: any[] = [];
   public repliesOfArticle: any[] = [];
