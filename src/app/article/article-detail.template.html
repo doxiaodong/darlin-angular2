@@ -1,4 +1,4 @@
-<div class="pages" *ngIf="article" [title]="article.articleDetailTitle" page-animate>
+<div class="pages" *ngIf="article" [title]="article.articleDetailTitle" page-animate @pageAnimateTrigger="p.stateExpression" #p="pageAnimate">
   <div class="page-block side right" article-categories>
   </div>
 

@@ -16,6 +16,7 @@ import {UserService} from './user.service';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 
 import {MarkedComponent} from '../base/marked/marked.component';
 
@@ -24,9 +25,13 @@ import {CommentApi} from '../comment/comment.api';
 import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
+  selector: 'user-info',
   template: require('./user-info.template.html'),
   pipes: [TranslatePipe, XdDatePipe],
-  directives: [ROUTER_DIRECTIVES, MarkedComponent, TitleDirective, PageAnimateDirective]
+  directives: [ROUTER_DIRECTIVES, MarkedComponent, TitleDirective, PageAnimateDirective],
+  animations: [
+    PageAnimateFn()
+  ]
 })
 
 @CanActivate((next, prev) => {

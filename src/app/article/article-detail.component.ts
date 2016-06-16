@@ -17,8 +17,10 @@ import {CommentComponent} from '../comment/comment.component';
 import {MarkedComponent} from '../base/marked/marked.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
+  selector: 'article-detail',
   template: require('./article-detail.template.html'),
   pipes: [XdDatePipe, TranslatePipe],
   directives: [
@@ -28,6 +30,9 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
     CommentComponent,
     MarkedComponent,
     PageAnimateDirective
+  ],
+  animations: [
+    PageAnimateFn()
   ]
 })
 

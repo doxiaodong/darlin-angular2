@@ -7,7 +7,7 @@ import {
   dhttp2,
   dhttp3
 } from '../injector/http-injector';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 
 import {
   ResponseHandler,

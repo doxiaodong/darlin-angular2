@@ -11,11 +11,16 @@ import {TitleDirective} from '../title/title.directive';
 import {ArticleApi} from '../article/article.api';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
+  selector: 'index',
   template: require('./index.template.html'),
   pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
+  animations: [
+    PageAnimateFn()
+  ]
 })
 
 export class IndexComponent implements OnInit {

@@ -80,7 +80,9 @@ export class NavbarComponent implements OnInit {
     });
 
     this.router.subscribe((val) => {
-      this.configIndexNumber(val);
+      if (val.status === 'success') {
+        this.configIndexNumber(val.instruction.urlPath);
+      }
     });
 
   }

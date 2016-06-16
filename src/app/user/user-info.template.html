@@ -1,4 +1,4 @@
-<div class="pages account" [title]="'pages.account.infoTitle' | translate" page-animate>
+<div class="pages account" [title]="'pages.account.infoTitle' | translate" page-animate @pageAnimateTrigger="p.stateExpression" #p="pageAnimate">
   <div class="page-block">
     <div class="each-header">
       <span class="big-size">{{ 'pages.account.profile' | translate }}</span>
