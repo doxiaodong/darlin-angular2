@@ -31,16 +31,21 @@ import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 import validate from '../sign-modal/sign-modal.validate';
 import {AlertService} from '../base/alert/alert.service';
 import {AccountApi} from '../base/account/account.api';
 import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
+  selector: 'setting',
   template: require('./setting.template.html'),
   pipes: [TranslatePipe],
   providers: [MdRadioDispatcher],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup],
+  animations: [
+    PageAnimateFn()
+  ]
 })
 
 @CanActivate((next, prev) => {

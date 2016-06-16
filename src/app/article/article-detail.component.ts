@@ -9,7 +9,6 @@ import {
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
-import b64 from '../base/base64/base64safe.service';
 
 import {ArticleApi} from './article.api';
 
@@ -18,8 +17,10 @@ import {CommentComponent} from '../comment/comment.component';
 import {MarkedComponent} from '../base/marked/marked.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
+  selector: 'article-detail',
   template: require('./article-detail.template.html'),
   pipes: [XdDatePipe, TranslatePipe],
   directives: [
@@ -29,6 +30,9 @@ import {PageAnimateDirective} from '../page-animate/page-animate.directive';
     CommentComponent,
     MarkedComponent,
     PageAnimateDirective
+  ],
+  animations: [
+    PageAnimateFn()
   ]
 })
 
@@ -59,7 +63,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    let url = b64.decode(this.routeParams.get('url'));
+    let url = base64.Base64.decode(this.routeParams.get('url'));
     this.getArticleDetail(url);
   }
 

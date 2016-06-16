@@ -9,18 +9,22 @@ import {
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
-import b64 from '../base/base64/base64safe.service';
 
 import {ArticleApi} from './article.api';
 
 import {ArticleCategoryComponent} from './category.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
+  selector: 'article-list',
   template: require('./article-list.template.html'),
   pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
+  animations: [
+    PageAnimateFn()
+  ]
 })
 
 export class ArticleListComponent implements OnInit {
@@ -33,7 +37,7 @@ export class ArticleListComponent implements OnInit {
 
       data.results.map(a => {
         let article = {
-          url: b64.encode(a.url),
+          url: base64.Base64.encodeURI(a.url),
           title: a.title,
           createTime: a.create_time,
           category: a.category.url,

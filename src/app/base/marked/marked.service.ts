@@ -1,6 +1,3 @@
-import * as marked from 'marked';
-import * as hljs from 'highlight.js';
-
 export class MarkedService {
 
   private options: any = {};

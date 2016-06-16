@@ -159,6 +159,15 @@ module.exports = {
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
 
+    // third js
+    new webpack.ProvidePlugin({
+      marked: 'marked',
+      hljs: 'highlight.js',
+      md5: 'js-md5',
+      emojione: 'emojione',
+      base64: 'js-base64'
+    }),
+
     new ExtractTextPlugin(helpers.static + "main.[hash].css"),
 
     // Plugin: ForkCheckerPlugin
@@ -202,6 +211,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       minify: {
+        minifyCSS: true,
         collapseWhitespace: true,
         removeComments: true
       },

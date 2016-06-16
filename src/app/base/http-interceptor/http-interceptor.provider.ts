@@ -4,7 +4,8 @@ import {
   BrowserXhr,
   ResponseOptions,
   XHRConnection,
-  Response
+  Response,
+  XSRFStrategy
 } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
@@ -19,8 +20,8 @@ import {LocalStorageService} from '../local-storage/local-storage.service';
 @Injectable()
 export class HttpInterceptor extends XHRBackend {
 
-  constructor(_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions){
-    super(_browserXHR, _baseResponseOptions);
+  constructor(_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions, _xsrfStrategy: XSRFStrategy){
+    super(_browserXHR, _baseResponseOptions, _xsrfStrategy);
   }
 
   createConnection(request: Request): XHRConnection {

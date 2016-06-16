@@ -13,7 +13,6 @@ import {
 } from '@angular2-material/button';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import b64 from '../base/base64/base64safe.service';
 import {AlertService} from '../base/alert/alert.service';
 
 import {CommentApi} from './comment.api';
@@ -166,7 +165,7 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    let url = b64.decode(this.routeParams.get('url'));
+    let url = base64.Base64.decode(this.routeParams.get('url'));
 
     this.getComments(url);
     this.article = url;

@@ -40,24 +40,69 @@ require('./article/article-list.global.less');
     // require('./article/article-list.less')
   ],
   pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, FooterComponent, AlertComponent, SignModalComponent, LoadingComponent]
+  directives: [
+    ROUTER_DIRECTIVES,
+    NavbarComponent,
+    FooterComponent,
+    AlertComponent,
+    SignModalComponent,
+    LoadingComponent
+  ]
 })
-@RouteConfig([
-  {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
+@RouteConfig([{
+  path: '/',
+  name: 'Index',
+  component: IndexComponent,
+  useAsDefault: true
+},
 
-  {path: '/articl/...', name: 'Articl', component: ArticlCom}, // test child router
-  {path: '/article/:category', name: 'ArticleList', component: ArticleListComponent},
-  {path: '/article/:category/:url', name: 'ArticleDetail', component: ArticleDetailComponent},
+{
+  path: '/articl/...',
+  name: 'Articl',
+  component: ArticlCom
+}, // test child router
+{
+  path: '/article/:category',
+  name: 'ArticleList',
+  component: ArticleListComponent
+},
+{
+  path: '/article/:category/:url',
+  name: 'ArticleDetail',
+  component: ArticleDetailComponent
+},
 
-  {path: '/account/info/:user', name: 'UserInfo', component: UserInfoComponent},
-  {path: '/account/setting', name: 'UserSetting', component: UserSettingComponent},
-  {path: '/account/changePassword', name: 'ChangePassword', component: ChangePasswordComponent},
-  {path: '/account/resetPassword', name: 'ResetPassword', component: ResetPasswordComponent}, // admin
+{
+  path: '/account/info/:user',
+  name: 'UserInfo',
+  component: UserInfoComponent
+},
+{
+  path: '/account/setting',
+  name: 'UserSetting',
+  component: UserSettingComponent
+},
+{
+  path: '/account/changePassword',
+  name: 'ChangePassword',
+  component: ChangePasswordComponent
+},
+{
+  path: '/account/resetPassword',
+  name: 'ResetPassword',
+  component: ResetPasswordComponent
+}, // admin
 
-  {path: '/self/links', name: 'FourthIndex', component: FourthIndexComponent},
+{
+  path: '/self/links',
+  name: 'FourthIndex',
+  component: FourthIndexComponent
+},
 
-  {path: '/*path', redirectTo: ['Index']}
-])
+{
+  path: '/*path',
+  redirectTo: ['Index']
+}])
 export class RootAppComponent implements OnInit {
 
   // onUserInfoUpdate(userInfo) {

@@ -20,14 +20,19 @@ import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
+import {PageAnimateFn} from '../page-animate/page-animate';
 import validate from '../sign-modal/sign-modal.validate';
 import {AlertService} from '../base/alert/alert.service';
 import {AccountApi} from '../base/account/account.api';
 
 @Component({
+  selector: 'change-password',
   template: require('./change-password.template.html'),
   pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective]
+  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
+  animations: [
+    PageAnimateFn()
+  ]
 })
 
 @CanActivate((next, prev) => {

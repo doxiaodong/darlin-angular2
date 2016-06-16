@@ -4,10 +4,7 @@ import {
   describe
 } from '@angular/core/testing';
 
-import {
-  Component,
-  provide
-} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {
   HttpUtilsService as hu

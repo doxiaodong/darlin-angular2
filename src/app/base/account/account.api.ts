@@ -1,6 +1,5 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {Headers} from '@angular/http';
-import * as md5 from 'js-md5';
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {
   http,
@@ -8,7 +7,7 @@ import {
   dhttp2,
   dhttp3
 } from '../injector/http-injector';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 
 import {
   ResponseHandler,

@@ -1,4 +1,4 @@
-<div class="pages" [title]="'titles.articleListTitle' | translate" page-animate>
+<div class="pages" [title]="'titles.articleListTitle' | translate" page-animate @pageAnimateTrigger="p.stateExpression" #p="pageAnimate">
   <div class="page-block side right" article-categories>
   </div>
 
