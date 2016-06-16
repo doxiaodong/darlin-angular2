@@ -60,6 +60,7 @@ export class FooterComponent {
 
   changeLanguage(lang: LanguageInterface) {
     this.selectedKey = lang.key;
+    // this.translate.use(this.selectedKey);
     this.translate.use(this.selectedKey);
     this.show = false;
   }
