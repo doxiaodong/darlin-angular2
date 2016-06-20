@@ -1,13 +1,27 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {enableProdMode, provide} from '@angular/core';
-import {HTTP_PROVIDERS, Http} from '@angular/http';
+import {
+  enableProdMode,
+  provide
+} from '@angular/core';
+import {
+  HTTP_PROVIDERS,
+  Http
+} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
-import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {
+  TranslateService,
+  TranslateLoader,
+  TranslateStaticLoader
+} from 'ng2-translate/ng2-translate';
 import {MarkedService} from './app/base/marked/marked.service';
 import {http} from './app/base/injector/http-injector';
 
 import {RootAppComponent} from './app/app.component';
+import {
+  disableDeprecatedForms,
+  provideForms
+} from '@angular/forms';
 
 function main(): Promise<any> {
 
@@ -22,6 +36,8 @@ function main(): Promise<any> {
   }
 
   return bootstrap(RootAppComponent, [
+    // disableDeprecatedForms(),
+    // provideForms(),
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
     provide(TranslateLoader, {
