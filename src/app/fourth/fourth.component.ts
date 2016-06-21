@@ -7,7 +7,7 @@ import {LinksApi} from './links.api';
 
 @Component({
   selector: 'links',
-  template: require('./fourth.template.html'),
+  templateUrl: './fourth.template.html',
   styles: [
     require('./fourth.less')
   ],

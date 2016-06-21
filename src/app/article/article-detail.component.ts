@@ -21,7 +21,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
   selector: 'article-detail',
-  template: require('./article-detail.template.html'),
+  templateUrl: './article-detail.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [
     ROUTER_DIRECTIVES,

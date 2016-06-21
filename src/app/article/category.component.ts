@@ -15,7 +15,7 @@ import {CategoryService} from './category.service';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: '[article-categories]',
-  template: require('./category.template.html'),
+  templateUrl: './category.template.html',
   styles: [
     require('./category.less')
   ],

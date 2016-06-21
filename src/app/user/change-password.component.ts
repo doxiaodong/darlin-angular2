@@ -27,7 +27,7 @@ import {AccountApi} from '../base/account/account.api';
 
 @Component({
   selector: 'change-password',
-  template: require('./change-password.template.html'),
+  templateUrl: './change-password.template.html',
   pipes: [TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [

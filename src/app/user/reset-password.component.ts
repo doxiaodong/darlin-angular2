@@ -27,7 +27,7 @@ import {AccountApi} from '../base/account/account.api';
 
 @Component({
   selector: 'reset-password',
-  template: require('./reset-password.template.html'),
+  templateUrl: './reset-password.template.html',
   pipes: [TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [

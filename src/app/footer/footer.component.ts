@@ -10,7 +10,7 @@ import {LocalStorageService} from '../base/local-storage/local-storage.service';
 
 @Component({
   selector: '[footer]',
-  template: require('./footer.template.html'),
+  templateUrl: './footer.template.html',
   styles: [
     require('./footer.less')
   ],

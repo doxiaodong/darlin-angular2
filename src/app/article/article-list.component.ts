@@ -19,7 +19,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
   selector: 'article-list',
-  template: require('./article-list.template.html'),
+  templateUrl: './article-list.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
   animations: [

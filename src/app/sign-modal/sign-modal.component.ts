@@ -35,7 +35,7 @@ interface registerInterface {
 
 @Component({
   selector: '[sign-modal]',
-  template: require('./sign-modal.template.html'),
+  templateUrl: './sign-modal.template.html',
   styles: [
     require('./sign-modal.less')
   ],

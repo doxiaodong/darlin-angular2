@@ -26,7 +26,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: 'user-info',
-  template: require('./user-info.template.html'),
+  templateUrl: './user-info.template.html',
   pipes: [TranslatePipe, XdDatePipe],
   directives: [ROUTER_DIRECTIVES, MarkedComponent, TitleDirective, PageAnimateDirective],
   animations: [

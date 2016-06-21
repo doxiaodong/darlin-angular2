@@ -39,7 +39,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: 'setting',
-  template: require('./setting.template.html'),
+  templateUrl: './setting.template.html',
   pipes: [TranslatePipe],
   providers: [MdRadioDispatcher],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup],

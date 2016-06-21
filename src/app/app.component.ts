@@ -33,7 +33,7 @@ require('./article/article-list.global.less');
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'root-app',
-  template: require('./app.template.html'),
+  templateUrl: './app.template.html',
   styles: [
     // require('../../config/icon.font.json'),
     // require('./base/styles/global.less'),

@@ -15,7 +15,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
   selector: 'index',
-  template: require('./index.template.html'),
+  templateUrl: './index.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [

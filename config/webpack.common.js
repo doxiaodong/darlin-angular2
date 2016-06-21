@@ -110,7 +110,7 @@ module.exports = {
       // Typescript loader support for .ts and Angular 2 async routes via .async.ts
       //
       // See: https://github.com/s-panferov/awesome-typescript-loader
-      {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/]},
+      {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: [/\.(spec|e2e)\.ts$/]},
 
       // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
       // {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},

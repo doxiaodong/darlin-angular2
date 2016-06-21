@@ -20,7 +20,7 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
 
 @Component({
   selector: '[navbar]',
-  template: require('./navbar.template.html'),
+  templateUrl: './navbar.template.html',
   styles: [
     require('./navbar.less')
   ],

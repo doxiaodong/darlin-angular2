@@ -23,7 +23,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: '[article-comments]',
-  template: require('./comment.template.html'),
+  templateUrl: './comment.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, MarkedComponent, MdButton, MdAnchor]
 })
