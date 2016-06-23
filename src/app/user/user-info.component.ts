@@ -1,14 +1,13 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
-  CanActivate,
-  OnActivate,
   Router,
-  RouteParams
-} from '@angular/router-deprecated';
+  ActivatedRoute
+} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {SignModalService} from '../sign-modal/sign-modal.service';
 import {UserInterface} from './user.interface';
@@ -34,19 +33,10 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
   ]
 })
 
-@CanActivate((next, prev) => {
-  return UserService.get().then(() => {
-    if (!UserService.isSignin()) {
-      SignModalService.show();
-    }
-    return Promise.resolve(UserService.isSignin());
-  });
-
-})
-
-export class UserInfoComponent implements OnActivate, OnInit {
+export class UserInfoComponent implements OnInit {
 
   private user: UserInterface;
+  private sub: any;
 
   public encode: Function = base64.Base64.encodeURI;
   public itsMe: boolean = false;
@@ -69,7 +59,7 @@ export class UserInfoComponent implements OnActivate, OnInit {
 
       this.isThid = data.user.third != 'none'
     }).catch(() => {
-      this.router.navigate(['Index']);
+      this.router.navigate(['/']);
     });
   }
 
@@ -123,35 +113,40 @@ export class UserInfoComponent implements OnActivate, OnInit {
 
   constructor(
     private router: Router,
-    private routeParams: RouteParams
+    private route: ActivatedRoute
   ) {}
 
-  routerOnActivate(next) {
+  init() {
 
-    let username = this.routeParams.get('user');
-    this.getUserInfo(username);
+    this.sub = this.route.params
+    .subscribe(params => {
+      if (params) {
+        let username = params['user'];
+        this.getUserInfo(username);
 
-    UserService.get().then(userInfo => {
-      if (userInfo) {
-        this.itsMe = itsMe(userInfo.username, username);
-        this.getReplies(userInfo.username);
-        this.getRepliesOfArticle(userInfo);
+        UserService.get().then(userInfo => {
+          if (userInfo) {
+            this.itsMe = itsMe(userInfo.username, username);
+            this.getReplies(userInfo.username);
+            this.getRepliesOfArticle(userInfo);
+          }
+        });
+
+        UserService.updateUser$.subscribe(userInfo => {
+          if (UserService.isSignin()) {
+            this.itsMe = itsMe(userInfo.username, username);
+          } else {
+            this.itsMe = false;
+            this.router.navigate(['/']);
+          }
+
+          this.replies = [];
+          this.repliesOfArticle = [];
+          this.getReplies(userInfo.username);
+          this.getRepliesOfArticle(userInfo);
+
+        });
       }
-    });
-
-    UserService.updateUser$.subscribe(userInfo => {
-      if (UserService.isSignin()) {
-        this.itsMe = itsMe(userInfo.username, username);
-      } else {
-        this.itsMe = false;
-        this.router.navigate(['Index']);
-      }
-
-      this.replies = [];
-      this.repliesOfArticle = [];
-      this.getReplies(userInfo.username);
-      this.getRepliesOfArticle(userInfo);
-
     });
 
   }
@@ -162,6 +157,11 @@ export class UserInfoComponent implements OnActivate, OnInit {
         UserService.clear();
       });
     }
+    this.init();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

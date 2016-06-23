@@ -7,7 +7,7 @@ import {
   HTTP_PROVIDERS,
   Http
 } from '@angular/http';
-import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
+import {APP_ROUTER_PROVIDERS} from './app/app.routes';
 
 import {
   TranslateService,
@@ -39,7 +39,7 @@ function main(): Promise<any> {
     // disableDeprecatedForms(),
     // provideForms(),
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS,
+    APP_ROUTER_PROVIDERS,
     provide(TranslateLoader, {
       useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
       deps: [Http]

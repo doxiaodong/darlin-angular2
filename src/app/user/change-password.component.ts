@@ -11,10 +11,8 @@ import {
 } from '@angular/common';
 import {
   ROUTER_DIRECTIVES,
-  CanActivate,
-  OnActivate,
   Router
-} from '@angular/router-deprecated';
+} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
@@ -35,15 +33,7 @@ import {AccountApi} from '../base/account/account.api';
   ]
 })
 
-@CanActivate((next, prev) => {
-
-  return true;
-
-})
-
-export class ChangePasswordComponent implements OnActivate, OnInit {
-
-
+export class ChangePasswordComponent implements OnInit {
   passwordForm: ControlGroup;
 
   public requesting: boolean = false;
@@ -91,19 +81,15 @@ export class ChangePasswordComponent implements OnActivate, OnInit {
     });
   }
 
-  routerOnActivate(next) {
+  ngOnInit() {
 
     UserService.updateUser$.subscribe(userInfo => {
 
       if (!UserService.isSignin()) {
-        this.router.navigate(['Index']);
+        this.router.navigate(['/']);
       }
 
     });
-
-  }
-
-  ngOnInit() {
 
   }
 

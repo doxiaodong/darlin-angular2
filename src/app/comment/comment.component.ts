@@ -1,12 +1,13 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {NgForm} from '@angular/common';
 import {
-  RouteParams,
+  ActivatedRoute,
   ROUTER_DIRECTIVES
-} from '@angular/router-deprecated';
+} from '@angular/router';
 import {
   MdButton,
   MdAnchor
@@ -29,6 +30,8 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 })
 
 export class CommentComponent implements OnInit {
+
+  private sub: any;
 
   public requesting: boolean = false;
 
@@ -160,20 +163,30 @@ export class CommentComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-    let url = base64.Base64.decode(this.routeParams.get('url'));
 
-    this.getComments(url);
-    this.article = url;
+    this.sub = this.route.params
+    .subscribe(params => {
+      if (params) {
+        let url = base64.Base64.decode(params['url']);
+
+        this.getComments(url);
+        this.article = url;
+      }
+    });
 
     this.submitForm = {
       commentContent: '',
       replyContent: ''
     };
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

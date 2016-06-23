@@ -13,7 +13,7 @@
           <input type="text" class="form-control" [(ngModel)]="searchText.title">
         </li>-->
         <li class="article article-list-repeat" *ngFor="let article of articles">
-          <a class="a" [routerLink]="['ArticleDetail', {category: article.category, url: article.url}]">
+          <a class="a" [routerLink]="['/article', article.category, article.url]">
             <div class="title">
             <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
             </div>

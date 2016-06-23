@@ -1,11 +1,12 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
-  RouteParams,
+  ActivatedRoute,
   ROUTER_DIRECTIVES
-} from '@angular/router-deprecated';
+} from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
@@ -27,9 +28,10 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   ]
 })
 
-export class ArticleListComponent implements OnInit {
+export class ArticleListComponent implements OnInit, OnDestroy {
 
   public articles: Array<Object> = [];
+  private sub: any;
 
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
@@ -60,17 +62,24 @@ export class ArticleListComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams
+    private route: ActivatedRoute
   ) {
 
   }
 
   ngOnInit() {
 
-    let category = this.routeParams.get('category');
+    this.sub = this.route.params
+    .subscribe(params => {
+      if (params) {
+        let category = params['category'];
+        this.getArticles(category);
+      }
+    });
+  }
 
-    this.getArticles(category);
-    // console.log(category);
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
