@@ -7,7 +7,7 @@ import {
 import {
   ROUTER_DIRECTIVES,
   Router
-} from '@angular/router-deprecated';
+} from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {VisibilityDirective} from '../visibility/visibility.directive';
@@ -20,7 +20,7 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
 
 @Component({
   selector: '[navbar]',
-  template: require('./navbar.template.html'),
+  templateUrl: './navbar.template.html',
   styles: [
     require('./navbar.less')
   ],
@@ -48,16 +48,16 @@ export class NavbarComponent implements OnInit {
   }
 
   configIndexNumber(path: string) {
-    if (path == '') {
+    if (path === '/') {
       this.index = 0;
     }
-    if (/^article\//.test(path)) {
+    if (/^\/article\//.test(path)) {
       this.index = 1;
     }
-    if (/^account\//.test(path)) {
+    if (/^\/account\//.test(path)) {
       this.index = 2;
     }
-    if (/^self\//.test(path)) {
+    if (/^\/self\//.test(path)) {
       this.index = 3;
     }
   }
@@ -76,12 +76,12 @@ export class NavbarComponent implements OnInit {
 
     UserService.updateUser$.subscribe(userInfo => {
       this.user = userInfo;
-      this.isSignin = UserService.isSignin()
+      this.isSignin = UserService.isSignin();
     });
 
-    this.router.subscribe((val) => {
-      if (val.status === 'success') {
-        this.configIndexNumber(val.instruction.urlPath);
+    this.router.events.subscribe((val) => {
+      if (val['state']) {
+        this.configIndexNumber(val.url);
       }
     });
 

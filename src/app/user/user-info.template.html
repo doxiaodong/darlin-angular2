@@ -2,7 +2,7 @@
   <div class="page-block">
     <div class="each-header">
       <span class="big-size">{{ 'pages.account.profile' | translate }}</span>
-      <a *ngIf="itsMe && !isThid" class="a pull-right" [routerLink]="['UserSetting']">{{ 'pages.account.change' | translate }}</a>
+      <a *ngIf="itsMe && !isThid" class="a pull-right" [routerLink]="['/account/setting']">{{ 'pages.account.change' | translate }}</a>
     </div>
     <div class="each-inner" *ngIf="profile">
       <div class="head clearfix">
@@ -35,9 +35,9 @@
           <div class="right">
             <div class="word">
               <div>
-                <a class="a" [routerLink]="['UserInfo', {user: reply.replyUser.username}]">{{ reply.replyUser.nickname }}</a>
+                <a class="a" [routerLink]="['/account/info', reply.replyUser.username]">{{ reply.replyUser.nickname }}</a>
                 <span class="normal-color">{{ 'pages.account.replyWord1' | translate }}</span>
-                <a class="a" [routerLink]="['ArticleDetail', {category: reply.article.category.url, url: encode(reply.article.url)}]">{{ reply.article.title }}</a>
+                <a class="a" [routerLink]="['/article', reply.article.category.url, encode(reply.article.url)]">{{ reply.article.title }}</a>
                 {{ 'pages.account.replyWord2' | translate }}：
               </div>
               <marked class="mes markdown" [md]="reply.content"></marked>
@@ -66,9 +66,9 @@
           <div class="right">
             <div class="word">
               <div>
-                <a class="a" [routerLink]="['UserInfo', {user: reply.replyUser.username}]">{{ reply.replyUser.nickname }}</a>
+                <a class="a" [routerLink]="['/account/info', reply.replyUser.username]">{{ reply.replyUser.nickname }}</a>
                 <span class="normal-color">{{ 'pages.account.replyOfArticleWord' | translate }}</span>
-                <a class="a" [routerLink]="['ArticleDetail', {category: reply.article.category.url, url: encode(reply.article.url)}]">{{ reply.article.title }}</a>：
+                <a class="a" [routerLink]="['/article', reply.article.category.url, encode(reply.article.url)]">{{ reply.article.title }}</a>：
               </div>
               <marked class="mes markdown" [md]="reply.content"></marked>
             </div>

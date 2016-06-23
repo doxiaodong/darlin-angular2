@@ -5,8 +5,8 @@ interface Emojione {
   toImage(toImage: string): string;
 }
 
-declare module "emojione" {
+declare var emojione: Emojione;
+
+declare module 'emojione' {
   export = emojione;
 }
-
-declare var emojione: Emojione;

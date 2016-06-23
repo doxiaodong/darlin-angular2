@@ -14,10 +14,10 @@
     <div class="nav-list-container">
       <div class="slider-nav" [attr.index]="index"></div>
       <ul class="nav-list">
-        <li><a class="each-nav a" [routerLink]="['Index']" [class.active]="index===0">{{ 'navbar.index' | translate }}</a></li>
-        <li><a class="each-nav a" [routerLink]="['ArticleList', {category: 'all'}]" [class.active]="index===1">{{ 'navbar.article' | translate }}</a></li>
-        <li><a class="each-nav a" [routerLink]="['UserInfo', {user: user.username}]" [class.active]="index===2">{{ 'navbar.account' | translate }}</a></li>
-        <li><a class="each-nav a" [routerLink]="['FourthIndex']" [class.active]="index===3">{{ 'navbar.fourth' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['/']" [class.active]="index===0">{{ 'navbar.index' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['/article', 'all']" [class.active]="index===1">{{ 'navbar.article' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['/account/info', user.username]" [class.active]="index===2">{{ 'navbar.account' | translate }}</a></li>
+        <li><a class="each-nav a" [routerLink]="['/self/links']" [class.active]="index===3">{{ 'navbar.fourth' | translate }}</a></li>
       </ul>
     </div>
   </nav>

@@ -5,7 +5,7 @@
 
       <header class="xd-header">{{ 'signModal.signin' | translate }}</header>
       <article class="xd-article">
-        <div class="form-group">
+        <div class="form-group" [class.has-error]="!username.pristine && !username.valid">
           <label for="username"></label>
           <input [(ngModel)]="signin.username" #username="ngForm" ngControl="username" class="form-control" id="username"  type="text" [attr.placeholder]="'signModal.username' | translate">
           <span [hidden]="!username.valid" class="xd xd-checkmark active"></span>

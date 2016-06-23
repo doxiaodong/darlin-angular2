@@ -29,7 +29,7 @@ export class VisibilityDirective implements OnInit {
       let state = this.visibilityState;
       let title = _this.title.getTitle();
       if (state === 'hidden') {
-        LocalStorageService.saveSession('visibilityChangeTitle', title)
+        LocalStorageService.saveSession('visibilityChangeTitle', title);
        _this.title.setTitle(_this.w);
       }
       if (state === 'visible') {

@@ -1,8 +1,6 @@
 import {
   Component,
-  OnInit,
-  ReflectiveInjector,
-  provide
+  OnInit
 } from '@angular/core';
 import {
   NgForm,
@@ -13,13 +11,8 @@ import {
 } from '@angular/common';
 import {
   ROUTER_DIRECTIVES,
-  ROUTER_PROVIDERS,
-  CanActivate,
-  OnActivate,
-  Router,
-  RouteRegistry
-} from '@angular/router-deprecated';
-// import {RootRouter} from '@angular/src/router/router';
+  Router
+} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {
   MdRadioGroup,
@@ -39,41 +32,23 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: 'setting',
-  template: require('./setting.template.html'),
+  templateUrl: './setting.template.html',
   pipes: [TranslatePipe],
   providers: [MdRadioDispatcher],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective, MdRadioButton, MdRadioGroup],
+  directives: [
+    ROUTER_DIRECTIVES,
+    TitleDirective,
+    PageAnimateDirective,
+    MdRadioButton,
+    MdRadioGroup
+  ],
   animations: [
     PageAnimateFn()
   ]
 })
 
-@CanActivate((next, prev) => {
+export class UserSettingComponent implements OnInit {
 
-  // let injector = ReflectiveInjector.resolveAndCreate([
-  //   ROUTER_PROVIDERS,
-  //   RouteRegistry,
-  //   provide(Router, {useClass: RootRouter})
-  // ]);
-  // console.log(injector)
-  // let router = injector.get(Router);
-
-  // return UserService.get().then(() => {
-  //   // if (!UserService.isSignin()) {
-  //   //   this.router.navigate(['Index']);
-  //   // }
-  //   return Promise.resolve(UserService.isSignin());
-  // });
-
-  return true;
-
-})
-
-export class UserSettingComponent implements OnActivate, OnInit {
-
-  canNotSubmit(): boolean {
-    return (this.settingForm.pristine && !this.formChanged) || !this.settingForm.valid || this.requesting
-  }
   settingForm: ControlGroup;
 
   public settingPicModel: any;
@@ -81,6 +56,13 @@ export class UserSettingComponent implements OnActivate, OnInit {
   public requesting: boolean = false;
   public formChanged: boolean = false;
   public setting: any;
+
+  canNotSubmit(): boolean {
+    return (this.settingForm.pristine
+      && !this.formChanged)
+      || !this.settingForm.valid
+      || this.requesting;
+  }
 
   public changeSex(e) {
     if (!e.source) {
@@ -102,7 +84,7 @@ export class UserSettingComponent implements OnActivate, OnInit {
 
   getUser(user) {
     if (!user) {
-      this.router.navigate(['Index']);
+      this.router.navigate(['/']);
       return;
     }
     this.setting = {
@@ -162,8 +144,7 @@ export class UserSettingComponent implements OnActivate, OnInit {
     });
   }
 
-  routerOnActivate(next) {
-
+  ngOnInit() {
     UserService.get().then(userInfo => {
       this.getUser(userInfo);
     });
@@ -171,15 +152,10 @@ export class UserSettingComponent implements OnActivate, OnInit {
     UserService.updateUser$.subscribe(userInfo => {
 
       if (!UserService.isSignin()) {
-        this.router.navigate(['Index']);
+        this.router.navigate(['/']);
       }
 
     });
-
-  }
-
-  ngOnInit() {
-
   }
 
 }

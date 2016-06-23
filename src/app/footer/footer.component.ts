@@ -10,7 +10,7 @@ import {LocalStorageService} from '../base/local-storage/local-storage.service';
 
 @Component({
   selector: '[footer]',
-  template: require('./footer.template.html'),
+  templateUrl: './footer.template.html',
   styles: [
     require('./footer.less')
   ],
@@ -43,7 +43,7 @@ export class FooterComponent {
   translateInit() {
     LocalStorageService.setPrefix('xd.');
     let current = LocalStorageService.get('language');
-    if (current == undefined) {
+    if (current === undefined) {
       current = 'zh_CN';
     }
     this.translate.use(current);

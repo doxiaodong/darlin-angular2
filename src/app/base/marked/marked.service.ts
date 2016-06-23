@@ -29,7 +29,7 @@ export class MarkedService {
         let ele = document.createElement('a');
         ele.innerHTML = text;
         let innerText = ele.innerText;
-        //var encodeText = encodeURI(innerText);
+        // var encodeText = encodeURI(innerText);
         return `
           <h${level} id="${innerText}">${text}</h${level}>\n
         `;

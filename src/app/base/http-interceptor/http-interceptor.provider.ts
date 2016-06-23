@@ -20,7 +20,11 @@ import {LocalStorageService} from '../local-storage/local-storage.service';
 @Injectable()
 export class HttpInterceptor extends XHRBackend {
 
-  constructor(_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions, _xsrfStrategy: XSRFStrategy){
+  constructor(
+    _browserXHR: BrowserXhr,
+    _baseResponseOptions: ResponseOptions,
+    _xsrfStrategy: XSRFStrategy
+  ) {
     super(_browserXHR, _baseResponseOptions, _xsrfStrategy);
   }
 
@@ -67,7 +71,7 @@ export function ErrorHandler(error: any) {
   ResponseHandler(error);
   // TODO: try to use translate to solve this
   let lang: string = LocalStorageService.get('language');
-  let serverError: string = ''
+  let serverError: string = '';
   switch (lang) {
     case 'en_US':
       serverError = 'Server error';
@@ -76,7 +80,7 @@ export function ErrorHandler(error: any) {
       serverError = '服务器错误';
       break;
     default:
-      serverError = 'Server error'
+      serverError = 'Server error';
   }
 
   AlertService.show(serverError);

@@ -16,7 +16,7 @@ import {
 } from '../http-interceptor/http-interceptor.provider';
 
 
-var injector = ReflectiveInjector.resolveAndCreate([
+let injector = ReflectiveInjector.resolveAndCreate([
   HTTP_PROVIDERS,
   provide(BrowserXhr, {
     useClass: CustomBrowserXhr
@@ -27,7 +27,7 @@ var injector = ReflectiveInjector.resolveAndCreate([
 ]);
 export var http = injector.get(Http);
 
-export class dhttp {
+export class Dhttp {
 
   static dhttpFn(name: string, ...args) {
     return http[name].apply(http, ...args)
@@ -35,7 +35,7 @@ export class dhttp {
     .then((res) => {
       ResponseHandler(res);
       let body = res.json();
-      if (body.status == 1) {
+      if (body.status === 1) {
         return Promise.resolve(body.data);
       } else {
         return Promise.reject(res);
@@ -45,36 +45,36 @@ export class dhttp {
   }
 
   static request(...args) {
-    return this.dhttpFn('request', args)
+    return this.dhttpFn('request', args);
   }
 
   static get(...args) {
-    return this.dhttpFn('get', args)
+    return this.dhttpFn('get', args);
   }
 
   static post(...args) {
-    return this.dhttpFn('post', args)
+    return this.dhttpFn('post', args);
   }
 
   static put(...args) {
-    return this.dhttpFn('put', args)
+    return this.dhttpFn('put', args);
   }
 
   static delete(...args) {
-    return this.dhttpFn('delete', args)
+    return this.dhttpFn('delete', args);
   }
 
   static patch(...args) {
-    return this.dhttpFn('patch', args)
+    return this.dhttpFn('patch', args);
   }
 
   static head(...args) {
-    return this.dhttpFn('head', args)
+    return this.dhttpFn('head', args);
   }
 
 }
 
-export class dhttp2 extends dhttp {
+export class Dhttp2 extends Dhttp {
 
   static dhttpFn(name: string, ...args) {
     return http[name].apply(http, ...args)
@@ -89,7 +89,7 @@ export class dhttp2 extends dhttp {
 
 }
 
-export class dhttp3 extends dhttp {
+export class Dhttp3 extends Dhttp {
 
   static dhttpFn(name: string, ...args) {
     return http[name].apply(http, ...args)
@@ -97,7 +97,7 @@ export class dhttp3 extends dhttp {
     .then((res) => {
       ResponseHandler(res);
       let body = res.json();
-      if (body.status == 1) {
+      if (body.status === 1) {
         return Promise.resolve(body);
       } else {
         return Promise.reject(res);

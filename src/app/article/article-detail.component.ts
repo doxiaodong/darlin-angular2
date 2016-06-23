@@ -1,11 +1,13 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
-  RouteParams,
+  Router,
+  ActivatedRoute,
   ROUTER_DIRECTIVES
-} from '@angular/router-deprecated';
+} from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {TitleDirective} from '../title/title.directive';
@@ -21,7 +23,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
   selector: 'article-detail',
-  template: require('./article-detail.template.html'),
+  templateUrl: './article-detail.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [
     ROUTER_DIRECTIVES,
@@ -36,9 +38,10 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   ]
 })
 
-export class ArticleDetailComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   public article: Object;
+  private sub: any;
 
   getArticleDetail(url: string) {
     ArticleApi.getArticleDetail(url)
@@ -58,13 +61,23 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
-    let url = base64.Base64.decode(this.routeParams.get('url'));
-    this.getArticleDetail(url);
+    this.sub = this.route.params
+    .subscribe(params => {
+      if (params) {
+        let url = base64.Base64.decode(params['url']);
+        this.getArticleDetail(url);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

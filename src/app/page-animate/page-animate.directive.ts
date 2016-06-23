@@ -15,7 +15,7 @@ export class PageAnimateDirective implements OnInit {
       this.stateExpression = 'page-enter-complete';
     }, 0);
 
-  }
+  };
 
   constructor() {}
 

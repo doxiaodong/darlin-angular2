@@ -2,10 +2,9 @@ import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {Headers} from '@angular/http';
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {
-  http,
-  dhttp,
-  dhttp2,
-  dhttp3
+  Dhttp,
+  Dhttp2,
+  Dhttp3
 } from '../injector/http-injector';
 import {Observable} from 'rxjs/Observable';
 
@@ -25,7 +24,7 @@ class Api {
       username: obj.username,
       password: md5(obj.password)
     };
-    return dhttp.post(this.prefix + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
+    return Dhttp.post(this.prefix + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
       })
@@ -40,7 +39,7 @@ class Api {
       email: obj.email
     };
     // {username: <string>, password: <string>, nickname: <string>, email: <string>}
-    return dhttp.post(this.prefix + '/account/register/', HttpUtilsService.paramPostBody(_obj), {
+    return Dhttp.post(this.prefix + '/account/register/', HttpUtilsService.paramPostBody(_obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
       })
@@ -58,12 +57,12 @@ class Api {
   }
 
   signout() {
-    return dhttp.post(this.prefix + '/account/signout/', '');
+    return Dhttp.post(this.prefix + '/account/signout/', '');
   }
 
   getUserInfo(obj: Object) {
     // {username: <string>}
-    return dhttp.post(this.prefix + '/account/getUserInfo/', HttpUtilsService.paramPostBody(obj), {
+    return Dhttp.post(this.prefix + '/account/getUserInfo/', HttpUtilsService.paramPostBody(obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
       })
@@ -72,12 +71,12 @@ class Api {
 
   // use XMLHttpRequest
   changeProfile(obj: Object) {
-    RequestHandler()
+    RequestHandler();
     return Observable.create((observer) => {
       let xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
 
-      xhr.addEventListener("readystatechange", function () {
+      xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             observer.next(JSON.parse(xhr.response));
@@ -96,7 +95,7 @@ class Api {
     .then((res) => {
       ResponseHandler(res);
       let data = res;
-      if (data.status == 1) {
+      if (data.status === 1) {
         return Promise.resolve(data);
       } else {
         return Promise.reject(data);
@@ -114,7 +113,7 @@ class Api {
       new_password: md5(obj.newPassword)
     };
     // {username: <string>, old_password: <string>, new_password: <string>}
-    return dhttp3.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
+    return Dhttp3.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
       })
@@ -127,7 +126,7 @@ class Api {
       new_password: md5(obj.newPassword)
     };
     // {username: <string>, new_password: <string>}
-    return dhttp3.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {
+    return Dhttp3.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
       })

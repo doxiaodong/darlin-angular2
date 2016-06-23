@@ -9,8 +9,8 @@ interface JSBase64 {
   Base64: Base64Interface;
 }
 
+declare var base64: JSBase64;
+
 declare module 'js-base64' {
   export = base64;
 }
-
-declare var base64: JSBase64;

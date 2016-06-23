@@ -1,7 +1,6 @@
 import {ApiPrefix} from '../api-prefix/api-prefix.service';
 import {
-  http,
-  dhttp
+  Dhttp
 } from '../injector/http-injector';
 
 class Api {
@@ -9,7 +8,7 @@ class Api {
   private prefix: string;
 
   overview() {
-    return dhttp.get(this.prefix + '/initHomePage/');
+    return Dhttp.get(this.prefix + '/initHomePage/');
   }
 
   constructor() {

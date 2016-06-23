@@ -5,7 +5,7 @@
   <div class="each-inner">
     <ul class="side-list clearfix">
       <li class="nowrap" *ngFor="let category of categories">
-        <a class="a type" [class.active]="articleCategory === category.key" [routerLink]="['ArticleList', {category: category.key}]">{{ category.name }}</a>
+        <a class="a type" [class.active]="articleCategory === category.key" [routerLink]="['/article', category.key]">{{ category.name }}</a>
       </li>
     </ul>
   </div>

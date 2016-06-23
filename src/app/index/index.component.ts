@@ -2,7 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
@@ -15,7 +15,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 @Component({
   selector: 'index',
-  template: require('./index.template.html'),
+  templateUrl: './index.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [

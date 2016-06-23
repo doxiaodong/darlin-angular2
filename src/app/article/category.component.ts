@@ -1,12 +1,13 @@
 import {
   Component,
   ViewEncapsulation,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
-  RouteParams,
+  ActivatedRoute,
   ROUTER_DIRECTIVES
-} from '@angular/router-deprecated';
+} from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
@@ -15,7 +16,7 @@ import {CategoryService} from './category.service';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: '[article-categories]',
-  template: require('./category.template.html'),
+  templateUrl: './category.template.html',
   styles: [
     require('./category.less')
   ],
@@ -24,10 +25,11 @@ import {CategoryService} from './category.service';
   directives: [ROUTER_DIRECTIVES]
 })
 
-export class ArticleCategoryComponent implements OnInit {
+export class ArticleCategoryComponent implements OnInit, OnDestroy {
 
   public categories: Array<Object> = [];
   public articleCategory: string;
+  private sub: any;
 
   getCategories() {
 
@@ -36,18 +38,27 @@ export class ArticleCategoryComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams,
+    private route: ActivatedRoute,
     private categoryService: CategoryService
   ) {
   }
 
   ngOnInit() {
 
-    let category = this.routeParams.get('category');
-    this.articleCategory = category;
+    this.sub = this.route.params
+    .subscribe(params => {
+      if (params) {
+        let category = params['category'];
+        this.articleCategory = category;
 
-    this.getCategories();
+        this.getCategories();
+      }
+    });
 
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

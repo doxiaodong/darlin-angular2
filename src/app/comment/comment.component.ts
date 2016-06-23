@@ -1,12 +1,13 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {NgForm} from '@angular/common';
 import {
-  RouteParams,
+  ActivatedRoute,
   ROUTER_DIRECTIVES
-} from '@angular/router-deprecated';
+} from '@angular/router';
 import {
   MdButton,
   MdAnchor
@@ -23,12 +24,14 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: '[article-comments]',
-  template: require('./comment.template.html'),
+  templateUrl: './comment.template.html',
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, MarkedComponent, MdButton, MdAnchor]
 })
 
 export class CommentComponent implements OnInit {
+
+  private sub: any;
 
   public requesting: boolean = false;
 
@@ -42,7 +45,7 @@ export class CommentComponent implements OnInit {
   getReplies(head: string, comment) {
     CommentApi.getArticleSubComments(head)
     .then(subData => {
-      comment.replies = []
+      comment.replies = [];
       subData.results.map(r => {
         let reply = {
           replyUser: {
@@ -107,7 +110,7 @@ export class CommentComponent implements OnInit {
     this.submitForm = {
       commentContent: '',
       replyContent: ''
-    }
+    };
   }
 
   comment(article: string, obj: Object) {
@@ -120,8 +123,8 @@ export class CommentComponent implements OnInit {
       let n = this.comments.length;
       let comment = data.comment;
       comment.time = comment.time;
-      if (this.comments[n-1]) {
-        comment.index = this.comments[n-1].index + 1;
+      if (this.comments[n - 1]) {
+        comment.index = this.comments[n - 1].index + 1;
       } else {
         comment.index = 1;
       }
@@ -148,7 +151,7 @@ export class CommentComponent implements OnInit {
       sub.replyObject.pic = PicUrl.getUrl(sub.replyObject.pic);
       sub.replyUser.pic = PicUrl.getUrl(sub.replyUser.pic);
       sub.time = sub.time;
-      this.comments[index-1].replies.push(sub);
+      this.comments[index - 1].replies.push(sub);
       this.articleReplies += 1;
 
     }).catch((msg) => {
@@ -160,20 +163,30 @@ export class CommentComponent implements OnInit {
   }
 
   constructor(
-    private routeParams: RouteParams
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-    let url = base64.Base64.decode(this.routeParams.get('url'));
 
-    this.getComments(url);
-    this.article = url;
+    this.sub = this.route.params
+    .subscribe(params => {
+      if (params) {
+        let url = base64.Base64.decode(params['url']);
+
+        this.getComments(url);
+        this.article = url;
+      }
+    });
 
     this.submitForm = {
       commentContent: '',
       replyContent: ''
     };
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
