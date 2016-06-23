@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
   }
 
   configIndexNumber(path: string) {
-    if (path == '/') {
+    if (path === '/') {
       this.index = 0;
     }
     if (/^\/article\//.test(path)) {
@@ -76,7 +76,7 @@ export class NavbarComponent implements OnInit {
 
     UserService.updateUser$.subscribe(userInfo => {
       this.user = userInfo;
-      this.isSignin = UserService.isSignin()
+      this.isSignin = UserService.isSignin();
     });
 
     this.router.events.subscribe((val) => {

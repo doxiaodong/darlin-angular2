@@ -6,7 +6,7 @@ export class CategoryService {
 
   private categories: Array<Object> = [];
 
-  getCategories():Array<Object> {
+  getCategories(): Array<Object> {
     let categories = JSON.parse(LocalStorageService.getSession('article.categories'));
     if (!categories) {
       ArticleApi.getArticleCategories()

@@ -21,12 +21,12 @@ import {AlertService} from '../base/alert/alert.service';
 import {AccountApi} from '../base/account/account.api';
 import validate from './sign-modal.validate';
 
-interface signinInterface {
+interface SigninInterface {
   username: string;
   password: string;
 }
 
-interface registerInterface {
+interface RegisterInterface {
   username: string;
   password: string;
   email: string;
@@ -52,8 +52,8 @@ export class SignModalComponent implements OnInit {
   public qqImageSrc: string = require('image-loader/qq.png');
   public user: UserInterface;
 
-  public signin: signinInterface;
-  public register: registerInterface = {
+  public signin: SigninInterface;
+  public register: RegisterInterface = {
     username: '',
     password: '',
     email: '',

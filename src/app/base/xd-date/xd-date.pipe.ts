@@ -24,13 +24,13 @@ function checkDateFormate(date): string {
 
   let r = now - time;
 
-  if (r < 24*60*60*1000) {
+  if (r < 24 * 60 * 60 * 1000) {
     return 'HH:mm:ss';
   }
-  // if (r < 30*24*60*60*1000) {
+  // if (r < 30 * 24 * 60 * 60 * 1000) {
   //   return 'MM-dd HH:mm';
   // }
-  if (r < 365*24*60*60*1000) {
+  if (r < 365 * 24 * 60 * 60 * 1000) {
     return 'MM-dd HH:mm';
   }
 

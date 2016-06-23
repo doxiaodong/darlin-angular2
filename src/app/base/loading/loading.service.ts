@@ -7,12 +7,12 @@ export class LoadingService {
 
   static loadingNum: number = 0;
 
-  static show(delay: number=200) {
+  static show(delay: number = 200) {
     this.loadingNum++;
     this._show(delay);
   }
 
-  static hide(delay: number=500) {
+  static hide(delay: number = 500) {
     this.loadingNum--;
     if (this.loadingNum <= 0) {
       this.loadingNum = 0;

@@ -6,7 +6,6 @@
     "member-access": false,
     "member-ordering": [
       true,
-      "public-before-private",
       "static-before-instance",
       "variables-before-functions"
     ],
@@ -121,7 +120,6 @@
     "semicolon": [true, "always"],
     "variable-name": [
       true,
-      "check-format",
       "allow-leading-underscore",
       "ban-keywords"
     ],

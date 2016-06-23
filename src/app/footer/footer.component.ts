@@ -43,7 +43,7 @@ export class FooterComponent {
   translateInit() {
     LocalStorageService.setPrefix('xd.');
     let current = LocalStorageService.get('language');
-    if (current == undefined) {
+    if (current === undefined) {
       current = 'zh_CN';
     }
     this.translate.use(current);

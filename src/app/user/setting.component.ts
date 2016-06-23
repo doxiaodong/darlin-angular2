@@ -49,9 +49,6 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 export class UserSettingComponent implements OnInit {
 
-  canNotSubmit(): boolean {
-    return (this.settingForm.pristine && !this.formChanged) || !this.settingForm.valid || this.requesting
-  }
   settingForm: ControlGroup;
 
   public settingPicModel: any;
@@ -59,6 +56,13 @@ export class UserSettingComponent implements OnInit {
   public requesting: boolean = false;
   public formChanged: boolean = false;
   public setting: any;
+
+  canNotSubmit(): boolean {
+    return (this.settingForm.pristine
+      && !this.formChanged)
+      || !this.settingForm.valid
+      || this.requesting;
+  }
 
   public changeSex(e) {
     if (!e.source) {

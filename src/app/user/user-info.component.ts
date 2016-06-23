@@ -57,7 +57,7 @@ export class UserInfoComponent implements OnInit {
       this.profile.pic = PicUrl.getUrl(data.user.pic);
       this.profile.lastSignin = data.user.last_login;
 
-      this.isThid = data.user.third != 'none'
+      this.isThid = data.user.third !== 'none';
     }).catch(() => {
       this.router.navigate(['/']);
     });
@@ -82,7 +82,7 @@ export class UserInfoComponent implements OnInit {
         };
         this.replies.unshift(reply);
       });
-    })
+    });
   }
 
   getRepliesOfArticle(user: any): void {
@@ -156,7 +156,7 @@ export class UserInfoComponent implements OnInit {
       AccountApi.signout().then(() => {
         UserService.clear();
       });
-    }
+    };
     this.init();
   }
 

@@ -45,7 +45,7 @@ export class CommentComponent implements OnInit {
   getReplies(head: string, comment) {
     CommentApi.getArticleSubComments(head)
     .then(subData => {
-      comment.replies = []
+      comment.replies = [];
       subData.results.map(r => {
         let reply = {
           replyUser: {
@@ -110,7 +110,7 @@ export class CommentComponent implements OnInit {
     this.submitForm = {
       commentContent: '',
       replyContent: ''
-    }
+    };
   }
 
   comment(article: string, obj: Object) {
@@ -123,8 +123,8 @@ export class CommentComponent implements OnInit {
       let n = this.comments.length;
       let comment = data.comment;
       comment.time = comment.time;
-      if (this.comments[n-1]) {
-        comment.index = this.comments[n-1].index + 1;
+      if (this.comments[n - 1]) {
+        comment.index = this.comments[n - 1].index + 1;
       } else {
         comment.index = 1;
       }
@@ -151,7 +151,7 @@ export class CommentComponent implements OnInit {
       sub.replyObject.pic = PicUrl.getUrl(sub.replyObject.pic);
       sub.replyUser.pic = PicUrl.getUrl(sub.replyUser.pic);
       sub.time = sub.time;
-      this.comments[index-1].replies.push(sub);
+      this.comments[index - 1].replies.push(sub);
       this.articleReplies += 1;
 
     }).catch((msg) => {

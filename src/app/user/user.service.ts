@@ -42,9 +42,9 @@ class User {
     return BaseApi.overview()
     .then(userInfo => {
       this.save(userInfo.user);
-      return Promise.resolve(this.userInfo)
+      return Promise.resolve(this.userInfo);
     }).catch(() => {
-      return Promise.resolve(this.userInfo)
+      return Promise.resolve(this.userInfo);
     });
   }
 

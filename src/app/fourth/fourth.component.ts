@@ -20,7 +20,7 @@ import {LinksApi} from './links.api';
 
 export class FourthIndexComponent {
 
-	public links: any[] = [];
+  public links: any[] = [];
 
   private getLinks() {
     LinksApi.getLinks()

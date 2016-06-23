@@ -18,11 +18,20 @@ export const routes: RouterConfig = [
   { path: '', component: IndexComponent },
   { path: 'article/:category', component: ArticleListComponent },
   { path: 'article/:category/:url', component: ArticleDetailComponent },
-  { path: 'account/info', component: UserInfoComponent, canActivate: [SigninCheck] }, // fix no user path
+  // fix no user path
+  { path: 'account/info', component: UserInfoComponent, canActivate: [SigninCheck] },
   { path: 'account/info/:user', component: UserInfoComponent, canActivate: [SigninCheck] },
   { path: 'account/setting', component: UserSettingComponent, canActivate: [SigninCheck] },
-  { path: 'account/changePassword', component: ChangePasswordComponent, canActivate: [SigninCheck] },
-  { path: 'account/resetPassword', component: ResetPasswordComponent, canActivate: [SigninCheck] },
+  {
+    path: 'account/changePassword',
+    component: ChangePasswordComponent,
+    canActivate: [SigninCheck]
+  },
+  {
+    path: 'account/resetPassword',
+    component: ResetPasswordComponent,
+    canActivate: [SigninCheck]
+  },
   { path: 'self/links', component: FourthIndexComponent },
 
   { path: '404', component: IndexComponent },

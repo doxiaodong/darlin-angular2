@@ -18,6 +18,9 @@ export function PageAnimateFn() {
       transform: 'translate3d(0, 0, 0)',
       transition: '300ms cubic-bezier(.17, .67, .88, .1)'
     }))
-    // transition('page-enter <=> page-enter-complete', animate('300ms cubic-bezier(.17, .67, .88, .1)'))
+    // transition(
+    //   'page-enter <=> page-enter-complete',
+    //   animate('300ms cubic-bezier(.17, .67, .88, .1)')
+    // )
   ]);
 }

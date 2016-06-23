@@ -2,9 +2,8 @@ import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 import {Headers} from '@angular/http';
 
 import {
-  http,
-  dhttp,
-  dhttp2
+  Dhttp,
+  Dhttp2
 } from '../base/injector/http-injector';
 import {HttpUtilsService} from '../base/utils/http-utils.service';
 
@@ -13,24 +12,24 @@ class Api {
   private prefix: string;
 
   getArticleCommentList(article: string) {
-    return dhttp2.get(this.prefix + `/comment/comments/${article}/?format=json`);
+    return Dhttp2.get(this.prefix + `/comment/comments/${article}/?format=json`);
   }
 
   getArticleSubComments(head: string) {
-    return dhttp2.get(this.prefix + `/comment/subcomments/${head}/?format=json`);
+    return Dhttp2.get(this.prefix + `/comment/subcomments/${head}/?format=json`);
   }
 
   getAccountSubComments(user: string) {
-    return dhttp2.get(this.prefix + `/account/subcomments/${user}/?format=json`);
+    return Dhttp2.get(this.prefix + `/account/subcomments/${user}/?format=json`);
   }
 
   getAllComments() {
-    return dhttp2.get(this.prefix + '/comments/?format=json');
+    return Dhttp2.get(this.prefix + '/comments/?format=json');
   }
 
   addArticleReply(article: string, obj: Object) {
     // obj = {content: <string>}
-    return dhttp.post(
+    return Dhttp.post(
     this.prefix + `/comments/add/${article}/`, HttpUtilsService.paramPostBody(obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -40,7 +39,7 @@ class Api {
 
   addSubReply(comment: string, obj: Object) {
     // obj = {content: <string>, reply_object: <string>}
-    return dhttp.post(
+    return Dhttp.post(
     this.prefix + `/comments/add-sub/${comment}/`, HttpUtilsService.paramPostBody(obj), {
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded'
