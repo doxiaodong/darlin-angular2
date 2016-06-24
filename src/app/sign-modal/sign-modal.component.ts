@@ -3,7 +3,6 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  NgForm,
   Control,
   ControlGroup,
   FormBuilder,
@@ -12,7 +11,6 @@ import {
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
-import {USER} from '../user/user.mock';
 import {UserService} from '../user/user.service';
 import {SignModalService} from './sign-modal.service';
 import {LocalStorageService} from '../base/local-storage/local-storage.service';

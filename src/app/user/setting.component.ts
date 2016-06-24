@@ -3,8 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  NgForm,
-  Control,
+  // Control,
   ControlGroup,
   FormBuilder,
   Validators
@@ -20,7 +19,6 @@ import {
   MdRadioDispatcher
 } from '@angular2-material/radio';
 
-import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';

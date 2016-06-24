@@ -3,8 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  NgForm,
-  Control,
+  // Control,
   ControlGroup,
   FormBuilder,
   Validators
@@ -14,7 +13,6 @@ import {
   Router
 } from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';

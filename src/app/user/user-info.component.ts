@@ -9,8 +9,6 @@ import {
   ActivatedRoute
 } from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SignModalService} from '../sign-modal/sign-modal.service';
-import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {TitleDirective} from '../title/title.directive';
@@ -33,9 +31,8 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
   ]
 })
 
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit, OnDestroy {
 
-  private user: UserInterface;
   private sub: any;
 
   public encode: Function = base64.Base64.encodeURI;

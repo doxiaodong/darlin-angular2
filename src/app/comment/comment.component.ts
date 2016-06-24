@@ -3,7 +3,6 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import {NgForm} from '@angular/common';
 import {
   ActivatedRoute,
   ROUTER_DIRECTIVES
@@ -29,7 +28,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
   directives: [ROUTER_DIRECTIVES, MarkedComponent, MdButton, MdAnchor]
 })
 
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit, OnDestroy {
 
   private sub: any;
 

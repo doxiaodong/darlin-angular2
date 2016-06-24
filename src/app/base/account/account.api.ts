@@ -3,7 +3,6 @@ import {Headers} from '@angular/http';
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {
   Dhttp,
-  Dhttp2,
   Dhttp3
 } from '../injector/http-injector';
 import {Observable} from 'rxjs/Observable';
