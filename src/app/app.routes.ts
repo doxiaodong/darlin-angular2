@@ -13,6 +13,7 @@ import {UserSettingComponent} from './user/setting.component';
 import {ChangePasswordComponent} from './user/change-password.component';
 import {ResetPasswordComponent} from './user/reset-password.component';
 import {FourthIndexComponent} from './fourth/fourth.component';
+import {Page404Component} from './404/404.component';
 
 export const routes: RouterConfig = [
   { path: '', component: IndexComponent },
@@ -34,7 +35,7 @@ export const routes: RouterConfig = [
   },
   { path: 'self/links', component: FourthIndexComponent },
 
-  { path: '404', component: IndexComponent },
+  { path: '404', component: Page404Component },
   { path: '**', redirectTo: '/404', terminal: true }
 ];
 export const APP_ROUTER_PROVIDERS = [

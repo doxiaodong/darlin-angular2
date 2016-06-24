@@ -1,0 +1,11 @@
+<div class="p404">
+  <img [src]="bg404" alt="" class="bg" full-screen #f="fullScreen" [class.width]="f.followWidth" [class.height]="!f.followWidth">
+  <div class="main">
+    <p class="title">404</p>
+    <p>三十年前找网站，今天找着了；</p>
+    <p>今天找着的页面，不是我的哟。</p>
+    <p>可惜了，可惜了，不是我的哟；</p>
+    <p>可惜了，可惜了，不是我的哟。</p>
+    <a [routerLink]="['/']" class="btn">{{ 'navbar.index' | translate }}</a>
+  </div>
+</div>
