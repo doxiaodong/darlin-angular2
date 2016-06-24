@@ -1,7 +1,7 @@
 describe('app e2e', () => {
 
   beforeEach(() => {
-    browser.get('/');
+    browser.get('/404');
   });
 
   it('should have a title', () => {
