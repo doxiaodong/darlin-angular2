@@ -14,9 +14,6 @@
 .slider(3);
 
 header.header {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 
   position: fixed;
@@ -26,9 +23,8 @@ header.header {
   //  overflow: hidden;
   width: 100%;
   height: @header_height;
-  -webkit-transition-property: -webkit-transform, opacity;
   transition-property: transform, opacity;
-  .background-gradient(top, @header-bg, @header-bg);
+  background: linear-gradient(to top left, @header-bg, lighten(@header-bg, 20%));
   .nav {
     height: 100%;
     max-width: @max-width;
@@ -74,9 +70,8 @@ header.header {
         top: 0;
         left: 0;
         opacity: 0.5;
-        //        z-index: -1;
+        // z-index: -1;
         .transition(@base_duration);
-        -webkit-transition-property: -webkit-transform;
         transition-property: transform;
       }
       .nav-list {

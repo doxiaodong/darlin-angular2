@@ -33,9 +33,7 @@ md-radio-group {
     pointer-events: none;
     position: absolute;
     top: 10px;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    -webkit-transition: opacity ease 0.28s, background-color ease 0.28s;
+    transform: translate(-50%, -50%);
     transition: opacity ease 0.28s, background-color ease 0.28s;
     width: 48px;
     overflow: hidden; }
@@ -53,7 +51,6 @@ md-radio-group {
     left: 0;
     position: absolute;
     top: 0;
-    -webkit-transition: border-color ease 0.28s;
     transition: border-color ease 0.28s;
     width: @md-radio-width; }
     .md-radio-checked .md-radio-outer-circle {
@@ -69,16 +66,11 @@ md-radio-group {
     left: 0;
     position: absolute;
     top: 0;
-    -webkit-transition: background-color ease 0.28s, -webkit-transform ease 0.28s;
-    transition: background-color ease 0.28s, -webkit-transform ease 0.28s;
     transition: transform ease 0.28s, background-color ease 0.28s;
-    transition: transform ease 0.28s, background-color ease 0.28s, -webkit-transform ease 0.28s;
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     width: @md-radio-width; }
     .md-radio-checked .md-radio-inner-circle {
-      -webkit-transform: scale(0.5);
-              transform: scale(0.5); }
+      transform: scale(0.5); }
     .md-radio-disabled .md-radio-inner-circle {
       background-color: rgba(0, 0, 0, 0.38); }
 
@@ -98,9 +90,7 @@ md-radio-group {
     margin: 0;
     padding: 0;
     opacity: 0;
-    -webkit-appearance: none;
-      -moz-appearance: none;
-            appearance: none;
+    appearance: none;
     border: none; }
 
   .md-radio-disabled, .md-radio-disabled .md-radio-label {

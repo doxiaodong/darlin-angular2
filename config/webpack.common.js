@@ -9,6 +9,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 /**
  * Webpack Constants
@@ -121,17 +122,17 @@ module.exports = {
       // See: https://github.com/webpack/json-loader
       {test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/]},
 
-      {test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css")},
+      {test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss")},
 
       // Raw loader support for *.css files
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.css$/, loader: 'raw-loader', exclude: [/(global|\.min)\.css$/]},
+      {test: /\.css$/, loader: 'raw-loader!postcss', exclude: [/(global|\.min)\.css$/]},
 
-      {test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!less")},
+      {test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!postcss!less")},
 
-      {test: /\.less$/, loader: "raw-loader!less", exclude: [/global\.less$/]},
+      {test: /\.less$/, loader: "raw-loader!postcss!less", exclude: [/global\.less$/]},
 
       // Raw loader support for *.html
       // Returns file content as string
@@ -153,6 +154,12 @@ module.exports = {
     ]
 
   },
+
+  postcss: [
+    autoprefixer({
+      browsers: ['last 1 version', '> 10%']
+    })
+  ],
 
   // Add additional plugins to the compiler.
   //
