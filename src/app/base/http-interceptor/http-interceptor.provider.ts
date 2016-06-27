@@ -69,7 +69,7 @@ export function RequestHandler(): void {
 export function ErrorHandler(error: any) {
   ResponseHandler(error);
   // TODO: try to use translate to solve this
-  let lang: string = LocalStorageService.get('language');
+  let lang: string = LocalStorageService.get('lang');
   let serverError: string = '';
   switch (lang) {
     case 'en_US':
