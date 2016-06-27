@@ -9,9 +9,9 @@ import {checkDateFormat} from './check-date.fn';
   name: 'xdDate'
 })
 export class XdDatePipe implements PipeTransform {
-  transform(dateString: string): string {
+  transform(value: any): string {
 
-    let date = new Date(dateString);
+    let date = new Date(value);
     return new DatePipe().transform(date, checkDateFormat(date));
 
   }
