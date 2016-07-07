@@ -14,6 +14,8 @@ export class FullScreenDirective implements OnInit, OnDestroy {
 
   public followWidth: boolean = true;
 
+  resizeFn: any;
+
   resize() {
     let windowHeight = window.innerHeight;
     let windowWidth = window.innerWidth;
@@ -33,14 +35,17 @@ export class FullScreenDirective implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.element.nativeElement.addEventListener('load', () => {
+      this.resize();
+    });
 
-    this.element.nativeElement.addEventListener('load', this.resize);
-
-    window.addEventListener('resize', this.resize);
+    window.addEventListener('resize', this.resizeFn = () => {
+      this.resize();
+    });
   }
 
   ngOnDestroy() {
-    window.removeEventListener('resize', this.resize);
+    window.removeEventListener('resize', this.resizeFn);
   }
 
 }
