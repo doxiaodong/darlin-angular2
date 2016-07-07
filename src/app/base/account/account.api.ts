@@ -90,17 +90,17 @@ class Api {
 
       xhr.send(obj);
     })
-    .toPromise()
-    .then((res) => {
-      ResponseHandler(res);
-      let data = res;
-      if (data.status === 1) {
-        return Promise.resolve(data);
-      } else {
-        return Promise.reject(data);
-      }
-    })
-    .catch(ErrorHandler);
+      .toPromise()
+      .then((res) => {
+        ResponseHandler(res);
+        let data = res;
+        if (data.status === 1) {
+          return Promise.resolve(data);
+        } else {
+          return Promise.reject(data);
+        }
+      })
+      .catch(ErrorHandler);
 
   }
 

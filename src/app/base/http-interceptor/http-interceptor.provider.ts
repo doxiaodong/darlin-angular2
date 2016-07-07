@@ -48,7 +48,7 @@ export class HttpInterceptor extends XHRBackend {
 
     return connection;
 
-    }
+  }
 
 }
 
@@ -57,12 +57,12 @@ export class HttpInterceptor extends XHRBackend {
 // need api call ResponseHandler and ErrorHandler
 
 export function ResponseHandler(response: Response | any) {
-//   console.log('http response');
+  // console.log('http response');
   LoadingService.hide();
 }
 
 export function RequestHandler(): void {
-//   console.log('http start');
+  // console.log('http start');
   LoadingService.show();
 }
 

@@ -41,9 +41,9 @@ export class NavbarComponent implements OnInit {
   signOut() {
     // console.log('signout');
     AccountApi.signout()
-    .then(data => {
-      this.user = UserService.clear();
-    });
+      .then(data => {
+        this.user = UserService.clear();
+      });
     // this.userInfoUpdateEmitter.emit(this.user);
   }
 
@@ -64,15 +64,15 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
 
     UserService.get()
-    .then(userInfo => {
-      this.user = UserService.save(userInfo);
-      this.isSignin = UserService.isSignin();
-    });
+      .then(userInfo => {
+        this.user = UserService.save(userInfo);
+        this.isSignin = UserService.isSignin();
+      });
 
     UserService.updateUser$.subscribe(userInfo => {
       this.user = userInfo;

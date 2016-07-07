@@ -18,7 +18,7 @@ export class TitleDirective implements OnChanges {
 
   constructor(
     private title: Title
-  ) {}
+  ) { }
 
   ngOnChanges(changes) {
     if (changes.t) {

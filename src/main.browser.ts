@@ -50,7 +50,7 @@ function main(): Promise<any> {
     TranslateService,
     MarkedService
   ])
-  .catch(err => console.error(err));
+    .catch(err => console.error(err));
 }
 
 if ('development' === ENV && HMR === true) {

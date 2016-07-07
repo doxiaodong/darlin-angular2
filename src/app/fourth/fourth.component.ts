@@ -24,9 +24,9 @@ export class FourthIndexComponent {
 
   private getLinks() {
     LinksApi.getLinks()
-    .then(data => {
-      this.links = data.results;
-    });
+      .then(data => {
+        this.links = data.results;
+      });
   }
 
   constructor() {

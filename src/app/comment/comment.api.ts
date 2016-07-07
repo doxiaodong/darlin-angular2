@@ -30,21 +30,21 @@ class Api {
   addArticleReply(article: string, obj: Object) {
     // obj = {content: <string>}
     return Dhttp.post(
-    this.prefix + `/comments/add/${article}/`, HttpUtilsService.paramPostBody(obj), {
-      headers: new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    });
+      this.prefix + `/comments/add/${article}/`, HttpUtilsService.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      });
   }
 
   addSubReply(comment: string, obj: Object) {
     // obj = {content: <string>, reply_object: <string>}
     return Dhttp.post(
-    this.prefix + `/comments/add-sub/${comment}/`, HttpUtilsService.paramPostBody(obj), {
-      headers: new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    });
+      this.prefix + `/comments/add-sub/${comment}/`, HttpUtilsService.paramPostBody(obj), {
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      });
   }
 
   constructor() {

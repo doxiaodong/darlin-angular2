@@ -52,18 +52,20 @@ module.exports = {
       // Tslint loader support for *.ts files
       //
       // See: https://github.com/wbuchwalter/tslint-loader
-      {test: /\.ts$/, loader: 'tslint-loader', exclude: [helpers.root('node_modules')]},
+      { test: /\.ts$/, loader: 'tslint-loader', exclude: [helpers.root('node_modules')] },
 
       // Source map loader support for *.js files
       // Extracts SourceMaps for source files that as added as sourceMappingURL comment.
       //
       // See: https://github.com/webpack/source-map-loader
-      {test: /\.js$/, loader: "source-map-loader", exclude: [
-        // these packages have problems with their sourcemaps
-        helpers.root('node_modules/rxjs'),
-        helpers.root('node_modules/@angular2-material'),
-        helpers.root('node_modules/@angular')
-      ]}
+      {
+        test: /\.js$/, loader: "source-map-loader", exclude: [
+          // these packages have problems with their sourcemaps
+          helpers.root('node_modules/rxjs'),
+          helpers.root('node_modules/@angular2-material'),
+          helpers.root('node_modules/@angular')
+        ]
+      }
 
     ],
 
@@ -96,19 +98,19 @@ module.exports = {
       // Json loader support for *.json files.
       //
       // See: https://github.com/webpack/json-loader
-      {test: /\.json$/, loader: 'json-loader', exclude: [helpers.root('src/index.html')]},
+      { test: /\.json$/, loader: 'json-loader', exclude: [helpers.root('src/index.html')] },
 
       // Raw loader support for *.css files
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+      { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
 
       // Raw loader support for *.html
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]}
+      { test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
 
     ],
 

@@ -29,22 +29,22 @@ export class IndexComponent implements OnInit {
 
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
-    .then(data => {
+      .then(data => {
 
-      data.results.map(a => {
-        let article = {
-          url: base64.Base64.encodeURI(a.url),
-          title: a.title,
-          createTime: a.create_time,
-          category: a.category.url,
-          isUp: a.is_up,
-          isHot: a.hot
-        };
+        data.results.map(a => {
+          let article = {
+            url: base64.Base64.encodeURI(a.url),
+            title: a.title,
+            createTime: a.create_time,
+            category: a.category.url,
+            isUp: a.is_up,
+            isHot: a.hot
+          };
 
-        this.articles.push(article);
+          this.articles.push(article);
 
+        });
       });
-    });
 
   }
 

@@ -46,14 +46,14 @@ export class ArticleCategoryComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.sub = this.route.params
-    .subscribe(params => {
-      if (params) {
-        let category = params['category'];
-        this.articleCategory = category;
+      .subscribe(params => {
+        if (params) {
+          let category = params['category'];
+          this.articleCategory = category;
 
-        this.getCategories();
-      }
-    });
+          this.getCategories();
+        }
+      });
 
   }
 

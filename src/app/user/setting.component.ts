@@ -105,14 +105,14 @@ export class UserSettingComponent implements OnInit {
     formData.append('sex', this.setting.sex.type);
     formData.append('pic', this.settingPicModel);
     AccountApi.changeProfile(formData)
-    .then(data => {
-      AlertService.show(data.msg);
-    }).catch((msg) => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+      .then(data => {
+        AlertService.show(data.msg);
+      }).catch((msg) => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   constructor(

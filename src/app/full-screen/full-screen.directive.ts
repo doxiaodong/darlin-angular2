@@ -1,6 +1,7 @@
 import {
   Directive,
   OnInit,
+  OnDestroy,
   ElementRef
 } from '@angular/core';
 
@@ -9,7 +10,7 @@ import {
   exportAs: 'fullScreen'
 })
 
-export class FullScreenDirective implements OnInit {
+export class FullScreenDirective implements OnInit, OnDestroy {
 
   public followWidth: boolean = true;
 
@@ -29,19 +30,17 @@ export class FullScreenDirective implements OnInit {
 
   constructor(
     private element: ElementRef
-  ) {}
+  ) { }
 
   ngOnInit() {
 
-    this.element.nativeElement.addEventListener('load', () => {
-      this.resize();
-    });
+    this.element.nativeElement.addEventListener('load', this.resize);
 
-    window.addEventListener('resize', () => {
-      this.resize();
-    });
+    window.addEventListener('resize', this.resize);
   }
 
-
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resize);
+  }
 
 }

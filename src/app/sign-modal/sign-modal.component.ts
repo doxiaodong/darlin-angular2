@@ -65,38 +65,38 @@ export class SignModalComponent implements OnInit {
   doSignin(obj: Object) {
     this.requesting = true;
     AccountApi.signin(obj)
-    .then(data => {
-      this.user = UserService.save(data.user);
+      .then(data => {
+        this.user = UserService.save(data.user);
 
-      // sigin success
-      LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.closeShowModal();
-    }).catch((msg) => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+        // sigin success
+        LocalStorageService.save('signin.user', JSON.stringify(this.signin));
+        this.closeShowModal();
+      }).catch((msg) => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   doRegister(obj: any) {
     this.requesting = true;
     AccountApi.register(obj)
-    .then(data => {
-      this.user = UserService.save(data.user);
-      this.signin = {
-        username: obj.username,
-        password: obj.password
-      };
-      // sigin success
-      LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.closeShowModal();
-    }).catch((msg) => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+      .then(data => {
+        this.user = UserService.save(data.user);
+        this.signin = {
+          username: obj.username,
+          password: obj.password
+        };
+        // sigin success
+        LocalStorageService.save('signin.user', JSON.stringify(this.signin));
+        this.closeShowModal();
+      }).catch((msg) => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   githubLogin() {

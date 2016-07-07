@@ -19,7 +19,7 @@ export class PageAnimateDirective implements OnInit {
     }, 300);
   };
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.createAnimation();

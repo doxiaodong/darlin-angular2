@@ -1,15 +1,11 @@
 <footer class="footer">
-	<div class="content">
-      <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备15013600号</a> @<a class="a">darlin.me</a>
-      <div class="lang-translate" (click)="$event.stopPropagation()">
-        <p class="a" (click)="show = !show">{{ 'langSetting' | translate }}</p>
-        <ul *ngIf="show">
-          <li class="a"
-            (click)="changeLanguage(lang)"
-            [class.active]="selectedKey===lang.key"
-            *ngFor="let lang of langs"
-          >{{ lang.word }}</li>
-        </ul>
-      </div>
+  <div class="content">
+    <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备15013600号</a> @<a class="a">darlin.me</a>
+    <div class="lang-translate" (click)="$event.stopPropagation()">
+      <p class="a" (click)="show = !show">{{ 'langSetting' | translate }}</p>
+      <ul *ngIf="show">
+        <li class="a" (click)="changeLanguage(lang)" [class.active]="selectedKey===lang.key" *ngFor="let lang of langs">{{ lang.word }}</li>
+      </ul>
+    </div>
   </div>
 </footer>

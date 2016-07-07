@@ -35,29 +35,29 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
-    .then(data => {
+      .then(data => {
 
-      data.results.map(a => {
-        let article = {
-          url: base64.Base64.encodeURI(a.url),
-          title: a.title,
-          createTime: a.create_time,
-          category: a.category.url,
-          isUp: a.is_up,
-          isHot: a.hot
-        };
+        data.results.map(a => {
+          let article = {
+            url: base64.Base64.encodeURI(a.url),
+            title: a.title,
+            createTime: a.create_time,
+            category: a.category.url,
+            isUp: a.is_up,
+            isHot: a.hot
+          };
 
-        // test list performance
-        // let r = 250;
-        // while (r > 1) {
-        //   r--;
-        //   this.articles.push(article);
-        // }
+          // test list performance
+          // let r = 250;
+          // while (r > 1) {
+          //   r--;
+          //   this.articles.push(article);
+          // }
 
-        this.articles.push(article);
+          this.articles.push(article);
 
+        });
       });
-    });
 
   }
 
@@ -70,12 +70,12 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.sub = this.route.params
-    .subscribe(params => {
-      if (params) {
-        let category = params['category'];
-        this.getArticles(category);
-      }
-    });
+      .subscribe(params => {
+        if (params) {
+          let category = params['category'];
+          this.getArticles(category);
+        }
+      });
   }
 
   ngOnDestroy() {

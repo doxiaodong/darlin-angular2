@@ -40,14 +40,14 @@ export class ResetPasswordComponent implements OnInit {
   submit() {
     this.requesting = true;
     AccountApi.resetPassword(this.data)
-    .then(data => {
-      AlertService.show(data.msg);
-    }).catch(msg => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+      .then(data => {
+        AlertService.show(data.msg);
+      }).catch(msg => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   constructor(

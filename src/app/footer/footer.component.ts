@@ -1,4 +1,7 @@
-import {Component} from '@angular/core';
+import {
+  Component,
+  OnDestroy
+} from '@angular/core';
 import {
   TranslateService,
   TranslatePipe,
@@ -17,7 +20,7 @@ import {LocalStorageService} from '../base/local-storage/local-storage.service';
   pipes: [TranslatePipe]
 })
 
-export class FooterComponent {
+export class FooterComponent implements OnDestroy {
 
   public langs: Array<LanguageInterface>;
 
@@ -64,10 +67,12 @@ export class FooterComponent {
     this.show = false;
   }
 
+  closeSelector() {
+    this.show = false;
+  }
+
   clickEvent() {
-    document.addEventListener('click', () => {
-      this.show = false;
-    });
+    document.addEventListener('click', this.closeSelector);
   }
 
   constructor(
@@ -82,11 +87,15 @@ export class FooterComponent {
       key: 'zh_CN',
       word: '中文'
     }, {
-      key: 'en_US',
-      word: 'English'
-    }];
+        key: 'en_US',
+        word: 'English'
+      }];
 
     this.clickEvent();
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('click', this.closeSelector);
   }
 
 }

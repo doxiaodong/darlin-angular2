@@ -43,7 +43,7 @@ export class RootAppComponent implements OnInit {
   //   console.log('@output: ${userInfo}', userInfo);
   // }
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
 
