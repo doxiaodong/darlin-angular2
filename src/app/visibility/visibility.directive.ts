@@ -24,16 +24,15 @@ export class VisibilityDirective implements OnInit {
   ) { }
 
   ngOnInit() {
-    let _this = this;
-    document.addEventListener('visibilitychange', function () {
-      let state = this.visibilityState;
-      let title = _this.title.getTitle();
+    document.addEventListener('visibilitychange', () => {
+      let state = document.visibilityState;
+      let title = this.title.getTitle();
       if (state === 'hidden') {
         LocalStorageService.saveSession('visibilityChangeTitle', title);
-        _this.title.setTitle(_this.w);
+        this.title.setTitle(this.w);
       }
       if (state === 'visible') {
-        _this.title.setTitle(LocalStorageService.getSession('visibilityChangeTitle'));
+        this.title.setTitle(LocalStorageService.getSession('visibilityChangeTitle'));
         LocalStorageService.removeSession('visibilityChangeTitle');
       }
     });
