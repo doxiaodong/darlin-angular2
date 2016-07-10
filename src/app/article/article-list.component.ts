@@ -36,7 +36,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
       .then(data => {
-
+        this.articles = [];
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
@@ -53,7 +53,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           //   r--;
           //   this.articles.push(article);
           // }
-
           this.articles.push(article);
 
         });

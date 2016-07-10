@@ -7,7 +7,7 @@ let provider: any;
 
 if ('production' === ENV) {
   // Production
-  provider = new Provider('API_PREFIX', { useValue: '//api.darlin.me' });
+  provider = new Provider('API_PREFIX', { useValue: 'https://api.darlin.me' });
 
 } else {
   // Development
