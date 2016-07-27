@@ -170,9 +170,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       marked: 'marked',
       hljs: 'highlight.js',
-      md5: 'js-md5',
+      md5: 'crypto-js/md5',
       emojione: 'emojione',
-      base64: 'js-base64'
+      base64: 'js-base64',
+      sha512: 'crypto-js/sha512'
     }),
 
     new ExtractTextPlugin(helpers.static + "main.[hash].css"),

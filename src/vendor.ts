@@ -17,7 +17,6 @@ import 'rxjs/add/operator/toPromise';
 
 // import 'marked';
 // import 'highlight.js';
-// import 'js-md5';
 // import 'emojione';
 // import 'js-base64';
 

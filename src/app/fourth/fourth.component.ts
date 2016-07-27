@@ -4,6 +4,19 @@ import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
 import {LinksApi} from './links.api';
+import {
+  // Control,
+  ControlGroup,
+  FormBuilder,
+  Validators
+} from '@angular/common';
+
+interface IGenpassword {
+  initPassword: string;
+  key: string;
+  output: string;
+  output15: string;
+}
 
 @Component({
   selector: 'links',
@@ -19,6 +32,14 @@ import {LinksApi} from './links.api';
 })
 
 export class FourthIndexComponent {
+  genPasswordForm: ControlGroup;
+
+  public gen: IGenpassword = {
+    initPassword: '',
+    key: '',
+    output: '',
+    output15: ''
+  };
 
   public links: any[] = [];
 
@@ -29,8 +50,37 @@ export class FourthIndexComponent {
       });
   }
 
-  constructor() {
+  public resetGenPassword() {
+    this.gen.output = '';
+    this.gen.output15 = '';
+  }
+
+  public genPasswordFn(): void {
+    let pString: string = sha512(this.gen.initPassword).toString();
+    let kString: string = sha512(this.gen.key);
+    let shaString: string = sha512(pString + kString).toString();
+    this.gen.output = md5(shaString).toString();
+    this.gen.output15 = this.gen.output.slice(0, 14);
+  }
+
+  constructor(
+    private fb: FormBuilder
+  ) {
     this.getLinks();
+
+    this.genPasswordForm = fb.group({
+      initPassword: [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ],
+      key: [
+        '',
+        Validators.compose([
+        ])
+      ]
+    });
   }
 
 }

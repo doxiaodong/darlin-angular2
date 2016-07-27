@@ -15,7 +15,7 @@
     "username": "User Name",
     "usernameFlag": "6 to 20, use only letter/number and '_', begin without 「_」",
     "password": "Password",
-    "passwordFlag": "6 to 20, use only letter/number and '_'",
+    "passwordFlag": "6 to 40, use only letter/number and '_'",
     "rePassword": "Repeat password",
     "rePasswordFlag": "The password is not same as before",
     "email": "Email",
@@ -86,7 +86,15 @@
       "type": {
         "blog": "[Blog]",
         "shop": "[Shop]"
-      }
+      },
+      "genPassword": "Generate Password",
+      "initPassword": "Base Password",
+      "key": "Password Scene",
+      "required": "Required",
+      "gen": "Generate",
+      "outputDesc": "Generated Password",
+      "outputDesc15": "Generated Password(length 15)",
+      "noOutput": "None"
     },
     "forget": {
       "title": "Change Password",
@@ -99,5 +107,8 @@
       "newPassword": "New Password",
       "save": "Save"
     }
+  },
+  "error": {
+    "500": "Server Error"
   }
 }
