@@ -47,10 +47,15 @@
       .articles {
         margin: -10px;
         .article {
-
           padding: 10px;
           &:hover {
             background: @bg_base;
+          }
+          &.load-more {
+            text-align: center;
+            &:hover {
+              background: transparent;
+            }
           }
           // &:first-child {
           //   padding-top: 0;

@@ -12,6 +12,7 @@ import {ArticleApi} from '../article/article.api';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
+// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'index',
@@ -20,6 +21,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [
     PageAnimateFn()
+    // NgForAnimateFn()
   ]
 })
 
@@ -30,7 +32,7 @@ export class IndexComponent implements OnInit {
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
       .then(data => {
-
+        let delay: number = 0;
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
@@ -40,9 +42,10 @@ export class IndexComponent implements OnInit {
             isUp: a.is_up,
             isHot: a.hot
           };
-
-          this.articles.push(article);
-
+          setTimeout(() => {
+            this.articles.push(article);
+          }, delay);
+          delay += 10;
         });
       });
 

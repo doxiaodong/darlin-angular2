@@ -110,5 +110,6 @@
   },
   "error": {
     "500": "Server Error"
-  }
+  },
+  "loadMore": "Load More"
 }

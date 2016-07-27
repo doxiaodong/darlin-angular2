@@ -17,6 +17,7 @@ import {ArticleCategoryComponent} from './category.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
+// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'article-list',
@@ -25,6 +26,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
   animations: [
     PageAnimateFn()
+    // NgForAnimateFn()
   ]
 })
 
@@ -33,10 +35,22 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   public articles: Array<Object> = [];
   private sub: any;
 
-  getArticles(category: string) {
-    ArticleApi.getArticleList(category)
+  public hasMore: boolean = false;
+  public page: number = 1;
+
+  public category: string;
+
+  getMoreArticles() {
+    ArticleApi.getArticleList(this.category, this.page)
       .then(data => {
-        this.articles = [];
+        if (data.next) {
+          this.page += 1;
+          this.hasMore = true;
+        } else {
+          this.hasMore = false;
+        }
+
+        let delay: number = 0;
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
@@ -53,11 +67,19 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           //   r--;
           //   this.articles.push(article);
           // }
-          this.articles.push(article);
+          setTimeout(() => {
+            this.articles.push(article);
+          }, delay);
+          delay += 10;
 
         });
       });
+  }
 
+  getArticles() {
+    this.articles = [];
+    this.page = 1;
+    this.getMoreArticles();
   }
 
   constructor(
@@ -71,8 +93,8 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     this.sub = this.route.params
       .subscribe(params => {
         if (params) {
-          let category = params['category'];
-          this.getArticles(category);
+          this.category = params['category'];
+          this.getArticles();
         }
       });
   }
