@@ -89,7 +89,7 @@
     "fontgen-loader": "^0.2.1",
     "html-webpack-plugin": "^2.22.0",
     "http-server": "^0.9.0",
-    "image-webpack-loader": "^2.0.0",
+    "image-webpack-loader": "^1.8.0",
     "imagemin": "^5.2.2",
     "imports-loader": "^0.6.5",
     "istanbul-instrumenter-loader": "^0.2.0",
