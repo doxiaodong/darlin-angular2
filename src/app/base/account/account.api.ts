@@ -3,7 +3,6 @@ import {Headers} from '@angular/http';
 import {HttpUtilsService} from '../utils/http-utils.service';
 import {
   Dhttp,
-  Dhttp2,
   Dhttp3
 } from '../injector/http-injector';
 import {Observable} from 'rxjs/Observable';
@@ -14,6 +13,8 @@ import {
   RequestHandler
 } from '../http-interceptor/http-interceptor.provider';
 
+const md5 = require('crypto-js/md5');
+
 class Api {
 
   private prefix: string;
@@ -22,7 +23,7 @@ class Api {
     // {username: <string>, password: <string>}
     let _obj = {
       username: obj.username,
-      password: md5(obj.password)
+      password: md5(obj.password).toString()
     };
     return Dhttp.post(this.prefix + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
       headers: new Headers({
@@ -34,7 +35,7 @@ class Api {
   register(obj: any) {
     let _obj = {
       username: obj.username,
-      password: md5(obj.password),
+      password: md5(obj.password).toString(),
       nickname: obj.nickname,
       email: obj.email
     };
@@ -91,17 +92,17 @@ class Api {
 
       xhr.send(obj);
     })
-    .toPromise()
-    .then((res) => {
-      ResponseHandler(res);
-      let data = res;
-      if (data.status === 1) {
-        return Promise.resolve(data);
-      } else {
-        return Promise.reject(data);
-      }
-    })
-    .catch(ErrorHandler);
+      .toPromise()
+      .then((res) => {
+        ResponseHandler(res);
+        let data = res;
+        if (data.status === 1) {
+          return Promise.resolve(data);
+        } else {
+          return Promise.reject(data);
+        }
+      })
+      .catch(ErrorHandler);
 
   }
 
@@ -109,8 +110,8 @@ class Api {
 
     let _obj = {
       username: obj.username,
-      old_password: md5(obj.oldPassword),
-      new_password: md5(obj.newPassword)
+      old_password: md5(obj.oldPassword).toString(),
+      new_password: md5(obj.newPassword).toString()
     };
     // {username: <string>, old_password: <string>, new_password: <string>}
     return Dhttp3.post(this.prefix + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
@@ -123,7 +124,7 @@ class Api {
   resetPassword(obj: any) {
     let _obj = {
       username: obj.username,
-      new_password: md5(obj.newPassword)
+      new_password: md5(obj.newPassword).toString()
     };
     // {username: <string>, new_password: <string>}
     return Dhttp3.post(this.prefix + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {

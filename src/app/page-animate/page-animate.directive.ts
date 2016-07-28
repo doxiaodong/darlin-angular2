@@ -14,10 +14,12 @@ export class PageAnimateDirective implements OnInit {
     setTimeout(() => {
       this.stateExpression = 'page-enter-complete';
     }, 0);
-
+    setTimeout(() => {
+      this.stateExpression = '';
+    }, 300);
   };
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.createAnimation();

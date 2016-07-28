@@ -76,4 +76,4 @@ interface GlobalValue {
   PIC_STATIC_URL_HOST: string;
 }
 
-declare var GLOBAL_VALUE: GlobalValue;
+declare let GLOBAL_VALUE: GlobalValue;

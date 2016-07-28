@@ -12,15 +12,19 @@
         <!--<li class="article">
           <input type="text" class="form-control" [(ngModel)]="searchText.title">
         </li>-->
-        <li class="article article-list-repeat" *ngFor="let article of articles">
+        <li class="article" *ngFor="let article of articles"
+          @ngForAnimateTrigger="'in'">
           <a class="a" [routerLink]="['/article', article.category, article.url]">
             <div class="title">
-            <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
+              <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
             </div>
             <div class="time">{{ article.createTime | xdDate }}</div>
           </a>
         </li>
         <li class="article" *ngIf="!articles.length">{{ 'pages.article.none' | translate }}</li>
+        <li class="article load-more" *ngIf="hasMore">
+          <button class="btn main" (click)="getMoreArticles()">{{ 'loadMore' | translate }}</button>
+        </li>
       </ul>
 
     </div>

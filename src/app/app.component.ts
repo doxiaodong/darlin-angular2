@@ -13,6 +13,7 @@ import {FooterComponent} from './footer/footer.component';
 import {AlertComponent} from './base/alert/alert.component';
 import {SignModalComponent} from './sign-modal/sign-modal.component';
 import {LoadingComponent} from './base/loading/loading.component';
+import {VisibilityDirective} from './visibility/visibility.directive';
 
 require('../../config/icon.font.json');
 require('./base/styles/global.less');
@@ -34,7 +35,8 @@ require('./article/article-list.global.less');
     FooterComponent,
     AlertComponent,
     SignModalComponent,
-    LoadingComponent
+    LoadingComponent,
+    VisibilityDirective
   ]
 })
 export class RootAppComponent implements OnInit {
@@ -43,7 +45,7 @@ export class RootAppComponent implements OnInit {
   //   console.log('@output: ${userInfo}', userInfo);
   // }
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
 

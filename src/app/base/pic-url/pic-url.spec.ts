@@ -4,10 +4,8 @@ import {
   describe
 } from '@angular/core/testing';
 
-import {Component} from '@angular/core';
-
 import {
-   PicUrl as pu
+  PicUrl as pu
 } from './pic-url.service';
 
 describe('pic-url.service.ts get complete head picture', () => {

@@ -10,7 +10,7 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
 
 @Injectable()
 export class SigninCheck implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
   canActivate() {
 
     return Observable.create((observer) => {

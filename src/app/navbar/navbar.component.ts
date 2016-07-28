@@ -1,22 +1,26 @@
 import {
   Component,
-  Output,
-  EventEmitter,
+  // Output,
+  // EventEmitter,
   OnInit
 } from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
-  Router
+  Router,
+  NavigationStart,
+  NavigationCancel,
+  NavigationError,
+  NavigationEnd
 } from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {VisibilityDirective} from '../visibility/visibility.directive';
 
 import {UserInterface} from '../user/user.interface';
 import {USER_NULL} from '../user/user.null';
 import {UserService} from '../user/user.service';
 import {AccountApi} from '../base/account/account.api';
 import {SignModalService} from '../sign-modal/sign-modal.service';
+import {LoadingService} from '../base/loading/loading.service';
 
 @Component({
   selector: '[navbar]',
@@ -25,7 +29,9 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
     require('./navbar.less')
   ],
   pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, VisibilityDirective]
+  directives: [
+    ROUTER_DIRECTIVES
+  ]
 })
 export class NavbarComponent implements OnInit {
   public index: number = 0;
@@ -41,9 +47,9 @@ export class NavbarComponent implements OnInit {
   signOut() {
     // console.log('signout');
     AccountApi.signout()
-    .then(data => {
-      this.user = UserService.clear();
-    });
+      .then(data => {
+        this.user = UserService.clear();
+      });
     // this.userInfoUpdateEmitter.emit(this.user);
   }
 
@@ -64,15 +70,15 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
 
     UserService.get()
-    .then(userInfo => {
-      this.user = UserService.save(userInfo);
-      this.isSignin = UserService.isSignin();
-    });
+      .then(userInfo => {
+        this.user = UserService.save(userInfo);
+        this.isSignin = UserService.isSignin();
+      });
 
     UserService.updateUser$.subscribe(userInfo => {
       this.user = userInfo;
@@ -80,8 +86,18 @@ export class NavbarComponent implements OnInit {
     });
 
     this.router.events.subscribe((val) => {
-      if (val['state']) {
+      if (val instanceof NavigationEnd) {
         this.configIndexNumber(val.url);
+      }
+      if (val instanceof NavigationStart) {
+        LoadingService.show();
+      }
+      if (
+        val instanceof NavigationCancel ||
+        val instanceof NavigationError ||
+        val instanceof NavigationEnd
+      ) {
+        LoadingService.hide();
       }
     });
 

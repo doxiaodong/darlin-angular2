@@ -6,7 +6,7 @@ function JsonMinifyPlugin(options) {
   this.dest = options.dest;
 }
 
-JsonMinifyPlugin.prototype.apply = function(compiler) {
+JsonMinifyPlugin.prototype.apply = function (compiler) {
 
   apply(compiler, {
     src: this.src,

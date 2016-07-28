@@ -1,4 +1,5 @@
-<div class="pages account" [title]="'pages.account.infoTitle' | translate" page-animate @pageAnimateTrigger="p.stateExpression" #p="pageAnimate">
+<div class="pages account" [title]="'pages.account.infoTitle' | translate" page-animate @pageAnimateTrigger="p.stateExpression"
+  #p="pageAnimate">
   <div class="page-block">
     <div class="each-header">
       <span class="big-size">{{ 'pages.account.profile' | translate }}</span>
@@ -25,7 +26,7 @@
       <span class="big-size">{{ 'pages.account.notification' | translate }}</span>
       <span class="a pull-right no-select" (click)="replyContainerFold = !replyContainerFold">
         <span *ngIf="!replyContainerFold">{{ 'pages.account.fold' | translate }}</span>
-        <span *ngIf="replyContainerFold">{{ 'pages.account.expand' | translate }}</span>
+      <span *ngIf="replyContainerFold">{{ 'pages.account.expand' | translate }}</span>
       </span>
     </div>
     <div class="each-inner" *ngIf="!replyContainerFold">
@@ -37,8 +38,7 @@
               <div>
                 <a class="a" [routerLink]="['/account/info', reply.replyUser.username]">{{ reply.replyUser.nickname }}</a>
                 <span class="normal-color">{{ 'pages.account.replyWord1' | translate }}</span>
-                <a class="a" [routerLink]="['/article', reply.article.category.url, encode(reply.article.url)]">{{ reply.article.title }}</a>
-                {{ 'pages.account.replyWord2' | translate }}：
+                <a class="a" [routerLink]="['/article', reply.article.category.url, encode(reply.article.url)]">{{ reply.article.title }}</a>                {{ 'pages.account.replyWord2' | translate }}：
               </div>
               <marked class="mes markdown" [md]="reply.content"></marked>
             </div>
@@ -56,7 +56,7 @@
       <span class="big-size">{{ 'pages.account.notificationArticle' | translate }}</span>
       <span class="a pull-right no-select" (click)="commentContainerFold = !commentContainerFold">
         <span *ngIf="!commentContainerFold">{{ 'pages.account.fold' | translate }}</span>
-        <span *ngIf="commentContainerFold">{{ 'pages.account.expand' | translate }}</span>
+      <span *ngIf="commentContainerFold">{{ 'pages.account.expand' | translate }}</span>
       </span>
     </div>
     <div class="each-inner" *ngIf="!commentContainerFold">

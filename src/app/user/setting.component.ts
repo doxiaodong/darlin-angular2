@@ -3,8 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  NgForm,
-  Control,
+  // Control,
   ControlGroup,
   FormBuilder,
   Validators
@@ -17,10 +16,9 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {
   MdRadioGroup,
   MdRadioButton,
-  MdRadioDispatcher
+  MdUniqueSelectionDispatcher
 } from '@angular2-material/radio';
 
-import {UserInterface} from './user.interface';
 import {UserService} from './user.service';
 import {TitleDirective} from '../title/title.directive';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
@@ -34,7 +32,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
   selector: 'setting',
   templateUrl: './setting.template.html',
   pipes: [TranslatePipe],
-  providers: [MdRadioDispatcher],
+  providers: [MdUniqueSelectionDispatcher],
   directives: [
     ROUTER_DIRECTIVES,
     TitleDirective,
@@ -107,14 +105,14 @@ export class UserSettingComponent implements OnInit {
     formData.append('sex', this.setting.sex.type);
     formData.append('pic', this.settingPicModel);
     AccountApi.changeProfile(formData)
-    .then(data => {
-      AlertService.show(data.msg);
-    }).catch((msg) => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+      .then(data => {
+        AlertService.show(data.msg);
+      }).catch((msg) => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   constructor(

@@ -9,6 +9,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 /**
  * Webpack Constants
@@ -110,49 +111,55 @@ module.exports = {
       // Typescript loader support for .ts and Angular 2 async routes via .async.ts
       //
       // See: https://github.com/s-panferov/awesome-typescript-loader
-      {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: [/\.(spec|e2e)\.ts$/]},
+      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: [/\.(spec|e2e)\.ts$/] },
 
       // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
       // {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
-      {test: /\.font\.json$/, loader: ExtractTextPlugin.extract("style", ["css", "fontgen"])},
+      { test: /\.font\.json$/, loader: ExtractTextPlugin.extract("style", ["css", "fontgen"]) },
 
       // Json loader support for *.json files.
       //
       // See: https://github.com/webpack/json-loader
-      {test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/]},
+      { test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/] },
 
-      {test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css")},
+      { test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss") },
 
       // Raw loader support for *.css files
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.css$/, loader: 'raw-loader', exclude: [/(global|\.min)\.css$/]},
+      { test: /\.css$/, loader: 'raw-loader!postcss', exclude: [/(global|\.min)\.css$/] },
 
-      {test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!less")},
+      { test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!postcss!less") },
 
-      {test: /\.less$/, loader: "raw-loader!less", exclude: [/global\.less$/]},
+      { test: /\.less$/, loader: "raw-loader!postcss!less", exclude: [/global\.less$/] },
 
       // Raw loader support for *.html
       // Returns file content as string
       //
       // See: https://github.com/webpack/raw-loader
-      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+      { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
 
-      {test: /\.md$/, loader: 'raw-loader'},
+      { test: /\.md$/, loader: 'raw-loader' },
 
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-            // `file?hash=sha512&digest=hex&name=${helpers.static}[hash].[ext]`,
-            `file?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
-            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          // `file?hash=sha512&digest=hex&name=${helpers.static}[hash].[ext]`,
+          `file?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       }
 
     ]
 
   },
+
+  postcss: [
+    autoprefixer({
+      browsers: ['last 1 version', '> 10%']
+    })
+  ],
 
   // Add additional plugins to the compiler.
   //
@@ -161,11 +168,12 @@ module.exports = {
 
     // third js
     new webpack.ProvidePlugin({
-      marked: 'marked',
-      hljs: 'highlight.js',
-      md5: 'js-md5',
-      emojione: 'emojione',
+      // marked: 'marked',
+      // hljs: 'highlight.js',
+      // md5: 'crypto-js/md5',
+      // emojione: 'emojione',
       base64: 'js-base64'
+      // sha512: 'crypto-js/sha512'
     }),
 
     new ExtractTextPlugin(helpers.static + "main.[hash].css"),
@@ -200,7 +208,7 @@ module.exports = {
     // Copies project static assets.
     //
     // See: https://www.npmjs.com/package/copy-webpack-plugin
-    new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}, {from: 'src/favicon.ico', to: 'favicon.ico'}], {ignore: ['.DS_Store', 'images/**/*', 'i18n/**/*']}),
+    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }, { from: 'src/favicon.ico', to: 'favicon.ico' }], { ignore: ['.DS_Store', 'images/**/*', 'i18n/**/*'] }),
 
     // Plugin: HtmlWebpackPlugin
     // Description: Simplifies creation of HTML files to serve your webpack bundles.

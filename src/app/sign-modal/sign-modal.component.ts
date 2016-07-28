@@ -3,7 +3,6 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  NgForm,
   Control,
   ControlGroup,
   FormBuilder,
@@ -12,7 +11,6 @@ import {
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserInterface} from '../user/user.interface';
-import {USER} from '../user/user.mock';
 import {UserService} from '../user/user.service';
 import {SignModalService} from './sign-modal.service';
 import {LocalStorageService} from '../base/local-storage/local-storage.service';
@@ -67,38 +65,38 @@ export class SignModalComponent implements OnInit {
   doSignin(obj: Object) {
     this.requesting = true;
     AccountApi.signin(obj)
-    .then(data => {
-      this.user = UserService.save(data.user);
+      .then(data => {
+        this.user = UserService.save(data.user);
 
-      // sigin success
-      LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.closeShowModal();
-    }).catch((msg) => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+        // sigin success
+        LocalStorageService.save('signin.user', JSON.stringify(this.signin));
+        this.closeShowModal();
+      }).catch((msg) => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   doRegister(obj: any) {
     this.requesting = true;
     AccountApi.register(obj)
-    .then(data => {
-      this.user = UserService.save(data.user);
-      this.signin = {
-        username: obj.username,
-        password: obj.password
-      };
-      // sigin success
-      LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-      this.closeShowModal();
-    }).catch((msg) => {
-      AlertService.show(msg);
-    })
-    .then(() => {
-      this.requesting = false;
-    });
+      .then(data => {
+        this.user = UserService.save(data.user);
+        this.signin = {
+          username: obj.username,
+          password: obj.password
+        };
+        // sigin success
+        LocalStorageService.save('signin.user', JSON.stringify(this.signin));
+        this.closeShowModal();
+      }).catch((msg) => {
+        AlertService.show(msg);
+      })
+      .then(() => {
+        this.requesting = false;
+      });
   }
 
   githubLogin() {

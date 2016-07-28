@@ -15,12 +15,12 @@ import {
   TranslateStaticLoader
 } from 'ng2-translate/ng2-translate';
 import {MarkedService} from './app/base/marked/marked.service';
-import {http} from './app/base/injector/http-injector';
+// import {http} from './app/base/injector/http-injector';
 
 import {RootAppComponent} from './app/app.component';
 import {
-  disableDeprecatedForms,
-  provideForms
+  // disableDeprecatedForms,
+  // provideForms
 } from '@angular/forms';
 
 function main(): Promise<any> {
@@ -50,7 +50,7 @@ function main(): Promise<any> {
     TranslateService,
     MarkedService
   ])
-  .catch(err => console.error(err));
+    .catch(err => console.error(err));
 }
 
 if ('development' === ENV && HMR === true) {

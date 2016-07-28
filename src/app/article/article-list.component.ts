@@ -17,6 +17,7 @@ import {ArticleCategoryComponent} from './category.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
+import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'article-list',
@@ -24,6 +25,7 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
   animations: [
+    NgForAnimateFn(),
     PageAnimateFn()
   ]
 })
@@ -33,32 +35,51 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   public articles: Array<Object> = [];
   private sub: any;
 
-  getArticles(category: string) {
-    ArticleApi.getArticleList(category)
-    .then(data => {
+  public hasMore: boolean = false;
+  public page: number = 1;
 
-      data.results.map(a => {
-        let article = {
-          url: base64.Base64.encodeURI(a.url),
-          title: a.title,
-          createTime: a.create_time,
-          category: a.category.url,
-          isUp: a.is_up,
-          isHot: a.hot
-        };
+  public category: string;
 
-        // test list performance
-        // let r = 250;
-        // while (r > 1) {
-        //   r--;
-        //   this.articles.push(article);
-        // }
+  getMoreArticles() {
+    ArticleApi.getArticleList(this.category, this.page)
+      .then(data => {
+        if (data.next) {
+          this.page += 1;
+          this.hasMore = true;
+        } else {
+          this.hasMore = false;
+        }
 
-        this.articles.push(article);
+        let delay: number = 0;
+        data.results.map(a => {
+          let article = {
+            url: base64.Base64.encodeURI(a.url),
+            title: a.title,
+            createTime: a.create_time,
+            category: a.category.url,
+            isUp: a.is_up,
+            isHot: a.hot
+          };
 
+          // test list performance
+          // let r = 250;
+          // while (r > 1) {
+          //   r--;
+          //   this.articles.push(article);
+          // }
+          setTimeout(() => {
+            this.articles.push(article);
+          }, delay);
+          delay += 100;
+
+        });
       });
-    });
+  }
 
+  getArticles() {
+    this.articles = [];
+    this.page = 1;
+    this.getMoreArticles();
   }
 
   constructor(
@@ -70,12 +91,12 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.sub = this.route.params
-    .subscribe(params => {
-      if (params) {
-        let category = params['category'];
-        this.getArticles(category);
-      }
-    });
+      .subscribe(params => {
+        if (params) {
+          this.category = params['category'];
+          this.getArticles();
+        }
+      });
   }
 
   ngOnDestroy() {

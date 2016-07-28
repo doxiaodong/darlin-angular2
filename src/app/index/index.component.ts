@@ -12,6 +12,7 @@ import {ArticleApi} from '../article/article.api';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
+import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'index',
@@ -19,7 +20,8 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [
-    PageAnimateFn()
+    PageAnimateFn(),
+    NgForAnimateFn()
   ]
 })
 
@@ -29,22 +31,23 @@ export class IndexComponent implements OnInit {
 
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
-    .then(data => {
-
-      data.results.map(a => {
-        let article = {
-          url: base64.Base64.encodeURI(a.url),
-          title: a.title,
-          createTime: a.create_time,
-          category: a.category.url,
-          isUp: a.is_up,
-          isHot: a.hot
-        };
-
-        this.articles.push(article);
-
+      .then(data => {
+        let delay: number = 0;
+        data.results.map(a => {
+          let article = {
+            url: base64.Base64.encodeURI(a.url),
+            title: a.title,
+            createTime: a.create_time,
+            category: a.category.url,
+            isUp: a.is_up,
+            isHot: a.hot
+          };
+          setTimeout(() => {
+            this.articles.push(article);
+          }, delay);
+          delay += 100;
+        });
       });
-    });
 
   }
 

@@ -15,7 +15,7 @@
     "username": "用户名",
     "usernameFlag": "6到20位,必须是字母,数字或_,不能以「_」开始",
     "password": "密码",
-    "passwordFlag": "6到20位,必须是字母,数字或_",
+    "passwordFlag": "6到40位,必须是字母,数字或_",
     "rePassword": "再次输入密码",
     "rePasswordFlag": "密码不一致",
     "email": "邮箱",
@@ -86,7 +86,15 @@
       "type": {
         "blog": "[博客]",
         "shop": "[小店]"
-      }
+      },
+      "genPassword": "生成密码",
+      "initPassword": "基础密码",
+      "key": "密码标记",
+      "required": "必填项",
+      "gen": "生成",
+      "outputDesc": "生成的密码",
+      "outputDesc15": "生成的密码(长度15)",
+      "noOutput": "暂无"
     },
     "forget": {
       "title": "修改密码",
@@ -99,5 +107,9 @@
       "newPassword": "新密码",
       "save": "确认重置"
     }
-  }
+  },
+  "error": {
+    "500": "服务器错误"
+  },
+  "loadMore": "加载更多"
 }

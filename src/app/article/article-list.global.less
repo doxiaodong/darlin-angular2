@@ -45,14 +45,24 @@
         }
       }
       .articles {
+        margin: -10px;
         .article {
-          padding: 10px 0;
-          &:first-child {
-            padding-top: 0;
+          padding: 10px;
+          &:hover {
+            background: @bg_base;
           }
-          &:last-child {
-            padding-bottom: 0;
+          &.load-more {
+            text-align: center;
+            &:hover {
+              background: transparent;
+            }
           }
+          // &:first-child {
+          //   padding-top: 0;
+          // }
+          // &:last-child {
+          //   padding-bottom: 0;
+          // }
           & + .article {
             border-top: 1px solid #eee;
           }

@@ -31,17 +31,17 @@ export class Dhttp {
 
   static dhttpFn(name: string, ...args) {
     return http[name].apply(http, ...args)
-    .toPromise()
-    .then((res) => {
-      ResponseHandler(res);
-      let body = res.json();
-      if (body.status === 1) {
-        return Promise.resolve(body.data);
-      } else {
-        return Promise.reject(res);
-      }
-    })
-    .catch(ErrorHandler);
+      .toPromise()
+      .then((res) => {
+        ResponseHandler(res);
+        let body = res.json();
+        if (body.status === 1) {
+          return Promise.resolve(body.data);
+        } else {
+          return Promise.reject(res);
+        }
+      })
+      .catch(ErrorHandler);
   }
 
   static request(...args) {
@@ -78,13 +78,13 @@ export class Dhttp2 extends Dhttp {
 
   static dhttpFn(name: string, ...args) {
     return http[name].apply(http, ...args)
-    .toPromise()
-    .then((res) => {
-      ResponseHandler(res);
-      let body = res.json();
-      return Promise.resolve(body);
-    })
-    .catch(ErrorHandler);
+      .toPromise()
+      .then((res) => {
+        ResponseHandler(res);
+        let body = res.json();
+        return Promise.resolve(body);
+      })
+      .catch(ErrorHandler);
   }
 
 }
@@ -93,17 +93,17 @@ export class Dhttp3 extends Dhttp {
 
   static dhttpFn(name: string, ...args) {
     return http[name].apply(http, ...args)
-    .toPromise()
-    .then((res) => {
-      ResponseHandler(res);
-      let body = res.json();
-      if (body.status === 1) {
-        return Promise.resolve(body);
-      } else {
-        return Promise.reject(res);
-      }
-    })
-    .catch(ErrorHandler);
+      .toPromise()
+      .then((res) => {
+        ResponseHandler(res);
+        let body = res.json();
+        if (body.status === 1) {
+          return Promise.resolve(body);
+        } else {
+          return Promise.reject(res);
+        }
+      })
+      .catch(ErrorHandler);
   }
 
 }

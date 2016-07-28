@@ -1,13 +1,5 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
-
-import {
-  Dhttp,
-  Dhttp2
-} from '../base/injector/http-injector';
-import {
-  ResponseHandler,
-  ErrorHandler
-} from '../base/http-interceptor/http-interceptor.provider';
+import {Dhttp2} from '../base/injector/http-injector';
 
 class Api {
 

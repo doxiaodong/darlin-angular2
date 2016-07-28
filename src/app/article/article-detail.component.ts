@@ -45,18 +45,18 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   getArticleDetail(url: string) {
     ArticleApi.getArticleDetail(url)
-    .then(data => {
-      this.article = {
-        articleDetailTitle: data.title,
-        category: {
-          key: data.category.url,
-          name: data.category.name
-        },
-        createTime: data.create_time,
-        content: data.content
-      };
+      .then(data => {
+        this.article = {
+          articleDetailTitle: data.title,
+          category: {
+            key: data.category.url,
+            name: data.category.name
+          },
+          createTime: data.create_time,
+          content: data.content
+        };
 
-    });
+      });
 
   }
 
@@ -68,12 +68,12 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params
-    .subscribe(params => {
-      if (params) {
-        let url = base64.Base64.decode(params['url']);
-        this.getArticleDetail(url);
-      }
-    });
+      .subscribe(params => {
+        if (params) {
+          let url = base64.Base64.decode(params['url']);
+          this.getArticleDetail(url);
+        }
+      });
   }
 
   ngOnDestroy() {

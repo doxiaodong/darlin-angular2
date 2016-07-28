@@ -1,9 +1,6 @@
 import {ApiPrefix} from '../base/api-prefix/api-prefix.service';
 
-import {
-  Dhttp,
-  Dhttp2
-} from '../base/injector/http-injector';
+import {Dhttp2} from '../base/injector/http-injector';
 
 class Api {
 
@@ -13,8 +10,8 @@ class Api {
     return Dhttp2.get(this.prefix + '/article/categories/?format=json');
   }
 
-  getArticleList(category: string) {
-    return Dhttp2.get(this.prefix + `/article/articles/${category}/?format=json`);
+  getArticleList(category: string, page: number = 1) {
+    return Dhttp2.get(this.prefix + `/article/articles/${category}/?format=json&page=${page}`);
   }
 
   getArticleDetail(url: string) {

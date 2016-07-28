@@ -7,14 +7,13 @@ import {
   Response,
   XSRFStrategy
 } from '@angular/http';
-import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {LoadingService} from '../loading/loading.service';
 import {AlertService} from '../alert/alert.service';
-import {
-  TranslatePipe,
-  TranslateService
-} from 'ng2-translate/ng2-translate';
+// import {
+//   TranslatePipe,
+//   TranslateService
+// } from 'ng2-translate/ng2-translate';
 import {LocalStorageService} from '../local-storage/local-storage.service';
 
 @Injectable()
@@ -49,7 +48,7 @@ export class HttpInterceptor extends XHRBackend {
 
     return connection;
 
-    }
+  }
 
 }
 
@@ -58,19 +57,19 @@ export class HttpInterceptor extends XHRBackend {
 // need api call ResponseHandler and ErrorHandler
 
 export function ResponseHandler(response: Response | any) {
-//   console.log('http response');
+  // console.log('http response');
   LoadingService.hide();
 }
 
 export function RequestHandler(): void {
-//   console.log('http start');
+  // console.log('http start');
   LoadingService.show();
 }
 
 export function ErrorHandler(error: any) {
   ResponseHandler(error);
   // TODO: try to use translate to solve this
-  let lang: string = LocalStorageService.get('language');
+  let lang: string = LocalStorageService.get('lang');
   let serverError: string = '';
   switch (lang) {
     case 'en_US':
