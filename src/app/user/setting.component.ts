@@ -16,7 +16,7 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {
   MdRadioGroup,
   MdRadioButton,
-  MdRadioDispatcher
+  MdUniqueSelectionDispatcher
 } from '@angular2-material/radio';
 
 import {UserService} from './user.service';
@@ -32,7 +32,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
   selector: 'setting',
   templateUrl: './setting.template.html',
   pipes: [TranslatePipe],
-  providers: [MdRadioDispatcher],
+  providers: [MdUniqueSelectionDispatcher],
   directives: [
     ROUTER_DIRECTIVES,
     TitleDirective,

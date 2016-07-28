@@ -3,14 +3,14 @@
     "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",
     "core-js": "registry:dt/core-js#0.0.0+20160602141332",
     "crypto-js": "registry:dt/crypto-js#3.1.4+20160708041433",
-    "hammerjs": "registry:dt/hammerjs#2.0.4+20160622233604",
+    "hammerjs": "registry:dt/hammerjs#2.0.8+20160724063812",
     "highlight.js": "github:DefinitelyTyped/DefinitelyTyped/highlightjs/highlightjs.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd",
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
     "marked": "github:DefinitelyTyped/DefinitelyTyped/marked/marked.d.ts#9cfdb11648f823b889287c770254b85b78a7a4a4",
-    "node": "registry:dt/node#6.0.0+20160621231320",
+    "node": "registry:dt/node#6.0.0+20160720070758",
     "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654",
     "source-map": "registry:dt/source-map#0.0.0+20160317120654",
     "uglify-js": "registry:dt/uglify-js#2.6.1+20160316155526",
-    "webpack": "registry:dt/webpack#1.12.9+20160523035535"
+    "webpack": "registry:dt/webpack#1.12.9+20160724112410"
   }
 }
