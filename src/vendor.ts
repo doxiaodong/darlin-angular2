@@ -15,11 +15,6 @@ import '@angular2-material/radio';
 // import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toPromise';
 
-// import 'marked';
-// import 'highlight.js';
-// import 'emojione';
-// import 'js-base64';
-
 // look in platform/directives and platform/providers
 
 if ('production' === ENV) {

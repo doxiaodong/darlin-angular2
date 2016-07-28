@@ -77,7 +77,3 @@ interface GlobalValue {
 }
 
 declare let GLOBAL_VALUE: GlobalValue;
-
-declare let sha512: CryptoJS.Hash;
-
-declare let md5: CryptoJS.Hash;

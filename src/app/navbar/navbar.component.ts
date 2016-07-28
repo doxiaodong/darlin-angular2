@@ -6,7 +6,11 @@ import {
 } from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
-  Router
+  Router,
+  NavigationStart,
+  NavigationCancel,
+  NavigationError,
+  NavigationEnd
 } from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -16,6 +20,7 @@ import {USER_NULL} from '../user/user.null';
 import {UserService} from '../user/user.service';
 import {AccountApi} from '../base/account/account.api';
 import {SignModalService} from '../sign-modal/sign-modal.service';
+import {LoadingService} from '../base/loading/loading.service';
 
 @Component({
   selector: '[navbar]',
@@ -81,8 +86,18 @@ export class NavbarComponent implements OnInit {
     });
 
     this.router.events.subscribe((val) => {
-      if (val['state']) {
+      if (val instanceof NavigationEnd) {
         this.configIndexNumber(val.url);
+      }
+      if (val instanceof NavigationStart) {
+        LoadingService.show();
+      }
+      if (
+        val instanceof NavigationCancel ||
+        val instanceof NavigationError ||
+        val instanceof NavigationEnd
+      ) {
+        LoadingService.hide();
       }
     });
 

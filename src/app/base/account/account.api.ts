@@ -13,6 +13,8 @@ import {
   RequestHandler
 } from '../http-interceptor/http-interceptor.provider';
 
+const md5 = require('crypto-js/md5');
+
 class Api {
 
   private prefix: string;

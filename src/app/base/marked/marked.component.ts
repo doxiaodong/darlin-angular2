@@ -11,6 +11,8 @@ import {
 
 import {MarkedService} from './marked.service';
 
+import * as emojione from 'emojione';
+
 require('./markdown.global.less');
 require('./tomorrow.night.global.css');
 require('./highlight.number.global.less');

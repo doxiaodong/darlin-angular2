@@ -11,6 +11,9 @@ import {
   Validators
 } from '@angular/common';
 
+const sha512 = require('crypto-js/sha512');
+const md5 = require('crypto-js/md5');
+
 interface IGenpassword {
   initPassword: string;
   key: string;
