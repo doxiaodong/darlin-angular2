@@ -10,7 +10,6 @@ import {
 } from '@angular/router';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {VisibilityDirective} from '../visibility/visibility.directive';
 
 import {UserInterface} from '../user/user.interface';
 import {USER_NULL} from '../user/user.null';
@@ -25,7 +24,9 @@ import {SignModalService} from '../sign-modal/sign-modal.service';
     require('./navbar.less')
   ],
   pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, VisibilityDirective]
+  directives: [
+    ROUTER_DIRECTIVES
+  ]
 })
 export class NavbarComponent implements OnInit {
   public index: number = 0;

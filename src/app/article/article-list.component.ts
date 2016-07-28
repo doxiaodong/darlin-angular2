@@ -17,7 +17,7 @@ import {ArticleCategoryComponent} from './category.component';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
-// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'article-list',
@@ -25,8 +25,8 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
   animations: [
+    NgForAnimateFn(),
     PageAnimateFn()
-    // NgForAnimateFn()
   ]
 })
 
@@ -70,7 +70,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.articles.push(article);
           }, delay);
-          delay += 10;
+          delay += 100;
 
         });
       });

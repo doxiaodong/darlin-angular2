@@ -12,7 +12,7 @@ import {ArticleApi} from '../article/article.api';
 import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
-// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'index',
@@ -20,8 +20,8 @@ import {PageAnimateFn} from '../page-animate/page-animate';
   pipes: [XdDatePipe, TranslatePipe],
   directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [
-    PageAnimateFn()
-    // NgForAnimateFn()
+    PageAnimateFn(),
+    NgForAnimateFn()
   ]
 })
 
@@ -45,7 +45,7 @@ export class IndexComponent implements OnInit {
           setTimeout(() => {
             this.articles.push(article);
           }, delay);
-          delay += 10;
+          delay += 100;
         });
       });
 

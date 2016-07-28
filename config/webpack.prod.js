@@ -139,7 +139,7 @@ module.exports = webpackMerge(commonConfig, {
         screw_ie8: true
       }, //prod
       comments: false //prod
-    }),
+    })
 
   ],
 
