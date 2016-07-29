@@ -10,7 +10,7 @@
         <article class="xd-article">
           <div class="form-group" [class.has-error]="!initPassword.pristine && !initPassword.valid">
             <label class="form-label" for="initPassword">{{ 'pages.fourth.initPassword' | translate }}：<span class="tomato" [hidden]="initPassword.pristine || initPassword.valid">*{{ 'pages.fourth.required' | translate }}</span></label>
-            <input class="form-control" [(ngModel)]="gen.initPassword" #initPassword="ngForm" ngControl="initPassword" id="initPassword" type="text"
+            <input class="form-control" [(ngModel)]="gen.initPassword" #initPassword="ngForm" ngControl="initPassword" id="initPassword" type="password"
               (ngModelChange)="resetGenPassword()"
               [attr.placeholder]="'pages.fourth.initPassword' | translate">
             <span [hidden]="initPassword.pristine || !initPassword.valid" class="xd xd-checkmark active"></span>
