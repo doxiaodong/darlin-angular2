@@ -2,23 +2,14 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-
-import {TitleDirective} from '../title/title.directive';
 
 import {ArticleApi} from '../article/article.api';
-import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
 import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'index',
   templateUrl: './index.template.html',
-  pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [
     PageAnimateFn(),
     NgForAnimateFn()

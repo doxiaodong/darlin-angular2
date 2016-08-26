@@ -3,29 +3,17 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  ROUTER_DIRECTIVES
-} from '@angular/router';
-import {
-  MdButton,
-  MdAnchor
-} from '@angular2-material/button';
+import {ActivatedRoute} from '@angular/router';
 
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {AlertService} from '../base/alert/alert.service';
 
 import {CommentApi} from './comment.api';
 
-import {MarkedComponent} from '../base/marked/marked.component';
-import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
 import {PicUrl} from '../base/pic-url/pic-url.service';
 
 @Component({
   selector: '[article-comments]',
-  templateUrl: './comment.template.html',
-  pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, MarkedComponent, MdButton, MdAnchor]
+  templateUrl: './comment.template.html'
 })
 
 export class CommentComponent implements OnInit, OnDestroy {

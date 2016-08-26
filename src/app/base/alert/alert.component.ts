@@ -4,7 +4,6 @@ import {
   OnInit,
   OnChanges
 } from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {AlertService} from './alert.service';
 
@@ -20,8 +19,7 @@ interface AlertInterface {
   templateUrl: './alert.template.html',
   styles: [
     require('./alert.less')
-  ],
-  pipes: [TranslatePipe]
+  ]
 })
 
 export class AlertComponent implements OnInit, OnChanges {

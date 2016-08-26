@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import {
   TranslateService,
-  TranslatePipe,
   LangChangeEvent
 } from 'ng2-translate/ng2-translate';
 
@@ -16,8 +15,7 @@ import {LocalStorageService} from '../base/local-storage/local-storage.service';
   templateUrl: './footer.template.html',
   styles: [
     require('./footer.less')
-  ],
-  pipes: [TranslatePipe]
+  ]
 })
 
 export class FooterComponent implements OnDestroy {

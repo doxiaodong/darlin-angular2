@@ -3,19 +3,13 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  // Control,
-  ControlGroup,
+  FormGroup,
+  Validators,
   FormBuilder,
-  Validators
-} from '@angular/common';
-import {
-  ROUTER_DIRECTIVES,
-  Router
-} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+  REACTIVE_FORM_PROVIDERS
+} from '@angular/forms';
+import {Router} from '@angular/router';
 import {UserService} from './user.service';
-import {TitleDirective} from '../title/title.directive';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
 import validate from '../sign-modal/sign-modal.validate';
 import {AlertService} from '../base/alert/alert.service';
@@ -24,15 +18,16 @@ import {AccountApi} from '../base/account/account.api';
 @Component({
   selector: 'reset-password',
   templateUrl: './reset-password.template.html',
-  pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
+  providers: [
+    REACTIVE_FORM_PROVIDERS
+  ],
   animations: [
     PageAnimateFn()
   ]
 })
 
 export class ResetPasswordComponent implements OnInit {
-  passwordForm: ControlGroup;
+  passwordForm: FormGroup;
 
   public requesting: boolean = false;
   public data: any = {};
@@ -57,17 +52,17 @@ export class ResetPasswordComponent implements OnInit {
     this.passwordForm = fb.group({
       username: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           validate.checkUsername
-        ])
+        ]
       ],
       newPassword: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           validate.checkPassword
-        ])
+        ]
       ]
     });
   }

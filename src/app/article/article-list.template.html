@@ -1,4 +1,4 @@
-<div class="pages" [title]="'titles.articleListTitle' | translate" page-animate @pageAnimateTrigger="p.stateExpression" #p="pageAnimate">
+<div class="pages" [title]="'titles.articleListTitle' | translate" page-animate [@pageAnimateTrigger]="p.stateExpression" #p="pageAnimate">
   <div class="page-block side right" article-categories>
   </div>
 
@@ -13,7 +13,7 @@
           <input type="text" class="form-control" [(ngModel)]="searchText.title">
         </li>-->
         <li class="article" *ngFor="let article of articles"
-          @ngForAnimateTrigger="'in'">
+          [@ngForAnimateTrigger]="'in'">
           <a class="a" [routerLink]="['/article', article.category, article.url]">
             <div class="title">
               <span *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}

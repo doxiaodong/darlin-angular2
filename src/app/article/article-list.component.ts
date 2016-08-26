@@ -4,26 +4,17 @@ import {
   OnDestroy
 } from '@angular/core';
 import {
-  ActivatedRoute,
-  ROUTER_DIRECTIVES
+  ActivatedRoute
 } from '@angular/router';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {TitleDirective} from '../title/title.directive';
 
 import {ArticleApi} from './article.api';
 
-import {ArticleCategoryComponent} from './category.component';
-import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
 import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'article-list',
   templateUrl: './article-list.template.html',
-  pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
   animations: [
     NgForAnimateFn(),
     PageAnimateFn()

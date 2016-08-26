@@ -1,4 +1,4 @@
-<div class="pages setting" [title]="'pages.account.setting' | translate" page-animate @pageAnimateTrigger="p.stateExpression"
+<div class="pages setting" [title]="'pages.account.setting' | translate" page-animate [@pageAnimateTrigger]="p.stateExpression"
   #p="pageAnimate">
   <div class="page-block">
     <div class="each-header">
@@ -7,29 +7,32 @@
     </div>
     <div class="each-inner" *ngIf="setting">
 
-      <form id="ACCOUNT_SETTING" name="ACCOUNT_SETTING" [ngFormModel]="settingForm" class="form" (ngSubmit)="submit()">
+      <form id="ACCOUNT_SETTING" name="ACCOUNT_SETTING" [formGroup]="settingForm" class="form" (ngSubmit)="submit()">
         <article class="xd-article">
-          <div class="form-group" [class.has-error]="!username.pristine && !username.valid">
-            <label class="form-label" for="setting_username">{{ 'pages.account.username' | translate }}：<span class="tomato" [hidden]="username.pristine || username.valid">*{{ 'signModal.usernameFlag' | translate }}</span></label>
-            <input class="form-control" [disabled]="setting.third !== 'none'" [(ngModel)]="setting.username" #username="ngForm" ngControl="username"
+          <div class="form-group" [class.has-error]="!settingForm.controls['username'].pristine && !settingForm.controls['username'].valid">
+            <label class="form-label" for="setting_username">{{ 'pages.account.username' | translate }}：<span class="tomato" [hidden]="settingForm.controls['username'].pristine || settingForm.controls['username'].valid">*{{ 'signModal.usernameFlag' | translate }}</span></label>
+            <input class="form-control" [disabled]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
+              formControlName="username"
               id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
-            <span [hidden]="username.pristine || !username.valid" class="xd xd-checkmark active"></span>
+            <span [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" class="xd xd-checkmark active"></span>
           </div>
-          <div class="form-group" [class.has-error]="!email.pristine && !email.valid">
-            <label class="form-label" for="setting_email">{{ 'pages.account.email' | translate }}：<span class="tomato" [hidden]="email.pristine || email.valid">*{{ 'signModal.emailFlag' | translate }}</span></label>
-            <input class="form-control" [(ngModel)]="setting.email" #email="ngForm" ngControl="email" id="setting_email" type="email"
+          <div class="form-group" [class.has-error]="!settingForm.controls['email'].pristine && !settingForm.controls['email'].valid">
+            <label class="form-label" for="setting_email">{{ 'pages.account.email' | translate }}：<span class="tomato" [hidden]="settingForm.controls['email'].pristine || settingForm.controls['email'].valid">*{{ 'signModal.emailFlag' | translate }}</span></label>
+            <input class="form-control" [(ngModel)]="setting.email" name="email" id="setting_email" type="email"
+              formControlName="email"
               [attr.placeholder]="'pages.account.email' | translate">
-            <span [hidden]="email.pristine || !email.valid" class="xd xd-checkmark active"></span>
+            <span [hidden]="settingForm.controls['email'].pristine || !settingForm.controls['email'].valid" class="xd xd-checkmark active"></span>
           </div>
           <div class="form-group">
             <label class="form-label" for="setting_nickname">{{ 'pages.account.nickname' | translate }}：</label>
-            <input class="form-control" [(ngModel)]="setting.nickname" #nickname="ngForm" ngControl="nickname" id="setting_nickname"
+            <input class="form-control" [(ngModel)]="setting.nickname" name="nickname" id="setting_nickname"
+              formControlName="nickname"
               type="text" [attr.placeholder]="'pages.account.nickname' | translate">
-            <span [hidden]="nickname.pristine || !nickname.valid" class="xd xd-checkmark active"></span>
+            <span [hidden]="settingForm.controls['nickname'].pristine || !settingForm.controls['nickname'].valid" class="xd xd-checkmark active"></span>
           </div>
           <div class="form-group" id="setting_sex">
             <label class="form-label" for="setting_sex">{{ 'pages.account.sex' | translate }}：</label>
-            <md-radio-group class="md-primary" [(ngModel)]="setting.sex.type" (change)="changeSex($event)">
+            <md-radio-group class="md-primary" formControlName="sex" [(ngModel)]="setting.sex.type" (change)="changeSex($event)">
               <md-radio-button value="0"> {{ 'pages.account.male' | translate }}</md-radio-button>
               <md-radio-button value="1"> {{ 'pages.account.female' | translate }}</md-radio-button>
             </md-radio-group>
@@ -39,7 +42,9 @@
           <div class="form-group">
             <label class="form-label" for="setting_pic">{{ 'pages.account.pic' | translate }}：</label>
             <label class="head-pic text-left" for="setting_pic"><img id="change_pic" [attr.src]="setting.pic" alt=""></label>
-            <input class="hide" #pic="ngForm" ngControl="pic" (change)="changePic($event)" id="setting_pic" type="file">
+            <input class="hide" name="pic" (change)="changePic($event)"
+              formControlName="pic"
+              id="setting_pic" type="file">
           </div>
           <div class="form-group">
             <label class="form-label width-0"></label>

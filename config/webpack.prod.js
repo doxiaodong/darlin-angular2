@@ -133,7 +133,8 @@ module.exports = webpackMerge(commonConfig, {
       beautify: false, //prod
 
       mangle: {
-        screw_ie8: true
+        screw_ie8: true,
+        keep_fnames: true // angular2 rc5 临时方案 https://github.com/angular/angular/issues/10618
       }, //prod
       compress: {
         screw_ie8: true

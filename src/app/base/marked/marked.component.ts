@@ -31,6 +31,9 @@ require('emojione/assets/css/emojione.min.css'); // use node_modules
     // require('./markdown.less'),
     // require('./tomorrow.night.css'),
     // require('./highlight.number.less')
+  ],
+  providers: [
+    MarkedService
   ]
 })
 

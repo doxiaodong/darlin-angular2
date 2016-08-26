@@ -36,7 +36,10 @@ declare var HMR: boolean;
 interface GlobalEnvironment {
   ENV;
   HMR;
+  System;
 }
+
+declare var System: any;
 
 interface WebpackModule {
   hot: {
