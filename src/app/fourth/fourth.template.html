@@ -26,7 +26,7 @@
           </div>
           <div class="form-group">
             <label class="form-label width-0"></label>
-            <button [disabled]="genPasswordForm.pristine || !genPasswordForm.valid" class="main btn" type="button" (click)="genPasswordFn()">{{ 'pages.fourth.gen' | translate }}</button>
+            <button md-raised-button color="primary" [disabled]="genPasswordForm.pristine || !genPasswordForm.valid" type="button" (click)="genPasswordFn()">{{ 'pages.fourth.gen' | translate }}</button>
           </div>
           <div>{{ 'pages.fourth.outputDesc' | translate }}: {{ gen.output || ('pages.fourth.noOutput' | translate) }}</div>
           <div>{{ 'pages.fourth.outputDesc15' | translate }}: {{ gen.output15 || ('pages.fourth.noOutput' | translate) }}</div>

@@ -60,6 +60,7 @@
     "@angular2-material/button": "^2.0.0-alpha.7",
     "@angular2-material/core": "^2.0.0-alpha.7",
     "@angular2-material/radio": "^2.0.0-alpha.7",
+    "@angular2-material/list": "^2.0.0-alpha.7",
     "core-js": "^2.4.1",
     "crypto-js": "^3.1.6",
     "emojione": "^2.2.6",

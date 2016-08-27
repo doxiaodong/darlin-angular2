@@ -8,6 +8,11 @@
         <a class="a type" [class.active]="articleCategory === category.key" [routerLink]="['/article', category.key]">{{ category.name }}</a>
       </li>
     </ul>
+    <!--<md-list>
+      <md-list-item *ngFor="let category of categories">
+        <a class="a type" [class.active]="articleCategory === category.key" [routerLink]="['/article', category.key]">{{ category.name }}</a>
+      </md-list-item>
+    </md-list>-->
   </div>
 </div>
 <div class="left"></div>
