@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
       .then(data => {
-        let delay: number = 0;
+        // let delay: number = 0;
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),

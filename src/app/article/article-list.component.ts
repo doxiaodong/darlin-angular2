@@ -41,7 +41,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           this.hasMore = false;
         }
 
-        let delay: number = 0;
+        // let delay: number = 0;
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
