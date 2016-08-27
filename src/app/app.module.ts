@@ -15,8 +15,6 @@ import {
   directives
 } from './app.declarations';
 
-import {SigninCheck} from './user/signin-check';
-
 @NgModule({
   bootstrap: [
     RootAppComponent
@@ -33,10 +31,6 @@ import {SigninCheck} from './user/signin-check';
     BaseModule,
 
     RouterModule.forRoot(ROUTES)
-  ],
-  providers: [
-    // UserModule
-    SigninCheck
   ]
 })
 export class AppModule {

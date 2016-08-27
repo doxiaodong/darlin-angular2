@@ -6,20 +6,12 @@ import {LoadingComponent} from './base/loading/loading.component';
 
 import {VisibilityDirective} from './visibility/visibility.directive';
 
-// ArticleModule
-import {ArticleCategoryComponent} from './article/category.component';
-import {CommentComponent} from './comment/comment.component';
-
 export const components = [
   NavbarComponent,
   FooterComponent,
   AlertComponent,
   SignModalComponent,
-  LoadingComponent,
-
-  // ArticleModule
-  ArticleCategoryComponent,
-  CommentComponent
+  LoadingComponent
 ];
 
 export const pipes = [
