@@ -4,7 +4,7 @@ import {
   checkDateFormat as cdf
 } from './check-date.fn';
 
-describe('check-date.fn.ts return date format', () => {
+xdescribe('check-date.fn.ts return date format', () => {
   let now = new Date('Mon Jun 27 2016 22:17:00 GMT+0800 (CST)');
 
   it('should return right format', inject([], () => {
