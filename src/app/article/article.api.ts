@@ -24,4 +24,4 @@ class Api {
 
 }
 
-export var ArticleApi = new Api();
+export const ArticleApi = new Api();

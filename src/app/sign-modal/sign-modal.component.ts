@@ -3,12 +3,12 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  Control,
-  ControlGroup,
+  FormGroup,
+  Validators,
   FormBuilder,
-  Validators
-} from '@angular/common';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+  FormControl,
+  REACTIVE_FORM_PROVIDERS
+} from '@angular/forms';
 
 import {UserInterface} from '../user/user.interface';
 import {UserService} from '../user/user.service';
@@ -37,11 +37,13 @@ interface RegisterInterface {
   styles: [
     require('./sign-modal.less')
   ],
-  pipes: [TranslatePipe]
+  providers: [
+    REACTIVE_FORM_PROVIDERS
+  ]
 })
 export class SignModalComponent implements OnInit {
-  signinForm: ControlGroup;
-  registerForm: ControlGroup;
+  signinForm: FormGroup;
+  registerForm: FormGroup;
 
   public requesting: boolean = false;
   public showModal: boolean = false;
@@ -123,49 +125,47 @@ export class SignModalComponent implements OnInit {
     this.signinForm = fb.group({
       username: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           validate.checkUsername
-        ])
+        ]
       ],
       password: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           validate.checkPassword
-        ])
+        ]
       ]
     });
 
     this.registerForm = fb.group({
       r_username: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           validate.checkUsername
-        ])
-      ],
-      passwordRetry: fb.group({
-        r_password: [
-          '',
-          Validators.compose([
-            Validators.required,
-            validate.checkPassword
-          ])
-        ],
-        r_rePassword: [
-          '',
-          (c: Control) => {
-            return validate.confirmPassword(c, this.register.password);
-          }
         ]
-      }),
+      ],
+      r_password: [
+        '',
+        [
+          Validators.required,
+          validate.checkPassword
+        ]
+      ],
+      r_rePassword: [
+        '',
+        (c: FormControl) => {
+          return validate.confirmPassword(c, this.register.password);
+        }
+      ],
       email: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
-        ])
+        ]
       ],
       nickname: [
         '',

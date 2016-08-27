@@ -3,25 +3,15 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  // Control,
-  ControlGroup,
+  FormGroup,
+  Validators,
   FormBuilder,
-  Validators
-} from '@angular/common';
-import {
-  ROUTER_DIRECTIVES,
-  Router
-} from '@angular/router';
+  REACTIVE_FORM_PROVIDERS
+} from '@angular/forms';
+import {Router} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {
-  MdRadioGroup,
-  MdRadioButton,
-  MdUniqueSelectionDispatcher
-} from '@angular2-material/radio';
 
 import {UserService} from './user.service';
-import {TitleDirective} from '../title/title.directive';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
 import validate from '../sign-modal/sign-modal.validate';
 import {AlertService} from '../base/alert/alert.service';
@@ -32,13 +22,8 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
   selector: 'setting',
   templateUrl: './setting.template.html',
   pipes: [TranslatePipe],
-  providers: [MdUniqueSelectionDispatcher],
-  directives: [
-    ROUTER_DIRECTIVES,
-    TitleDirective,
-    PageAnimateDirective,
-    MdRadioButton,
-    MdRadioGroup
+  providers: [
+    REACTIVE_FORM_PROVIDERS
   ],
   animations: [
     PageAnimateFn()
@@ -47,7 +32,7 @@ import {PicUrl} from '../base/pic-url/pic-url.service';
 
 export class UserSettingComponent implements OnInit {
 
-  settingForm: ControlGroup;
+  settingForm: FormGroup;
 
   public settingPicModel: any;
 
@@ -122,22 +107,23 @@ export class UserSettingComponent implements OnInit {
     this.settingForm = fb.group({
       username: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           validate.checkUsername
-        ])
+        ]
       ],
       email: [
         '',
-        Validators.compose([
+        [
           Validators.required,
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
-        ])
+        ]
       ],
       nickname: [
         '',
         Validators.maxLength(10)
       ],
+      sex: [],
       pic: []
     });
   }

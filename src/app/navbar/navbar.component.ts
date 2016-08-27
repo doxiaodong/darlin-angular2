@@ -13,8 +13,6 @@ import {
   NavigationEnd
 } from '@angular/router';
 
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-
 import {UserInterface} from '../user/user.interface';
 import {USER_NULL} from '../user/user.null';
 import {UserService} from '../user/user.service';
@@ -28,7 +26,6 @@ import {LoadingService} from '../base/loading/loading.service';
   styles: [
     require('./navbar.less')
   ],
-  pipes: [TranslatePipe],
   directives: [
     ROUTER_DIRECTIVES
   ]

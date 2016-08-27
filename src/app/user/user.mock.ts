@@ -1,4 +1,4 @@
-export var USER = {
+export const USER = {
   email: 'duxiaodong@darlin.me',
   id: 1,
   lastLogin: '2016-03-17T03:07:07Z',

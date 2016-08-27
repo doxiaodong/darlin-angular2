@@ -5,11 +5,8 @@ import {
   OnDestroy
 } from '@angular/core';
 import {
-  ActivatedRoute,
-  ROUTER_DIRECTIVES
+  ActivatedRoute
 } from '@angular/router';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {CategoryService} from './category.service';
 
@@ -20,9 +17,7 @@ import {CategoryService} from './category.service';
   styles: [
     require('./category.less')
   ],
-  providers: [CategoryService],
-  pipes: [TranslatePipe],
-  directives: [ROUTER_DIRECTIVES]
+  providers: [CategoryService]
 })
 
 export class ArticleCategoryComponent implements OnInit, OnDestroy {

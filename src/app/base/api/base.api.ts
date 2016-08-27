@@ -17,4 +17,4 @@ class Api {
 
 }
 
-export var BaseApi = new Api();
+export const BaseApi = new Api();

@@ -1,7 +1,4 @@
-import {
-  it,
-  inject
-} from '@angular/core/testing';
+import {inject} from '@angular/core/testing';
 
 import {
   checkDateFormat as cdf

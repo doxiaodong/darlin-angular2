@@ -1,25 +1,27 @@
 <div class="xd-modal" [class.shown]="showModal">
   <div class="xd-container">
 
-    <form id="SIGNIN" [ngFormModel]="signinForm" class="form" [class.active]="signinModel" (ngSubmit)="doSignin(signin)">
+    <form id="SIGNIN" [formGroup]="signinForm" class="form" [class.active]="signinModel" (ngSubmit)="doSignin(signin)">
 
       <header class="xd-header">{{ 'signModal.signin' | translate }}</header>
       <article class="xd-article">
-        <div class="form-group" [class.has-error]="!username.pristine && !username.valid">
+        <div class="form-group" [class.has-error]="!signinForm.controls['username'].pristine && !signinForm.controls['username'].valid">
           <label for="username"></label>
-          <input [(ngModel)]="signin.username" #username="ngForm" ngControl="username" class="form-control" id="username" type="text"
+          <input [(ngModel)]="signin.username" name="username" class="form-control" id="username" type="text"
+            formControlName="username"
             [attr.placeholder]="'signModal.username' | translate">
-          <span [hidden]="!username.valid" class="xd xd-checkmark active"></span>
+          <span [hidden]="!signinForm.controls['username'].valid" class="xd xd-checkmark active"></span>
         </div>
-        <div class="form-group" [class.has-error]="!password.pristine && !password.valid">
+        <div class="form-group" [class.has-error]="!signinForm.controls['password'].pristine && !signinForm.controls['password'].valid">
           <label for="password"></label>
-          <input [(ngModel)]="signin.password" #password="ngForm" ngControl="password" class="form-control" id="password" type="password"
+          <input [(ngModel)]="signin.password" name="password" class="form-control" id="password" type="password"
+            formControlName="password"
             [attr.placeholder]="'signModal.password' | translate">
-          <span [hidden]="!password.valid" class="xd xd-checkmark active"></span>
+          <span [hidden]="!signinForm.controls['password'].valid" class="xd xd-checkmark active"></span>
         </div>
       </article>
       <footer class="xd-footer">
-        <button [disabled]="!signinForm.valid || requesting" class="signin-button main btn" type="submit">{{ 'signModal.signin' | translate }}</button>
+        <button md-raised-button color="primary" [disabled]="!signinForm.valid || requesting" class="signin-button" type="submit">{{ 'signModal.signin' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = false">{{ 'signModal.register' | translate }}</span>
         <a class="a aside" (click)="githubLogin()">Github</a>
         <a class="a aside qq-weibo" (click)="qqLogin()">
@@ -31,44 +33,50 @@
     </form>
 
 
-    <form id="REGISTER" [ngFormModel]="registerForm" #_registerForm="ngForm" class="form" [class.active]="!signinModel" (ngSubmit)="doRegister(register)">
+    <form id="REGISTER" [formGroup]="registerForm" class="form" [class.active]="!signinModel" (ngSubmit)="doRegister(register)">
 
       <header class="xd-header">{{ 'signModal.register' | translate }}</header>
       <article class="xd-article">
-        <div class="form-group" [class.has-error]="!r_username.pristine && !r_username.valid">
-          <label for="register_username" class="form-label">{{ 'signModal.username' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="r_username.pristine || r_username.valid">&nbsp;{{ 'signModal.usernameFlag' | translate }}</span></label>
-          <input #r_username="ngForm" [(ngModel)]="register.username" ngControl="r_username" class="form-control" id="register_username"
+        <div class="form-group" [class.has-error]="!registerForm.controls['r_username'].pristine && !registerForm.controls['r_username'].valid">
+          <label for="register_username" class="form-label">{{ 'signModal.username' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['r_username'].pristine || registerForm.controls['r_username'].valid">&nbsp;{{ 'signModal.usernameFlag' | translate }}</span></label>
+          <input [(ngModel)]="register.username" name="r_username" class="form-control" id="register_username"
+            formControlName="r_username"
             type="text" [attr.placeholder]="'signModal.usernameFlag' | translate">
-          <span [hidden]="r_username.pristine || !r_username.valid" class="xd xd-checkmark active"></span>
+          <span [hidden]="registerForm.controls['r_username'].pristine || !registerForm.controls['r_username'].valid" class="xd xd-checkmark active"></span>
         </div>
-        <div class="form-group">
-          <label for="register_email" class="form-label">{{ 'signModal.email' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="email.pristine || email.valid">&nbsp;{{ 'signModal.emailFlag' | translate }}</span></label>
-          <input #email="ngForm" [(ngModel)]="register.email" ngControl="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control"
+        <div class="form-group" [class.has-error]="!registerForm.controls['email'].pristine && !registerForm.controls['email'].valid">
+          <label for="register_email" class="form-label">{{ 'signModal.email' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['email'].pristine || registerForm.controls['email'].valid">&nbsp;{{ 'signModal.emailFlag' | translate }}</span></label>
+          <input [(ngModel)]="register.email" name="email" class="form-control"
+            formControlName="email"
             id="register_email" type="email" [attr.placeholder]="'signModal.emailFlag' | translate" required>
-          <span [hidden]="email.pristine || !email.valid" class="xd xd-checkmark active"></span>
+          <span [hidden]="registerForm.controls['email'].pristine || !registerForm.controls['email'].valid" class="xd xd-checkmark active"></span>
         </div>
-        <div ngControlGroup="passwordRetry">
-          <div class="form-group" [class.has-error]="!r_password.pristine && !r_password.valid">
-            <label for="register_pwd" class="form-label">{{ 'signModal.password' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="r_password.pristine || r_password.valid">&nbsp;{{ 'signModal.passwordFlag' | translate }}</span></label>
-            <input #r_password="ngForm" [(ngModel)]="register.password" ngControl="r_password" class="form-control" id="register_pwd"
+        <div>
+          <div class="form-group" [class.has-error]="!registerForm.controls['r_password'].pristine && !registerForm.controls['r_password'].valid">
+            <label for="register_pwd" class="form-label">{{ 'signModal.password' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['r_password'].pristine || registerForm.controls['r_password'].valid">&nbsp;{{ 'signModal.passwordFlag' | translate }}</span></label>
+            <input [(ngModel)]="register.password" name="r_password" class="form-control" id="register_pwd"
+              formControlName="r_password"
               type="password" [attr.placeholder]="'signModal.passwordFlag' | translate">
-            <span [hidden]="r_password.pristine || !r_password.valid" class="xd xd-checkmark active"></span>
+            <span [hidden]="registerForm.controls['r_password'].pristine || !registerForm.controls['r_password'].valid" class="xd xd-checkmark active"></span>
           </div>
-          <div class="form-group" [class.has-error]="!r_rePassword.pristine && !r_rePassword.valid">
-            <label for="register_pwd" class="form-label">{{ 'signModal.rePassword' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="r_rePassword.pristine || r_rePassword.valid">&nbsp;{{ 'signModal.rePasswordFlag' | translate }}</span></label>
-            <input #r_rePassword="ngForm" ngControl="r_rePassword" class="form-control" id="register_pwd" type="password" [attr.placeholder]="'signModal.rePasswordFlag' | translate">
-            <span [hidden]="r_rePassword.pristine || !r_rePassword.valid" class="xd xd-checkmark active"></span>
+          <div class="form-group" [class.has-error]="!registerForm.controls['r_rePassword'].pristine && !registerForm.controls['r_rePassword'].valid">
+            <label for="register_pwd" class="form-label">{{ 'signModal.rePassword' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['r_rePassword'].pristine || registerForm.controls['r_rePassword'].valid">&nbsp;{{ 'signModal.rePasswordFlag' | translate }}</span></label>
+            <input name="r_rePassword" class="form-control" id="register_pwd"
+              formControlName="r_rePassword"
+              type="password" [attr.placeholder]="'signModal.rePasswordFlag' | translate">
+            <span [hidden]="registerForm.controls['r_rePassword'].pristine || !registerForm.controls['r_rePassword'].valid" class="xd xd-checkmark active"></span>
           </div>
         </div>
-        <div class="form-group" [class.has-error]="!nickname.pristine && !nickname.valid">
-          <label for="register_nickname" class="form-label">{{ 'signModal.nickName' | translate }}：<span class="tomato" [hidden]="nickname.pristine || nickname.valid">&nbsp;{{ 'signModal.nickNameFlag' | translate }}</span></label>
-          <input #nickname="ngForm" [(ngModel)]="register.nickname" ngControl="nickname" maxlength="10" class="form-control" id="register_nickname"
+        <div class="form-group" [class.has-error]="!registerForm.controls['nickname'].pristine && !registerForm.controls['nickname'].valid">
+          <label for="register_nickname" class="form-label">{{ 'signModal.nickName' | translate }}：<span class="tomato" [hidden]="registerForm.controls['nickname'].pristine || registerForm.controls['nickname'].valid">&nbsp;{{ 'signModal.nickNameFlag' | translate }}</span></label>
+          <input [(ngModel)]="register.nickname" name="nickname" class="form-control" id="register_nickname"
+            formControlName="nickname"
             type="text" [attr.placeholder]="'signModal.nickNameFlag' | translate">
-          <span [hidden]="!nickname.valid" class="xd xd-checkmark active"></span>
+          <span [hidden]="!registerForm.controls['nickname'].valid" class="xd xd-checkmark active"></span>
         </div>
       </article>
       <footer class="xd-footer">
-        <button [disabled]="!registerForm.valid || requesting" class="register-button main btn" type="submit">{{ 'signModal.register' | translate }}</button>
+        <button md-raised-button color="primary" [disabled]="!registerForm.valid || requesting" class="register-button" type="submit">{{ 'signModal.register' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = true">{{ 'signModal.signin' | translate }}</span>
       </footer>
       <i class="xd-modal-close xd-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>

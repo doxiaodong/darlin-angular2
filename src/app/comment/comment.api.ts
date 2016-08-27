@@ -53,4 +53,4 @@ class Api {
 
 }
 
-export var CommentApi = new Api();
+export const CommentApi = new Api();

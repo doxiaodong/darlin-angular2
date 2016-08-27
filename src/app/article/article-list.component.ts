@@ -4,28 +4,19 @@ import {
   OnDestroy
 } from '@angular/core';
 import {
-  ActivatedRoute,
-  ROUTER_DIRECTIVES
+  ActivatedRoute
 } from '@angular/router';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {TitleDirective} from '../title/title.directive';
 
 import {ArticleApi} from './article.api';
 
-import {ArticleCategoryComponent} from './category.component';
-import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
-import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'article-list',
   templateUrl: './article-list.template.html',
-  pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, ArticleCategoryComponent, PageAnimateDirective],
   animations: [
-    NgForAnimateFn(),
+    // NgForAnimateFn(),
     PageAnimateFn()
   ]
 })
@@ -50,7 +41,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           this.hasMore = false;
         }
 
-        let delay: number = 0;
+        // let delay: number = 0;
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
@@ -67,10 +58,11 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           //   r--;
           //   this.articles.push(article);
           // }
-          setTimeout(() => {
-            this.articles.push(article);
-          }, delay);
-          delay += 100;
+          this.articles.push(article);
+          // setTimeout(() => {
+          //   this.articles.push(article);
+          // }, delay);
+          // delay += 10;
 
         });
       });

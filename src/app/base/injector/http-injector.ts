@@ -25,7 +25,7 @@ let injector = ReflectiveInjector.resolveAndCreate([
     useClass: HttpInterceptor
   })
 ]);
-export var http = injector.get(Http);
+export const http = injector.get(Http);
 
 export class Dhttp {
 

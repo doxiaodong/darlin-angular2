@@ -14,6 +14,6 @@ if ('production' === ENV) {
   provider = new Provider('API_PREFIX', { useValue: '/api' });
 }
 
-export var ApiPrefix = ReflectiveInjector.resolveAndCreate([
+export const ApiPrefix = ReflectiveInjector.resolveAndCreate([
   provider
 ]);

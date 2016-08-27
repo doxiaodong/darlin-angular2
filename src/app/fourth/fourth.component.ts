@@ -1,15 +1,12 @@
 import {Component} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {TitleDirective} from '../title/title.directive';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
 import {LinksApi} from './links.api';
 import {
-  // Control,
-  ControlGroup,
+  FormGroup,
+  Validators,
   FormBuilder,
-  Validators
-} from '@angular/common';
+  REACTIVE_FORM_PROVIDERS
+} from '@angular/forms';
 
 const sha512 = require('crypto-js/sha512');
 const md5 = require('crypto-js/md5');
@@ -27,15 +24,16 @@ interface IGenpassword {
   styles: [
     require('./fourth.less')
   ],
-  pipes: [TranslatePipe],
-  directives: [PageAnimateDirective, TitleDirective],
+  providers: [
+    REACTIVE_FORM_PROVIDERS
+  ],
   animations: [
     PageAnimateFn()
   ]
 })
 
 export class FourthIndexComponent {
-  genPasswordForm: ControlGroup;
+  genPasswordForm: FormGroup;
 
   public gen: IGenpassword = {
     initPassword: '',
@@ -74,14 +72,11 @@ export class FourthIndexComponent {
     this.genPasswordForm = fb.group({
       initPassword: [
         '',
-        Validators.compose([
-          Validators.required
-        ])
+        Validators.required
       ],
       key: [
         '',
-        Validators.compose([
-        ])
+        []
       ]
     });
   }

@@ -2,26 +2,17 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-
-import {TitleDirective} from '../title/title.directive';
 
 import {ArticleApi} from '../article/article.api';
-import {XdDatePipe} from '../base/xd-date/xd-date.pipe';
-import {PageAnimateDirective} from '../page-animate/page-animate.directive';
 import {PageAnimateFn} from '../page-animate/page-animate';
-import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'index',
   templateUrl: './index.template.html',
-  pipes: [XdDatePipe, TranslatePipe],
-  directives: [ROUTER_DIRECTIVES, TitleDirective, PageAnimateDirective],
   animations: [
-    PageAnimateFn(),
-    NgForAnimateFn()
+    // NgForAnimateFn(),
+    PageAnimateFn()
   ]
 })
 
@@ -32,7 +23,7 @@ export class IndexComponent implements OnInit {
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
       .then(data => {
-        let delay: number = 0;
+        // let delay: number = 0;
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
@@ -42,10 +33,11 @@ export class IndexComponent implements OnInit {
             isUp: a.is_up,
             isHot: a.hot
           };
-          setTimeout(() => {
-            this.articles.push(article);
-          }, delay);
-          delay += 100;
+          this.articles.push(article);
+          // setTimeout(() => {
+          //   this.articles.push(article);
+          // }, delay);
+          // delay += 100;
         });
       });
 

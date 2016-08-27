@@ -78,24 +78,15 @@ module.exports = {
     // See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
     preLoaders: [
 
-      // Tslint loader support for *.ts files
-      //
-      // See: https://github.com/wbuchwalter/tslint-loader
-      // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('node_modules') ] },
-
-      // Source map loader support for *.js files
-      // Extracts SourceMaps for source files that as added as sourceMappingURL comment.
-      //
-      // See: https://github.com/webpack/source-map-loader
       {
-        test: /\.js$/,
-        loader: 'source-map-loader',
-        exclude: [
-          // these packages have problems with their sourcemaps
-          helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular2-material'),
-          helpers.root('node_modules/@angular')
-        ]
+        test: /\.ts$/,
+        loader: 'string-replace-loader',
+        query: {
+          search: '(System|SystemJS)(.*[\\n\\r]\\s*\\.|\\.)import\\((.+)\\)',
+          replace: '$1.import($3).then(mod => mod.__esModule ? mod.default : mod)',
+          flags: 'g'
+        },
+        include: [helpers.root('src')]
       }
 
     ],
@@ -111,7 +102,11 @@ module.exports = {
       // Typescript loader support for .ts and Angular 2 async routes via .async.ts
       //
       // See: https://github.com/s-panferov/awesome-typescript-loader
-      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: [/\.(spec|e2e)\.ts$/] },
+      { test: /\.ts$/, loaders: [
+        'awesome-typescript-loader',
+        'angular2-template-loader'
+        // '@angularclass/hmr-loader'
+        ], exclude: [/\.(spec|e2e)\.ts$/] },
 
       // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
       // {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
