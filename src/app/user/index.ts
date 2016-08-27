@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {BaseModule} from '../base';
+import {TranslateService} from 'ng2-translate/ng2-translate';
+import {AbTranslateService} from '../translate';
 
 import {SigninCheck} from './signin-check';
 
@@ -46,7 +48,14 @@ const RouteDeclarations = [
   ]
 })
 export class UserModule {
-
+  constructor(
+    ts: TranslateService
+  ) {
+    ts.use(AbTranslateService.lang);
+    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
+      ts.use(lang);
+    });
+  }
 }
 
 

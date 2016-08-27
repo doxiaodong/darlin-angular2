@@ -10,13 +10,13 @@ import {
 import {ArticleApi} from './article.api';
 
 import {PageAnimateFn} from '../page-animate/page-animate';
-import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'article-list',
   templateUrl: './article-list.template.html',
   animations: [
-    NgForAnimateFn(),
+    // NgForAnimateFn(),
     PageAnimateFn()
   ]
 })
@@ -58,10 +58,11 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           //   r--;
           //   this.articles.push(article);
           // }
-          setTimeout(() => {
-            this.articles.push(article);
-          }, delay);
-          delay += 100;
+          this.articles.push(article);
+          // setTimeout(() => {
+          //   this.articles.push(article);
+          // }, delay);
+          // delay += 10;
 
         });
       });

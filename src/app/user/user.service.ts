@@ -62,4 +62,4 @@ class User {
 
 }
 
-export var UserService = new User();
+export const UserService = new User();

@@ -6,6 +6,7 @@ import {
   TranslateService,
   LangChangeEvent
 } from 'ng2-translate/ng2-translate';
+import {AbTranslateService} from '../translate';
 
 import {LanguageInterface} from './language.interface';
 import {LocalStorageService} from '../base/local-storage/local-storage.service';
@@ -47,16 +48,15 @@ export class FooterComponent implements OnDestroy {
     if (!current) {
       current = 'zh_CN';
     }
-    this.translate.use(current);
+
 
     this.htmlElement = document.querySelector('html');
-    this.changeHtmlLang(current);
-
-    LocalStorageService.save('lang', current);
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       LocalStorageService.save('lang', event.lang);
       this.changeHtmlLang(event.lang);
+      AbTranslateService.setLang(event.lang);
     });
+    this.translate.use(current);
   }
 
   changeLanguage(lang: LanguageInterface) {

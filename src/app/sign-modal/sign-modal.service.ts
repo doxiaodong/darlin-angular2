@@ -15,4 +15,4 @@ class SignModal {
 
 }
 
-export var SignModalService = new SignModal();
+export const SignModalService = new SignModal();

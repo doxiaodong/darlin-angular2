@@ -15,4 +15,4 @@ class Api {
 
 }
 
-export var LinksApi = new Api();
+export const LinksApi = new Api();

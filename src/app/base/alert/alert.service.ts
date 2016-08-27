@@ -31,4 +31,4 @@ class Alert {
 
 }
 
-export var AlertService = new Alert();
+export const AlertService = new Alert();

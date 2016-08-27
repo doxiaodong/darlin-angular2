@@ -5,14 +5,14 @@ import {
 
 import {ArticleApi} from '../article/article.api';
 import {PageAnimateFn} from '../page-animate/page-animate';
-import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
 
 @Component({
   selector: 'index',
   templateUrl: './index.template.html',
   animations: [
-    PageAnimateFn(),
-    NgForAnimateFn()
+    // NgForAnimateFn(),
+    PageAnimateFn()
   ]
 })
 
@@ -33,10 +33,11 @@ export class IndexComponent implements OnInit {
             isUp: a.is_up,
             isHot: a.hot
           };
-          setTimeout(() => {
-            this.articles.push(article);
-          }, delay);
-          delay += 100;
+          this.articles.push(article);
+          // setTimeout(() => {
+          //   this.articles.push(article);
+          // }, delay);
+          // delay += 100;
         });
       });
 

@@ -140,4 +140,4 @@ class Api {
 
 }
 
-export var AccountApi = new Api();
+export const AccountApi = new Api();

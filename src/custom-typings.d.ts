@@ -16,7 +16,7 @@ declare module "my-module" {
  * If you're prototying and you will fix the types later you can also declare it as type any
  *
 
-declare var assert: any;
+declare const assert: any;
 
  *
  * If you're importing a module that uses Node.js modules which are CommonJS you need to import as
@@ -31,15 +31,15 @@ import * as _ from 'lodash'
 
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
-declare var ENV: string;
-declare var HMR: boolean;
+declare let ENV: string;
+declare let HMR: boolean;
 interface GlobalEnvironment {
   ENV;
   HMR;
   System;
 }
 
-declare var System: any;
+declare const System: any;
 
 interface WebpackModule {
   hot: {
