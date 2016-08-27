@@ -1,8 +1,4 @@
-import {
-  it,
-  inject,
-  describe
-} from '@angular/core/testing';
+import {inject} from '@angular/core/testing';
 
 import {
   PicUrl as pu

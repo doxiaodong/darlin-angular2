@@ -1,13 +1,10 @@
-import {
-  it,
-  inject
-} from '@angular/core/testing';
+import {inject} from '@angular/core/testing';
 
 import {
   checkDateFormat as cdf
 } from './check-date.fn';
 
-xdescribe('check-date.fn.ts return date format', () => {
+describe('check-date.fn.ts return date format', () => {
   let now = new Date('Mon Jun 27 2016 22:17:00 GMT+0800 (CST)');
 
   it('should return right format', inject([], () => {
