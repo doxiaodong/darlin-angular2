@@ -24,12 +24,20 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 export class ArticleListComponent implements OnInit, OnDestroy {
 
   public articles: Array<Object> = [];
+  public totalArticles: Array<Object> = [];
+  public searchArticle: string = '';
   private sub: any;
 
   public hasMore: boolean = false;
   public page: number = 1;
 
   public category: string;
+
+  changeSearch() {
+    this.articles = this.totalArticles.filter((article) => {
+      return article['title'].indexOf(this.searchArticle) !== -1;
+    });
+  }
 
   getMoreArticles() {
     ArticleApi.getArticleList(this.category, this.page)
@@ -58,7 +66,10 @@ export class ArticleListComponent implements OnInit, OnDestroy {
           //   r--;
           //   this.articles.push(article);
           // }
-          this.articles.push(article);
+          this.totalArticles.push(article);
+          if (article.title.indexOf(this.searchArticle) !== -1) {
+            this.articles.push(article);
+          }
           // setTimeout(() => {
           //   this.articles.push(article);
           // }, delay);
