@@ -1,8 +1,8 @@
 import {
   Directive,
   OnChanges
-} from '@angular/core';
-import {Title} from '@angular/platform-browser';
+} from '@angular/core'
+import { Title } from '@angular/platform-browser'
 
 @Directive({
   selector: '[title]',
@@ -14,7 +14,7 @@ import {Title} from '@angular/platform-browser';
 
 export class TitleDirective implements OnChanges {
 
-  t: string;
+  t: string
 
   constructor(
     private title: Title
@@ -22,7 +22,7 @@ export class TitleDirective implements OnChanges {
 
   ngOnChanges(changes) {
     if (changes.t) {
-      this.title.setTitle(changes.t.currentValue);
+      this.title.setTitle(changes.t.currentValue)
     }
   }
 

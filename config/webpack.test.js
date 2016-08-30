@@ -1,15 +1,15 @@
-var helpers = require('./helpers');
+const helpers = require('./helpers')
 
 /**
  * Webpack Plugins
  */
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin = require('webpack/lib/DefinePlugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin')
+const DefinePlugin = require('webpack/lib/DefinePlugin')
 
 /**
  * Webpack Constants
  */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+const ENV = process.env.ENV = process.env.NODE_ENV = 'test'
 
 /**
  * Webpack configuration
@@ -184,4 +184,4 @@ module.exports = {
     setImmediate: false
   }
 
-};
+}

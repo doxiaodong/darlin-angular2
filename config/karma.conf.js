@@ -1,5 +1,5 @@
 module.exports = function (config) {
-  var testWebpackConfig = require('./webpack.test.js');
+  const testWebpackConfig = require('./webpack.test.js')
 
   config.set({
 
@@ -64,6 +64,6 @@ module.exports = function (config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true
-  });
+  })
 
-};
+}

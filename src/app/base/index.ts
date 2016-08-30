@@ -1,30 +1,30 @@
 import {
   NgModule,
   ModuleWithProviders
-} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+} from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 import {
   FormsModule,
   ReactiveFormsModule
-} from '@angular/forms';
+} from '@angular/forms'
 import {
   HttpModule,
   Http
-} from '@angular/http';
+} from '@angular/http'
 import {
   TranslateModule,
   TranslateLoader,
   TranslateStaticLoader
-} from 'ng2-translate/ng2-translate';
-import {MdRadioModule} from '@angular2-material/radio/radio';
-import {MdButtonModule} from '@angular2-material/button/button';
-// import {MdListModule} from '@angular2-material/list/list';
+} from 'ng2-translate/ng2-translate'
+import { MdRadioModule } from '@angular2-material/radio/radio'
+import { MdButtonModule } from '@angular2-material/button/button'
+// import { MdListModule } from '@angular2-material/list/list'
 
 import {
   components,
   pipes,
   directives
-} from './base.declarations';
+} from './base.declarations'
 
 @NgModule({
   declarations: [
@@ -65,6 +65,6 @@ export class BaseModule {
       ngModule: BaseModule,
       providers: [
       ]
-    };
+    }
   }
 }

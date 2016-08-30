@@ -2,16 +2,15 @@ import {
   Component,
   OnInit,
   OnDestroy
-} from '@angular/core';
+} from '@angular/core'
 import {
   Router,
   ActivatedRoute
-} from '@angular/router';
+} from '@angular/router'
 
+import { ArticleApi } from './article.api'
 
-import {ArticleApi} from './article.api';
-
-import {PageAnimateFn} from '../page-animate/page-animate';
+import { PageAnimateFn } from '../page-animate/page-animate'
 
 @Component({
   selector: 'article-detail',
@@ -23,8 +22,8 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 export class ArticleDetailComponent implements OnInit, OnDestroy {
 
-  public article: Object;
-  private sub: any;
+  public article: Object
+  private sub: any
 
   getArticleDetail(url: string) {
     ArticleApi.getArticleDetail(url)
@@ -37,30 +36,28 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
           },
           createTime: data.create_time,
           content: data.content
-        };
+        }
 
-      });
-
+      })
   }
 
   constructor(
     private route: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.sub = this.route.params
       .subscribe(params => {
         if (params) {
-          let url = base64.Base64.decode(params['url']);
-          this.getArticleDetail(url);
+          let url = base64.Base64.decode(params['url'])
+          this.getArticleDetail(url)
         }
-      });
+      })
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub.unsubscribe()
   }
 
 }

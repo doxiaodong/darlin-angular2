@@ -3,20 +3,20 @@ import {
   Input,
   ViewEncapsulation,
   OnChanges
-} from '@angular/core';
+} from '@angular/core'
 import {
   DomSanitizationService,
   SafeHtml
-} from '@angular/platform-browser';
+} from '@angular/platform-browser'
 
-import {MarkedService} from './marked.service';
+import { MarkedService } from './marked.service'
 
-import * as emojione from 'emojione';
+import * as emojione from 'emojione'
 
-require('./markdown.global.less');
-require('./tomorrow.night.global.css');
-require('./highlight.number.global.less');
-require('emojione/assets/css/emojione.min.css'); // use node_modules
+require('./markdown.global.less')
+require('./tomorrow.night.global.css')
+require('./highlight.number.global.less')
+require('emojione/assets/css/emojione.min.css') // use node_modules
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -39,25 +39,25 @@ require('emojione/assets/css/emojione.min.css'); // use node_modules
 
 export class MarkedComponent implements OnChanges {
 
-  @Input() md: string;
+  @Input() md: string
 
-  private ms: any;
+  private ms: any
 
-  public html: SafeHtml = '';
+  public html: SafeHtml = ''
 
   constructor(
     private markedService: MarkedService,
     private sanitizer: DomSanitizationService
   ) {
 
-    this.ms = markedService.init();
+    this.ms = markedService.init()
 
   }
 
   ngOnChanges(changes) {
     if (changes.md !== undefined && this.ms) {
-      let emojiMd = emojione.toImage(this.md);
-      this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd));
+      let emojiMd = emojione.toImage(this.md)
+      this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
     }
   }
 

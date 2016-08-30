@@ -1,9 +1,9 @@
-var apply = require('./read-files');
-var jsonminify = require("jsonminify");
+const apply = require('./read-files')
+const jsonminify = require("jsonminify")
 
 function JsonMinifyPlugin(options) {
-  this.src = options.src;
-  this.dest = options.dest;
+  this.src = options.src
+  this.dest = options.dest
 }
 
 JsonMinifyPlugin.prototype.apply = function (compiler) {
@@ -15,11 +15,11 @@ JsonMinifyPlugin.prototype.apply = function (compiler) {
     method: JM
   })
 
-};
+}
 
-module.exports = JsonMinifyPlugin;
+module.exports = JsonMinifyPlugin
 
 function JM(context) {
-  // return context;
-  return jsonminify(context.toString());
+  // return context
+  return jsonminify(context.toString())
 }

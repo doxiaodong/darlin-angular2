@@ -3,12 +3,12 @@ import {
   ViewEncapsulation,
   OnInit,
   OnDestroy
-} from '@angular/core';
+} from '@angular/core'
 import {
   ActivatedRoute
-} from '@angular/router';
+} from '@angular/router'
 
-import {CategoryService} from './category.service';
+import { CategoryService } from './category.service'
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,43 +17,44 @@ import {CategoryService} from './category.service';
   styles: [
     require('./category.less')
   ],
-  providers: [CategoryService]
+  providers: [
+    CategoryService
+  ]
 })
 
 export class ArticleCategoryComponent implements OnInit, OnDestroy {
 
-  public categories: Array<Object> = [];
-  public articleCategory: string;
-  private sub: any;
+  public categories: Array<Object> = []
+  public articleCategory: string
+  private sub: any
 
   getCategories() {
 
-    this.categories = this.categoryService.getCategories();
+    this.categories = this.categoryService.getCategories()
 
   }
 
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
 
     this.sub = this.route.params
       .subscribe(params => {
         if (params) {
-          let category = params['category'];
-          this.articleCategory = category;
+          let category = params['category']
+          this.articleCategory = category
 
-          this.getCategories();
+          this.getCategories()
         }
-      });
+      })
 
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub.unsubscribe()
   }
 
 }

@@ -1,11 +1,11 @@
 import {
   Component,
   OnInit
-} from '@angular/core';
+} from '@angular/core'
 
-import {ArticleApi} from '../article/article.api';
-import {PageAnimateFn} from '../page-animate/page-animate';
-// import {NgForAnimateFn} from '../ngFor-animate/ngFor-animate';
+import { ArticleApi } from '../article/article.api'
+import { PageAnimateFn } from '../page-animate/page-animate'
+// import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
 
 @Component({
   selector: 'index',
@@ -18,12 +18,12 @@ import {PageAnimateFn} from '../page-animate/page-animate';
 
 export class IndexComponent implements OnInit {
 
-  public articles: Array<Object> = [];
+  public articles: Array<Object> = []
 
   getArticles(category: string) {
     ArticleApi.getArticleList(category)
       .then(data => {
-        // let delay: number = 0;
+        // let delay: number = 0
         data.results.map(a => {
           let article = {
             url: base64.Base64.encodeURI(a.url),
@@ -32,25 +32,24 @@ export class IndexComponent implements OnInit {
             category: a.category.url,
             isUp: a.is_up,
             isHot: a.hot
-          };
-          this.articles.push(article);
+          }
+          this.articles.push(article)
           // setTimeout(() => {
-          //   this.articles.push(article);
-          // }, delay);
-          // delay += 100;
-        });
-      });
+          //   this.articles.push(article)
+          // }, delay)
+          // delay += 100
+        })
+      })
 
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
 
-    let category = 'hot';
+    let category = 'hot'
 
-    this.getArticles(category);
+    this.getArticles(category)
 
   }
 

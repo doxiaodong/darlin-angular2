@@ -7,4 +7,4 @@ export const USER_NULL = {
   sex: 0, // male
   username: '',
   third: 'none'
-};
+}

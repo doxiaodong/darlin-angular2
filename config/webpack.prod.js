@@ -1,31 +1,31 @@
-var helpers = require('./helpers'); // Helper: root(), and rootDir() are defined at the bottom
-var webpackMerge = require('webpack-merge'); //Used to merge webpack configs
-var commonConfig = require('./webpack.common.js'); //The settings that are common to prod and dev
+const helpers = require('./helpers') // Helper: root(), and rootDir() are defined at the bottom
+const webpackMerge = require('webpack-merge') // Used to merge webpack configs
+const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
 
 /**
  * Webpack Plugins
  */
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin = require('webpack/lib/DefinePlugin');
-var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-var WebpackMd5Hash = require('webpack-md5-hash');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin')
+const DefinePlugin = require('webpack/lib/DefinePlugin')
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin')
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin')
+const WebpackMd5Hash = require('webpack-md5-hash')
 
-var ImageMinifyPlugin = require('./webpack-plugin/image-minify');
-var JsonMinifyPlugin = require('./webpack-plugin/json-minify');
+const ImageMinifyPlugin = require('./webpack-plugin/image-minify')
+const JsonMinifyPlugin = require('./webpack-plugin/json-minify')
 
 /**
  * Webpack Constants
  */
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production'
+const HOST = process.env.HOST || 'localhost'
+const PORT = process.env.PORT || 8080
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
   HMR: false
-});
+})
 
 module.exports = webpackMerge(commonConfig, {
   // Switch loaders to debug mode.
@@ -178,4 +178,4 @@ module.exports = webpackMerge(commonConfig, {
     clearImmediate: false,
     setImmediate: false
   }
-});
+})

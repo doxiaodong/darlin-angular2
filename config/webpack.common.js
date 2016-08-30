@@ -1,22 +1,21 @@
-
-var webpack = require('webpack');
-var helpers = require('./helpers');
+const webpack = require('webpack')
+const helpers = require('./helpers')
 
 /**
  * Webpack Plugins
  */
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 /**
  * Webpack Constants
  */
 const METADATA = {
   baseUrl: '/'
-};
+}
 
 /**
  * Webpack configuration
@@ -234,4 +233,4 @@ module.exports = {
     clearImmediate: false,
     setImmediate: false
   }
-};
+}
