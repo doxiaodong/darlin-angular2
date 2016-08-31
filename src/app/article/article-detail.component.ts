@@ -9,6 +9,7 @@ import {
 } from '@angular/router'
 
 import { ArticleApi } from './article.api'
+import { AbTranslateService } from '../translate'
 
 import { PageAnimateFn } from '../page-animate/page-animate'
 
@@ -24,6 +25,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   public article: Object
   private sub: any
+
+  public lang: string
 
   getArticleDetail(url: string) {
     ArticleApi.getArticleDetail(url)
@@ -47,6 +50,11 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
+      this.lang = lang
+    })
+
     this.sub = this.route.params
       .subscribe(params => {
         if (params) {

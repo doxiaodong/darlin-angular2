@@ -218,7 +218,10 @@ module.exports = {
         removeComments: true
       },
       chunksSortMode: 'dependency'
-    })
+    }),
+
+    // moment 语言包只加载 zh-cn
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
 
   ],
 

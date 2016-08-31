@@ -8,6 +8,7 @@ import {
 } from '@angular/router'
 
 import { ArticleApi } from './article.api'
+import { AbTranslateService } from '../translate'
 
 import { PageAnimateFn } from '../page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
@@ -28,6 +29,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   public searchArticle: string = ''
   private sub: any
 
+  public lang: string
   public hasMore: boolean = false
   public page: number = 1
 
@@ -90,6 +92,9 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
+      this.lang = lang
+    })
 
     this.sub = this.route.params
       .subscribe(params => {

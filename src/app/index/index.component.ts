@@ -3,6 +3,7 @@ import {
   OnInit
 } from '@angular/core'
 
+import { AbTranslateService } from '../translate'
 import { ArticleApi } from '../article/article.api'
 import { PageAnimateFn } from '../page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
@@ -18,6 +19,7 @@ import { PageAnimateFn } from '../page-animate/page-animate'
 
 export class IndexComponent implements OnInit {
 
+  public lang: string
   public articles: Array<Object> = []
 
   getArticles(category: string) {
@@ -46,6 +48,9 @@ export class IndexComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
+      this.lang = lang
+    })
 
     let category = 'hot'
 

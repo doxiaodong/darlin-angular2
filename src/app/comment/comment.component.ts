@@ -4,12 +4,10 @@ import {
   OnDestroy
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-
 import { AlertService } from '../base/alert/alert.service'
-
 import { CommentApi } from './comment.api'
-
 import { PicUrl } from '../base/pic-url/pic-url.service'
+import { AbTranslateService } from '../translate'
 
 @Component({
   selector: '[article-comments]',
@@ -20,6 +18,7 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   private sub: any
 
+  public lang: string
   public requesting: boolean = false
 
   public comments
@@ -154,6 +153,10 @@ export class CommentComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
+      this.lang = lang
+    })
 
     this.sub = this.route.params
       .subscribe(params => {

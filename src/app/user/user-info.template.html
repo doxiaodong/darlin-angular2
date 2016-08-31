@@ -14,7 +14,7 @@
       </div>
       <div class="sex">{{ profile.sex.word }}</div>
       <div class="email line">{{ 'pages.account.email' | translate }}：<a [href]="'mailto:' + profile.email">{{ profile.email }}</a></div>
-      <div class="last-login line">{{ 'pages.account.lastSignin' | translate }}：{{ profile.lastSignin | xdDate }}</div>
+      <div class="last-login line">{{ 'pages.account.lastSignin' | translate }}：{{ profile.lastSignin | xdDate: lang }}</div>
       <div *ngIf="itsMe" class="line">
         <button md-raised-button color="primary" (click)="signout()">{{ 'pages.account.signout' | translate }}</button>
       </div>
@@ -43,7 +43,7 @@
               <marked class="mes markdown" [md]="reply.content"></marked>
             </div>
             <div class="message">
-              <span class="time">{{ reply.time | xdDate }}</span>
+              <span class="time">{{ reply.time | xdDate: lang }}</span>
             </div>
           </div>
         </li>
@@ -73,7 +73,7 @@
               <marked class="mes markdown" [md]="reply.content"></marked>
             </div>
             <div class="message">
-              <span class="time">{{ reply.time | xdDate }}</span>
+              <span class="time">{{ reply.time | xdDate: lang }}</span>
             </div>
           </div>
         </li>

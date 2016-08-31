@@ -13,6 +13,7 @@ import { PageAnimateFn } from '../page-animate/page-animate'
 import { AccountApi } from '../base/account/account.api'
 import { CommentApi } from '../comment/comment.api'
 import { PicUrl } from '../base/pic-url/pic-url.service'
+import { AbTranslateService } from '../translate'
 
 @Component({
   selector: 'user-info',
@@ -26,6 +27,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   private sub: any
 
+  public lang: string
   public encode: Function = base64.Base64.encodeURI
   public itsMe: boolean = false
   public replies: any[] = []
@@ -140,6 +142,10 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
+      this.lang = lang
+    })
+
     this.signout = () => {
       AccountApi.signout().then(() => {
         UserService.clear()

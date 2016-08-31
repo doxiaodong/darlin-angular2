@@ -59,8 +59,8 @@
     "@angular/router": "github:gdi2290/router-builds",
     "@angular2-material/button": "^2.0.0-alpha.7",
     "@angular2-material/core": "^2.0.0-alpha.7",
-    "@angular2-material/radio": "^2.0.0-alpha.7",
     "@angular2-material/list": "^2.0.0-alpha.7",
+    "@angular2-material/radio": "^2.0.0-alpha.7",
     "core-js": "^2.4.1",
     "crypto-js": "^3.1.6",
     "emojione": "^2.2.6",
@@ -68,6 +68,7 @@
     "intl": "^1.2.4",
     "js-base64": "^2.1.9",
     "marked": "^0.3.5",
+    "moment": "^2.14.1",
     "ng2-translate": "^2.4.2",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "0.6.17"
