@@ -15,7 +15,7 @@
         <li class="article" *ngFor="let article of articles">
           <a class="a" [routerLink]="['/article', article.category, article.url]">
             <div class="title">
-              <span class="top" *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
+              <span class="badge" *ngIf="article.isUp">{{ 'pages.article.isUp' | translate }}</span>{{ article.title }}
             </div>
             <div class="time">{{ article.createTime | xdDate: lang }}</div>
           </a>
