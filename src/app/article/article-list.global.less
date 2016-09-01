@@ -69,10 +69,14 @@
           .a {
             .display-flex;
             .title {
-              .a:hover {
-                .transform-translate3d(1px, 0, 0);
-                display: inline-block;
+              .top {
+		color: darken(rgb(255, 255, 255), 10%);
+		background: @active_color;
+		padding: 6px;
+		border-radius: 4px;
+		margin-right: 10px;
               }
+            }
               .flex(1);
             }
             .time {
@@ -83,7 +87,8 @@
             }
           }
         }
-      }
+      
+}
       .replies {
         font-size: 14px;
         .each-reply {
