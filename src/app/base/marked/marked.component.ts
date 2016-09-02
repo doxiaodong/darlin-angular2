@@ -5,7 +5,7 @@ import {
   OnChanges
 } from '@angular/core'
 import {
-  DomSanitizationService,
+  DomSanitizer,
   SafeHtml
 } from '@angular/platform-browser'
 
@@ -47,7 +47,7 @@ export class MarkedComponent implements OnChanges {
 
   constructor(
     private markedService: MarkedService,
-    private sanitizer: DomSanitizationService
+    private sanitizer: DomSanitizer
   ) {
 
     this.ms = markedService.init()

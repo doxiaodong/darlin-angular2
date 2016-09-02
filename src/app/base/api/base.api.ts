@@ -1,4 +1,4 @@
-import { ApiPrefix } from '../api-prefix/api-prefix.service'
+import API_PREFIX from '../api-prefix/api-prefix.service'
 import { Dhttp } from '../injector/http-injector'
 
 class Api {
@@ -10,7 +10,7 @@ class Api {
   }
 
   constructor() {
-    this.prefix = ApiPrefix.get('API_PREFIX')
+    this.prefix = API_PREFIX
   }
 
 }

@@ -1,19 +1,12 @@
-import {
-  ReflectiveInjector,
-  Provider
-} from '@angular/core'
-
-let provider: any
+let API_PREFIX: string = ''
 
 if ('production' === ENV) {
   // Production
-  provider = new Provider('API_PREFIX', { useValue: 'https://api.darlin.me' })
+  API_PREFIX = 'https://api.darlin.me'
 
 } else {
   // Development
-  provider = new Provider('API_PREFIX', { useValue: '/api' })
+  API_PREFIX = '/api'
 }
 
-export const ApiPrefix = ReflectiveInjector.resolveAndCreate([
-  provider
-])
+export default API_PREFIX

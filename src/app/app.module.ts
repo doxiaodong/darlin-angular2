@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { BrowserModule } from '@angular/platform-browser'
 
 import { BaseModule } from './base'
 
@@ -28,6 +29,7 @@ import {
     ...directives
   ],
   imports: [
+    BrowserModule,
     BaseModule,
 
     RouterModule.forRoot(ROUTES)

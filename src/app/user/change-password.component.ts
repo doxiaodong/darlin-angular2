@@ -5,8 +5,7 @@ import {
 import {
   FormGroup,
   Validators,
-  FormBuilder,
-  REACTIVE_FORM_PROVIDERS
+  FormBuilder
 } from '@angular/forms'
 import { Router } from '@angular/router'
 import { UserService } from './user.service'
@@ -18,9 +17,6 @@ import { AccountApi } from '../base/account/account.api'
 @Component({
   selector: 'change-password',
   templateUrl: './change-password.template.html',
-  providers: [
-    REACTIVE_FORM_PROVIDERS
-  ],
   animations: [
     PageAnimateFn()
   ]

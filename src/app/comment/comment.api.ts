@@ -1,4 +1,4 @@
-import { ApiPrefix } from '../base/api-prefix/api-prefix.service'
+import API_PREFIX from '../base/api-prefix/api-prefix.service'
 import { Headers } from '@angular/http'
 
 import {
@@ -48,7 +48,7 @@ class Api {
   }
 
   constructor() {
-    this.prefix = ApiPrefix.get('API_PREFIX')
+    this.prefix = API_PREFIX
   }
 
 }

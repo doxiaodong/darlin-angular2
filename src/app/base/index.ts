@@ -2,7 +2,7 @@ import {
   NgModule,
   ModuleWithProviders
 } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
+import { CommonModule } from '@angular/common'
 import {
   FormsModule,
   ReactiveFormsModule
@@ -35,7 +35,7 @@ import {
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
+    CommonModule,
     HttpModule,
     MdRadioModule,
     TranslateModule.forRoot({
@@ -47,7 +47,7 @@ import {
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
+    CommonModule,
     HttpModule,
     MdRadioModule,
     MdButtonModule,

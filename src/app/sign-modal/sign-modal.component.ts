@@ -6,8 +6,7 @@ import {
   FormGroup,
   Validators,
   FormBuilder,
-  FormControl,
-  REACTIVE_FORM_PROVIDERS
+  FormControl
 } from '@angular/forms'
 
 import { UserInterface } from '../user/user.interface'
@@ -36,9 +35,6 @@ interface RegisterInterface {
   templateUrl: './sign-modal.template.html',
   styles: [
     require('./sign-modal.less')
-  ],
-  providers: [
-    REACTIVE_FORM_PROVIDERS
   ]
 })
 export class SignModalComponent implements OnInit {

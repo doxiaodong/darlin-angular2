@@ -5,8 +5,7 @@ import {
 import {
   FormGroup,
   Validators,
-  FormBuilder,
-  REACTIVE_FORM_PROVIDERS
+  FormBuilder
 } from '@angular/forms'
 import { Router } from '@angular/router'
 
@@ -20,9 +19,6 @@ import { PicUrl } from '../base/pic-url/pic-url.service'
 @Component({
   selector: 'setting',
   templateUrl: './setting.template.html',
-  providers: [
-    REACTIVE_FORM_PROVIDERS
-  ],
   animations: [
     PageAnimateFn()
   ]

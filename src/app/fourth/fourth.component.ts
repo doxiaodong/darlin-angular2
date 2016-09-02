@@ -4,8 +4,7 @@ import { LinksApi } from './links.api'
 import {
   FormGroup,
   Validators,
-  FormBuilder,
-  REACTIVE_FORM_PROVIDERS
+  FormBuilder
 } from '@angular/forms'
 
 const sha512 = require('crypto-js/sha512')
@@ -23,9 +22,6 @@ interface IGenpassword {
   templateUrl: './fourth.template.html',
   styles: [
     require('./fourth.less')
-  ],
-  providers: [
-    REACTIVE_FORM_PROVIDERS
   ],
   animations: [
     PageAnimateFn()
