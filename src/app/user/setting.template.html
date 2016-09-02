@@ -11,7 +11,7 @@
         <article class="xd-article">
           <div class="form-group" [class.has-error]="!settingForm.controls['username'].pristine && !settingForm.controls['username'].valid">
             <label class="form-label" for="setting_username">{{ 'pages.account.username' | translate }}：<span class="tomato" [hidden]="settingForm.controls['username'].pristine || settingForm.controls['username'].valid">*{{ 'signModal.usernameFlag' | translate }}</span></label>
-            <input class="form-control" [disabled]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
+            <input class="form-control" [readonly]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
               formControlName="username"
               id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
             <span [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" class="xd xd-checkmark active"></span>
