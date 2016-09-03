@@ -1,15 +1,15 @@
 import {
   Component,
   OnDestroy
-} from '@angular/core';
+} from '@angular/core'
 import {
   TranslateService,
   LangChangeEvent
-} from 'ng2-translate/ng2-translate';
-import {AbTranslateService} from '../translate';
+} from 'ng2-translate/ng2-translate'
+import { AbTranslateService } from '../translate'
 
-import {LanguageInterface} from './language.interface';
-import {LocalStorageService} from '../base/local-storage/local-storage.service';
+import { LanguageInterface } from './language.interface'
+import { LocalStorageService } from '../base/local-storage/local-storage.service'
 
 @Component({
   selector: '[footer]',
@@ -21,65 +21,64 @@ import {LocalStorageService} from '../base/local-storage/local-storage.service';
 
 export class FooterComponent implements OnDestroy {
 
-  public langs: Array<LanguageInterface>;
+  public langs: Array<LanguageInterface>
 
-  public show: boolean = false;
+  public show: boolean = false
 
-  public selectedKey: string;
+  public selectedKey: string
 
-  private htmlElement;
+  private htmlElement
 
   changeHtmlLang(current) {
-    let l: string;
+    let l: string
     switch (current) {
       case 'en_US':
-        l = 'en';
-        break;
+        l = 'en'
+        break
       default:
-        l = 'zh-cmn-Hans';
+        l = 'zh-cmn-Hans'
     }
 
-    this.htmlElement.setAttribute('lang', l);
+    this.htmlElement.setAttribute('lang', l)
   }
 
   translateInit() {
-    LocalStorageService.setPrefix('xd.');
-    let current = LocalStorageService.get('lang');
+    LocalStorageService.setPrefix('xd.')
+    let current = LocalStorageService.get('lang')
     if (!current) {
-      current = 'zh_CN';
+      current = 'zh_CN'
     }
 
-
-    this.htmlElement = document.querySelector('html');
+    this.htmlElement = document.querySelector('html')
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      LocalStorageService.save('lang', event.lang);
-      this.changeHtmlLang(event.lang);
-      AbTranslateService.setLang(event.lang);
-    });
-    this.translate.use(current);
+      LocalStorageService.save('lang', event.lang)
+      this.changeHtmlLang(event.lang)
+      AbTranslateService.setLang(event.lang)
+    })
+    this.translate.use(current)
   }
 
   changeLanguage(lang: LanguageInterface) {
-    this.selectedKey = lang.key;
-    this.translate.use(this.selectedKey);
-    this.show = false;
+    this.selectedKey = lang.key
+    this.translate.use(this.selectedKey)
+    this.show = false
   }
 
   closeSelector() {
-    this.show = false;
+    this.show = false
   }
 
   clickEvent() {
-    document.addEventListener('click', this.closeSelector);
+    document.addEventListener('click', this.closeSelector)
   }
 
   constructor(
     private translate: TranslateService
   ) {
 
-    this.translateInit();
+    this.translateInit()
 
-    this.selectedKey = LocalStorageService.get('lang');
+    this.selectedKey = LocalStorageService.get('lang')
 
     this.langs = [{
       key: 'zh_CN',
@@ -87,13 +86,13 @@ export class FooterComponent implements OnDestroy {
     }, {
         key: 'en_US',
         word: 'English'
-      }];
+      }]
 
-    this.clickEvent();
+    this.clickEvent()
   }
 
   ngOnDestroy() {
-    document.removeEventListener('click', this.closeSelector);
+    document.removeEventListener('click', this.closeSelector)
   }
 
 }

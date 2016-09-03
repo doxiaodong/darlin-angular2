@@ -9,14 +9,14 @@ typings install node --save
  * this file for now. For example
 
 declare module "my-module" {
-  export function doesSomething(value: string): string;
+  export function doesSomething(value: string): string
 }
 
  *
  * If you're prototying and you will fix the types later you can also declare it as type any
  *
 
-declare const assert: any;
+declare const assert: any
 
  *
  * If you're importing a module that uses Node.js modules which are CommonJS you need to import as
@@ -29,43 +29,40 @@ import * as _ from 'lodash'
  *
  */
 
-
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
-declare let ENV: string;
-declare let HMR: boolean;
+declare let ENV: string
+declare let HMR: boolean
 interface GlobalEnvironment {
-  ENV;
-  HMR;
-  System;
+  ENV
+  HMR
+  System
 }
 
-declare const System: any;
+declare const System: any
 
 interface WebpackModule {
   hot: {
     data?: any,
     idle: any,
-    accept(dependencies?: string | string[], callback?: (updatedDependencies?: any) => void): void;
-    decline(dependencies?: string | string[]): void;
-    dispose(callback?: (data?: any) => void): void;
-    addDisposeHandler(callback?: (data?: any) => void): void;
-    removeDisposeHandler(callback?: (data?: any) => void): void;
-    check(autoApply?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void;
-    apply(options?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void;
-    status(callback?: (status?: string) => void): void | string;
-    removeStatusHandler(callback?: (status?: string) => void): void;
-  };
+    accept(dependencies?: string | string[], callback?: (updatedDependencies?: any) => void): void
+    decline(dependencies?: string | string[]): void
+    dispose(callback?: (data?: any) => void): void
+    addDisposeHandler(callback?: (data?: any) => void): void
+    removeDisposeHandler(callback?: (data?: any) => void): void
+    check(autoApply?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void
+    apply(options?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void
+    status(callback?: (status?: string) => void): void | string
+    removeStatusHandler(callback?: (status?: string) => void): void
+  }
 }
 
 interface WebpackRequire {
-  context(file: string, flag?: boolean, exp?: RegExp): any;
+  context(file: string, flag?: boolean, exp?: RegExp): any
 }
-
 
 interface ErrorStackTraceLimit {
-  stackTraceLimit: number;
+  stackTraceLimit: number
 }
-
 
 // Extend typings
 interface NodeRequire extends WebpackRequire {}
@@ -73,10 +70,9 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
 
-
 // Set global value in ./global.js
 interface GlobalValue {
-  PIC_STATIC_URL_HOST: string;
+  PIC_STATIC_URL_HOST: string
 }
 
-declare let GLOBAL_VALUE: GlobalValue;
+declare let GLOBAL_VALUE: GlobalValue

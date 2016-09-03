@@ -3,15 +3,15 @@ import {
   Input,
   OnInit,
   OnChanges
-} from '@angular/core';
+} from '@angular/core'
 
-import {AlertService} from './alert.service';
+import { AlertService } from './alert.service'
 
 interface AlertInterface {
-  title: string;
-  ok: string;
-  content: string;
-  callback: Function;
+  title: string
+  ok: string
+  content: string
+  callback: Function
 }
 
 @Component({
@@ -24,21 +24,20 @@ interface AlertInterface {
 
 export class AlertComponent implements OnInit, OnChanges {
 
-  public opts: AlertInterface;
-  public showAlert: boolean = false;
+  public opts: AlertInterface
+  public showAlert: boolean = false
 
-  @Input() alertTitle: string;
-  @Input() alertOk: string;
+  @Input() alertTitle: string
+  @Input() alertOk: string
 
   closeAlert() {
-    this.showAlert = false;
+    this.showAlert = false
     if (this.opts.callback) {
-      this.opts.callback();
+      this.opts.callback()
     }
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
 
@@ -48,20 +47,20 @@ export class AlertComponent implements OnInit, OnChanges {
         ok: _opts.ok ? _opts.ok : this.alertOk,
         content: _opts.content,
         callback: _opts.callback
-      };
+      }
       if (!this.opts.title) {
-        this.opts.title = 'Alert';
+        this.opts.title = 'Alert'
       }
       if (!this.opts.ok) {
-        this.opts.ok = 'Ok';
+        this.opts.ok = 'Ok'
       }
-      this.showAlert = true;
-    });
+      this.showAlert = true
+    })
 
   }
 
   ngOnChanges(changes) {
-    // console.log(changes);
+    // console.log(changes)
   }
 
 }

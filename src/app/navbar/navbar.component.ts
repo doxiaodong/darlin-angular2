@@ -3,65 +3,61 @@ import {
   // Output,
   // EventEmitter,
   OnInit
-} from '@angular/core';
+} from '@angular/core'
 import {
-  ROUTER_DIRECTIVES,
   Router,
   NavigationStart,
   NavigationCancel,
   NavigationError,
   NavigationEnd
-} from '@angular/router';
+} from '@angular/router'
 
-import {UserInterface} from '../user/user.interface';
-import {USER_NULL} from '../user/user.null';
-import {UserService} from '../user/user.service';
-import {AccountApi} from '../base/account/account.api';
-import {SignModalService} from '../sign-modal/sign-modal.service';
-import {LoadingService} from '../base/loading/loading.service';
+import { UserInterface } from '../user/user.interface'
+import { USER_NULL } from '../user/user.null'
+import { UserService } from '../user/user.service'
+import { AccountApi } from '../base/account/account.api'
+import { SignModalService } from '../sign-modal/sign-modal.service'
+import { LoadingService } from '../base/loading/loading.service'
 
 @Component({
   selector: '[navbar]',
   templateUrl: './navbar.template.html',
   styles: [
     require('./navbar.less')
-  ],
-  directives: [
-    ROUTER_DIRECTIVES
   ]
 })
 export class NavbarComponent implements OnInit {
-  public index: number = 0;
-  public user: UserInterface = USER_NULL;
-  public isSignin: boolean = false;
+  public index: number = 0
+  public user: UserInterface = USER_NULL
+  public isSignin: boolean = false
 
-  // @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter();
+  // @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter()
 
   signIn() {
-    SignModalService.show();
+    SignModalService.show()
   }
 
   signOut() {
-    // console.log('signout');
+    // console.log('signout')
     AccountApi.signout()
       .then(data => {
-        this.user = UserService.clear();
-      });
-    // this.userInfoUpdateEmitter.emit(this.user);
+        this.user = UserService.clear()
+      })
+    // this.userInfoUpdateEmitter.emit(this.user)
   }
 
   configIndexNumber(path: string) {
     if (path === '/') {
-      this.index = 0;
+      this.index = 0
     }
     if (/^\/article\//.test(path)) {
-      this.index = 1;
+      this.index = 1
     }
     if (/^\/account\//.test(path)) {
-      this.index = 2;
+      this.index = 2
     }
     if (/^\/self\//.test(path)) {
-      this.index = 3;
+      this.index = 3
     }
   }
 
@@ -73,30 +69,30 @@ export class NavbarComponent implements OnInit {
 
     UserService.get()
       .then(userInfo => {
-        this.user = UserService.save(userInfo);
-        this.isSignin = UserService.isSignin();
-      });
+        this.user = UserService.save(userInfo)
+        this.isSignin = UserService.isSignin()
+      })
 
     UserService.updateUser$.subscribe(userInfo => {
-      this.user = userInfo;
-      this.isSignin = UserService.isSignin();
-    });
+      this.user = userInfo
+      this.isSignin = UserService.isSignin()
+    })
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.configIndexNumber(val.url);
+        this.configIndexNumber(val.url)
       }
       if (val instanceof NavigationStart) {
-        LoadingService.show();
+        LoadingService.show()
       }
       if (
         val instanceof NavigationCancel ||
         val instanceof NavigationError ||
         val instanceof NavigationEnd
       ) {
-        LoadingService.hide();
+        LoadingService.hide()
       }
-    });
+    })
 
   }
 

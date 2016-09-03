@@ -1,19 +1,20 @@
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { BrowserModule } from '@angular/platform-browser'
 
-import {BaseModule} from './base';
+import { BaseModule } from './base'
 
 import {
   ROUTES,
   RouteDeclarations
-} from './app.routes';
-import {RootAppComponent} from './app.component';
+} from './app.routes'
+import { RootAppComponent } from './app.component'
 
 import {
   components,
   pipes,
   directives
-} from './app.declarations';
+} from './app.declarations'
 
 @NgModule({
   bootstrap: [
@@ -28,6 +29,7 @@ import {
     ...directives
   ],
   imports: [
+    BrowserModule,
     BaseModule,
 
     RouterModule.forRoot(ROUTES)

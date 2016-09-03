@@ -1,22 +1,21 @@
-
-var webpack = require('webpack');
-var helpers = require('./helpers');
+const webpack = require('webpack')
+const helpers = require('./helpers')
 
 /**
  * Webpack Plugins
  */
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 /**
  * Webpack Constants
  */
 const METADATA = {
   baseUrl: '/'
-};
+}
 
 /**
  * Webpack configuration
@@ -109,15 +108,27 @@ module.exports = {
         ], exclude: [/\.(spec|e2e)\.ts$/] },
 
       // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
-      // {test: /\.font\.(js|json)$/, loader: "raw-loader!fontgen?embed"},
-      { test: /\.font\.json$/, loader: ExtractTextPlugin.extract("style", ["css", "fontgen"]) },
+      // {test: /\.font\.(js|json)$/, loader: 'raw-loader!fontgen?embed'},
+      {
+        test: /\.font\.json$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: 'css?minimize!fontgen'
+        })
+      },
 
       // Json loader support for *.json files.
       //
       // See: https://github.com/webpack/json-loader
       { test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/] },
 
-      { test: /(global|\.min)\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss") },
+      {
+        test: /(global|\.min)\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: 'css?minimize!postcss'
+        })
+      },
 
       // Raw loader support for *.css files
       // Returns file content as string
@@ -125,9 +136,15 @@ module.exports = {
       // See: https://github.com/webpack/raw-loader
       { test: /\.css$/, loader: 'raw-loader!postcss', exclude: [/(global|\.min)\.css$/] },
 
-      { test: /global\.less$/, loader: ExtractTextPlugin.extract("style", "css!postcss!less") },
+      {
+        test: /global\.less$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: 'css?minimize!postcss!less'
+        })
+      },
 
-      { test: /\.less$/, loader: "raw-loader!postcss!less", exclude: [/global\.less$/] },
+      { test: /\.less$/, loader: 'raw-loader!postcss!less', exclude: [/global\.less$/] },
 
       // Raw loader support for *.html
       // Returns file content as string
@@ -171,21 +188,13 @@ module.exports = {
       // sha512: 'crypto-js/sha512'
     }),
 
-    new ExtractTextPlugin(helpers.static + "main.[hash].css"),
+    new ExtractTextPlugin(helpers.static + 'main.[hash].css'),
 
     // Plugin: ForkCheckerPlugin
     // Description: Do type checking in a separate process, so webpack don't need to wait.
     //
     // See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
     new ForkCheckerPlugin(),
-
-    // Plugin: OccurenceOrderPlugin
-    // Description: Varies the distribution of the ids to get the smallest id length
-    // for often used ids.
-    //
-    // See: https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
-    // See: https://github.com/webpack/docs/wiki/optimization#minimize
-    new webpack.optimize.OccurenceOrderPlugin(true),
 
     // Plugin: CommonsChunkPlugin
     // Description: Shares common code between the pages.
@@ -219,7 +228,10 @@ module.exports = {
         removeComments: true
       },
       chunksSortMode: 'dependency'
-    })
+    }),
+
+    // moment 语言包只加载 zh-cn
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
 
   ],
 
@@ -234,4 +246,4 @@ module.exports = {
     clearImmediate: false,
     setImmediate: false
   }
-};
+}

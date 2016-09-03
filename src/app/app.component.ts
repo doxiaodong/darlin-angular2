@@ -1,12 +1,11 @@
 import {
   Component,
-  ViewEncapsulation,
-  OnInit
-} from '@angular/core';
+  ViewEncapsulation
+} from '@angular/core'
 
-require('../../config/icon.font.json');
-require('./base/styles/global.less');
-require('./article/article-list.global.less');
+require('../../config/icon.font.json')
+require('./base/styles/global.less')
+require('./article/article-list.global.less')
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -18,16 +17,12 @@ require('./article/article-list.global.less');
     // require('./article/article-list.less')
   ]
 })
-export class RootAppComponent implements OnInit {
+export class RootAppComponent {
 
   // onUserInfoUpdate(userInfo) {
-  //   console.log('@output: ${userInfo}', userInfo);
+  //   console.log('@output: ${userInfo}', userInfo)
   // }
 
-  constructor() { }
-
-  ngOnInit() {
-
-  }
+  constructor() {}
 
 }

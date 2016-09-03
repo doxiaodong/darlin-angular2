@@ -1,8 +1,8 @@
 import {
   Component,
   OnInit
-} from '@angular/core';
-import {LoadingService} from './loading.service';
+} from '@angular/core'
+import { LoadingService } from './loading.service'
 
 @Component({
   selector: 'loading',
@@ -18,10 +18,10 @@ import {LoadingService} from './loading.service';
 
 export class LoadingComponent implements OnInit {
 
-  public loading: any;
+  public loading: any
 
   ngOnInit() {
-    this.loading = LoadingService;
+    this.loading = LoadingService
   }
 
   constructor() {

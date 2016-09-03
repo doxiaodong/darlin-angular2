@@ -54,7 +54,7 @@
       "commentPlaceholder": "Write your opinions~ and markdown is supported",
       "comment": "Comment",
       "none": "No articles",
-      "isUp": "[TOP] "
+      "isUp": "TOP"
     },
     "account": {
       "infoTitle": "Account Center",
@@ -84,8 +84,8 @@
     "fourth": {
       "links": "Links",
       "type": {
-        "blog": "[Blog]",
-        "shop": "[Shop]"
+        "blog": "Blog",
+        "shop": "Shop"
       },
       "genPassword": "Generate Password",
       "initPassword": "Base Password",

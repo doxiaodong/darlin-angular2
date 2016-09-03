@@ -7,4 +7,4 @@ export const USER = {
   sex: 0, // male
   username: 'duxiaodong',
   third: 'github'
-};
+}

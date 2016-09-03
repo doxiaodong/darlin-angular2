@@ -1,65 +1,64 @@
-import {Subject} from 'rxjs/Subject';
-import {UserInterface} from './user.interface';
-import {USER_NULL} from './user.null';
+import { Subject } from 'rxjs/Subject'
+import { UserInterface } from './user.interface'
+import { USER_NULL } from './user.null'
 
-import {BaseApi} from '../base/api/base.api';
-
+import { BaseApi } from '../base/api/base.api'
 
 class User {
 
-  private _updateUser = new Subject<UserInterface>();
-  private hasGotUserInfoBefore: boolean = false;
-  updateUser$ = this._updateUser.asObservable();
+  private _updateUser = new Subject<UserInterface>()
+  private hasGotUserInfoBefore: boolean = false
+  updateUser$ = this._updateUser.asObservable()
 
-  private userInfo: UserInterface = USER_NULL;
+  private userInfo: UserInterface = USER_NULL
 
   save(userInfo: UserInterface): UserInterface {
     if (!userInfo) {
-      userInfo = USER_NULL;
+      userInfo = USER_NULL
     }
-    this.userInfo = userInfo;
-    this.updateSubject();
+    this.userInfo = userInfo
+    this.updateSubject()
 
-    return this.userInfo;
+    return this.userInfo
   }
 
   get(): any {
     if (this.isSignin() || this.hasGotUserInfoBefore) {
-      return Promise.resolve(this.userInfo);
+      return Promise.resolve(this.userInfo)
     } else {
       return this.getFromApi().then(userInfo => {
-        this.hasGotUserInfoBefore = true;
-        return Promise.resolve(this.userInfo);
-      });
+        this.hasGotUserInfoBefore = true
+        return Promise.resolve(this.userInfo)
+      })
     }
   }
 
   clear(): UserInterface {
-    return this.save(USER_NULL);
+    return this.save(USER_NULL)
   }
 
   getFromApi(): any {
     return BaseApi.overview()
       .then(userInfo => {
-        this.save(userInfo.user);
-        return Promise.resolve(this.userInfo);
+        this.save(userInfo.user)
+        return Promise.resolve(this.userInfo)
       }).catch(() => {
-        return Promise.resolve(this.userInfo);
-      });
+        return Promise.resolve(this.userInfo)
+      })
   }
 
   isSignin(): boolean {
-    let u = this.userInfo;
+    let u = this.userInfo
     if (!u || u.id === -1) {
-      return false;
+      return false
     }
-    return true;
+    return true
   }
 
   updateSubject(): void {
-    this._updateUser.next(this.userInfo);
+    this._updateUser.next(this.userInfo)
   }
 
 }
 
-export const UserService = new User();
+export const UserService = new User()

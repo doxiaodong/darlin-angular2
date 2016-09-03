@@ -1,7 +1,7 @@
-"use strict"; // es6 need strict
+"use strict" // es6 need strict
 
-var path = require('path');
-var Imagemin = require('imagemin');
+const path = require('path')
+const Imagemin = require('imagemin')
 
 class ImageMinifyPlugin {
 
@@ -9,8 +9,8 @@ class ImageMinifyPlugin {
 
     // v5.0
     Imagemin([path.join(this.src, '**/*.{gif,jpg,png,svg}')], this.dest).then(files => {
-      console.log(' image minify');
-    });
+      console.log(' image minify')
+    })
 
     // v4.0
     // new Imagemin()
@@ -18,15 +18,15 @@ class ImageMinifyPlugin {
     // .dest(this.dest)
     // .use(Imagemin.jpegtran({progressive: true}))
     // .run((err, files) => {
-    //     console.log(' image minify');
-    // });
+    //     console.log(' image minify')
+    // })
   }
 
   constructor(options) {
-    this.src = options.src;
-    this.dest = options.dest;
+    this.src = options.src
+    this.dest = options.dest
   }
 
 }
 
-module.exports = ImageMinifyPlugin;
+module.exports = ImageMinifyPlugin

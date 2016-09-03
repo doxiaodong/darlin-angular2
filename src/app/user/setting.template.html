@@ -11,7 +11,7 @@
         <article class="xd-article">
           <div class="form-group" [class.has-error]="!settingForm.controls['username'].pristine && !settingForm.controls['username'].valid">
             <label class="form-label" for="setting_username">{{ 'pages.account.username' | translate }}：<span class="tomato" [hidden]="settingForm.controls['username'].pristine || settingForm.controls['username'].valid">*{{ 'signModal.usernameFlag' | translate }}</span></label>
-            <input class="form-control" [disabled]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
+            <input class="form-control" [readonly]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
               formControlName="username"
               id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
             <span [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" class="xd xd-checkmark active"></span>
@@ -30,14 +30,14 @@
               type="text" [attr.placeholder]="'pages.account.nickname' | translate">
             <span [hidden]="settingForm.controls['nickname'].pristine || !settingForm.controls['nickname'].valid" class="xd xd-checkmark active"></span>
           </div>
-          <div class="form-group" id="setting_sex">
+          <!-- There is bug with material alpha.8 -->
+          <!--<div class="form-group" id="setting_sex">
             <label class="form-label" for="setting_sex">{{ 'pages.account.sex' | translate }}：</label>
             <md-radio-group class="md-primary" formControlName="sex" [(ngModel)]="setting.sex.type" (change)="changeSex($event)">
               <md-radio-button value="0"> {{ 'pages.account.male' | translate }}</md-radio-button>
               <md-radio-button value="1"> {{ 'pages.account.female' | translate }}</md-radio-button>
             </md-radio-group>
-
-          </div>
+          </div>-->
 
           <div class="form-group">
             <label class="form-label" for="setting_pic">{{ 'pages.account.pic' | translate }}：</label>

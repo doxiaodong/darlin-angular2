@@ -1,34 +1,33 @@
 import {
   Component,
   OnInit
-} from '@angular/core';
+} from '@angular/core'
 import {
   FormGroup,
   Validators,
   FormBuilder,
-  FormControl,
-  REACTIVE_FORM_PROVIDERS
-} from '@angular/forms';
+  FormControl
+} from '@angular/forms'
 
-import {UserInterface} from '../user/user.interface';
-import {UserService} from '../user/user.service';
-import {SignModalService} from './sign-modal.service';
-import {LocalStorageService} from '../base/local-storage/local-storage.service';
+import { UserInterface } from '../user/user.interface'
+import { UserService } from '../user/user.service'
+import { SignModalService } from './sign-modal.service'
+import { LocalStorageService } from '../base/local-storage/local-storage.service'
 
-import {AlertService} from '../base/alert/alert.service';
-import {AccountApi} from '../base/account/account.api';
-import validate from './sign-modal.validate';
+import { AlertService } from '../base/alert/alert.service'
+import { AccountApi } from '../base/account/account.api'
+import validate from './sign-modal.validate'
 
 interface SigninInterface {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 interface RegisterInterface {
-  username: string;
-  password: string;
-  email: string;
-  nickname: string;
+  username: string
+  password: string
+  email: string
+  nickname: string
 }
 
 @Component({
@@ -36,87 +35,84 @@ interface RegisterInterface {
   templateUrl: './sign-modal.template.html',
   styles: [
     require('./sign-modal.less')
-  ],
-  providers: [
-    REACTIVE_FORM_PROVIDERS
   ]
 })
 export class SignModalComponent implements OnInit {
-  signinForm: FormGroup;
-  registerForm: FormGroup;
+  signinForm: FormGroup
+  registerForm: FormGroup
 
-  public requesting: boolean = false;
-  public showModal: boolean = false;
-  public signinModel: boolean = true;
+  public requesting: boolean = false
+  public showModal: boolean = false
+  public signinModel: boolean = true
 
-  public qqImageSrc: string = require('image-loader/qq.png');
-  public user: UserInterface;
+  public qqImageSrc: string = require('../../image-loader/qq.png')
+  public user: UserInterface
 
-  public signin: SigninInterface;
+  public signin: SigninInterface
   public register: RegisterInterface = {
     username: '',
     password: '',
     email: '',
     nickname: ''
-  };
+  }
 
   closeShowModal() {
-    this.showModal = false;
+    this.showModal = false
   }
 
   doSignin(obj: Object) {
-    this.requesting = true;
+    this.requesting = true
     AccountApi.signin(obj)
       .then(data => {
-        this.user = UserService.save(data.user);
+        this.user = UserService.save(data.user)
 
         // sigin success
-        LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-        this.closeShowModal();
+        LocalStorageService.save('signin.user', JSON.stringify(this.signin))
+        this.closeShowModal()
       }).catch((msg) => {
-        AlertService.show(msg);
+        AlertService.show(msg)
       })
       .then(() => {
-        this.requesting = false;
-      });
+        this.requesting = false
+      })
   }
 
   doRegister(obj: any) {
-    this.requesting = true;
+    this.requesting = true
     AccountApi.register(obj)
       .then(data => {
-        this.user = UserService.save(data.user);
+        this.user = UserService.save(data.user)
         this.signin = {
           username: obj.username,
           password: obj.password
-        };
+        }
         // sigin success
-        LocalStorageService.save('signin.user', JSON.stringify(this.signin));
-        this.closeShowModal();
+        LocalStorageService.save('signin.user', JSON.stringify(this.signin))
+        this.closeShowModal()
       }).catch((msg) => {
-        AlertService.show(msg);
+        AlertService.show(msg)
       })
       .then(() => {
-        this.requesting = false;
-      });
+        this.requesting = false
+      })
   }
 
   githubLogin() {
     if (this.requesting) {
-      return;
+      return
     }
-    this.requesting = true;
-    AccountApi.githubLogin();
-    this.closeShowModal();
+    this.requesting = true
+    AccountApi.githubLogin()
+    this.closeShowModal()
   }
 
   qqLogin() {
     if (this.requesting) {
-      return;
+      return
     }
-    this.requesting = true;
-    AccountApi.qqLogin();
-    this.closeShowModal();
+    this.requesting = true
+    AccountApi.qqLogin()
+    this.closeShowModal()
   }
 
   constructor(
@@ -137,7 +133,7 @@ export class SignModalComponent implements OnInit {
           validate.checkPassword
         ]
       ]
-    });
+    })
 
     this.registerForm = fb.group({
       r_username: [
@@ -157,7 +153,7 @@ export class SignModalComponent implements OnInit {
       r_rePassword: [
         '',
         (c: FormControl) => {
-          return validate.confirmPassword(c, this.register.password);
+          return validate.confirmPassword(c, this.register.password)
         }
       ],
       email: [
@@ -172,24 +168,24 @@ export class SignModalComponent implements OnInit {
         Validators.maxLength(10)
       ]
 
-    });
+    })
 
   }
 
   ngOnInit() {
 
     SignModalService.showSignModal$.subscribe(() => {
-      this.showModal = true;
-    });
+      this.showModal = true
+    })
 
-    let user = JSON.parse(LocalStorageService.get('signin.user'));
+    let user = JSON.parse(LocalStorageService.get('signin.user'))
     if (user) {
-      this.signin = user;
+      this.signin = user
     } else {
       this.signin = {
         username: '',
         password: ''
-      };
+      }
     }
 
   }

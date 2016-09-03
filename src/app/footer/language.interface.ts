@@ -1,4 +1,4 @@
 export interface LanguageInterface {
-  key: string;
-  word: string;
+  key: string
+  word: string
 }

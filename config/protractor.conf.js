@@ -1,5 +1,5 @@
-require('ts-node/register');
-var helpers = require('./helpers');
+require('ts-node/register')
+const helpers = require('./helpers')
 
 exports.config = {
   baseUrl: 'http://localhost:3000/',
@@ -32,7 +32,7 @@ exports.config = {
   },
 
   onPrepare: function () {
-    browser.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true
   },
 
   seleniumServerJar: "node_modules/protractor/selenium/selenium-server-standalone-2.52.0.jar",
@@ -45,4 +45,4 @@ exports.config = {
    *
    */
   useAllAngular2AppRoots: true
-};
+}

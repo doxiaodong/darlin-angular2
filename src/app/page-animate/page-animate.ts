@@ -4,7 +4,7 @@ import {
   style,
   // transition,
   trigger
-} from '@angular/core';
+} from '@angular/core'
 
 export function PageAnimateFn() {
   return trigger('pageAnimateTrigger', [
@@ -23,5 +23,5 @@ export function PageAnimateFn() {
     //   'page-enter <=> page-enter-complete',
     //   animate('300ms cubic-bezier(.17, .67, .88, .1)')
     // )
-  ]);
+  ])
 }

@@ -1,17 +1,15 @@
-export function checkDateFormat(date: Date, specNow?: Date): string {
+// not use
+export function checkDateFormat(date: Date): string {
 
-  let now: Date = new Date();
-  if (specNow) {
-    now = specNow;
-  }
+  let now: Date = new Date()
 
   if (date.getFullYear() !== now.getFullYear()) {
-    return 'y-MM-dd HH:mm';
+    return 'y-MM-dd HH:mm'
   }
 
   if (date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
-    return 'HH:mm:ss';
+    return 'HH:mm:ss'
   }
 
-  return 'MM-dd HH:mm';
+  return 'MM-dd HH:mm'
 }

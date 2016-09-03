@@ -54,7 +54,7 @@
       "commentPlaceholder": "来交流下吧～支持markdown",
       "comment": "发布",
       "none": "暂无文章",
-      "isUp": "[置顶] "
+      "isUp": "置顶"
     },
     "account": {
       "infoTitle": "账户中心",
@@ -84,8 +84,8 @@
     "fourth": {
       "links": "友情链接",
       "type": {
-        "blog": "[博客]",
-        "shop": "[小店]"
+        "blog": "博客",
+        "shop": "小店"
       },
       "genPassword": "生成密码",
       "initPassword": "基础密码",

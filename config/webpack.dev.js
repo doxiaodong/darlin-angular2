@@ -1,27 +1,23 @@
-/**
- * @author: @AngularClass
- */
-
-var helpers = require('./helpers');
-var webpackMerge = require('webpack-merge'); //Used to merge webpack configs
-var commonConfig = require('./webpack.common.js'); //The settings that are common to prod and dev
+const helpers = require('./helpers')
+const webpackMerge = require('webpack-merge') // Used to merge webpack configs
+const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
 
 /**
  * Webpack Plugins
  */
-var DefinePlugin = require('webpack/lib/DefinePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin')
 
 /**
  * Webpack Constants
  */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const HMR = helpers.hasProcessFlag('hot');
+const ENV = process.env.ENV = process.env.NODE_ENV = 'development'
+const HMR = helpers.hasProcessFlag('hot')
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: 'localhost',
   port: 3000,
   ENV: ENV,
   HMR: HMR
-});
+})
 
 /**
  * Webpack configuration
@@ -118,7 +114,7 @@ module.exports = webpackMerge(commonConfig, {
       "/api/*": {
         target: 'http://localhost:9999',
         rewrite: function (req) {
-          req.url = req.url.replace(/^\/api/, '');
+          req.url = req.url.replace(/^\/api/, '')
         }
       }
     },
@@ -133,4 +129,4 @@ module.exports = webpackMerge(commonConfig, {
     clearImmediate: false,
     setImmediate: false
   }
-});
+})
