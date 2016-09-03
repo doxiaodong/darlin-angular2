@@ -9,6 +9,6 @@ import { Component } from '@angular/core'
 })
 
 export class Page404Component {
-  public bg404: string = require('image-loader/404-bg.jpg')
+  public bg404: string = require('../../image-loader/404-bg.jpg')
   constructor() {}
 }

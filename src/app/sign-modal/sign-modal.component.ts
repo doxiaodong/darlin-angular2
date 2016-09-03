@@ -45,7 +45,7 @@ export class SignModalComponent implements OnInit {
   public showModal: boolean = false
   public signinModel: boolean = true
 
-  public qqImageSrc: string = require('image-loader/qq.png')
+  public qqImageSrc: string = require('../../image-loader/qq.png')
   public user: UserInterface
 
   public signin: SigninInterface

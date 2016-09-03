@@ -95,14 +95,6 @@ module.exports = webpackMerge(commonConfig, {
     // See: https://www.npmjs.com/package/webpack-md5-hash
     new WebpackMd5Hash(),
 
-    // Plugin: DedupePlugin
-    // Description: Prevents the inclusion of duplicate code into your bundle
-    // and instead applies a copy of the function at runtime.
-    //
-    // See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-    // See: https://github.com/webpack/docs/wiki/optimization#deduplication
-    new DedupePlugin(),
-
     // Plugin: DefinePlugin
     // Description: Define free variables.
     // Useful for having development builds with debug logging or adding global constants.
@@ -133,8 +125,7 @@ module.exports = webpackMerge(commonConfig, {
       beautify: false, //prod
 
       mangle: {
-        screw_ie8: true,
-        keep_fnames: true // angular2 rc5 临时方案 https://github.com/angular/angular/issues/10618
+        screw_ie8: true
       }, //prod
       compress: {
         screw_ie8: true
