@@ -181,7 +181,7 @@ module.exports = {
     // third js
     new webpack.ProvidePlugin({
       // marked: 'marked',
-      // hljs: 'highlight.js',
+      hljs: 'highlight.js',
       // md5: 'crypto-js/md5',
       // emojione: 'emojione',
       base64: 'js-base64'
@@ -231,7 +231,13 @@ module.exports = {
     }),
 
     // moment 语言包只加载 zh-cn
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
+
+    new webpack.ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      helpers.root('./src') // location of oyour src
+    )
 
   ],
 

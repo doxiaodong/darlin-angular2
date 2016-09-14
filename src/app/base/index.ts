@@ -16,7 +16,10 @@ import {
   TranslateLoader,
   TranslateStaticLoader
 } from 'ng2-translate/ng2-translate'
-import { MdRadioModule } from '@angular2-material/radio/radio'
+import {
+  MdRadioModule,
+  MdUniqueSelectionDispatcher
+} from '@angular2-material/radio/radio'
 import { MdButtonModule } from '@angular2-material/button/button'
 // import { MdListModule } from '@angular2-material/list/list'
 
@@ -57,6 +60,9 @@ import {
     ...components,
     ...pipes,
     ...directives
+  ],
+  providers: [
+    MdUniqueSelectionDispatcher
   ]
 })
 export class BaseModule {
