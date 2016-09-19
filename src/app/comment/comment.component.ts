@@ -35,12 +35,12 @@ export class CommentComponent implements OnInit, OnDestroy {
         subData.results.map(r => {
           let reply = {
             replyUser: {
-              pic: PicUrl.getUrl(r.reply_user.pic),
+              pic: PicUrl.getUrl(r.reply_user.pic, r.reply_user.email),
               username: r.reply_user.username,
               nickname: r.reply_user.nickname
             },
             replyObject: {
-              pic: PicUrl.getUrl(r.reply_object.pic),
+              pic: PicUrl.getUrl(r.reply_object.pic, r.reply_object.email),
               username: r.reply_object.username,
               nickname: r.reply_object.nickname
             },
@@ -62,7 +62,7 @@ export class CommentComponent implements OnInit, OnDestroy {
         data.results.map(c => {
           let comment = {
             replyUser: {
-              pic: PicUrl.getUrl(c.reply_user.pic),
+              pic: PicUrl.getUrl(c.reply_user.pic, c.reply_user.email),
               username: c.reply_user.username,
               nickname: c.reply_user.nickname
             },
@@ -115,7 +115,7 @@ export class CommentComponent implements OnInit, OnDestroy {
           comment.index = 1
         }
         comment.input = { show: false }
-        comment.replyUser.pic = PicUrl.getUrl(comment.replyUser.pic)
+        comment.replyUser.pic = PicUrl.getUrl(comment.replyUser.pic, comment.replyUser.email)
         comment.replies = []
         this.comments.push(comment)
         this.articleReplies += 1
@@ -134,8 +134,8 @@ export class CommentComponent implements OnInit, OnDestroy {
       .then(data => {
         this.clearSubmitForm()
         let sub = data.subComment
-        sub.replyObject.pic = PicUrl.getUrl(sub.replyObject.pic)
-        sub.replyUser.pic = PicUrl.getUrl(sub.replyUser.pic)
+        sub.replyObject.pic = PicUrl.getUrl(sub.replyObject.pic, sub.replyObject.email)
+        sub.replyUser.pic = PicUrl.getUrl(sub.replyUser.pic, sub.replyUser.email)
         sub.time = sub.time
         this.comments[index - 1].replies.push(sub)
         this.articleReplies += 1

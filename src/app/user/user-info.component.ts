@@ -44,7 +44,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     AccountApi.getUserInfo({ username: username })
       .then(data => {
         this.profile = data.user
-        this.profile.pic = PicUrl.getUrl(data.user.pic)
+        this.profile.pic = PicUrl.getUrl(data.user.pic, data.user.email)
         this.profile.lastSignin = data.user.last_login
 
         this.isThid = data.user.third !== 'none'
@@ -64,7 +64,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
             replyUser: {
               nickname: self.reply_user.nickname,
               username: self.reply_user.username,
-              pic: PicUrl.getUrl(self.reply_user.pic)
+              pic: PicUrl.getUrl(self.reply_user.pic, self.reply_user.email)
             },
             article: self.head.article,
             content: self.content,
@@ -85,7 +85,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
             let reply = {
               replyUser: {
                 nickname: self.reply_user.nickname,
-                pic: PicUrl.getUrl(self.reply_user.pic),
+                pic: PicUrl.getUrl(self.reply_user.pic, self.reply_user.email),
                 username: self.reply_user.username
               },
               article: self.article,

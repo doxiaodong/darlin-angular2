@@ -68,7 +68,7 @@ export class UserSettingComponent implements OnInit {
       username: user.username,
       email: user.email,
       nickname: user.nickname,
-      pic: PicUrl.getUrl(user.pic),
+      pic: PicUrl.getUrl(user.pic, user.email),
       sex: user.sex,
       third: user.third
     }
