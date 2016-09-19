@@ -21,7 +21,6 @@ import {
   MdUniqueSelectionDispatcher
 } from '@angular2-material/radio/radio'
 import { MdButtonModule } from '@angular2-material/button/button'
-// import { MdListModule } from '@angular2-material/list/list'
 
 import {
   components,
@@ -54,7 +53,6 @@ import {
     HttpModule,
     MdRadioModule,
     MdButtonModule,
-    // MdListModule,
     TranslateModule,
 
     ...components,
@@ -69,8 +67,7 @@ export class BaseModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: BaseModule,
-      providers: [
-      ]
+      providers: []
     }
   }
 }

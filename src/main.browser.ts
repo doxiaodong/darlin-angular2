@@ -6,11 +6,8 @@ import { AppModule } from './app/app.module'
 function main(): Promise<any> {
 
   if ('production' === ENV) {
-    // Production
     enableProdMode()
-
   } else {
-    // Development
     GLOBAL_VALUE.PIC_STATIC_URL_HOST = ''
   }
 
