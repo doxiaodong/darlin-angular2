@@ -21,7 +21,7 @@ describe('pic-url.service.ts get complete head picture', () => {
 
   it('should get gravatar', inject([], () => {
     expect(pu.getUrl('none', 'duxiaodong@darlin.me'))
-      .toEqual('https://secure.gravatar.com/avatar/da1a0f997a3329f53529b28f5f6d3536')
+      .toEqual('https://s.gravatar.com/avatar/da1a0f997a3329f53529b28f5f6d3536?s=100')
   }))
 
 })
