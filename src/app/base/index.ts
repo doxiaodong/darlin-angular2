@@ -21,6 +21,7 @@ import {
   MdUniqueSelectionDispatcher
 } from '@angular2-material/radio/radio'
 import { MdButtonModule } from '@angular2-material/button/button'
+// import { IconModule } from './icon'
 
 import {
   components,
@@ -40,6 +41,7 @@ import {
     CommonModule,
     HttpModule,
     MdRadioModule,
+    // IconModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
@@ -53,6 +55,7 @@ import {
     HttpModule,
     MdRadioModule,
     MdButtonModule,
+    // IconModule,
     TranslateModule,
 
     ...components,

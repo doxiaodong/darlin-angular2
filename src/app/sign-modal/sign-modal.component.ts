@@ -17,6 +17,10 @@ import { LocalStorageService } from '../base/local-storage/local-storage.service
 import { AlertService } from '../base/alert/alert.service'
 import { AccountApi } from '../base/account/account.api'
 import validate from './sign-modal.validate'
+// import {
+//   Close,
+//   Checkmark
+// } from '../base/icon'
 
 interface SigninInterface {
   username: string
@@ -41,6 +45,10 @@ export class SignModalComponent implements OnInit {
   signinForm: FormGroup
   registerForm: FormGroup
 
+  // public icon = {
+  //   close: Close,
+  //   checkmark: Checkmark
+  // }
   public requesting: boolean = false
   public showModal: boolean = false
   public signinModel: boolean = true

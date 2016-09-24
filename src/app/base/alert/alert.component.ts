@@ -6,6 +6,7 @@ import {
 } from '@angular/core'
 
 import { AlertService } from './alert.service'
+// import { Close } from '../icon'
 
 interface AlertInterface {
   title: string
@@ -26,6 +27,9 @@ export class AlertComponent implements OnInit, OnChanges {
 
   public opts: AlertInterface
   public showAlert: boolean = false
+  // public icon = {
+  //   close: Close
+  // }
 
   @Input() alertTitle: string
   @Input() alertOk: string

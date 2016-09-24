@@ -62,6 +62,10 @@ module.exports = {
     // Make sure root is src
     root: helpers.root('src'),
 
+    alias: {
+      svg: helpers.root('src/svg')
+    },
+
     // remove other default values
     modulesDirectories: ['node_modules']
 
@@ -108,12 +112,18 @@ module.exports = {
         ], exclude: [/\.(spec|e2e)\.ts$/] },
 
       // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
-      // {test: /\.font\.(js|json)$/, loader: 'raw-loader!fontgen?embed'},
+      {test: /\.font\.(js|json)$/, loader: 'raw-loader!fontgen?embed'},
+      // {
+      //   test: /\.font\.json$/,
+      //   loader: ExtractTextPlugin.extract({
+      //     fallbackLoader: 'style',
+      //     loader: 'css?minimize!fontgen'
+      //   })
+      // },
       {
-        test: /\.font\.json$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style',
-          loader: 'css?minimize!fontgen'
+        test: /\.svg$/,
+        loader: 'svg-sprite?' + JSON.stringify({
+          name: '[name]-[hash]'
         })
       },
 
@@ -155,7 +165,7 @@ module.exports = {
       { test: /\.md$/, loader: 'raw-loader' },
 
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif)$/i,
         loaders: [
           // `file?hash=sha512&digest=hex&name=${helpers.static}[hash].[ext]`,
           `file?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,

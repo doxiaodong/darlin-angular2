@@ -3,7 +3,7 @@ import {
   ViewEncapsulation
 } from '@angular/core'
 
-require('../../config/icon.font.json')
+// require('../../config/icon.font.json')
 require('./base/styles/global.less')
 require('./article/article-list.global.less')
 
@@ -12,7 +12,7 @@ require('./article/article-list.global.less')
   selector: 'root-app',
   templateUrl: './app.template.html',
   styles: [
-    // require('../../config/icon.font.json'),
+    require('../../config/icon.font.json')
     // require('./base/styles/global.less'),
     // require('./article/article-list.less')
   ]
