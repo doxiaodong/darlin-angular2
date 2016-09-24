@@ -8,7 +8,8 @@ describe('pic-url.service.ts get complete head picture', () => {
 
   it('should get complete url normally', inject([], () => {
 
-    expect(pu.getUrl('aaa/bbb/c.png')).toEqual('//o4vwdjxrs.qnssl.com/aaa/bbb/c.png-headPicture')
+    expect(pu.getUrl('aaa/bbb/c.png'))
+      .toEqual('//darlin-me.oss-cn-shanghai.aliyuncs.com/aaa/bbb/c.png-headPicture')
 
   }))
 
@@ -17,6 +18,11 @@ describe('pic-url.service.ts get complete head picture', () => {
     expect(pu.getUrl('http://aaa/bbb/c.png')).toEqual('https://aaa/bbb/c.png')
     expect(pu.getUrl('https://aaa/bbb/c.png')).toEqual('https://aaa/bbb/c.png')
 
+  }))
+
+  it('should get gravatar', inject([], () => {
+    expect(pu.getUrl('none', 'duxiaodong@darlin.me'))
+      .toEqual('https://s.gravatar.com/avatar/da1a0f997a3329f53529b28f5f6d3536?s=100')
   }))
 
 })

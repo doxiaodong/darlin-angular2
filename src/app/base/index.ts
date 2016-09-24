@@ -16,9 +16,12 @@ import {
   TranslateLoader,
   TranslateStaticLoader
 } from 'ng2-translate/ng2-translate'
-import { MdRadioModule } from '@angular2-material/radio/radio'
+import {
+  MdRadioModule,
+  MdUniqueSelectionDispatcher
+} from '@angular2-material/radio/radio'
 import { MdButtonModule } from '@angular2-material/button/button'
-// import { MdListModule } from '@angular2-material/list/list'
+// import { IconModule } from './icon'
 
 import {
   components,
@@ -38,6 +41,7 @@ import {
     CommonModule,
     HttpModule,
     MdRadioModule,
+    // IconModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
@@ -51,20 +55,22 @@ import {
     HttpModule,
     MdRadioModule,
     MdButtonModule,
-    // MdListModule,
+    // IconModule,
     TranslateModule,
 
     ...components,
     ...pipes,
     ...directives
+  ],
+  providers: [
+    MdUniqueSelectionDispatcher
   ]
 })
 export class BaseModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: BaseModule,
-      providers: [
-      ]
+      providers: []
     }
   }
 }

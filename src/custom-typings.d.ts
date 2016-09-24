@@ -76,3 +76,5 @@ interface GlobalValue {
 }
 
 declare let GLOBAL_VALUE: GlobalValue
+
+declare const hljs

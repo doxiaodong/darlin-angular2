@@ -8,6 +8,7 @@ import {
   FormBuilder
 } from '@angular/forms'
 import { Router } from '@angular/router'
+import { DomSanitizer } from '@angular/platform-browser'
 
 import { UserService } from './user.service'
 import { PageAnimateFn } from '../page-animate/page-animate'
@@ -48,13 +49,13 @@ export class UserSettingComponent implements OnInit {
     this.formChanged = true
   }
 
-  public changePic(e) {
+  changePic(e) {
     let files = e.target.files
     let pic = files[0]
     if (!pic) {
       return
     }
-    this.setting.pic = window.URL.createObjectURL(pic)
+    this.setting.pic = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(pic))
     this.settingPicModel = pic
     this.formChanged = true
   }
@@ -68,7 +69,7 @@ export class UserSettingComponent implements OnInit {
       username: user.username,
       email: user.email,
       nickname: user.nickname,
-      pic: PicUrl.getUrl(user.pic),
+      pic: PicUrl.getUrl(user.pic, user.email),
       sex: user.sex,
       third: user.third
     }
@@ -96,7 +97,8 @@ export class UserSettingComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sanitizer: DomSanitizer
   ) {
     this.settingForm = fb.group({
       username: [
