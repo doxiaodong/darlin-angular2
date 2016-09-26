@@ -23,6 +23,6 @@ export class RootAppComponent {
   //   console.log('@output: ${userInfo}', userInfo)
   // }
 
-  constructor() {}
+  constructor() { }
 
 }
