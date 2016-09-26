@@ -37,7 +37,7 @@ export class ArticleCategoryComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService
-  ) {}
+  ) { }
 
   ngOnInit() {
 

@@ -3,6 +3,7 @@
 set -ev
 
 npm run lint
+make formatCheck
 npm run test
 
 # there is some problem with e2e test

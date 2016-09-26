@@ -15,6 +15,12 @@ lint:
 docs:
 	npm run docs
 
+format:
+	node_modules/typescript-formatter/bin/tsfmt -r
+
+formatCheck:
+	node_modules/typescript-formatter/bin/tsfmt --verify
+
 upload:
 	tar czf darlin_me.tar.gz dist
 	scp darlin_me.tar.gz root@darlin.me:/var/www/darlin-angular2

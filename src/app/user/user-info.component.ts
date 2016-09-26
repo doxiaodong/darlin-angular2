@@ -104,7 +104,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   init() {
 

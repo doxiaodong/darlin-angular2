@@ -150,7 +150,7 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
 

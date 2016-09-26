@@ -36,6 +36,6 @@ export class CategoryService {
 
   }
 
-  constructor() {}
+  constructor() { }
 
 }

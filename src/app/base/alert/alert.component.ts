@@ -41,7 +41,7 @@ export class AlertComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
 

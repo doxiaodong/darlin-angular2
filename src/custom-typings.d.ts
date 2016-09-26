@@ -65,10 +65,10 @@ interface ErrorStackTraceLimit {
 }
 
 // Extend typings
-interface NodeRequire extends WebpackRequire {}
-interface ErrorConstructor extends ErrorStackTraceLimit {}
-interface NodeModule extends WebpackModule {}
-interface Global extends GlobalEnvironment  {}
+interface NodeRequire extends WebpackRequire { }
+interface ErrorConstructor extends ErrorStackTraceLimit { }
+interface NodeModule extends WebpackModule { }
+interface Global extends GlobalEnvironment { }
 
 // Set global value in ./global.js
 interface GlobalValue {

@@ -33,6 +33,6 @@ export default class SignModalValidators {
     return null
   }
 
-  constructor() {}
+  constructor() { }
 
 }
