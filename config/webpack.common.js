@@ -8,14 +8,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
-
-/**
- * Webpack Constants
- */
-const METADATA = {
-  baseUrl: '/'
-}
 
 /**
  * Webpack configuration
@@ -23,11 +15,6 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = {
-
-  // Static metadata for index.html
-  //
-  // See: (custom attribute)
-  metadata: METADATA,
 
   // Cache generated modules and chunks to improve performance for multiple incremental builds.
   // This is enabled by default in watch mode.
@@ -57,17 +44,11 @@ module.exports = {
     // An array of extensions that should be used to resolve modules.
     //
     // See: http://webpack.github.io/docs/configuration.html#resolve-extensions
-    extensions: ['', '.ts', '.js'],
-
-    // Make sure root is src
-    root: helpers.root('src'),
+    extensions: ['.ts', '.js'],
 
     alias: {
       svg: helpers.root('src/svg')
-    },
-
-    // remove other default values
-    modulesDirectories: ['node_modules']
+    }
 
   },
 
@@ -75,25 +56,6 @@ module.exports = {
   //
   // See: http://webpack.github.io/docs/configuration.html#module
   module: {
-
-    // An array of applied pre and post loaders.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
-    preLoaders: [
-
-      {
-        test: /\.ts$/,
-        loader: 'string-replace-loader',
-        query: {
-          search: '(System|SystemJS)(.*[\\n\\r]\\s*\\.|\\.)import\\((.+)\\)',
-          replace: '$1.import($3).then(mod => mod.__esModule ? mod.default : mod)',
-          flags: 'g'
-        },
-        include: [helpers.root('src')]
-      }
-
-    ],
-
     // An array of automatically applied loaders.
     //
     // IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
@@ -177,17 +139,10 @@ module.exports = {
 
   },
 
-  postcss: [
-    autoprefixer({
-      browsers: ['last 1 version', '> 10%']
-    })
-  ],
-
   // Add additional plugins to the compiler.
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
-
     // third js
     new webpack.ProvidePlugin({
       // marked: 'marked',
@@ -256,7 +211,7 @@ module.exports = {
   //
   // See: https://webpack.github.io/docs/configuration.html#node
   node: {
-    global: 'window',
+    global: true,
     crypto: 'empty',
     module: false,
     clearImmediate: false,
