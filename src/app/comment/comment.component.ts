@@ -8,6 +8,7 @@ import { AlertService } from '../base/alert/alert.service'
 import { CommentApi } from './comment.api'
 import { PicUrl } from '../base/pic-url/pic-url.service'
 import { AbTranslateService } from '../translate'
+import { Reply } from '../base/icon'
 
 @Component({
   selector: '[article-comments]',
@@ -17,7 +18,9 @@ import { AbTranslateService } from '../translate'
 export class CommentComponent implements OnInit, OnDestroy {
 
   private sub: any
-
+  public icon = {
+    reply: Reply
+  }
   public lang: string
   public requesting: boolean = false
 
@@ -150,7 +153,7 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
 

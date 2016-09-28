@@ -84,9 +84,9 @@ export class FooterComponent implements OnDestroy {
       key: 'zh_CN',
       word: '中文'
     }, {
-        key: 'en_US',
-        word: 'English'
-      }]
+      key: 'en_US',
+      word: 'English'
+    }]
 
     this.clickEvent()
   }

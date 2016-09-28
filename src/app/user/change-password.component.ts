@@ -13,6 +13,7 @@ import { PageAnimateFn } from '../page-animate/page-animate'
 import validate from '../sign-modal/sign-modal.validate'
 import { AlertService } from '../base/alert/alert.service'
 import { AccountApi } from '../base/account/account.api'
+import { Checkmark } from '../base/icon'
 
 @Component({
   selector: 'change-password',
@@ -24,7 +25,9 @@ import { AccountApi } from '../base/account/account.api'
 
 export class ChangePasswordComponent implements OnInit {
   passwordForm: FormGroup
-
+  public icon = {
+    checkmark: Checkmark
+  }
   public requesting: boolean = false
   public data: any = {}
 

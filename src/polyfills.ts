@@ -24,6 +24,8 @@ import 'core-js/es6/reflect'
 import 'core-js/es7/reflect'
 import 'zone.js/dist/zone'
 
+import 'moment'
+
 import './global.js'
 // Typescript emit helpers polyfill
 import 'ts-helpers'
@@ -39,5 +41,3 @@ if ('production' === ENV) {
   require('zone.js/dist/long-stack-trace-zone')
 
 }
-
-require('moment')

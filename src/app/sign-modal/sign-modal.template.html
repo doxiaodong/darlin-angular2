@@ -10,16 +10,16 @@
           <input [(ngModel)]="signin.username" name="username" class="form-control" id="username" type="text"
             formControlName="username"
             [attr.placeholder]="'signModal.username' | translate">
-          <span [hidden]="!signinForm.controls['username'].valid" class="xd xd-checkmark active"></span>
-          <!--<icon [hidden]="!signinForm.controls['username'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+          <!--<span [hidden]="!signinForm.controls['username'].valid" class="xd xd-checkmark active"></span>-->
+          <icon [hidden]="!signinForm.controls['username'].valid" class="active" [glyph]="icon.checkmark"></icon>
         </div>
         <div class="form-group" [class.has-error]="!signinForm.controls['password'].pristine && !signinForm.controls['password'].valid">
           <label for="password"></label>
           <input [(ngModel)]="signin.password" name="password" class="form-control" id="password" type="password"
             formControlName="password"
             [attr.placeholder]="'signModal.password' | translate">
-          <span [hidden]="!signinForm.controls['password'].valid" class="xd xd-checkmark active"></span>
-          <!--<icon [hidden]="!signinForm.controls['password'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+          <!--<span [hidden]="!signinForm.controls['password'].valid" class="xd xd-checkmark active"></span>-->
+          <icon [hidden]="!signinForm.controls['password'].valid" class="active" [glyph]="icon.checkmark"></icon>
         </div>
       </article>
       <footer class="xd-footer">
@@ -31,8 +31,8 @@
           QQ</a>
         <span onclick="alert('联系站猪!')" class="a aside">{{ 'signModal.forget' | translate }}</span>
       </footer>
-      <i class="xd-modal-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>
-      <!--<icon class="xd-modal-close" width="34" height="34" [glyph]="icon.close" (click)="closeShowModal()"></icon>-->
+      <!--<i class="xd-modal-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>-->
+      <icon class="xd-modal-close" width="34" height="34" [glyph]="icon.close" (click)="closeShowModal()"></icon>
     </form>
 
 
@@ -45,16 +45,16 @@
           <input [(ngModel)]="register.username" name="r_username" class="form-control" id="register_username"
             formControlName="r_username"
             type="text" [attr.placeholder]="'signModal.usernameFlag' | translate">
-          <span [hidden]="registerForm.controls['r_username'].pristine || !registerForm.controls['r_username'].valid" class="xd xd-checkmark active"></span>
-          <!--<icon [hidden]="registerForm.controls['r_username'].pristine || !registerForm.controls['r_username'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+          <!--<span [hidden]="registerForm.controls['r_username'].pristine || !registerForm.controls['r_username'].valid" class="xd xd-checkmark active"></span>-->
+          <icon [hidden]="registerForm.controls['r_username'].pristine || !registerForm.controls['r_username'].valid" class="active" [glyph]="icon.checkmark"></icon>
         </div>
         <div class="form-group" [class.has-error]="!registerForm.controls['email'].pristine && !registerForm.controls['email'].valid">
           <label for="register_email" class="form-label">{{ 'signModal.email' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['email'].pristine || registerForm.controls['email'].valid">&nbsp;{{ 'signModal.emailFlag' | translate }}</span></label>
           <input [(ngModel)]="register.email" name="email" class="form-control"
             formControlName="email"
             id="register_email" type="email" [attr.placeholder]="'signModal.emailFlag' | translate" required>
-          <span [hidden]="registerForm.controls['email'].pristine || !registerForm.controls['email'].valid" class="xd xd-checkmark active"></span>
-          <!--<icon [hidden]="registerForm.controls['email'].pristine || !registerForm.controls['email'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+          <!--<span [hidden]="registerForm.controls['email'].pristine || !registerForm.controls['email'].valid" class="xd xd-checkmark active"></span>-->
+          <icon [hidden]="registerForm.controls['email'].pristine || !registerForm.controls['email'].valid" class="active" [glyph]="icon.checkmark"></icon>
         </div>
         <div>
           <div class="form-group" [class.has-error]="!registerForm.controls['r_password'].pristine && !registerForm.controls['r_password'].valid">
@@ -62,16 +62,16 @@
             <input [(ngModel)]="register.password" name="r_password" class="form-control" id="register_pwd"
               formControlName="r_password"
               type="password" [attr.placeholder]="'signModal.passwordFlag' | translate">
-            <span [hidden]="registerForm.controls['r_password'].pristine || !registerForm.controls['r_password'].valid" class="xd xd-checkmark active"></span>
-            <!--<icon [hidden]="registerForm.controls['r_password'].pristine || !registerForm.controls['r_password'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+            <!--<span [hidden]="registerForm.controls['r_password'].pristine || !registerForm.controls['r_password'].valid" class="xd xd-checkmark active"></span>-->
+            <icon [hidden]="registerForm.controls['r_password'].pristine || !registerForm.controls['r_password'].valid" class="active" [glyph]="icon.checkmark"></icon>
           </div>
           <div class="form-group" [class.has-error]="!registerForm.controls['r_rePassword'].pristine && !registerForm.controls['r_rePassword'].valid">
             <label for="register_pwd" class="form-label">{{ 'signModal.rePassword' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['r_rePassword'].pristine || registerForm.controls['r_rePassword'].valid">&nbsp;{{ 'signModal.rePasswordFlag' | translate }}</span></label>
             <input name="r_rePassword" class="form-control" id="register_pwd"
               formControlName="r_rePassword"
               type="password" [attr.placeholder]="'signModal.rePasswordFlag' | translate">
-            <span [hidden]="registerForm.controls['r_rePassword'].pristine || !registerForm.controls['r_rePassword'].valid" class="xd xd-checkmark active"></span>
-            <!--<icon [hidden]="registerForm.controls['r_rePassword'].pristine || !registerForm.controls['r_rePassword'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+            <!--<span [hidden]="registerForm.controls['r_rePassword'].pristine || !registerForm.controls['r_rePassword'].valid" class="xd xd-checkmark active"></span>-->
+            <icon [hidden]="registerForm.controls['r_rePassword'].pristine || !registerForm.controls['r_rePassword'].valid" class="active" [glyph]="icon.checkmark"></icon>
           </div>
         </div>
         <div class="form-group" [class.has-error]="!registerForm.controls['nickname'].pristine && !registerForm.controls['nickname'].valid">
@@ -79,16 +79,16 @@
           <input [(ngModel)]="register.nickname" name="nickname" class="form-control" id="register_nickname"
             formControlName="nickname"
             type="text" [attr.placeholder]="'signModal.nickNameFlag' | translate">
-          <span [hidden]="!registerForm.controls['nickname'].valid" class="xd xd-checkmark active"></span>
-          <!--<icon [hidden]="!registerForm.controls['nickname'].valid" class="active" [glyph]="icon.checkmark"></icon>-->
+          <!--<span [hidden]="!registerForm.controls['nickname'].valid" class="xd xd-checkmark active"></span>-->
+          <icon [hidden]="!registerForm.controls['nickname'].valid" class="active" [glyph]="icon.checkmark"></icon>
         </div>
       </article>
       <footer class="xd-footer">
         <button md-raised-button color="primary" [disabled]="!registerForm.valid || requesting" class="register-button" type="submit">{{ 'signModal.register' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = true">{{ 'signModal.signin' | translate }}</span>
       </footer>
-      <i class="xd-modal-close xd-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>
-      <!--<icon class="xd-modal-close" width="34" height="34" [glyph]="icon.close" (click)="closeShowModal()"></icon>-->
+      <!--<i class="xd-modal-close xd-close xd xd-ios-close-empty" (click)="closeShowModal()"></i>-->
+      <icon class="xd-modal-close" width="34" height="34" [glyph]="icon.close" (click)="closeShowModal()"></icon>
     </form>
 
   </div>

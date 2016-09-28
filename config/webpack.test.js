@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const helpers = require('./helpers')
 
 /**
@@ -5,6 +6,7 @@ const helpers = require('./helpers')
  */
 const ProvidePlugin = require('webpack/lib/ProvidePlugin')
 const DefinePlugin = require('webpack/lib/DefinePlugin')
+const autoprefixer = require('autoprefixer')
 
 /**
  * Webpack Constants
@@ -32,10 +34,7 @@ module.exports = {
     // An array of extensions that should be used to resolve modules.
     //
     // See: http://webpack.github.io/docs/configuration.html#resolve-extensions
-    extensions: ['', '.ts', '.js'],
-
-    // Make sure root is src
-    root: helpers.root('src'),
+    extensions: ['.ts', '.js']
 
   },
 
@@ -43,27 +42,35 @@ module.exports = {
   //
   // See: http://webpack.github.io/docs/configuration.html#module
   module: {
-
-    // An array of applied pre and post loaders.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
-    preLoaders: [
-
+    rules: [
       // Tslint loader support for *.ts files
       //
       // See: https://github.com/wbuchwalter/tslint-loader
-      { test: /\.ts$/, loader: 'tslint-loader', exclude: [helpers.root('node_modules')] },
+      { test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader', exclude: [helpers.root('node_modules')] },
 
       // Source map loader support for *.js files
       // Extracts SourceMaps for source files that as added as sourceMappingURL comment.
       //
       // See: https://github.com/webpack/source-map-loader
       {
-        test: /\.js$/, loader: "source-map-loader", exclude: [
+        test: /\.js$/, enforce: 'pre', loader: "source-map-loader", exclude: [
           // these packages have problems with their sourcemaps
           helpers.root('node_modules/rxjs'),
           helpers.root('node_modules/@angular2-material'),
           helpers.root('node_modules/@angular')
+        ]
+      },
+
+      // Instruments JS files with Istanbul for subsequent code coverage reporting.
+      // Instrument only testing sources.
+      //
+      // See: https://github.com/deepsweet/istanbul-instrumenter-loader
+      {
+        test: /\.(js|ts)$/, enforce: 'post', loader: 'istanbul-instrumenter-loader',
+        include: helpers.root('src'),
+        exclude: [
+          /\.(e2e|spec)\.ts$/,
+          /node_modules/
         ]
       }
 
@@ -111,27 +118,6 @@ module.exports = {
       //
       // See: https://github.com/webpack/raw-loader
       { test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
-
-    ],
-
-    // An array of applied pre and post loaders.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
-    postLoaders: [
-
-      // Instruments JS files with Istanbul for subsequent code coverage reporting.
-      // Instrument only testing sources.
-      //
-      // See: https://github.com/deepsweet/istanbul-instrumenter-loader
-      {
-        test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
-        include: helpers.root('src'),
-        exclude: [
-          /\.(e2e|spec)\.ts$/,
-          /node_modules/
-        ]
-      }
-
     ]
   },
 
@@ -139,6 +125,20 @@ module.exports = {
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: ['last 1 version', '> 10%']
+          })
+        ],
+        tslint: {
+          emitErrors: false,
+          failOnHint: false,
+          resourcePath: 'src'
+        }
+      }
+    }),
 
     // Plugin: DefinePlugin
     // Description: Define free variables.
@@ -158,25 +158,14 @@ module.exports = {
       }
     }),
 
-
   ],
-
-  // Static analysis linter for TypeScript advanced options configuration
-  // Description: An extensible linter for the TypeScript language.
-  //
-  // See: https://github.com/wbuchwalter/tslint-loader
-  tslint: {
-    emitErrors: false,
-    failOnHint: false,
-    resourcePath: 'src'
-  },
 
   // Include polyfills or mocks for various node stuff
   // Description: Node configuration
   //
   // See: https://webpack.github.io/docs/configuration.html#node
   node: {
-    global: 'window',
+    global: true,
     process: false,
     crypto: 'empty',
     module: false,

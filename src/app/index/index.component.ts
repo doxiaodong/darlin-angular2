@@ -45,7 +45,7 @@ export class IndexComponent implements OnInit {
 
   }
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     AbTranslateService.updateTranslate$.subscribe((lang: string) => {

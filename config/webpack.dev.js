@@ -1,6 +1,8 @@
+const webpack = require('webpack')
 const helpers = require('./helpers')
 const webpackMerge = require('webpack-merge') // Used to merge webpack configs
 const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
+const autoprefixer = require('autoprefixer')
 
 /**
  * Webpack Plugins
@@ -12,12 +14,13 @@ const DefinePlugin = require('webpack/lib/DefinePlugin')
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development'
 const HMR = helpers.hasProcessFlag('hot')
-const METADATA = webpackMerge(commonConfig.metadata, {
+const METADATA = {
+  baseUrl: '/',
   host: '0.0.0.0',
   port: 3000,
   ENV: ENV,
   HMR: HMR
-})
+}
 
 /**
  * Webpack configuration
@@ -25,10 +28,6 @@ const METADATA = webpackMerge(commonConfig.metadata, {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = webpackMerge(commonConfig, {
-  // Switch loaders to debug mode.
-  //
-  // See: http://webpack.github.io/docs/configuration.html#debug
-  debug: true,
 
   // Developer tool to enhance debugging
   //
@@ -45,6 +44,8 @@ module.exports = webpackMerge(commonConfig, {
     //
     // See: http://webpack.github.io/docs/configuration.html#output-path
     path: helpers.root('dist'),
+
+    publicPath: '/',
 
     // Specifies the name of each output file on disk.
     // IMPORTANT: You must not specify an absolute path here!
@@ -67,6 +68,25 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: ['last 1 version', '> 10%']
+          })
+        ],
+        // Switch loaders to debug mode.
+        //
+        // See: http://webpack.github.io/docs/configuration.html#debug
+        debug: true,
+        tslint: {
+          emitErrors: false,
+          failOnHint: false,
+          resourcePath: 'src'
+        }
+      }
+    }),
+
     // Plugin: DefinePlugin
     // Description: Define free variables.
     // Useful for having development builds with debug logging or adding global constants.
@@ -85,16 +105,6 @@ module.exports = webpackMerge(commonConfig, {
       }
     }),
   ],
-
-  // Static analysis linter for TypeScript advanced options configuration
-  // Description: An extensible linter for the TypeScript language.
-  //
-  // See: https://github.com/wbuchwalter/tslint-loader
-  tslint: {
-    emitErrors: false,
-    failOnHint: false,
-    resourcePath: 'src'
-  },
 
   // Webpack Development Server configuration
   // Description: The webpack-dev-server is a little node.js Express server.
@@ -122,7 +132,7 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   node: {
-    global: 'window',
+    global: true,
     crypto: 'empty',
     process: true,
     module: false,

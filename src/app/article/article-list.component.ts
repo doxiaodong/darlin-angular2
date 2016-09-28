@@ -89,7 +89,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     AbTranslateService.updateTranslate$.subscribe((lang: string) => {

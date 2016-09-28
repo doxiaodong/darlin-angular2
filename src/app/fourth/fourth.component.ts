@@ -6,6 +6,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms'
+import { Checkmark } from '../base/icon'
 
 const sha512 = require('crypto-js/sha512')
 const md5 = require('crypto-js/md5')
@@ -30,7 +31,9 @@ interface IGenpassword {
 
 export class FourthIndexComponent {
   genPasswordForm: FormGroup
-
+  public icon = {
+    checkmark: Checkmark
+  }
   public gen: IGenpassword = {
     initPassword: '',
     key: '',

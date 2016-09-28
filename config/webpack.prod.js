@@ -1,6 +1,8 @@
+const webpack = require('webpack')
 const helpers = require('./helpers') // Helper: root(), and rootDir() are defined at the bottom
 const webpackMerge = require('webpack-merge') // Used to merge webpack configs
 const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
+const autoprefixer = require('autoprefixer')
 
 /**
  * Webpack Plugins
@@ -20,18 +22,15 @@ const JsonMinifyPlugin = require('./webpack-plugin/json-minify')
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production'
 const HOST = process.env.HOST || 'localhost'
 const PORT = process.env.PORT || 8080
-const METADATA = webpackMerge(commonConfig.metadata, {
+const METADATA = {
+  baseUrl: '/',
   host: HOST,
   port: PORT,
   ENV: ENV,
   HMR: false
-})
+}
 
 module.exports = webpackMerge(commonConfig, {
-  // Switch loaders to debug mode.
-  //
-  // See: http://webpack.github.io/docs/configuration.html#debug
-  debug: false,
 
   // Developer tool to enhance debugging
   //
@@ -51,7 +50,7 @@ module.exports = webpackMerge(commonConfig, {
     path: helpers.root('dist'),
 
     // use static server
-    publicPath: "//static.darlin.me/",
+    publicPath: '//static.darlin.me/',
 
     // Specifies the name of each output file on disk.
     // IMPORTANT: You must not specify an absolute path here!
@@ -77,6 +76,41 @@ module.exports = webpackMerge(commonConfig, {
   //
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
+
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: ['last 1 version', '> 10%']
+          })
+        ],
+        // Switch loaders to debug mode.
+        //
+        // See: http://webpack.github.io/docs/configuration.html#debug
+        debug: false,
+        // Html loader advanced options
+        //
+        // See: https://github.com/webpack/html-loader#advanced-options
+        // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+        htmlLoader: {
+          minimize: true,
+          removeAttributeQuotes: false,
+          caseSensitive: true,
+          customAttrSurround: [
+            [/#/, /(?:)/],
+            [/\*/, /(?:)/],
+            [/\[?\(?/, /(?:)/]
+          ],
+          customAttrAssign: [/\)?\]?=/]
+        },
+
+        tslint: {
+          emitErrors: true,
+          failOnHint: true,
+          resourcePath: 'src'
+        }
+      }
+    }),
 
     new ImageMinifyPlugin({
       src: 'src/assets/images',
@@ -135,34 +169,8 @@ module.exports = webpackMerge(commonConfig, {
 
   ],
 
-  // Static analysis linter for TypeScript advanced options configuration
-  // Description: An extensible linter for the TypeScript language.
-  //
-  // See: https://github.com/wbuchwalter/tslint-loader
-  tslint: {
-    emitErrors: true,
-    failOnHint: true,
-    resourcePath: 'src'
-  },
-
-  // Html loader advanced options
-  //
-  // See: https://github.com/webpack/html-loader#advanced-options
-  // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-  htmlLoader: {
-    minimize: true,
-    removeAttributeQuotes: false,
-    caseSensitive: true,
-    customAttrSurround: [
-      [/#/, /(?:)/],
-      [/\*/, /(?:)/],
-      [/\[?\(?/, /(?:)/]
-    ],
-    customAttrAssign: [/\)?\]?=/]
-  },
-
   node: {
-    global: 'window',
+    global: true,
     crypto: 'empty',
     process: false,
     module: false,

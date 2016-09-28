@@ -32,7 +32,7 @@ export class FullScreenDirective implements OnInit, OnDestroy {
 
   constructor(
     private element: ElementRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.element.nativeElement.addEventListener('load', () => {

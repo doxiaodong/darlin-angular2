@@ -77,7 +77,7 @@ class Api {
       let xhr = new XMLHttpRequest()
       xhr.withCredentials = true
 
-      xhr.addEventListener('readystatechange', function () {
+      xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             observer.next(JSON.parse(xhr.response))
