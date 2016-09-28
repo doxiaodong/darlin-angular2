@@ -13,7 +13,7 @@ import { PageAnimateFn } from '../page-animate/page-animate'
 import validate from '../sign-modal/sign-modal.validate'
 import { AlertService } from '../base/alert/alert.service'
 import { AccountApi } from '../base/account/account.api'
-
+import { Checkmark } from '../base/icon'
 @Component({
   selector: 'reset-password',
   templateUrl: './reset-password.template.html',
@@ -24,7 +24,9 @@ import { AccountApi } from '../base/account/account.api'
 
 export class ResetPasswordComponent implements OnInit {
   passwordForm: FormGroup
-
+  public icon = {
+    checkmark: Checkmark
+  }
   public requesting: boolean = false
   public data: any = {}
 

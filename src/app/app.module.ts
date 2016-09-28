@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core'
+import { APP_BASE_HREF } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { BrowserModule } from '@angular/platform-browser'
 
@@ -33,7 +34,8 @@ import {
     BaseModule,
 
     RouterModule.forRoot(ROUTES)
-  ]
+  ],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
 })
 export class AppModule {
 }

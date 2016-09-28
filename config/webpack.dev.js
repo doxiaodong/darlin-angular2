@@ -45,6 +45,8 @@ module.exports = webpackMerge(commonConfig, {
     // See: http://webpack.github.io/docs/configuration.html#output-path
     path: helpers.root('dist'),
 
+    publicPath: '/',
+
     // Specifies the name of each output file on disk.
     // IMPORTANT: You must not specify an absolute path here!
     //
@@ -73,7 +75,6 @@ module.exports = webpackMerge(commonConfig, {
             browsers: ['last 1 version', '> 10%']
           })
         ],
-        output: {},
         // Switch loaders to debug mode.
         //
         // See: http://webpack.github.io/docs/configuration.html#debug

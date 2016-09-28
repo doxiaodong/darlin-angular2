@@ -16,6 +16,7 @@ import validate from '../sign-modal/sign-modal.validate'
 import { AlertService } from '../base/alert/alert.service'
 import { AccountApi } from '../base/account/account.api'
 import { PicUrl } from '../base/pic-url/pic-url.service'
+import { Checkmark } from '../base/icon'
 
 @Component({
   selector: 'setting',
@@ -28,7 +29,9 @@ import { PicUrl } from '../base/pic-url/pic-url.service'
 export class UserSettingComponent implements OnInit {
 
   settingForm: FormGroup
-
+  public icon = {
+    checkmark: Checkmark
+  }
   public settingPicModel: any
 
   public requesting: boolean = false

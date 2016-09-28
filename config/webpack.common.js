@@ -72,16 +72,6 @@ module.exports = {
         'angular2-template-loader'
         // '@angularclass/hmr-loader'
         ], exclude: [/\.(spec|e2e)\.ts$/] },
-
-      // See: https://github.com/DragonsInn/fontgen-loader/blob/master/test/webpack.config.js
-      {test: /\.font\.(js|json)$/, loader: 'raw-loader!fontgen?embed'},
-      // {
-      //   test: /\.font\.json$/,
-      //   loader: ExtractTextPlugin.extract({
-      //     fallbackLoader: 'style',
-      //     loader: 'css?minimize!fontgen'
-      //   })
-      // },
       {
         test: /\.svg$/,
         loader: 'svg-sprite?' + JSON.stringify({

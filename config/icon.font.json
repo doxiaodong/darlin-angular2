@@ -1,9 +1,0 @@
-{
-  "fontName" : "darlin",
-  "files" : [
-    "../src/svg/**/*.svg"
-  ],
-  "baseClass" : "xd",
-  "classPrefix" : "xd-",
-  "fileName": "assets/[fontname].[hash][ext]"
-}

@@ -84,7 +84,6 @@ module.exports = webpackMerge(commonConfig, {
             browsers: ['last 1 version', '> 10%']
           })
         ],
-        output: {},
         // Switch loaders to debug mode.
         //
         // See: http://webpack.github.io/docs/configuration.html#debug

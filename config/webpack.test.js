@@ -132,7 +132,6 @@ module.exports = {
             browsers: ['last 1 version', '> 10%']
           })
         ],
-        output: {},
         tslint: {
           emitErrors: false,
           failOnHint: false,

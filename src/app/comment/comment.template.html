@@ -12,7 +12,11 @@
         </div>
         <div class="message">
           <span class="time">{{ comment.time | xdDate: lang }}</span>
-          <span class="pointer xd xd-reply a" (click)="showReplyInput(comment, comment)">{{ 'pages.article.reply' | translate }}</span>
+          <!--<span class="pointer xd xd-reply a" (click)="showReplyInput(comment, comment)">{{ 'pages.article.reply' | translate }}</span>-->
+          <span class="a" (click)="showReplyInput(comment, comment)">
+            <icon [glyph]="icon.reply"></icon>
+            {{ 'pages.article.reply' | translate }}
+          </span>
           <span class="floor">{{ comment.index }}{{ 'pages.article.floor' | translate }}</span>
         </div>
       </div>
@@ -30,7 +34,11 @@
             </div>
             <div class="message">
               <span class="time">{{ subReply.time | xdDate: lang }}</span>
-              <span class="pointer xd xd-reply a" (click)="showReplyInput(comment, subReply)">{{ 'pages.article.reply' | translate }}</span>
+              <!--<span class="pointer xd xd-reply a" (click)="showReplyInput(comment, subReply)">{{ 'pages.article.reply' | translate }}</span>-->
+              <span class="a" (click)="showReplyInput(comment, subReply)">
+                <icon [glyph]="icon.reply"></icon>
+                {{ 'pages.article.reply' | translate }}
+              </span>
             </div>
           </div>
         </li>
