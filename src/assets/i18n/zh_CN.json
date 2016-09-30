@@ -94,7 +94,8 @@
       "gen": "生成",
       "outputDesc": "生成的密码",
       "outputDesc15": "生成的密码(长度15)",
-      "noOutput": "暂无"
+      "noOutput": "暂无",
+      "copy": "复制"
     },
     "forget": {
       "title": "修改密码",

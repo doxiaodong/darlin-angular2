@@ -68,6 +68,7 @@
     "js-base64": "^2.1.9",
     "marked": "^0.3.6",
     "moment": "^2.15.1",
+    "ng2-clip": "^1.0.0-alpha.2",
     "ng2-translate": "^2.5.0",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "0.6.25"
