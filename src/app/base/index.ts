@@ -22,6 +22,7 @@ import {
 } from '@angular2-material/radio/radio'
 import { MdButtonModule } from '@angular2-material/button/button'
 import { IconModule } from './icon'
+import { ClipModule } from 'ng2-clip'
 
 import {
   components,
@@ -42,6 +43,7 @@ import {
     HttpModule,
     MdRadioModule,
     IconModule,
+    ClipModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
@@ -56,6 +58,7 @@ import {
     MdRadioModule,
     MdButtonModule,
     IconModule,
+    ClipModule,
     TranslateModule,
 
     ...components,

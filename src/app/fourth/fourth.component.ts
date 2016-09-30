@@ -7,6 +7,7 @@ import {
   FormBuilder
 } from '@angular/forms'
 import { Checkmark } from '../base/icon'
+import { AlertService } from '../base/alert/alert.service'
 
 const sha512 = require('crypto-js/sha512')
 const md5 = require('crypto-js/md5')
@@ -15,7 +16,8 @@ interface IGenpassword {
   initPassword: string
   key: string
   output: string
-  output15: string
+  output15: string,
+  copyOutput: (e: boolean) => void
 }
 
 @Component({
@@ -38,7 +40,14 @@ export class FourthIndexComponent {
     initPassword: '',
     key: '',
     output: '',
-    output15: ''
+    output15: '',
+    copyOutput(e) {
+      if (e) {
+        AlertService.show('Success!')
+      } else {
+        AlertService.show('Error!')
+      }
+    }
   }
 
   public links: any[] = []

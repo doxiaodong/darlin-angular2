@@ -94,7 +94,8 @@
       "gen": "Generate",
       "outputDesc": "Generated Password",
       "outputDesc15": "Generated Password(length 15)",
-      "noOutput": "None"
+      "noOutput": "None",
+      "copy": "Copy"
     },
     "forget": {
       "title": "Change Password",
