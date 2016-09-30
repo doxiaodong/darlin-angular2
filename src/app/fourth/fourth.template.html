@@ -30,10 +30,10 @@
             <label class="form-label width-0"></label>
             <button md-raised-button color="primary" [disabled]="genPasswordForm.pristine || !genPasswordForm.valid" type="button" (click)="genPasswordFn()">{{ 'pages.fourth.gen' | translate }}</button>
           </div>
-          <div>{{ 'pages.fourth.outputDesc' | translate }}: {{ gen.output || ('pages.fourth.noOutput' | translate) }}
+          <div class="gen-container">{{ 'pages.fourth.outputDesc' | translate }}: {{ gen.output || ('pages.fourth.noOutput' | translate) }}
             <button md-raised-button color="primary" [clip]="gen.output" (onClip)="gen.copyOutput($event)" *ngIf="gen.output">{{ 'pages.fourth.copy' | translate }}</button>
           </div>
-          <div>{{ 'pages.fourth.outputDesc15' | translate }}: {{ gen.output15 || ('pages.fourth.noOutput' | translate) }}
+          <div class="gen-container">{{ 'pages.fourth.outputDesc15' | translate }}: {{ gen.output15 || ('pages.fourth.noOutput' | translate) }}
             <button md-raised-button color="primary" [clip]="gen.output15" (onClip)="gen.copyOutput($event)" *ngIf="gen.output15">{{ 'pages.fourth.copy' | translate }}</button>
           </div>
         </article>
