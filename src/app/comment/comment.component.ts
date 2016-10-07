@@ -4,10 +4,13 @@ import {
   OnDestroy
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import {
+  TranslateService,
+  LangChangeEvent
+} from 'ng2-translate'
 import { AlertService } from '../base/alert/alert.service'
 import { CommentApi } from './comment.api'
 import { PicUrl } from '../base/pic-url/pic-url.service'
-import { AbTranslateService } from '../translate'
 import { Reply } from '../base/icon'
 
 @Component({
@@ -152,13 +155,13 @@ export class CommentComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ts: TranslateService
   ) { }
 
   ngOnInit() {
-
-    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
-      this.lang = lang
+    this.ts.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.lang = event.lang
     })
 
     this.sub = this.route.params

@@ -2,8 +2,11 @@ import {
   Component,
   OnInit
 } from '@angular/core'
+import {
+  TranslateService,
+  LangChangeEvent
+} from 'ng2-translate'
 
-import { AbTranslateService } from '../translate'
 import { ArticleApi } from '../article/article.api'
 import { PageAnimateFn } from '../page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
@@ -45,11 +48,11 @@ export class IndexComponent implements OnInit {
 
   }
 
-  constructor() { }
+  constructor(private ts: TranslateService) { }
 
   ngOnInit() {
-    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
-      this.lang = lang
+    this.ts.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.lang = event.lang
     })
 
     let category = 'hot'
