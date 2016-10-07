@@ -7,13 +7,16 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router'
+import {
+  TranslateService,
+  LangChangeEvent
+} from 'ng2-translate'
 import { UserService } from './user.service'
 import { PageAnimateFn } from '../page-animate/page-animate'
 
 import { AccountApi } from '../base/account/account.api'
 import { CommentApi } from '../comment/comment.api'
 import { PicUrl } from '../base/pic-url/pic-url.service'
-import { AbTranslateService } from '../translate'
 
 @Component({
   selector: 'user-info',
@@ -103,7 +106,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ts: TranslateService
   ) { }
 
   init() {
@@ -142,8 +146,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
-      this.lang = lang
+    this.ts.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.lang = event.lang
     })
 
     this.signout = () => {

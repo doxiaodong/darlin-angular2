@@ -6,9 +6,12 @@ import {
 import {
   ActivatedRoute
 } from '@angular/router'
+import {
+  TranslateService,
+  LangChangeEvent
+} from 'ng2-translate'
 
 import { ArticleApi } from './article.api'
-import { AbTranslateService } from '../translate'
 
 import { PageAnimateFn } from '../page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
@@ -88,12 +91,13 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ts: TranslateService
   ) { }
 
   ngOnInit() {
-    AbTranslateService.updateTranslate$.subscribe((lang: string) => {
-      this.lang = lang
+    this.ts.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.lang = event.lang
     })
 
     this.sub = this.route.params

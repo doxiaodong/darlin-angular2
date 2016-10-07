@@ -6,7 +6,6 @@ import {
   TranslateService,
   LangChangeEvent
 } from 'ng2-translate/ng2-translate'
-import { AbTranslateService } from '../translate'
 
 import { LanguageInterface } from './language.interface'
 import { LocalStorageService } from '../base/local-storage/local-storage.service'
@@ -53,7 +52,6 @@ export class FooterComponent implements OnDestroy {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       LocalStorageService.save('lang', event.lang)
       this.changeHtmlLang(event.lang)
-      AbTranslateService.setLang(event.lang)
     })
     this.translate.use(current)
   }
