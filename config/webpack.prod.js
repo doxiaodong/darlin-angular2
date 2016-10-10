@@ -50,8 +50,8 @@ module.exports = webpackMerge(commonConfig, {
     path: helpers.root('dist'),
 
     // use static server
-    // publicPath: '//static.darlin.me/',
-    publicPath: '/',
+    publicPath: '//static.darlin.me/',
+    // publicPath: '/',
 
     // Specifies the name of each output file on disk.
     // IMPORTANT: You must not specify an absolute path here!
