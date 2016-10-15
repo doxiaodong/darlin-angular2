@@ -8,8 +8,7 @@
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "baseUrl": "./src",
-    "paths": {
-    },
+    "paths": {},
     "types": [
       "core-js",
       "hammerjs",
@@ -33,5 +32,7 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }
