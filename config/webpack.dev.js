@@ -43,7 +43,7 @@ module.exports = webpackMerge(commonConfig, {
     // The output directory as absolute path (required).
     //
     // See: http://webpack.github.io/docs/configuration.html#output-path
-    path: helpers.root('dist'),
+    path: helpers.root('docs'),
 
     publicPath: '/',
 
@@ -123,12 +123,12 @@ module.exports = webpackMerge(commonConfig, {
     proxy: {
       "/api/*": {
         target: 'http://0.0.0.0:9999',
-        rewrite: function (req) {
+        rewrite: function(req) {
           req.url = req.url.replace(/^\/api/, '')
         }
       }
     },
-    outputPath: helpers.root('dist')
+    outputPath: helpers.root('docs')
   },
 
   node: {
