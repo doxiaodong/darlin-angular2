@@ -47,7 +47,7 @@ module.exports = webpackMerge(commonConfig, {
     // The output directory as absolute path (required).
     //
     // See: http://webpack.github.io/docs/configuration.html#output-path
-    path: helpers.root('dist'),
+    path: helpers.root('docs'),
 
     // use static server
     publicPath: '//static.darlin.me/',
@@ -115,7 +115,7 @@ module.exports = webpackMerge(commonConfig, {
 
     new ImageMinifyPlugin({
       src: 'src/assets/images',
-      dest: 'dist/assets/images'
+      dest: 'docs/assets/images'
       // https://github.com/imagemin/imagemin
     }),
 
