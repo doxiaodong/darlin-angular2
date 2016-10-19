@@ -9,11 +9,9 @@ import {
 } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { TranslateModule } from 'ng2-translate/ng2-translate'
-import {
-  MdRadioModule,
-  MdUniqueSelectionDispatcher
-} from '@angular2-material/radio/radio'
-import { MdButtonModule } from '@angular2-material/button/button'
+import { MdRadioModule } from '@angular/material/radio'
+import { MdUniqueSelectionDispatcher } from '@angular/material/core'
+import { MdButtonModule } from '@angular/material/button'
 import { IconModule } from './icon'
 import { ClipModule } from 'ng2-clip'
 

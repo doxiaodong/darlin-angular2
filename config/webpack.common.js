@@ -67,11 +67,13 @@ module.exports = {
       // Typescript loader support for .ts and Angular 2 async routes via .async.ts
       //
       // See: https://github.com/s-panferov/awesome-typescript-loader
-      { test: /\.ts$/, loaders: [
-        'awesome-typescript-loader',
-        'angular2-template-loader'
-        // '@angularclass/hmr-loader'
-        ], exclude: [/\.(spec|e2e)\.ts$/] },
+      {
+        test: /\.ts$/, loaders: [
+          'awesome-typescript-loader',
+          'angular2-template-loader'
+          // '@angularclass/hmr-loader'
+        ], exclude: [/\.(spec|e2e)\.ts$/]
+      },
       {
         test: /\.svg$/,
         loader: 'svg-sprite?' + JSON.stringify({
@@ -107,6 +109,7 @@ module.exports = {
       },
 
       { test: /\.less$/, loader: 'raw-loader!postcss!less', exclude: [/global\.less$/] },
+      { test: /\.scss$/, loader: 'raw-loader!postcss!sass' },
 
       // Raw loader support for *.html
       // Returns file content as string
