@@ -9,21 +9,19 @@
       <form [formGroup]="genPasswordForm" class="form">
         <article class="xd-article">
           <div class="form-group" [class.has-error]="!genPasswordForm.controls['initPassword'].pristine && !genPasswordForm.controls['initPassword'].valid">
-            <label class="form-label" for="initPassword">{{ 'pages.fourth.initPassword' | translate }}：<span class="tomato" [hidden]="genPasswordForm.controls['initPassword'].pristine || genPasswordForm.controls['initPassword'].valid">*{{ 'pages.fourth.required' | translate }}</span></label>
+            <label class="form-label" for="initPassword">{{ 'pages.fourth.initPassword' | translate }}：<span class="tomato" [hidden]="genPasswordForm.controls['initPassword'].pristine || genPasswordForm.controls['initPassword'].valid"></span></label>
             <input class="form-control" [(ngModel)]="gen.initPassword" name="initPassword" id="initPassword" type="password"
               (ngModelChange)="resetGenPassword()"
               formControlName="initPassword"
               [attr.placeholder]="'pages.fourth.initPassword' | translate">
-            <!--<span [hidden]="genPasswordForm.controls['initPassword'].pristine || !genPasswordForm.controls['initPassword'].valid" class="xd xd-checkmark active"></span>-->
-            <icon class="active" [hidden]="genPasswordForm.controls['initPassword'].pristine || !genPasswordForm.controls['initPassword'].valid" [glyph]="icon.checkmark"></icon>
+            <icon class="active" [hidden]="!genPasswordForm.controls['initPassword'].valid" [glyph]="icon.checkmark"></icon>
           </div>
           <div class="form-group" [class.has-error]="!genPasswordForm.controls['key'].pristine && !genPasswordForm.controls['key'].valid">
-            <label class="form-label" for="key">{{ 'pages.fourth.key' | translate }}：<span class="tomato" [hidden]="genPasswordForm.controls['key'].pristine || genPasswordForm.controls['key'].valid"></span></label>
+            <label class="form-label" for="key">{{ 'pages.fourth.key' | translate }}：<span class="tomato" [hidden]="genPasswordForm.controls['key'].pristine || genPasswordForm.controls['key'].valid">*{{ 'pages.fourth.required' | translate }}</span></label>
             <input class="form-control" [(ngModel)]="gen.key" name="key" id="key"
               (ngModelChange)="resetGenPassword()"
               formControlName="key"
               type="text" [attr.placeholder]="'pages.fourth.key' | translate">
-            <!--<span [hidden]="!genPasswordForm.controls['key'].valid" class="xd xd-checkmark active"></span>-->
             <icon class="active" [hidden]="!genPasswordForm.controls['key'].valid" [glyph]="icon.checkmark"></icon>
           </div>
           <div class="form-group">

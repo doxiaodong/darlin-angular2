@@ -12,16 +12,6 @@ require('./article/article-list.global.less')
   templateUrl: './app.template.html',
   styles: [
     require('./base/styles/material.scss')
-    // require('./base/styles/global.less'),
-    // require('./article/article-list.less')
   ]
 })
-export class RootAppComponent {
-
-  // onUserInfoUpdate(userInfo) {
-  //   console.log('@output: ${userInfo}', userInfo)
-  // }
-
-  constructor() { }
-
-}
+export class RootAppComponent { }

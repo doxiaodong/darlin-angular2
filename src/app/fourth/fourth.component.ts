@@ -80,11 +80,11 @@ export class FourthIndexComponent {
     this.genPasswordForm = fb.group({
       initPassword: [
         '',
-        Validators.required
+        []
       ],
       key: [
         '',
-        []
+        Validators.required
       ]
     })
   }
