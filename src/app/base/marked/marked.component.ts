@@ -46,6 +46,12 @@ export class MarkedComponent implements OnChanges {
 
   public html: SafeHtml = ''
 
+  updateJax() {
+    if (global['MathJax']) {
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.ele.nativeElement])
+    }
+  }
+
   constructor(
     private markedService: MarkedService,
     private sanitizer: DomSanitizer,
@@ -53,6 +59,7 @@ export class MarkedComponent implements OnChanges {
   ) {
 
     this.ms = markedService.init()
+    loadMathJax(this.updateJax.bind(this))
 
   }
 
@@ -61,9 +68,19 @@ export class MarkedComponent implements OnChanges {
       let emojiMd = emojione.toImage(this.md)
       this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
       setTimeout(() => {
-        MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.ele.nativeElement])
+        this.updateJax()
       }, 20)
     }
   }
+}
 
+function loadMathJax(callback) {
+  if (global['MathJax']) {
+    return
+  }
+  const script = document.createElement('script')
+  script.src = 'https://cdn.tristana.cc/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  const s = document.getElementsByTagName('script')[0]
+  s.parentNode.insertBefore(script, s)
+  script.addEventListener('load', callback)
 }
