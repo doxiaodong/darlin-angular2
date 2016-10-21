@@ -2,7 +2,8 @@ import {
   Component,
   Input,
   ViewEncapsulation,
-  OnChanges
+  OnChanges,
+  ElementRef
 } from '@angular/core'
 import {
   DomSanitizer,
@@ -47,7 +48,8 @@ export class MarkedComponent implements OnChanges {
 
   constructor(
     private markedService: MarkedService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private ele: ElementRef
   ) {
 
     this.ms = markedService.init()
@@ -58,6 +60,9 @@ export class MarkedComponent implements OnChanges {
     if (changes.md !== undefined && this.ms) {
       let emojiMd = emojione.toImage(this.md)
       this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
+      setTimeout(() => {
+        renderMathInElement(this.ele.nativeElement)
+      }, 20)
     }
   }
 
