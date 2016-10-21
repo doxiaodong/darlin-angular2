@@ -61,7 +61,7 @@ export class MarkedComponent implements OnChanges {
       let emojiMd = emojione.toImage(this.md)
       this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
       setTimeout(() => {
-        renderMathInElement(this.ele.nativeElement)
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.ele.nativeElement])
       }, 20)
     }
   }

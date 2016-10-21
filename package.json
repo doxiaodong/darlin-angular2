@@ -77,6 +77,7 @@
     "@types/highlight.js": "^9.1.8",
     "@types/jasmine": "^2.2.35",
     "@types/marked": "0.0.28",
+    "@types/mathjax": "0.0.31",
     "@types/node": "^6.0.45",
     "@types/selenium-webdriver": "^2.53.33",
     "@types/source-map": "^0.1.28",
