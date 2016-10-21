@@ -6,9 +6,6 @@
     <div class="each-inner">
 
       <ul class="articles">
-        <!--<li class="article">
-          <input type="text" class="form-control" [(ngModel)]="searchText.title">
-        </li>-->
         <li class="article" *ngFor="let article of articles">
           <a class="a" [routerLink]="['/article', article.category, article.url]">
             <div class="title">

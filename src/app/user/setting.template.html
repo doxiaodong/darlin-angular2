@@ -14,7 +14,6 @@
             <input class="form-control" [readonly]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
               formControlName="username"
               id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
-            <!--<span [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" class="xd xd-checkmark active"></span>-->
             <icon class="active" [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" [glyph]="icon.checkmark"></icon>
           </div>
           <div class="form-group" [class.has-error]="!settingForm.controls['email'].pristine && !settingForm.controls['email'].valid">
@@ -22,7 +21,6 @@
             <input class="form-control" [(ngModel)]="setting.email" name="email" id="setting_email" type="email"
               formControlName="email"
               [attr.placeholder]="'pages.account.email' | translate">
-            <!--<span [hidden]="settingForm.controls['email'].pristine || !settingForm.controls['email'].valid" class="xd xd-checkmark active"></span>-->
             <icon class="active" [hidden]="settingForm.controls['email'].pristine || !settingForm.controls['email'].valid" [glyph]="icon.checkmark"></icon>
           </div>
           <div class="form-group">
@@ -30,7 +28,6 @@
             <input class="form-control" [(ngModel)]="setting.nickname" name="nickname" id="setting_nickname"
               formControlName="nickname"
               type="text" [attr.placeholder]="'pages.account.nickname' | translate">
-            <!--<span [hidden]="settingForm.controls['nickname'].pristine || !settingForm.controls['nickname'].valid" class="xd xd-checkmark active"></span>-->
             <icon class="active" [hidden]="settingForm.controls['nickname'].pristine || !settingForm.controls['nickname'].valid" [glyph]="icon.checkmark"></icon>
           </div>
           <div class="form-group" id="setting_sex">

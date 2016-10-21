@@ -1,8 +1,7 @@
 import {
   Component,
   Input,
-  OnInit,
-  OnChanges
+  OnInit
 } from '@angular/core'
 
 import { AlertService } from './alert.service'
@@ -23,7 +22,7 @@ interface AlertInterface {
   ]
 })
 
-export class AlertComponent implements OnInit, OnChanges {
+export class AlertComponent implements OnInit {
 
   public opts: AlertInterface
   public showAlert: boolean = false
@@ -40,8 +39,6 @@ export class AlertComponent implements OnInit, OnChanges {
       this.opts.callback()
     }
   }
-
-  constructor() { }
 
   ngOnInit() {
 
@@ -61,10 +58,6 @@ export class AlertComponent implements OnInit, OnChanges {
       this.showAlert = true
     })
 
-  }
-
-  ngOnChanges(changes) {
-    // console.log(changes)
   }
 
 }

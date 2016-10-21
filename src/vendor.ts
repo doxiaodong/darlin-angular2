@@ -7,11 +7,6 @@ import '@angular/common'
 import '@angular/http'
 import '@angular/router'
 
-// Angular 2 Material 2
-import '@angular2-material/radio'
-import '@angular2-material/button'
-// import '@angular2-material/list'
-
 // // RxJS
 // import 'rxjs/add/operator/map'
 // import 'rxjs/add/operator/mergeMap'

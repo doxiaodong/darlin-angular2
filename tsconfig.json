@@ -20,7 +20,8 @@
       "webpack",
       "marked",
       "highlight.js",
-      "crypto-js"
+      "crypto-js",
+      "mathjax"
     ]
   },
   "exclude": [

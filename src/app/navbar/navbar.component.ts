@@ -1,7 +1,5 @@
 import {
   Component,
-  // Output,
-  // EventEmitter,
   OnInit
 } from '@angular/core'
 import {
@@ -31,19 +29,15 @@ export class NavbarComponent implements OnInit {
   public user: UserInterface = USER_NULL
   public isSignin: boolean = false
 
-  // @Output() userInfoUpdateEmitter: EventEmitter<any> = new EventEmitter()
-
   signIn() {
     SignModalService.show()
   }
 
   signOut() {
-    // console.log('signout')
     AccountApi.signout()
       .then(data => {
         this.user = UserService.clear()
       })
-    // this.userInfoUpdateEmitter.emit(this.user)
   }
 
   configIndexNumber(path: string) {

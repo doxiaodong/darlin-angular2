@@ -2,7 +2,8 @@ import {
   Component,
   Input,
   ViewEncapsulation,
-  OnChanges
+  OnChanges,
+  ElementRef
 } from '@angular/core'
 import {
   DomSanitizer,
@@ -45,12 +46,20 @@ export class MarkedComponent implements OnChanges {
 
   public html: SafeHtml = ''
 
+  updateJax() {
+    if (global['MathJax']) {
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.ele.nativeElement])
+    }
+  }
+
   constructor(
     private markedService: MarkedService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private ele: ElementRef
   ) {
 
     this.ms = markedService.init()
+    loadMathJax(this.updateJax.bind(this))
 
   }
 
@@ -58,7 +67,20 @@ export class MarkedComponent implements OnChanges {
     if (changes.md !== undefined && this.ms) {
       let emojiMd = emojione.toImage(this.md)
       this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
+      setTimeout(() => {
+        this.updateJax()
+      }, 20)
     }
   }
+}
 
+function loadMathJax(callback) {
+  if (global['MathJax']) {
+    return
+  }
+  const script = document.createElement('script')
+  script.src = 'https://cdn.tristana.cc/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  const s = document.getElementsByTagName('script')[0]
+  s.parentNode.insertBefore(script, s)
+  script.addEventListener('load', callback)
 }
