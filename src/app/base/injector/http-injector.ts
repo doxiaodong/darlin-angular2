@@ -48,6 +48,16 @@ let injector = ReflectiveInjector.resolveAndCreate([
 ])
 export const http = injector.get(Http)
 
+function getJsonRes(res): any {
+  let ret = {}
+  try {
+    ret = res.json()
+  } catch (error) {
+    console.error('json parse error', error)
+  }
+  return ret
+}
+
 export class Dhttp {
 
   static dhttpFn(name: string, ...args) {
@@ -55,7 +65,7 @@ export class Dhttp {
       .toPromise()
       .then((res) => {
         ResponseHandler(res)
-        let body = res.json()
+        let body = getJsonRes(res)
         if (body.status === 1) {
           return Promise.resolve(body.data)
         } else {
@@ -102,7 +112,7 @@ export class Dhttp2 extends Dhttp {
       .toPromise()
       .then((res) => {
         ResponseHandler(res)
-        let body = res.json()
+        let body = getJsonRes(res)
         return Promise.resolve(body)
       })
       .catch(ErrorHandler)
@@ -117,7 +127,7 @@ export class Dhttp3 extends Dhttp {
       .toPromise()
       .then((res) => {
         ResponseHandler(res)
-        let body = res.json()
+        let body = getJsonRes(res)
         if (body.status === 1) {
           return Promise.resolve(body)
         } else {
