@@ -54,7 +54,7 @@
     "@angular/core": "2.1.2",
     "@angular/forms": "2.1.2",
     "@angular/http": "2.1.2",
-    "@angular/material": "^2.0.0-alpha.9-3",
+    "@angular/material": "^2.0.0-alpha.10",
     "@angular/platform-browser": "2.1.2",
     "@angular/platform-browser-dynamic": "2.1.2",
     "@angular/router": "3.1.2",
@@ -67,8 +67,8 @@
     "moment": "^2.15.2",
     "ng2-clip": "latest",
     "ng2-translate": "^4.0.0",
-    "rxjs": "5.0.0-rc.1",
-    "zone.js": "0.6.25"
+    "rxjs": "5.0.0-rc.2",
+    "zone.js": "0.6.26"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.34",
