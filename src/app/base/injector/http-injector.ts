@@ -25,7 +25,7 @@ function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Ht
 }
 
 function createDefaultCookieXSRFStrategy() {
-  return new CookieXSRFStrategy()
+  return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken')
 }
 
 const BrowserXhrProvider: ClassProvider = {
