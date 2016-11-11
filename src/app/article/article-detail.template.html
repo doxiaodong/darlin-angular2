@@ -9,7 +9,7 @@
       <div class="changes">• {{ article.createTime | xdDate: lang }} • {{ article.category.name }}</div>
     </div>
     <div class="each-inner">
-      <marked class="each-article markdown" [md]="article.content"></marked>
+      <marked class="each-article markdown" [md]="article.content" trust="true"></marked>
     </div>
   </div>
 

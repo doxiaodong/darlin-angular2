@@ -41,6 +41,7 @@ require('emojione/assets/css/emojione.min.css') // use node_modules
 export class MarkedComponent implements OnChanges {
 
   @Input() md: string
+  @Input() trust: boolean
 
   private ms: any
 
@@ -66,7 +67,11 @@ export class MarkedComponent implements OnChanges {
   ngOnChanges(changes) {
     if (changes.md !== undefined && this.ms) {
       let emojiMd = emojione.toImage(this.md)
-      this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
+      if (this.trust) {
+        this.html = this.sanitizer.bypassSecurityTrustHtml(this.ms(emojiMd))
+      } else {
+        this.html = this.ms(emojiMd)
+      }
       setTimeout(() => {
         this.updateJax()
       }, 20)
