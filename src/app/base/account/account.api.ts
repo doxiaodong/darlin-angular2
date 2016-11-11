@@ -1,6 +1,7 @@
 import API_PREFIX from '../api-prefix/api-prefix.service'
 import { Headers } from '@angular/http'
 import { HttpUtilsService } from '../utils/http-utils.service'
+import { getCookie } from '../utils/get-cookie.service'
 import {
   Dhttp,
   Dhttp3
@@ -71,7 +72,9 @@ class Api {
   }
 
   // use XMLHttpRequest
-  changeProfile(obj: Object) {
+  changeProfile(formData: FormData) {
+    // for csrf
+    formData.append('csrfmiddlewaretoken', getCookie('csrftoken'))
     RequestHandler()
     return Observable.create((observer) => {
       let xhr = new XMLHttpRequest()
@@ -89,8 +92,7 @@ class Api {
       })
 
       xhr.open('POST', this.prefix + '/account/setting/')
-
-      xhr.send(obj)
+      xhr.send(formData)
     })
       .toPromise()
       .then((res) => {
