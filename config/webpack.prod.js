@@ -30,7 +30,7 @@ const METADATA = {
   HMR: false
 }
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = webpackMerge(commonConfig({ env: ENV }), {
 
   // Developer tool to enhance debugging
   //

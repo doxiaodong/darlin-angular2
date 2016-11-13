@@ -1,3 +1,9 @@
+import {
+  browser,
+  element,
+  by
+} from 'protractor'
+
 describe('app e2e', () => {
 
   beforeEach(() => {
