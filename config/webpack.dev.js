@@ -122,7 +122,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     },
     proxy: {
       "/api": {
-        target: 'http://0.0.0.0:9999',
+        target: 'https://api.darlin.me',
         pathRewrite: {
           '^/api': ''
         }
