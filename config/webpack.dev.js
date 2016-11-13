@@ -27,7 +27,7 @@ const METADATA = {
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = webpackMerge(commonConfig, {
+module.exports = webpackMerge(commonConfig({ env: ENV }), {
 
   // Developer tool to enhance debugging
   //
@@ -121,10 +121,10 @@ module.exports = webpackMerge(commonConfig, {
       poll: 1000
     },
     proxy: {
-      "/api/*": {
+      "/api": {
         target: 'http://0.0.0.0:9999',
-        rewrite: function (req) {
-          req.url = req.url.replace(/^\/api/, '')
+        pathRewrite: {
+          '^/api': ''
         }
       }
     },

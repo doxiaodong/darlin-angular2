@@ -1,5 +1,6 @@
 import { enableProdMode } from '@angular/core'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { bootloader } from '@angularclass/hmr'
 
 import { AppModule } from './app/app.module'
 
@@ -16,4 +17,5 @@ function main(): Promise<any> {
     .catch(err => console.error(err))
 }
 
-document.addEventListener('DOMContentLoaded', () => main())
+bootloader(main)
+// document.addEventListener('DOMContentLoaded', () => main())
