@@ -45,10 +45,4 @@ describe('app e2e', () => {
     expect(subject).toEqual(result)
   })
 
-  it('should have loading', () => {
-    let subject = element(by.css('loading')).isPresent()
-    let result = true
-    expect(subject).toEqual(result)
-  })
-
 })
