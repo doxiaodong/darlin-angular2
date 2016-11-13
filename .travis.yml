@@ -3,7 +3,8 @@ language: node_js
 node_js: "5.1"
 
 install:
-  - npm install
+  - npm install -g yarn
+  - yarn
 
 cache:
   directories:
@@ -16,3 +17,5 @@ before_script:
   - sleep 3
 
 script: $TRAVIS_BUILD_DIR/.travis.sh
+
+sudo: required
