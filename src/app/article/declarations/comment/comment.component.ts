@@ -8,7 +8,7 @@ import {
   TranslateService,
   LangChangeEvent
 } from 'ng2-translate'
-import { AlertService } from 'app/declarations/alert/alert.service'
+// import { AlertService } from 'app/declarations/alert/alert.service'
 import { CommentApi } from './comment.api'
 import { PicUrl } from 'app/base/pic-url/pic-url.service'
 import { Reply } from 'app/share/icon'
