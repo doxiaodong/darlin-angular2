@@ -1,13 +1,13 @@
 import { Component } from '@angular/core'
-import { PageAnimateFn } from '../page-animate/page-animate'
+import { PageAnimateFn } from 'app/share/declarations/page-animate/page-animate'
 import { LinksApi } from './links.api'
 import {
   FormGroup,
   Validators,
   FormBuilder
 } from '@angular/forms'
-import { Checkmark } from '../base/icon'
-import { AlertService } from '../base/alert/alert.service'
+import { Checkmark } from 'app/share/icon'
+import { AlertService } from 'app/declarations/alert/alert.service'
 
 const sha512 = require('crypto-js/sha512')
 const md5 = require('crypto-js/md5')

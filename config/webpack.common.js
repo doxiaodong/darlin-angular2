@@ -41,7 +41,8 @@ module.exports = function(option) {
       extensions: ['.ts', '.js'],
 
       alias: {
-        svg: helpers.root('src/svg')
+        svg: helpers.root('src/svg'),
+        app: helpers.root('src/app')
       }
 
     },
