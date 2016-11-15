@@ -1,0 +1,39 @@
+@import '~app/base/styles/each';
+
+.pages {
+  .side-list {
+    line-height: 1;
+    li {
+      float: left;
+      margin-right: 10px;
+      color: rgb(255, 99, 71);
+      padding: 5px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .side-list {
+      li {
+        float: none;
+      }
+      li + li {
+        margin: 10px 0;
+      }
+    }
+    .side {
+      margin: 0;
+      width: 100%;
+      max-width: @max-width;
+      position: fixed!important;
+      z-index: @z-index;
+      .right-left(200px);
+      height: 0;
+      .right {
+        .each-inner {
+          overflow: auto;
+          max-height: 400px;
+        }
+      }
+    }
+
+  }
+}

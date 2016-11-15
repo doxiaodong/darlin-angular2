@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { BaseModule } from '../base'
+import { ShareModule } from '../share'
 
 import { SigninCheck } from './signin-check'
 
-import { UserInfoComponent } from './user-info.component'
-import { UserSettingComponent } from './setting.component'
-import { ChangePasswordComponent } from './change-password.component'
-import { ResetPasswordComponent } from './reset-password.component'
+import { UserInfoComponent } from './user-info/user-info.component'
+import { UserSettingComponent } from './setting/setting.component'
+import { ChangePasswordComponent } from './change-password/change-password.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
 import {
   components,
   pipes,
   directives
-} from './user.declarations'
+} from './declarations'
 
 const ROUTER_CONFIG = [
   { path: 'info/:user', component: UserInfoComponent, canActivate: [SigninCheck] },
@@ -41,7 +41,7 @@ const RouteDeclarations = [
     SigninCheck
   ],
   imports: [
-    BaseModule,
+    ShareModule,
     RouterModule.forChild(ROUTER_CONFIG)
   ]
 })

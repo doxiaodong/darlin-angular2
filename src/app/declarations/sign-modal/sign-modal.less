@@ -1,0 +1,44 @@
+@import '~app/base/styles/each';
+
+
+.xd-container {
+  background-color: transparent;
+}
+
+#SIGNIN,
+#REGISTER {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  .transition(0.5s);
+  .transform-rotate3d(0, 180deg, 0);
+  transition-property: opacity, transform;
+  &.active {
+    z-index: 2;
+    opacity: 1;
+    height: auto;
+    .transform-rotate3d(0, 0, 0);
+  }
+  .form-group {
+    width: 80%;
+    position: relative;
+  }
+  .xd-footer {
+    .aside {
+      margin-left: 20px;
+    }
+    .qq-weibo {
+      position: relative;
+      img {
+        position: relative;
+        display: inline-block;
+        top: 8px;
+        width: 24px;
+      }
+    }
+  }
+}

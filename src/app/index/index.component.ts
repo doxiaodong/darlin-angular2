@@ -7,8 +7,8 @@ import {
   LangChangeEvent
 } from 'ng2-translate'
 
-import { ArticleApi } from '../article/article.api'
-import { PageAnimateFn } from '../page-animate/page-animate'
+import { ArticleApi } from 'app/article/api/article.api'
+import { PageAnimateFn } from 'app/share/declarations/page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
 
 @Component({
