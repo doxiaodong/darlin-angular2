@@ -1,7 +1,7 @@
 import {
   HEAD_PIC_STYLE,
   THIRD_PIC_REG
-} from '../constants/picture.constant'
+} from './picture.constant'
 const md5 = require('crypto-js/md5')
 
 export class PicUrl {

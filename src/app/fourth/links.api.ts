@@ -1,16 +1,10 @@
-import API_PREFIX from '../base/api-prefix/api-prefix.service'
-import { Dhttp2 } from '../base/injector/http-injector'
+import API_PREFIX from 'app/base/api-prefix/api-prefix.service'
+import { Dhttp } from 'app/base/http'
 
 class Api {
 
-  private prefix: string
-
   getLinks() {
-    return Dhttp2.get(this.prefix + '/links/?format=json')
-  }
-
-  constructor() {
-    this.prefix = API_PREFIX
+    return Dhttp.get(API_PREFIX + '/links/?format=json')
   }
 
 }

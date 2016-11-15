@@ -5,8 +5,8 @@ import {
 } from '@angular/router'
 import { Observable } from 'rxjs/Observable'
 
-import { UserService } from './user.service'
-import { SignModalService } from '../sign-modal/sign-modal.service'
+import { UserService } from './service/user.service'
+import { SignModalService } from 'app/declarations/sign-modal/sign-modal.service'
 
 @Injectable()
 export class SigninCheck implements CanActivate {

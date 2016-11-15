@@ -18,7 +18,7 @@ import {
 } from '@angularclass/hmr'
 import { AppStore } from './app.store'
 
-import { BaseModule } from './base'
+import { ShareModule } from './share'
 
 import {
   ROUTES,
@@ -30,7 +30,7 @@ import {
   components,
   pipes,
   directives
-} from './app.declarations'
+} from './declarations'
 
 @NgModule({
   bootstrap: [
@@ -46,7 +46,7 @@ import {
   ],
   imports: [
     BrowserModule,
-    BaseModule.forRoot(),
+    ShareModule.forRoot(),
 
     RouterModule.forRoot(ROUTES),
     TranslateModule.forRoot({

@@ -4,7 +4,7 @@ import {
 } from '@angular/core'
 
 require('./base/styles/global.less')
-require('./article/article-list.global.less')
+require('./article/list/article-list.global.less')
 
 @Component({
   encapsulation: ViewEncapsulation.None,

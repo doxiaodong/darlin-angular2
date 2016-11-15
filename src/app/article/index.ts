@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { BaseModule } from '../base'
+import { ShareModule } from '../share'
 
-import { ArticleListComponent } from './article-list.component'
-import { ArticleDetailComponent } from './article-detail.component'
+import { ArticleListComponent } from './list'
+import { ArticleDetailComponent } from './detail'
 
 import {
   components,
   pipes,
   directives
-} from './article.declarations'
+} from './declarations'
 
 const ROUTER_CONFIG = [
   { path: ':category', component: ArticleListComponent },
@@ -30,7 +30,7 @@ const RouteDeclarations = [
     ...directives
   ],
   imports: [
-    BaseModule,
+    ShareModule,
     RouterModule.forChild(ROUTER_CONFIG)
   ]
 })
