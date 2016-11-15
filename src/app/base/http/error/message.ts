@@ -34,5 +34,5 @@ export const errorCodeMessages = {
   '401001': {
     'en_US': 'Login first',
     'zh_CN': '请先登录'
-  },
+  }
 }
