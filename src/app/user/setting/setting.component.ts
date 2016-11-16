@@ -17,6 +17,14 @@ import { AlertService } from 'app/declarations/alert/alert.service'
 import { UserApi } from '../api/user.api'
 import { PicUrl } from 'app/base/pic-url/pic-url.service'
 import { Checkmark } from 'app/share/icon'
+import {
+  IRequestParams,
+  requesting
+} from 'app/base/requesting'
+
+const request: IRequestParams = {
+  requesting: false
+}
 
 @Component({
   selector: 'setting',
@@ -34,7 +42,9 @@ export class UserSettingComponent implements OnInit {
   }
   public settingPicModel: any
 
-  public requesting: boolean = false
+  get requesting() {
+    return request.requesting
+  }
   public formChanged: boolean = false
   public setting: any
 
@@ -79,22 +89,17 @@ export class UserSettingComponent implements OnInit {
     this.setting.sex.type += ''
   }
 
+  @requesting(request)
   submit() {
-    this.requesting = true
     let formData = new FormData()
     formData.append('username', this.setting.username)
     formData.append('email', this.setting.email)
     formData.append('nickname', this.setting.nickname)
     formData.append('sex', this.setting.sex.type)
     formData.append('pic', this.settingPicModel)
-    UserApi.changeProfile(formData)
+    return UserApi.changeProfile(formData)
       .then(data => {
-        AlertService.show(data.msg)
-      }).catch((msg) => {
-        AlertService.show(msg)
-      })
-      .then(() => {
-        this.requesting = false
+        AlertService.show('Success!')
       })
   }
 

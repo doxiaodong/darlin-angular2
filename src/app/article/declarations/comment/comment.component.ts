@@ -8,10 +8,17 @@ import {
   TranslateService,
   LangChangeEvent
 } from 'ng2-translate'
-// import { AlertService } from 'app/declarations/alert/alert.service'
 import { CommentApi } from './comment.api'
 import { PicUrl } from 'app/base/pic-url/pic-url.service'
 import { Reply } from 'app/share/icon'
+import {
+  IRequestParams,
+  requesting
+} from 'app/base/requesting'
+
+const request: IRequestParams = {
+  requesting: false
+}
 
 @Component({
   selector: '[article-comments]',
@@ -25,7 +32,10 @@ export class CommentComponent implements OnInit, OnDestroy {
     reply: Reply
   }
   public lang: string
-  public requesting: boolean = false
+
+  get requesting() {
+    return request.requesting
+  }
 
   public comments
   public articleReplies: number = 0
@@ -105,11 +115,9 @@ export class CommentComponent implements OnInit, OnDestroy {
     }
   }
 
+  @requesting(request)
   comment(article: string, obj: Object) {
-
-    this.requesting = true
-
-    CommentApi.addArticleReply(article, obj)
+    return CommentApi.addArticleReply(article, obj)
       .then(data => {
         this.clearSubmitForm()
         let n = this.comments.length
@@ -125,17 +133,12 @@ export class CommentComponent implements OnInit, OnDestroy {
         comment.replies = []
         this.comments.push(comment)
         this.articleReplies += 1
-      }).catch((msg) => {
-        // nothing
-      })
-      .then(() => {
-        this.requesting = false
       })
   }
 
+  @requesting(request)
   reply(comment: string, obj: Object, index: number) {
-    this.requesting = true
-    CommentApi.addSubReply(comment, obj)
+    return CommentApi.addSubReply(comment, obj)
       .then(data => {
         this.clearSubmitForm()
         let sub = data.subComment
@@ -144,11 +147,6 @@ export class CommentComponent implements OnInit, OnDestroy {
         sub.time = sub.time
         this.comments[index - 1].replies.push(sub)
         this.articleReplies += 1
-      }).catch((msg) => {
-        // AlertService.show(msg)
-      })
-      .then(() => {
-        this.requesting = false
       })
   }
 
