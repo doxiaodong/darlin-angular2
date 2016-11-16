@@ -10,12 +10,6 @@ import {
 import { Injectable } from '@angular/core'
 import { LoadingService } from 'app/declarations/loading/loading.service'
 import { AlertService } from 'app/declarations/alert/alert.service'
-// import {
-//   TranslatePipe,
-//   TranslateService
-// } from 'ng2-translate/ng2-translate'
-import { LocalStorageService } from 'app/base/local-storage/local-storage.service'
-import { errorCodeMessages } from '../error/message'
 
 @Injectable()
 export class HttpInterceptor extends XHRBackend {
@@ -64,10 +58,9 @@ export function ErrorHandler(error: any, isFetch = false) {
   }
 
   ResponseHandler(errorBody)
-  // TODO: try to use translate to solve this
-  let lang: string = LocalStorageService.get('lang')
   if (errorBody) {
-    const errorContent = errorCodeMessages[errorBody.code][lang]
-    AlertService.show(errorContent)
+    GLOBAL_VALUE.TRANSLATE.get(`error.${errorBody.code}`).subscribe((value: string) => {
+      AlertService.show(value)
+    })
   }
 }
