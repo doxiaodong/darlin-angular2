@@ -99,7 +99,9 @@ export class UserSettingComponent implements OnInit {
     formData.append('pic', this.settingPicModel)
     return UserApi.changeProfile(formData)
       .then(data => {
-        AlertService.show('Success!')
+        GLOBAL_VALUE.TRANSLATE.get('pages.account.settingSuccess').subscribe((value: string) => {
+          AlertService.show(value)
+        })
       })
   }
 

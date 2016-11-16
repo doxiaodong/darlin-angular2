@@ -73,6 +73,7 @@ interface Global extends GlobalEnvironment { }
 // Set global value in ./global.js
 interface GlobalValue {
   PIC_STATIC_URL_HOST: string
+  TRANSLATE: any
 }
 
 declare let GLOBAL_VALUE: GlobalValue

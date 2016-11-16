@@ -45,7 +45,9 @@ export class ChangePasswordComponent implements OnInit {
   submit() {
     return UserApi.changePassword(this.data)
       .then(data => {
-        AlertService.show('Success!')
+        GLOBAL_VALUE.TRANSLATE.get('pages.forget.success').subscribe((value: string) => {
+          AlertService.show(value)
+        })
       })
   }
 
