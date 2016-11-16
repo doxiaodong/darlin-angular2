@@ -1,4 +1,3 @@
-import { Headers } from '@angular/http'
 import API_PREFIX from 'app/base/api-prefix/api-prefix.service'
 
 import { Dhttp } from 'app/base/http'
@@ -26,9 +25,9 @@ class Api {
     // obj = {content: <string>}
     return Dhttp.post(
       API_PREFIX + `/comments/add/${article}/`, HttpUtilsService.paramPostBody(obj), {
-        headers: new Headers({
+        headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
-        })
+        }
       })
   }
 
@@ -36,9 +35,9 @@ class Api {
     // obj = {content: <string>, reply_object: <string>}
     return Dhttp.post(
       API_PREFIX + `/comments/add-sub/${comment}/`, HttpUtilsService.paramPostBody(obj), {
-        headers: new Headers({
+        headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
-        })
+        }
       })
   }
 

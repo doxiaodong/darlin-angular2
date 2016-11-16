@@ -50,12 +50,17 @@ export function RequestHandler(): void {
   LoadingService.show()
 }
 
-export function ErrorHandler(error: any) {
+export function ErrorHandler(error: any, isFetch = false) {
   let errorBody = null
-  try {
-    errorBody = JSON.parse(error._body)
-  } catch (error) {
-    console.error('parse error body fail')
+
+  if (isFetch) {
+    errorBody = error
+  } else {
+    try {
+      errorBody = JSON.parse(error._body)
+    } catch (error) {
+      console.error('parse error body fail')
+    }
   }
 
   ResponseHandler(errorBody)
@@ -65,5 +70,4 @@ export function ErrorHandler(error: any) {
     const errorContent = errorCodeMessages[errorBody.code][lang]
     AlertService.show(errorContent)
   }
-  return Promise.reject(errorBody)
 }
