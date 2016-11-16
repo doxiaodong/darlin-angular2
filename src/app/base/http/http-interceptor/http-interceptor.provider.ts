@@ -57,7 +57,7 @@ export function ErrorHandler(error: any, isFetch = false) {
     errorBody = error
   } else {
     try {
-      errorBody = JSON.parse(error._body)
+      errorBody = error.json()
     } catch (error) {
       console.error('parse error body fail')
     }
