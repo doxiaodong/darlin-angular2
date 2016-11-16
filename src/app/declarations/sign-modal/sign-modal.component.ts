@@ -13,14 +13,20 @@ import { UserInterface } from 'app/user/service/user.interface'
 import { UserService } from 'app/user/service/user.service'
 import { SignModalService } from './sign-modal.service'
 import { LocalStorageService } from 'app/base/local-storage/local-storage.service'
-
-import { AlertService } from 'app/declarations/alert/alert.service'
 import { UserApi } from 'app/user/api/user.api'
 import validate from './sign-modal.validate'
 import {
   Close,
   Checkmark
 } from 'app/share/icon'
+import {
+  IRequestParams,
+  requesting
+} from 'app/base/requesting'
+
+const request: IRequestParams = {
+  requesting: false
+}
 
 interface SigninInterface {
   username: string
@@ -49,7 +55,9 @@ export class SignModalComponent implements OnInit {
     close: Close,
     checkmark: Checkmark
   }
-  public requesting: boolean = false
+  get requesting() {
+    return request.requesting
+  }
   public showModal: boolean = false
   public signinModel: boolean = true
 
@@ -68,26 +76,21 @@ export class SignModalComponent implements OnInit {
     this.showModal = false
   }
 
+  @requesting(request)
   doSignin(obj: Object) {
-    this.requesting = true
-    UserApi.signin(obj)
+    return UserApi.signin(obj)
       .then(data => {
         this.user = UserService.save(data.user)
 
         // sigin success
         LocalStorageService.save('signin.user', JSON.stringify(this.signin))
         this.closeShowModal()
-      }).catch((msg) => {
-        // AlertService.show(msg)
-      })
-      .then(() => {
-        this.requesting = false
       })
   }
 
+  @requesting(request)
   doRegister(obj: any) {
-    this.requesting = true
-    UserApi.register(obj)
+    return UserApi.register(obj)
       .then(data => {
         this.user = UserService.save(data.user)
         this.signin = {
@@ -97,11 +100,6 @@ export class SignModalComponent implements OnInit {
         // sigin success
         LocalStorageService.save('signin.user', JSON.stringify(this.signin))
         this.closeShowModal()
-      }).catch((msg) => {
-        AlertService.show(msg)
-      })
-      .then(() => {
-        this.requesting = false
       })
   }
 
@@ -109,7 +107,7 @@ export class SignModalComponent implements OnInit {
     if (this.requesting) {
       return
     }
-    this.requesting = true
+    request.requesting = true
     UserApi.githubLogin()
     this.closeShowModal()
   }
@@ -118,7 +116,7 @@ export class SignModalComponent implements OnInit {
     if (this.requesting) {
       return
     }
-    this.requesting = true
+    request.requesting = true
     UserApi.qqLogin()
     this.closeShowModal()
   }
