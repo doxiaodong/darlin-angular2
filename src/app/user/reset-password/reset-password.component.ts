@@ -45,7 +45,9 @@ export class ResetPasswordComponent implements OnInit {
   submit() {
     return UserApi.resetPassword(this.data)
       .then(data => {
-        AlertService.show('Success!')
+        GLOBAL_VALUE.TRANSLATE.get('pages.reset.success').subscribe((value: string) => {
+          AlertService.show(value)
+        })
       })
   }
 

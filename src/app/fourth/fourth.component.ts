@@ -43,9 +43,13 @@ export class FourthIndexComponent {
     output15: '',
     copyOutput(e) {
       if (e) {
-        AlertService.show('Success!')
+        GLOBAL_VALUE.TRANSLATE.get('pages.fourth.copySuccess').subscribe((value: string) => {
+          AlertService.show(value)
+        })
       } else {
-        AlertService.show('Error!')
+        GLOBAL_VALUE.TRANSLATE.get('pages.fourth.copyError').subscribe((value: string) => {
+          AlertService.show(value)
+        })
       }
     }
   }

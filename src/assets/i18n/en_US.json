@@ -79,7 +79,8 @@
       "fold": "Fold",
       "expand": "Expand",
       "changePassword": "Change Password",
-      "signout": "Signout"
+      "signout": "Signout",
+      "settingSuccess": "Change profile success!"
     },
     "fourth": {
       "links": "Links",
@@ -95,22 +96,40 @@
       "outputDesc": "Generated Password",
       "outputDesc15": "Generated Password(length 15)",
       "noOutput": "None",
-      "copy": "Copy"
+      "copy": "Copy",
+      "copySuccess": "Copy success!",
+      "copyError": "Copy failed!"
     },
     "forget": {
       "title": "Change Password",
       "oldPassword": "Old Password",
       "newPassword": "New Password",
-      "save": "Save"
+      "save": "Save",
+      "success": "Change password success!"
     },
     "reset": {
       "title": "Reset Password",
       "newPassword": "New Password",
-      "save": "Save"
+      "save": "Save",
+      "success": "Reset password success!"
     }
   },
   "error": {
-    "500": "Server Error"
+    "400": "Server Error",
+    "500": "Server Error",
+    "400001": "The user is exist",
+    "400002": "The username begin with _ is not allowed",
+    "400003": "Invalid username or password",
+    "400004": "The user is not exist",
+    "400005": "Modify the third is not allowed",
+    "400006": "The uer is not actived",
+    "400007": "Not allowed",
+    "400008": "Not allowed null reply",
+    "401001": "Login first"
   },
-  "loadMore": "Load More"
+  "loadMore": "Load More",
+  "other": {
+    "success": "Success!",
+    "failed": "Failed!"
+  }
 }

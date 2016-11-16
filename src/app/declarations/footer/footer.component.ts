@@ -51,6 +51,7 @@ export class FooterComponent implements OnDestroy {
     this.htmlElement = document.querySelector('html')
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       LocalStorageService.save('lang', event.lang)
+      GLOBAL_VALUE.TRANSLATE = this.translate
       this.changeHtmlLang(event.lang)
     })
     this.translate.use(current)
