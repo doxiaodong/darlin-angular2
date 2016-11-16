@@ -14,6 +14,14 @@ import validate from 'app/declarations/sign-modal/sign-modal.validate'
 import { AlertService } from 'app/declarations/alert/alert.service'
 import { UserApi } from 'app/user/api/user.api'
 import { Checkmark } from 'app/share/icon'
+import {
+  IRequestParams,
+  requesting
+} from 'app/base/requesting'
+
+const request: IRequestParams = {
+  requesting: false
+}
 
 @Component({
   selector: 'change-password',
@@ -28,19 +36,16 @@ export class ChangePasswordComponent implements OnInit {
   public icon = {
     checkmark: Checkmark
   }
-  public requesting: boolean = false
+  get requesting() {
+    return request.requesting
+  }
   public data: any = {}
 
+  @requesting(request)
   submit() {
-    this.requesting = true
-    UserApi.changePassword(this.data)
+    return UserApi.changePassword(this.data)
       .then(data => {
-        AlertService.show(data.msg)
-      }).catch(msg => {
-        // AlertService.show(msg)
-      })
-      .then(() => {
-        this.requesting = false
+        AlertService.show('Success!')
       })
   }
 
