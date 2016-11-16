@@ -3,7 +3,7 @@ import { DhttpXHR } from './http-xhr'
 
 export let Dhttp
 
-if (fetch) {
+if (global['fetch']) {
   Dhttp = DhttpFetch
 } else {
   Dhttp = DhttpXHR

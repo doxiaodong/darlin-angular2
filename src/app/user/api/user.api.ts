@@ -67,7 +67,7 @@ class Api {
 
   // use XMLHttpRequest
   changeProfile(formData: FormData) {
-    if (fetch) {
+    if (global['fetch']) {
       return changeProfileFetch(formData)
     } else {
       return changeProfileXHR(formData)
