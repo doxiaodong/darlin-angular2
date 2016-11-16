@@ -71,7 +71,7 @@ module.exports = function(option) {
         },
         {
           test: /\.svg$/,
-          loader: 'svg-sprite?' + JSON.stringify({
+          loader: 'svg-sprite-loader?' + JSON.stringify({
             name: '[name]-[hash]'
           })
         },
@@ -84,8 +84,8 @@ module.exports = function(option) {
         {
           test: /(global|\.min)\.css$/,
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style',
-            loader: 'css?minimize!postcss'
+            fallbackLoader: 'style-loader',
+            loader: 'css-loader?minimize!postcss-loader'
           })
         },
 
@@ -93,18 +93,18 @@ module.exports = function(option) {
         // Returns file content as string
         //
         // See: https://github.com/webpack/raw-loader
-        { test: /\.css$/, loader: 'raw-loader!postcss', exclude: [/(global|\.min)\.css$/] },
+        { test: /\.css$/, loader: 'raw-loader!postcss-loader', exclude: [/(global|\.min)\.css$/] },
 
         {
           test: /global\.less$/,
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style',
-            loader: 'css?minimize!postcss!less'
+            fallbackLoader: 'style-loader',
+            loader: 'css-loader?minimize!postcss-loader!less-loader'
           })
         },
 
-        { test: /\.less$/, loader: 'raw-loader!postcss!less', exclude: [/global\.less$/] },
-        { test: /\.scss$/, loader: 'raw-loader!postcss!sass' },
+        { test: /\.less$/, loader: 'raw-loader!postcss-loader!less-loader', exclude: [/global\.less$/] },
+        { test: /\.scss$/, loader: 'raw-loader!postcss-loader!sass-loader' },
 
         // Raw loader support for *.html
         // Returns file content as string
@@ -117,9 +117,8 @@ module.exports = function(option) {
         {
           test: /\.(jpe?g|png|gif)$/i,
           loaders: [
-            // `file?hash=sha512&digest=hex&name=${helpers.static}[hash].[ext]`,
-            `file?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
-            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+            `file-loader?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
+            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
           ]
         }
 
