@@ -128,7 +128,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         }
       }
     },
-    outputPath: helpers.root('dist')
+    publicPath: helpers.root('dist')
   },
 
   node: {
