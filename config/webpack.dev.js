@@ -127,8 +127,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
           '^/api': ''
         }
       }
-    },
-    publicPath: helpers.root('dist')
+    }
   },
 
   node: {
