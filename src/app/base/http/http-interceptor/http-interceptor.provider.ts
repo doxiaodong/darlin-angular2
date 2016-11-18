@@ -10,6 +10,7 @@ import {
 import { Injectable } from '@angular/core'
 import { LoadingService } from 'app/declarations/loading/loading.service'
 import { AlertService } from 'app/declarations/alert/alert.service'
+import { getAESToken } from 'app/base/utils/get-aes-token.service'
 
 @Injectable()
 export class HttpInterceptor extends XHRBackend {
@@ -24,6 +25,7 @@ export class HttpInterceptor extends XHRBackend {
 
   createConnection(request: Request): XHRConnection {
     RequestHandler()
+    request.headers.append('X-AESToken', getAESToken())
     let connection = super.createConnection(request)
     return connection
   }
