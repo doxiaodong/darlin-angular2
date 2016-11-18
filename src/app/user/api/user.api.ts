@@ -1,6 +1,7 @@
 import API_PREFIX from 'app/base/api-prefix/api-prefix.service'
 import { HttpUtilsService } from 'app/base/utils/http-utils.service'
 import { getCookie } from 'app/base/utils/get-cookie.service'
+import { getAESToken } from 'app/base/utils/get-aes-token.service'
 import { Dhttp } from 'app/base/http'
 import { Observable } from 'rxjs/Observable'
 
@@ -10,7 +11,7 @@ import {
   RequestHandler
 } from 'app/base/http/http-interceptor/http-interceptor.provider'
 
-const md5 = require('crypto-js/md5')
+const aes: CryptoJS.Cipher = require('crypto-js/aes')
 
 class Api {
 
@@ -18,7 +19,7 @@ class Api {
     // {username: <string>, password: <string>}
     let _obj = {
       username: obj.username,
-      password: md5(obj.password).toString()
+      password: aes.encrypt(obj.password, getAESToken()).toString()
     }
     return Dhttp.post(API_PREFIX + '/account/signin/', HttpUtilsService.paramPostBody(_obj), {
       headers: {
@@ -30,7 +31,7 @@ class Api {
   register(obj: any) {
     let _obj = {
       username: obj.username,
-      password: md5(obj.password).toString(),
+      password: aes.encrypt(obj.password, getAESToken()).toString(),
       nickname: obj.nickname,
       email: obj.email
     }
@@ -77,8 +78,8 @@ class Api {
   changePassword(obj: any) {
     let _obj = {
       username: obj.username,
-      old_password: md5(obj.oldPassword).toString(),
-      new_password: md5(obj.newPassword).toString()
+      old_password: aes.encrypt(obj.oldPassword, getAESToken()).toString(),
+      new_password: aes.encrypt(obj.newPassword, getAESToken()).toString()
     }
     // {username: <string>, old_password: <string>, new_password: <string>}
     return Dhttp.post(API_PREFIX + '/account/change/', HttpUtilsService.paramPostBody(_obj), {
@@ -91,7 +92,7 @@ class Api {
   resetPassword(obj: any) {
     let _obj = {
       username: obj.username,
-      new_password: md5(obj.newPassword).toString()
+      new_password: aes.encrypt(obj.newPassword, getAESToken()).toString()
     }
     // {username: <string>, new_password: <string>}
     return Dhttp.post(API_PREFIX + '/account/reset/', HttpUtilsService.paramPostBody(_obj), {

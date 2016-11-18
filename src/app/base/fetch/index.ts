@@ -1,5 +1,6 @@
 import Interceptors from './interceptor'
 import { getCookie } from '../utils/get-cookie.service'
+import { getAESToken } from '../utils/get-aes-token.service'
 
 const httpInterceptor = {
   request: [],
@@ -62,6 +63,7 @@ export class Http {
     }
 
     fetchOptions.headers['X-CSRFToken'] = getCookie('csrftoken')
+    fetchOptions.headers['X-AESToken'] = getAESToken()
 
     if (body) {
       fetchOptions.body = body
