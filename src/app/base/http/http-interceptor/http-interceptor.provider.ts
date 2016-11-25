@@ -48,21 +48,22 @@ export function RequestHandler(): void {
 
 export function ErrorHandler(error: any, isFetch = false) {
   let errorBody = null
-
-  if (isFetch) {
-    errorBody = error
-  } else {
-    try {
-      errorBody = error.json()
-    } catch (error) {
-      console.error('parse error body fail')
-    }
+  const httpCode = error.status
+  try {
+    errorBody = error.json()
+  } catch (error) {
+    console.error('parse error body fail')
+  }
+  if (!isFetch) {
+    // fetch res.json return Promise while angular Http res not
+    errorBody = Promise.resolve(errorBody)
   }
 
-  ResponseHandler(errorBody)
-  if (errorBody) {
-    GLOBAL_VALUE.TRANSLATE.get(`error.${errorBody.code}`).subscribe((value: string) => {
-      AlertService.show(value)
+  errorBody.then((value) => {
+    ResponseHandler(value)
+    const errorCode = value && value.code || httpCode
+    GLOBAL_VALUE.TRANSLATE.get(`error.${errorCode}`).subscribe((value: string) => {
+      AlertService.show(`[${errorCode}]${value}`)
     })
-  }
+  })
 }

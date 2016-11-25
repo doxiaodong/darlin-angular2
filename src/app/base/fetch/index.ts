@@ -83,10 +83,8 @@ export class Http {
         if (response.ok) {
           return response.json()
         } else {
-          return Promise.reject(response.json())
+          return Promise.reject(response)
         }
-      }, (error: Response) => {
-        return Promise.reject(error.json())
       })
 
     retFetch.then((response) => {
@@ -96,7 +94,7 @@ export class Http {
       httpInterceptor.response.forEach((responseFn) => {
         responseFn(response)
       })
-    }, (error) => {
+    }).catch((error) => {
       httpInterceptor.error.forEach((errorFn) => {
         errorFn(error)
       })
