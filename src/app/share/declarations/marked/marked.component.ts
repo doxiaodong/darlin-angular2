@@ -54,9 +54,9 @@ export class MarkedComponent implements OnChanges {
   }
 
   constructor(
-    private markedService: MarkedService,
     private sanitizer: DomSanitizer,
-    private ele: ElementRef
+    private ele: ElementRef,
+    markedService: MarkedService
   ) {
 
     this.ms = markedService.init()

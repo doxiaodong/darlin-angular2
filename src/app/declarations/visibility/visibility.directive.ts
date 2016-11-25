@@ -23,7 +23,7 @@ export class VisibilityDirective implements OnInit {
 
   constructor(
     private title: Title,
-    private local: LocalStorageService
+    local: LocalStorageService
   ) { }
 
   ngOnInit() {

@@ -122,7 +122,7 @@ export class SignModalComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder
+    fb: FormBuilder
   ) {
     this.signinForm = fb.group({
       username: [

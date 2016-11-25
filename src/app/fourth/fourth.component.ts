@@ -77,7 +77,7 @@ export class FourthIndexComponent {
   }
 
   constructor(
-    private fb: FormBuilder
+    fb: FormBuilder
   ) {
     this.getLinks()
 
