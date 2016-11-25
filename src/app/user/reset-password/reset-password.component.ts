@@ -53,7 +53,7 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    fb: FormBuilder
   ) {
     this.passwordForm = fb.group({
       username: [

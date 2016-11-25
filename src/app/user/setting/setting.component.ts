@@ -107,8 +107,8 @@ export class UserSettingComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    fb: FormBuilder
   ) {
     this.settingForm = fb.group({
       username: [
