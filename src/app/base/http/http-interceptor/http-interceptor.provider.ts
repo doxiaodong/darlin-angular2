@@ -62,8 +62,8 @@ export function ErrorHandler(error: any, isFetch = false) {
   errorBody.then((value) => {
     ResponseHandler(value)
     const errorCode = value && value.code || httpCode
-    GLOBAL_VALUE.TRANSLATE.get(`error.${errorCode}`).subscribe((value: string) => {
-      AlertService.show(`[${errorCode}]${value}`)
+    GLOBAL_VALUE.TRANSLATE.get(`error.${errorCode}`).subscribe((v: string) => {
+      AlertService.show(`[${errorCode}]${v}`)
     })
   })
 }
