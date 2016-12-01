@@ -1,6 +1,7 @@
 import Interceptors from './interceptor'
 import { getCookie } from '../utils/get-cookie.service'
 import { getAESToken } from '../utils/get-aes-token.service'
+export * from './jsonp'
 
 const httpInterceptor = {
   request: [],

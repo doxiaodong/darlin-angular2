@@ -64,6 +64,7 @@
     "core-js": "^2.4.1",
     "crypto-js": "^3.1.8",
     "emojione": "^2.2.6",
+    "fetch-jsonp": "^1.0.2",
     "highlight.js": "^9.8.0",
     "js-base64": "^2.1.9",
     "marked": "^0.3.6",
@@ -90,7 +91,7 @@
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.5.1",
     "awesome-typescript-loader": "~3.0.0-beta.3",
-    "codelyzer": "1.0.0-beta.4",
+    "codelyzer": "2.0.0-beta.1",
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.26.0",
     "es6-promise-loader": "^1.0.2",
@@ -139,7 +140,7 @@
     "webpack": "2.1.0-beta.27",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "^0.18.0"
+    "webpack-merge": "^1.0.2"
   },
   "engines": {
     "node": ">= 4.2.1",

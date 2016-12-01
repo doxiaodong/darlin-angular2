@@ -39,10 +39,8 @@ const XHRBackendProvider: ClassProvider = {
 }
 let injector = ReflectiveInjector.resolveAndCreate([
   { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions] },
-  BrowserXhr,
   { provide: RequestOptions, useClass: BaseRequestOptions },
   { provide: ResponseOptions, useClass: BaseResponseOptions },
-  XHRBackend,
   { provide: XSRFStrategy, useFactory: createDefaultCookieXSRFStrategy },
   BrowserXhrProvider,
   XHRBackendProvider
