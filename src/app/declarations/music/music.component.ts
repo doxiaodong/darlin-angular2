@@ -51,7 +51,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
   }
 
   next() {
-    let index
+    let index = -1
     let toSelect
     const len = this.songs.length
     this.songs.forEach((song, i) => {
