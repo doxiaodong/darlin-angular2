@@ -7,7 +7,10 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms'
-import { HttpModule } from '@angular/http'
+import {
+  HttpModule,
+  JsonpModule
+} from '@angular/http'
 import { TranslateModule } from 'ng2-translate/ng2-translate'
 import { MdRadioModule } from '@angular/material/radio'
 import { MdUniqueSelectionDispatcher } from '@angular/material/core'
@@ -32,6 +35,7 @@ import {
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
+    JsonpModule,
     MdRadioModule,
     IconModule,
     ClipModule,
@@ -42,6 +46,7 @@ import {
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
+    JsonpModule,
     MdRadioModule,
     MdButtonModule,
     IconModule,

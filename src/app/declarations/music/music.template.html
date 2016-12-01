@@ -1,0 +1,15 @@
+<div class="music-player" (click)="$event.stopPropagation()">
+  <p class="a" (click)="show = !show">音乐</p>
+  <div class="content" [class.show]="show">
+    <div class="audio" *ngIf="selectedID">
+      <audio [src]="songURL" controls="controls" autoplay></audio>
+    </div>
+    <ul class="list">
+      <li *ngFor="let song of songs" (click)="select(song)">
+        <a>{{ song.name }}--{{ song.singer }}</a>
+      </li>
+    </ul>
+    <input class="form-control" type="text" [(ngModel)]="key" placeholder="搜索" (ngModelChange)="search(key)">
+  </div>
+
+</div>
