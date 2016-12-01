@@ -131,5 +131,10 @@
   "other": {
     "success": "成功!",
     "failed": "失败!"
+  },
+  "music": {
+    "buttonWord": "音乐",
+    "playList": "播放列表",
+    "playing": "正在播放"
   }
 }

@@ -1,15 +1,21 @@
-<div class="music-player" (click)="$event.stopPropagation()">
-  <p class="a" (click)="show = !show">音乐</p>
-  <div class="content" [class.show]="show">
-    <div class="audio" *ngIf="selectedID">
-      <audio [src]="songURL" controls="controls" autoplay></audio>
+<p class="a circle-button" (click)="show = !show">{{ 'music.buttonWord' | translate }}</p>
+
+<div class="music-player" [class.show]="show">
+  <div class="content">
+    <input class="form-control item" type="text" [(ngModel)]="key" [placeholder]="'search' | translate" (ngModelChange)="search(key)">
+    <div class="item list">
+      <p>{{ 'music.playList' | translate }}:</p>
+      <ul>
+        <li *ngFor="let song of songs" (click)="select(song)" [class.playing]="song.id!==selectedSong.id">
+          <a>{{ song.name }}--{{ song.singer }}</a>
+          <span class="playing-word" [hidden]="song.id!==selectedSong.id">{{ 'music.playing' | translate }}</span>
+        </li>
+      </ul>
     </div>
-    <ul class="list">
-      <li *ngFor="let song of songs" (click)="select(song)">
-        <a>{{ song.name }}--{{ song.singer }}</a>
-      </li>
-    </ul>
-    <input class="form-control" type="text" [(ngModel)]="key" placeholder="搜索" (ngModelChange)="search(key)">
+    <div class="audio" [class.show]="selectedSong.id">
+      <p>{{ selectedSong.name }}--{{ selectedSong.singer }}</p>
+      <audio #audio [src]="songURL" controls="controls" autoplay></audio>
+    </div>
   </div>
 
 </div>

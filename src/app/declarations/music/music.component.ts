@@ -1,8 +1,10 @@
 import {
   Component,
   OnInit,
-  OnDestroy,
-  Injectable
+  AfterViewInit,
+  Injectable,
+  ViewChild,
+  ElementRef
 } from '@angular/core'
 import {
   Music
@@ -17,20 +19,25 @@ import {
   providers: [Music]
 })
 @Injectable()
-export class MusicComponent implements OnInit, OnDestroy {
+export class MusicComponent implements OnInit, AfterViewInit {
 
-  selectedID = null
+  @ViewChild('audio') audio: ElementRef
+
+  selectedSong = <any>{}
 
   show = false
 
   songs = []
 
   get songURL() {
-    return `http://ws.stream.qqmusic.qq.com/${this.selectedID}.m4a?fromtag=46`
+    if (!this.selectedSong.id) {
+      return ''
+    }
+    return `http://ws.stream.qqmusic.qq.com/${this.selectedSong.id}.m4a?fromtag=46`
   }
 
   select(song) {
-    this.selectedID = song.id
+    this.selectedSong = song
   }
 
   search(key: string) {
@@ -43,21 +50,31 @@ export class MusicComponent implements OnInit, OnDestroy {
       })
   }
 
-  closeSelector() {
-    this.show = false
-  }
-
-  clickEvent() {
-    document.addEventListener('click', this.closeSelector)
+  next() {
+    let index
+    let toSelect
+    const len = this.songs.length
+    this.songs.forEach((song, i) => {
+      if (song.id === this.selectedSong.id) {
+        index = i
+      }
+    })
+    if (index + 1 < len) {
+      toSelect = index + 1
+    } else {
+      toSelect = 0
+    }
+    this.select(this.songs[toSelect])
   }
 
   constructor(private music: Music) { }
 
   ngOnInit() {
-    this.clickEvent()
   }
 
-  ngOnDestroy() {
-    document.removeEventListener('click', this.closeSelector)
+  ngAfterViewInit() {
+    this.audio.nativeElement.addEventListener('ended', () => {
+      this.next()
+    })
   }
 }

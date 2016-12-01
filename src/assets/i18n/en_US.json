@@ -131,5 +131,10 @@
   "other": {
     "success": "Success!",
     "failed": "Failed!"
+  },
+  "music": {
+    "buttonWord": "Music",
+    "playList": "Play list",
+    "playing": "Playing"
   }
 }
