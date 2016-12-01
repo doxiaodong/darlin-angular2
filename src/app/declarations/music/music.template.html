@@ -4,11 +4,11 @@
   <div class="content">
     <input class="form-control item" type="text" [(ngModel)]="key" [placeholder]="'search' | translate" (ngModelChange)="search(key)">
     <div class="item list">
-      <p>{{ 'music.playList' | translate }}:</p>
+      <p *ngIf="songs.length > 0">{{ 'music.playList' | translate }}:</p>
       <ul>
-        <li *ngFor="let song of songs" (click)="select(song)" [class.playing]="song.id!==selectedSong.id">
+        <li *ngFor="let song of songs" (click)="select(song)" [class.playing]="song.id !== selectedSong.id">
           <a>{{ song.name }}--{{ song.singer }}</a>
-          <span class="playing-word" [hidden]="song.id!==selectedSong.id">{{ 'music.playing' | translate }}</span>
+          <span class="playing-word" [hidden]="song.id !== selectedSong.id">{{ 'music.playing' | translate }}</span>
         </li>
       </ul>
     </div>
