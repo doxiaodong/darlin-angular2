@@ -22,7 +22,7 @@
         <li *ngFor="let song of songs; let i = index; trackBy: trackByFn" (click)="select(song)" [class.playing]="song.id === selectedSong.id">
           <a class="info">{{ i + 1 }}. {{ song.name }}--{{ song.singer }}</a>
           <div class="action">
-            <a (click)="removeSong(song, $event)" *ngIf="selectedSong.id !== song.id">
+            <a (click)="removeSong(song, $event)">
               <icon class="a" width="24" height="24" [glyph]="icon.delete"></icon>
             </a>
           </div>
