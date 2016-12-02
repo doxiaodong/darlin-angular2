@@ -49,7 +49,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private ts: TranslateService,
-    router: Router,
+    router: Router
   ) { }
 
   ngOnInit() {
