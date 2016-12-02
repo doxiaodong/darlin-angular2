@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core'
-import { URLSearchParams } from '@angular/http'
+import {
+  URLSearchParams,
+  Http
+} from '@angular/http'
 import { jsonp } from 'app/base/fetch'
+import { unescapeHTML } from 'app/base/utils/unescape-html'
 
 @Injectable()
 export class Music {
@@ -26,4 +30,24 @@ export class Music {
         return keys[randomKey].k
       })
   }
+
+  getLyric(id) {
+    const params = new URLSearchParams()
+    params.set('showapi_appid', '26601')
+    params.set('showapi_sign', 'adc05e2062a5402b81c563a3ced09208')
+    params.set('musicid', id)
+    return this.http.get('https://route.showapi.com/213-2?' + params)
+      .toPromise()
+      .then(res => {
+        if (res.ok) {
+          const lyric = res.json().showapi_res_body.lyric
+          return unescapeHTML(lyric)
+        }
+      }).catch((err) => {
+        console.error(err)
+        return null
+      })
+  }
+
+  constructor(private http: Http) { }
 }

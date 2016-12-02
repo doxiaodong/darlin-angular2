@@ -15,6 +15,8 @@ import {
   Add
 } from 'app/share/icon'
 
+const Lrc = require('app/lrc.js').Lrc
+
 @Component({
   selector: 'music',
   templateUrl: './music.template.html',
@@ -43,6 +45,10 @@ export class MusicComponent implements OnInit, AfterViewInit {
   show = false
   songs = []
   searchSongs = []
+
+  currentLyric: string
+
+  lrc
 
   trackByFn(index, item) {
     return item.id
@@ -84,7 +90,16 @@ export class MusicComponent implements OnInit, AfterViewInit {
   }
 
   select(song) {
-    this.selectedSong = song
+    if (this.selectedSong.id === song.id) {
+      return
+    }
+    if (this.lrc) {
+      this.lrc.stop()
+    }
+    this.getLyric(song.id)
+      .then(() => {
+        this.selectedSong = song
+      })
   }
 
   search(key: string) {
@@ -99,6 +114,20 @@ export class MusicComponent implements OnInit, AfterViewInit {
       .then(key => {
         this.key = key
         this.search(key)
+      })
+  }
+
+  lrcOutputFn(line) {
+    this.currentLyric = line
+  }
+
+  getLyric(id) {
+    return this.music.getLyric(id)
+      .then(lyric => {
+        if (!lyric) {
+          return
+        }
+        return this.lrc = new Lrc(lyric, this.lrcOutputFn.bind(this))
       })
   }
 
@@ -148,8 +177,20 @@ export class MusicComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.audio.nativeElement.addEventListener('ended', () => {
+    const audio = this.audio.nativeElement
+
+    audio.addEventListener('ended', () => {
       this.next()
+    })
+
+    audio.addEventListener('pause', () => {
+      this.lrc.pauseToggle()
+    })
+
+    audio.addEventListener('play', () => {
+      const currentTime = audio['currentTime']
+      this.lrc.play()
+      this.lrc.seek(currentTime * 1000)
     })
   }
 }
