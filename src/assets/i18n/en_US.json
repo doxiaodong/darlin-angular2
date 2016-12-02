@@ -134,7 +134,6 @@
   },
   "music": {
     "buttonWord": "Music",
-    "playList": "Play list",
-    "playing": "Playing"
+    "playList": "Play list"
   }
 }

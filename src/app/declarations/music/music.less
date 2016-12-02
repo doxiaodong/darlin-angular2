@@ -38,20 +38,55 @@
   margin: 10px 0;
 }
 
-.list {
-  max-height: ~'calc(100% - 200px)';
+.list-container {
+  height: ~'calc(100% - 340px)';
+}
+.songs {
   overflow: auto;
+  max-height: 100%;
+  .playing {
+    background: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwP/2wBDAQEBAQEBAQEBAQECAgECAgMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwP/wgARCAAXABcDAREAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAIEAwUJ/8QAGQEBAQADAQAAAAAAAAAAAAAAAAQBAwYH/9oADAMBAAIQAxAAAAHrL5P2FVTHkkgqGVOhqVi6aP/EABsQAAMBAAMBAAAAAAAAAAAAAAABAhEDEyEi/9oACAEBAAEFAouGZBvmqaXKs7NLo+hn/8QAGhEBAAIDAQAAAAAAAAAAAAAAAQACESAiMf/aAAgBAwEBPwHapKvkbOTln//EABsRAAICAwEAAAAAAAAAAAAAAAABAkEQEyBS/9oACAECAQE/AY0LEaFxrj7R/8QAJBAAAQIFAgcAAAAAAAAAAAAAAAERAgMSMlEhIjFCUnKBkZL/2gAIAQEABj8CsVukehSlE7hZatXLuL/mEfGePg2w61HMsI8T37c+j//EAB8QAQACAQQDAQAAAAAAAAAAAAEAESEQMUFxUWGBkf/aAAgBAQABPyHRHKUe7K7R0baRuLXeR6M/UPj62KGk8hMfrE4C1KIm7hZWf//aAAwDAQACAAMAAAAQttt/n//EABsRAQACAgMAAAAAAAAAAAAAAAEAIRBhETFB/9oACAEDAQE/EHLkhpOYxQdS/dh461P/xAAbEQABBAMAAAAAAAAAAAAAAAAAARAgQVGR0f/aAAgBAgEBPxArPWhh2J0//8QAIhAAAgEDAwUBAAAAAAAAAAAAAREAIUFhMVHxcYGRobHw/9oACAEBAAE/EFvKZlLY5bhKxE6pr2ZrjzDgQT8XKn0+RS0XimYIETet+JnWsHYgNQ8KE7sgEgNoACSZ/9k=) center;
+  }
+}
+
+.search-result {
+  height: 152px;
+  overflow: auto;
+}
+
+.list {
   p, li {
-    padding: 5px;
+    padding: 4px;
   }
   li {
     background-color: @bg-page;
+    border-bottom: 1px solid #eee;
     &:hover, &.active {
       background-color: darken(@bg-page, 20%)
     }
     &.playing {
       color: @active_color;
     }
+    display: flex;
+    .info {
+      flex: 2;
+    }
+    .action {
+      text-align: right;
+      flex: 1;
+      a {
+        margin-left: 5px;
+        vertical-align: middle;
+        display: inline-block;
+        icon {
+          width: 24px;
+          height: 24px;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+    }
+
   }
   .playing-word {
     float: right;
