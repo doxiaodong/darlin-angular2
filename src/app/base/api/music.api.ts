@@ -19,7 +19,7 @@ export class Music {
   }
 
   getHotKey() {
-    return jsonp('http://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg', 'jsonpCallback')
+    return jsonp('https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg', 'jsonpCallback')
       .then(data => {
         const keys = data.hotkey
         const randomKey = Math.floor(10 * Math.random())

@@ -59,12 +59,15 @@ export class MusicComponent implements OnInit, AfterViewInit {
   }
 
   removeSong(song, event) {
-    if (song.id === this.selectedSong) {
+    if (song.id === this.selectedSong.id) {
       this.next()
     }
 
     darlinDB.removeSong(song)
     this.songs = this.songs.filter((s) => s.id !== song.id)
+    if (this.songs.length === 0) {
+      this.selectedSong = {}
+    }
     event.stopPropagation()
   }
 
