@@ -17,4 +17,13 @@ export class Music {
         return song.itemlist || []
       })
   }
+
+  getHotKey() {
+    return jsonp('http://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg', 'jsonpCallback')
+      .then(data => {
+        const keys = data.hotkey
+        const randomKey = Math.floor(10 * Math.random())
+        return keys[randomKey].k
+      })
+  }
 }

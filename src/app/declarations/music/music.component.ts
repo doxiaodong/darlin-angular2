@@ -38,6 +38,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
 
   searchObserable: ObservableService
 
+  key: string
   selectedSong = <any>{}
   show = false
   songs = []
@@ -90,6 +91,14 @@ export class MusicComponent implements OnInit, AfterViewInit {
     this.searchObserable.next(key)
   }
 
+  getHotKey() {
+    this.music.getHotKey()
+      .then(key => {
+        this.key = key
+        this.search(key)
+      })
+  }
+
   next() {
     let index = -1
     let toSelect
@@ -131,6 +140,8 @@ export class MusicComponent implements OnInit, AfterViewInit {
           this.searchSongs = songs
         })
     })
+
+    this.getHotKey()
   }
 
   ngAfterViewInit() {
