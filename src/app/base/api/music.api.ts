@@ -10,7 +10,11 @@ export class Music {
     params.set('key', key)
     return jsonp('https://c.y.qq.com/splcloud/fcgi-bin/smartbox_new.fcg?' + params, 'jsonpCallback')
       .then(data => {
-        return data.song.itemlist
+        const song = data.song
+        if (!song) {
+          return []
+        }
+        return song.itemlist || []
       })
   }
 }
