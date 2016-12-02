@@ -6,9 +6,9 @@ install:
   - npm install -g yarn
   - yarn
 
-cache:
-  directories:
-    - $TRAVIS_BUILD_DIR/node_modules
+# cache:
+#   directories:
+#     - $TRAVIS_BUILD_DIR/node_modules
 
 before_script:
   - export CHROME_BIN=chromium-browser
