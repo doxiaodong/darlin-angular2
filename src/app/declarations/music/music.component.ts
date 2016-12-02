@@ -6,10 +6,9 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core'
-import {
-  Music
-} from 'app/base/api/music.api'
+import { Music } from 'app/base/api/music.api'
 import { darlinDB } from 'app/base/indexdb'
+import { ObservableService } from 'app/base/observable'
 import {
   Delete,
   Play,
@@ -22,7 +21,9 @@ import {
   styles: [
     require('./music.less')
   ],
-  providers: [Music]
+  providers: [
+    Music
+  ]
 })
 @Injectable()
 export class MusicComponent implements OnInit, AfterViewInit {
@@ -35,12 +36,11 @@ export class MusicComponent implements OnInit, AfterViewInit {
     add: Add
   }
 
+  searchObserable: ObservableService
+
   selectedSong = <any>{}
-
   show = false
-
   songs = []
-
   searchSongs = []
 
   trackByFn(index, item) {
@@ -87,10 +87,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
     if (!key) {
       return
     }
-    return this.music.search(key)
-      .then(songs => {
-        this.searchSongs = songs
-      })
+    this.searchObserable.next(key)
   }
 
   next() {
@@ -110,7 +107,11 @@ export class MusicComponent implements OnInit, AfterViewInit {
     this.select(this.songs[toSelect])
   }
 
-  constructor(private music: Music) { }
+  constructor(
+    private music: Music
+  ) {
+    this.searchObserable = ObservableService.newObservable()
+  }
 
   ngOnInit() {
     // get songs from indexDB
@@ -123,6 +124,13 @@ export class MusicComponent implements OnInit, AfterViewInit {
     })
 
     darlinDB.initDB()
+
+    this.searchObserable.subject$.debounceTime(300).distinctUntilChanged().subscribe(key => {
+      this.music.search(key)
+        .then(songs => {
+          this.searchSongs = songs
+        })
+    })
   }
 
   ngAfterViewInit() {

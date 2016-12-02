@@ -12,6 +12,7 @@ import '@angular/router'
 // import 'rxjs/add/operator/mergeMap'
 import 'rxjs/add/operator/toPromise'
 import 'rxjs/Subject'
+import 'rxjs/add/operator/debounceTime'
 
 if ('production' === ENV) {
   // Production
