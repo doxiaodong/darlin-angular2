@@ -3,7 +3,7 @@
 <div class="music-player" [class.show]="show">
   <div class="content">
     <input class="form-control item" type="text" [(ngModel)]="key" [placeholder]="'search' | translate" (ngModelChange)="search(key)">
-    <ul class="search-result list">
+    <ul class="search-result list overflow-auto">
       <li *ngFor="let song of searchSongs">
         <a class="info">{{ song.name }}--{{ song.singer }}</a>
         <div class="action">
@@ -18,7 +18,7 @@
     </ul>
     <div class="item list-container list">
       <p *ngIf="songs.length > 0">{{ 'music.playList' | translate }}:</p>
-      <ul class="songs">
+      <ul class="songs overflow-auto">
         <li *ngFor="let song of songs; let i = index; trackBy: trackByFn" (click)="select(song)" [class.playing]="song.id === selectedSong.id">
           <a class="info">{{ i + 1 }}. {{ song.name }}--{{ song.singer }}</a>
           <div class="action">

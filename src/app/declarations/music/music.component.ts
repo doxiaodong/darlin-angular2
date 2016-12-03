@@ -98,6 +98,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
     }
     this.getLyric(song.id)
       .then(() => {
+        this.currentLyric = ''
         this.selectedSong = song
       })
   }
