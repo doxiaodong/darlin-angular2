@@ -14,8 +14,6 @@ function main(): Promise<any> {
 
   return platformBrowserDynamic()
     .bootstrapModule(AppModule)
-    .catch(err => console.error(err))
 }
 
 bootloader(main)
-// document.addEventListener('DOMContentLoaded', () => main())
