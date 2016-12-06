@@ -9,9 +9,9 @@
 	<% if (webpackConfig.htmlElements.headTags) { %>
 		<!-- Configured Head Tags  -->
 		<%= webpackConfig.htmlElements.headTags %>
-	<% } %>
+			<% } %>
 
-	<script type="text/x-mathjax-config">
+				<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({
 			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 		});
@@ -42,6 +42,15 @@
 	</root-app>
 	<!--<script src="https://cdn.tristana.cc/ajax/libs/web-animations/2.2.2/web-animations-next.min.js"></script>-->
 	<!--<script src="https://cdn.tristana.cc/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+	<script>
+		if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('./sw.js').then(function(registration) {
+        console.log('service worker install success')
+      }).catch(function (err) {
+        console.log('servcie worker install error')
+      })
+    }
+	</script>
 </body>
 
 </html>

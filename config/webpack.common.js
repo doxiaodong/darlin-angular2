@@ -163,7 +163,14 @@ module.exports = function(option) {
       // Copies project static assets.
       //
       // See: https://www.npmjs.com/package/copy-webpack-plugin
-      new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }, { from: 'src/favicon.ico', to: 'favicon.ico' }], { ignore: ['.DS_Store', 'images/**/*', 'i18n/**/*'] }),
+      new CopyWebpackPlugin(
+        [
+          { from: 'src/assets', to: 'assets' },
+          { from: 'src/favicon.ico', to: 'favicon.ico' },
+          { from: 'src/sw.js', to: 'sw.js' },
+        ],
+        { ignore: ['.DS_Store', 'images/**/*', 'i18n/**/*'] }
+      ),
 
       // Plugin: HtmlWebpackPlugin
       // Description: Simplifies creation of HTML files to serve your webpack bundles.
