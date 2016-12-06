@@ -100,6 +100,12 @@ export class MusicComponent implements OnInit, AfterViewInit {
       .then(() => {
         this.currentLyric = ''
         this.selectedSong = song
+
+        if (this.selectedSong.id) {
+          const audio = this.audio.nativeElement
+          audio.src = this.songURL
+          audio.play()
+        }
       })
   }
 
