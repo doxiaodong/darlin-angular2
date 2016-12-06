@@ -18,8 +18,9 @@
     </ul>
     <div class="item list-container list">
       <p *ngIf="songs.length > 0">{{ 'music.playList' | translate }}:</p>
-      <ul class="songs overflow-auto">
+      <ul class="songs overflow-auto" [sortablejs]="songs" [sortablejsOptions]="sortableOption">
         <li *ngFor="let song of songs; let i = index; trackBy: trackByFn" (click)="select(song)" [class.playing]="song.id === selectedSong.id">
+          <icon (click)="$event.stopPropagation()" class="a sortable-handle" width="24" height="24" [glyph]="icon.sort"></icon>
           <a class="info">{{ i + 1 }}. {{ song.name }}--{{ song.singer }}</a>
           <div class="action">
             <a (click)="removeSong(song, $event)">

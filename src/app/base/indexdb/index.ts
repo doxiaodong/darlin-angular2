@@ -27,17 +27,34 @@ class DarlinDB {
         songs.push(cursor.value)
         cursor.continue()
       } else {
-        this._getSongs.next(songs)
+        const sortedSongs = songs.sort((a, b) => {
+          return a.__sortIndex - b.__sortIndex
+        })
+        this._getSongs.next(sortedSongs)
       }
     }
   }
 
+  /*
+  ** do not call this if need sort, use updateSongs replace
+  */
   addSong(song) {
     this.getStore().add(song)
   }
 
+  /*
+  ** do not call this if need sort, use updateSongs replace
+  */
   removeSong(song) {
     this.getStore().delete(song.id)
+  }
+
+  updateSongs(songs: any[]) {
+    this.getStore().clear()
+    songs.forEach((song, index) => {
+      song.__sortIndex = index
+      this.addSong(song)
+    })
   }
 
   initDB() {

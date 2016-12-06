@@ -61,6 +61,7 @@
     "@angular/upgrade": "^2.2.0",
     "@angularclass/hmr": "^1.2.2",
     "@types/whatwg-fetch": "^0.0.32",
+    "angular-sortablejs": "^1.0.1",
     "core-js": "^2.4.1",
     "crypto-js": "^3.1.8",
     "emojione": "^2.2.6",
