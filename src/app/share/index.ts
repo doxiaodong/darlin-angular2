@@ -17,6 +17,7 @@ import { MdUniqueSelectionDispatcher } from '@angular/material/core'
 import { MdButtonModule } from '@angular/material/button'
 import { IconModule } from './icon'
 import { ClipModule } from 'ng2-clip'
+import { SortablejsModule } from 'angular-sortablejs'
 
 import {
   components,
@@ -39,7 +40,8 @@ import {
     MdRadioModule,
     IconModule,
     ClipModule,
-    TranslateModule
+    TranslateModule,
+    SortablejsModule
   ],
   exports: [
     FormsModule,
@@ -52,6 +54,7 @@ import {
     IconModule,
     ClipModule,
     TranslateModule,
+    SortablejsModule,
 
     ...components,
     ...pipes,

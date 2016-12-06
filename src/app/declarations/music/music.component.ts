@@ -12,7 +12,8 @@ import { ObservableService } from 'app/base/observable'
 import {
   Delete,
   Play,
-  Add
+  Add,
+  Sort
 } from 'app/share/icon'
 
 const Lrc = require('app/lrc.js').Lrc
@@ -35,7 +36,8 @@ export class MusicComponent implements OnInit, AfterViewInit {
   public icon = {
     delete: Delete,
     play: Play,
-    add: Add
+    add: Add,
+    sort: Sort
   }
 
   searchObserable: ObservableService
@@ -50,8 +52,22 @@ export class MusicComponent implements OnInit, AfterViewInit {
 
   lrc
 
+  sortableOption = {
+    animation: 250,
+    handle: '.sortable-handle',
+    onSort: (e) => {
+      this.updateIndexDBSongs()
+    }
+  }
+
   trackByFn(index, item) {
     return item.id
+  }
+
+  // call this when songs update
+  updateIndexDBSongs() {
+    console.log(this.songs)
+    darlinDB.updateSongs(this.songs)
   }
 
   addToSongs(song) {
@@ -60,7 +76,9 @@ export class MusicComponent implements OnInit, AfterViewInit {
       return
     }
     this.songs.push(song)
-    darlinDB.addSong(song)
+
+    // darlinDB.addSong(song)
+    this.updateIndexDBSongs()
     // add song to indexDB
   }
 
@@ -69,11 +87,14 @@ export class MusicComponent implements OnInit, AfterViewInit {
       this.next()
     }
 
-    darlinDB.removeSong(song)
     this.songs = this.songs.filter((s) => s.id !== song.id)
     if (this.songs.length === 0) {
       this.selectedSong = {}
     }
+
+    // darlinDB.removeSong(song)
+    this.updateIndexDBSongs()
+    // remove song from indexDB
     event.stopPropagation()
   }
 
