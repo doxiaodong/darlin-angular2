@@ -66,7 +66,6 @@ export class MusicComponent implements OnInit, AfterViewInit {
 
   // call this when songs update
   updateIndexDBSongs() {
-    console.log(this.songs)
     darlinDB.updateSongs(this.songs)
   }
 
