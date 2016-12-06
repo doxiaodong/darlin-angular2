@@ -5,6 +5,7 @@ const helpers = require('./helpers')
  * Webpack Plugins
  */
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlElementsPlugin = require('./webpack-plugin/html-elements')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -130,6 +131,10 @@ module.exports = function(option) {
     //
     // See: http://webpack.github.io/docs/configuration.html#plugins
     plugins: [
+      new HtmlElementsPlugin({
+        headTags: require('./head-config.common')
+      }),
+
       // third js
       new webpack.ProvidePlugin({
         // marked: 'marked',

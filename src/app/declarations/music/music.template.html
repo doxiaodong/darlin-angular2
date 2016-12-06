@@ -32,7 +32,7 @@
     <div class="audio" [class.show]="selectedSong.id">
       <p>{{ currentLyric }}</p>
       <p>{{ selectedSong.name }}--{{ selectedSong.singer }}</p>
-      <audio #audio [src]="songURL" controls="controls" autoplay></audio>
+      <audio #audio controls="controls"></audio>
     </div>
   </div>
 

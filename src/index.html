@@ -2,17 +2,15 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
 	<title>darlin</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<!--<base href="/">-->
 	<!--svg sprite cannot work when set base-->
 	<meta property="qc:admins" content="14017424212416655">
-	<meta name="description" content="毒枭东是一个个人生活，前端技术博客，采用angular2实现。">
-	<meta name="keywords" content="毒枭东,前端,angular,生活小记,亲爱的小窝,nginx,django,jquery,requirejs">
+	<% if (webpackConfig.htmlElements.headTags) { %>
+		<!-- Configured Head Tags  -->
+		<%= webpackConfig.htmlElements.headTags %>
+	<% } %>
+
 	<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({
 			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
