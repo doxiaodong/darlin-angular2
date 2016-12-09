@@ -133,7 +133,6 @@ export class MusicComponent implements OnInit, AfterViewInit {
         if (this.selectedSong.id) {
           const audio = this.audio.nativeElement
           audio.src = this.songURL
-          audio.play()
         }
       })
   }
@@ -222,12 +221,20 @@ export class MusicComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const audio = this.audio.nativeElement
 
+    audio.addEventListener('canplaythrough', () => {
+      audio.play()
+    })
+
     audio.addEventListener('ended', () => {
       this.next()
     })
 
     audio.addEventListener('pause', () => {
       this.lrc.pauseToggle()
+    })
+
+    audio.addEventListener('progress', () => {
+      this.lrc.stop()
     })
 
     audio.addEventListener('play', () => {
