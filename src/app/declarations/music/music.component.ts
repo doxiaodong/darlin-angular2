@@ -51,6 +51,11 @@ export class MusicComponent implements OnInit, AfterViewInit {
   currentLyric: string
 
   lrc
+  playMode: 'normal' | 'random' = 'normal'
+
+  get isRandomMode() {
+    return this.playMode === 'random'
+  }
 
   sortableOption = {
     animation: 250,
@@ -109,10 +114,14 @@ export class MusicComponent implements OnInit, AfterViewInit {
     return `http://ws.stream.qqmusic.qq.com/${this.selectedSong.id}.m4a?fromtag=46`
   }
 
-  select(song) {
+  clickSelect(song) {
     if (this.selectedSong.id === song.id) {
       return
     }
+    this.select(song)
+  }
+
+  select(song) {
     if (this.lrc) {
       this.lrc.stop()
     }
@@ -149,7 +158,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
   }
 
   getLyric(id) {
-    return this.music.getLyric(id)
+    return this.music.getLyricProxy(id)
       .then(lyric => {
         if (!lyric) {
           return
@@ -162,15 +171,22 @@ export class MusicComponent implements OnInit, AfterViewInit {
     let index = -1
     let toSelect
     const len = this.songs.length
-    this.songs.forEach((song, i) => {
-      if (song.id === this.selectedSong.id) {
-        index = i
+
+    if (this.playMode === 'normal') {
+      this.songs.forEach((song, i) => {
+        if (song.id === this.selectedSong.id) {
+          index = i
+        }
+      })
+      if (index + 1 < len) {
+        toSelect = index + 1
+      } else {
+        toSelect = 0
       }
-    })
-    if (index + 1 < len) {
-      toSelect = index + 1
-    } else {
-      toSelect = 0
+    }
+
+    if (this.playMode === 'random') {
+      toSelect = Math.floor(len * Math.random())
     }
     this.select(this.songs[toSelect])
   }
