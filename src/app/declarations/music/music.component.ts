@@ -133,6 +133,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
         if (this.selectedSong.id) {
           const audio = this.audio.nativeElement
           audio.src = this.songURL
+          audio.play() // ios auto play()
         }
       })
   }
@@ -190,6 +191,12 @@ export class MusicComponent implements OnInit, AfterViewInit {
     this.select(this.songs[toSelect])
   }
 
+  lyricPlay(audio) {
+    const currentTime = audio['currentTime']
+    this.lrc.play()
+    this.lrc.seek(currentTime * 1000)
+  }
+
   constructor(
     private music: Music
   ) {
@@ -230,17 +237,15 @@ export class MusicComponent implements OnInit, AfterViewInit {
     })
 
     audio.addEventListener('pause', () => {
-      this.lrc.pauseToggle()
+      this.lrc.pause()
     })
 
-    audio.addEventListener('progress', () => {
-      this.lrc.stop()
-    })
+    // audio.addEventListener('progress', () => {
+    //   audio.pause()
+    // })
 
     audio.addEventListener('play', () => {
-      const currentTime = audio['currentTime']
-      this.lrc.play()
-      this.lrc.seek(currentTime * 1000)
+      this.lyricPlay(audio)
     })
   }
 }

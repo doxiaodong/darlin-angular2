@@ -113,6 +113,11 @@ var Lrc = (function() {
         }
       }
     }
+    , pause: function() {
+      var now = Date.now();
+      this.stop();
+      this._pauseStamp = now;
+    }
     , pauseToggle: function() {
       var now = Date.now();
       if (this.state) {
