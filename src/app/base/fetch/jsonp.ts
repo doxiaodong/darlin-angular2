@@ -9,7 +9,7 @@ export function jsonp(url, callbackname = 'callback') {
     .then(d => d.json())
     .then(res => {
       if (res.code === 0) {
-        return res.data
+        return res
       } else {
         Promise.reject(res)
       }
