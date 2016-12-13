@@ -7,8 +7,11 @@ const helpers = require('./helpers')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlElementsPlugin = require('./webpack-plugin/html-elements')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+// We need this plugin to detect a `--watch` mode. It may be removed later
+// after https://github.com/webpack/webpack/issues/3460 will be resolved.
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 /**
  * Webpack configuration
@@ -131,6 +134,8 @@ module.exports = function(option) {
     //
     // See: http://webpack.github.io/docs/configuration.html#plugins
     plugins: [
+      new CheckerPlugin(),
+
       new HtmlElementsPlugin({
         headTags: require('./head-config.common')
       }),

@@ -6,6 +6,7 @@ import { APP_BASE_HREF } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { BrowserModule } from '@angular/platform-browser'
 import { Http } from '@angular/http'
+import { MdButtonModule } from '@angular/material/button'
 import {
   TranslateModule,
   TranslateLoader,
@@ -53,7 +54,8 @@ import {
       provide: TranslateLoader,
       useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
       deps: [Http]
-    })
+    }),
+    MdButtonModule.forRoot()
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
