@@ -68,7 +68,8 @@ export class ShareModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: ShareModule,
-      providers: []
+      providers: [
+      ]
     }
   }
 }

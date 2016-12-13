@@ -36,8 +36,8 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
   //
   // See: http://webpack.github.io/docs/configuration.html#devtool
   // See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
-  // devtool: 'source-map',
-  devtool: 'hidden-source-map',
+  devtool: 'source-map',
+  // devtool: 'hidden-source-map',
 
   // Options affecting the output of the compilation.
   //
@@ -156,7 +156,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     // See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
     // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
     new UglifyJsPlugin({
-
+      sourceMap: true,
       beautify: false, //prod
       output: {
         comments: false

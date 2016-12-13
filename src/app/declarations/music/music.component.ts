@@ -75,7 +75,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
   }
 
   addToSongs(song) {
-    if (this.songs.filter((s) => s.id === song.id).length > 0) {
+    if (this.songs.some((s) => s.id === song.id)) {
       console.warn('已在列表中')
       return
     }

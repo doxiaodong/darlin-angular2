@@ -10,7 +10,7 @@ export class PicUrl {
 
   static getUrl(pic: string, email?: string): string {
     if (pic === 'none') {
-      // pic = 'static/assets/images/head/head.png'
+      // pic = 'static/assets/images/head.png'
       pic = `https://s.gravatar.com/avatar/${md5(email).toString()}?s=100`
     } else if (!this.reg.test(pic)) {
       pic = GLOBAL_VALUE.PIC_STATIC_URL_HOST + pic + HEAD_PIC_STYLE
