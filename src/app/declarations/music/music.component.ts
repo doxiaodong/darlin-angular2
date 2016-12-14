@@ -111,7 +111,8 @@ export class MusicComponent implements OnInit, AfterViewInit {
     if (!this.selectedSong.id) {
       return ''
     }
-    return `http://ws.stream.qqmusic.qq.com/${this.selectedSong.id}.m4a?fromtag=46`
+    // return `http://ws.stream.qqmusic.qq.com/${this.selectedSong.id}.m4a?fromtag=46`
+    return `https://music.tristana.cc/${this.selectedSong.id}.m4a?fromtag=46`
   }
 
   clickSelect(song) {
@@ -133,7 +134,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
         if (this.selectedSong.id) {
           const audio = this.audio.nativeElement
           audio.src = this.songURL
-          audio.play() // ios auto play()
+          // audio.play() // ios auto play()
         }
       })
   }
