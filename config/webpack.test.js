@@ -88,15 +88,9 @@ module.exports = function(options) {
             helpers.root('node_modules/@angular')
           ]
         },
-
-        /**
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         */
         {
           test: /\.ts$/,
-          loader: 'awesome-typescript-loader',
+          loader: 'ts-loader',
           query: {
             // use inline sourcemaps for "karma-remap-coverage" reporter
             sourceMap: false,
