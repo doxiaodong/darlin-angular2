@@ -16,10 +16,6 @@
       "hammerjs",
       "jasmine",
       "node",
-      "selenium-webdriver",
-      "source-map",
-      "uglify-js",
-      "webpack",
       "marked",
       "highlight.js",
       "crypto-js",
@@ -30,10 +26,6 @@
   "exclude": [
     "node_modules"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
-  },
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": {
