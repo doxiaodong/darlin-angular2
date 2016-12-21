@@ -22,7 +22,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   const request = event.request
-  const isCache = cacheKeys.filter((k) => k.test(request.url)).length > 0
+  const isCache = cacheKeys.some(k => k.test(request.url))
   if (isCache) {
     event.respondWith(
       caches.match(request).then((response) => {
