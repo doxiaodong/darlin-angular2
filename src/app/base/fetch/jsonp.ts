@@ -1,6 +1,5 @@
 import { AlertService } from 'app/declarations/alert/alert.service'
-
-const fetchJsonp = require('fetch-jsonp')
+import * as fetchJsonp from 'fetch-jsonp'
 
 export function jsonp(url, callbackname = 'callback') {
   const promise = fetchJsonp(url, {

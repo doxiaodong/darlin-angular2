@@ -52,7 +52,7 @@ export class Music {
 
   getLyricProxy(id) {
     if (!id) {
-      return Promise.reject(null)
+      return
     }
     return jsonp(`${API_PREFIX}/music/lyric/${id}/`, 'callback')
       .then(res => {
