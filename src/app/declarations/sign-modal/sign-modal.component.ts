@@ -43,8 +43,8 @@ interface RegisterInterface {
 @Component({
   selector: '[sign-modal]',
   templateUrl: './sign-modal.template.html',
-  styles: [
-    require('./sign-modal.less')
+  styleUrls: [
+    './sign-modal.less'
   ]
 })
 export class SignModalComponent implements OnInit {

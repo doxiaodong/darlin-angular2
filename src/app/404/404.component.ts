@@ -3,8 +3,8 @@ import { Component } from '@angular/core'
 @Component({
   selector: 'notfound',
   templateUrl: './404.template.html',
-  styles: [
-    require('./404.less')
+  styleUrls: [
+    './404.less'
   ]
 })
 

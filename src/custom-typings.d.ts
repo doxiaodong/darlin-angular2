@@ -29,6 +29,8 @@ import * as _ from 'lodash'
  *
  */
 
+declare module '*'
+
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare let ENV: string
 declare let HMR: boolean

@@ -33,6 +33,10 @@ import {
   directives
 } from './declarations'
 
+export function translateFactory(http: Http) {
+  return new TranslateStaticLoader(http, '/assets/i18n', '.json')
+}
+
 @NgModule({
   bootstrap: [
     RootAppComponent
@@ -52,7 +56,7 @@ import {
     RouterModule.forRoot(ROUTES),
     TranslateModule.forRoot({
       provide: TranslateLoader,
-      useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
+      useFactory: translateFactory,
       deps: [Http]
     }),
     MdButtonModule.forRoot()

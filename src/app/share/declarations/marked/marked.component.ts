@@ -14,10 +14,10 @@ import { MarkedService } from './marked.service'
 
 import * as emojione from 'emojione'
 
-require('./markdown.global.less')
-require('./tomorrow.night.global.css')
-require('./highlight.number.global.less')
-require('emojione/assets/css/emojione.min.css') // use node_modules
+import './markdown.global.less'
+import './tomorrow.night.global.css'
+import './highlight.number.global.less'
+import 'emojione/assets/css/emojione.min.css' // use node_modules
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -28,10 +28,10 @@ require('emojione/assets/css/emojione.min.css') // use node_modules
   template: `
     <div [innerHTML]="html"></div>
   `,
-  styles: [
-    // require('./markdown.less'),
-    // require('./tomorrow.night.css'),
-    // require('./highlight.number.less')
+  styleUrls: [
+    // './markdown.less',
+    // './tomorrow.night.css',
+    // './highlight.number.less'
   ],
   providers: [
     MarkedService
