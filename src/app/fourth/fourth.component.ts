@@ -9,11 +9,8 @@ import {
 import { Checkmark } from 'app/share/icon'
 import { AlertService } from 'app/declarations/alert/alert.service'
 
-// const md5 = require('crypto-js/md5')
-// const sha512 = require('crypto-js/sha512')
-import * as cryptoJS from 'crypto-js'
-const sha512 = cryptoJS.SHA512
-const md5 = cryptoJS.MD5
+const md5 = require('crypto-js/md5')
+const sha512 = require('crypto-js/sha512')
 
 interface IGenpassword {
   initPassword: string

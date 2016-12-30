@@ -2,9 +2,7 @@ import {
   HEAD_PIC_STYLE,
   THIRD_PIC_REG
 } from './picture.constant'
-// const md5 = require('crypto-js/md5')
-import * as cryptoJS from 'crypto-js'
-const md5 = cryptoJS.MD5
+const md5 = require('crypto-js/md5')
 
 export class PicUrl {
 
