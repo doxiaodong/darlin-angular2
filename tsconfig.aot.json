@@ -22,7 +22,6 @@
       "node",
       // "marked",
       // "highlight.js",
-      // "crypto-js",
       "mathjax",
       "whatwg-fetch"
     ]
