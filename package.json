@@ -89,6 +89,7 @@
     "@types/marked": "0.0.28",
     "@types/mathjax": "0.0.31",
     "@types/node": "^6.0.55",
+    "angular-router-loader": "^0.4.0",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.6.0",
     "codelyzer": "2.0.0-beta.4",
