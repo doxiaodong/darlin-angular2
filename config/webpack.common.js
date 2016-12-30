@@ -72,7 +72,8 @@ module.exports = function(option) {
           test: /\.ts$/, loaders: [
             '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
             'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
-            'angular2-template-loader'
+            'angular2-template-loader',
+            'angular-router-loader?genDir=compiled/src/app&aot=' + AOT
           ], exclude: [/\.(spec|e2e)\.ts$/]
         },
         {
