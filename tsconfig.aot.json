@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "strictNullChecks": false,
+    // "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "baseUrl": "./src",
+    "paths": {
+      "svg": ["./src/svg"],
+      "app": ["./src/app"]
+    },
+    "types": [
+      // "core-js",
+      // "jasmine",
+      "node",
+      // "marked",
+      // "highlight.js",
+      // "crypto-js",
+      "mathjax",
+      "whatwg-fetch"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.spec.ts",
+    "src/**/*.e2e.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "compiled",
+    "skipMetadataEmit": true
+  }
+}

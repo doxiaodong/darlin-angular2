@@ -11,4 +11,13 @@ typings/
 
 coverage/
 
+compiled/
+
 yarn.lock
+
+*.js
+*.d.ts
+*.js.map
+
+!emojione.d.ts
+!js-base64.d.ts

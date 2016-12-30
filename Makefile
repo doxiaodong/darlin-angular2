@@ -6,6 +6,9 @@ dev:
 build:
 	npm run build:prod
 
+build-aot:
+	npm run build:aot
+
 test:
 	npm run test
 

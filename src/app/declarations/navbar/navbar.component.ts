@@ -20,8 +20,8 @@ import { LoadingService } from '../loading/loading.service'
 @Component({
   selector: '[navbar]',
   templateUrl: './navbar.template.html',
-  styles: [
-    require('./navbar.less')
+  styleUrls: [
+    './navbar.less'
   ]
 })
 export class NavbarComponent implements OnInit {

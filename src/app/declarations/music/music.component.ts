@@ -16,13 +16,16 @@ import {
   Sort
 } from 'app/share/icon'
 
-const Lrc = require('app/lrc.js').Lrc
+import * as LrcJs from 'app/lrc.js'
+const Lrc = LrcJs.Lrc
+
+// const Lrc = require('app/lrc.js').Lrc
 
 @Component({
   selector: 'music',
   templateUrl: './music.template.html',
-  styles: [
-    require('./music.less')
+  styleUrls: [
+    './music.less'
   ],
   providers: [
     Music
@@ -125,6 +128,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
   select(song) {
     if (this.lrc) {
       this.lrc.stop()
+      this.lrc = null
     }
     this.getLyric(song.id)
       .then(() => {

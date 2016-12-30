@@ -9,6 +9,9 @@ const HtmlElementsPlugin = require('./webpack-plugin/html-elements')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const AOT = helpers.hasNpmFlag('aot')
+console.log('is aot?:', AOT)
+
 /**
  * Webpack configuration
  *
@@ -25,8 +28,11 @@ module.exports = function(option) {
 
       // 'polyfills': './src/polyfills.ts',
       // 'vendor': './src/vendor.ts',
-      'lib': ['./src/polyfills.ts', './src/vendor.ts'],
-      'main': './src/main.browser.ts'
+      'lib': [
+        './src/polyfills.ts',
+        './src/vendor.ts'
+      ],
+      'main': AOT ? './src/main.browser.aot.ts' : './src/main.browser.ts'
 
     },
 
@@ -65,7 +71,7 @@ module.exports = function(option) {
         {
           test: /\.ts$/, loaders: [
             '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-            'ts-loader',
+            'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
             'angular2-template-loader'
           ], exclude: [/\.(spec|e2e)\.ts$/]
         },
@@ -102,9 +108,16 @@ module.exports = function(option) {
             loader: 'css-loader?minimize!postcss-loader!less-loader'
           })
         },
+        {
+          test: /global\.scss$/,
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: 'css-loader?minimize!postcss-loader!sass-loader'
+          })
+        },
 
         { test: /\.less$/, loader: 'raw-loader!postcss-loader!less-loader', exclude: [/global\.less$/] },
-        { test: /\.scss$/, loader: 'raw-loader!postcss-loader!sass-loader' },
+        { test: /\.scss$/, loader: 'raw-loader!postcss-loader!sass-loader', exclude: [/global\.scss$/] },
 
         // Raw loader support for *.html
         // Returns file content as string
@@ -153,8 +166,23 @@ module.exports = function(option) {
       // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
       // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
       new webpack.optimize.CommonsChunkPlugin({
-        name: ['lib'].reverse()
+        name: ['lib']
       }),
+
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'lib',
+      //   chunks: ['lib']
+      // }),
+
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'vendor',
+      //   chunks: ['main'],
+      //   minChunks: module => /node_modules\//.test(module.resource)
+      // }),
+
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: ['lib', 'vendor'].reverse()
+      // }),
 
       // Plugin: CopyWebpackPlugin
       // Description: Copy files and directories in webpack.
@@ -190,6 +218,7 @@ module.exports = function(option) {
       // moment 语言包只加载 zh-cn
       new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
 
+      // https://github.com/angular/angular/issues/11580
       new webpack.ContextReplacementPlugin(
         // The (\\|\/) piece accounts for path separators in *nix and Windows
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,

@@ -42,7 +42,7 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   public article: string
 
-  public submitForm: Object
+  public submitForm: any
 
   getReplies(head: string, comment) {
     CommentApi.getArticleSubComments(head)
