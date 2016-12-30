@@ -6,7 +6,7 @@ export function jsonp(url, callbackname = 'callback') {
     jsonpCallback: callbackname
   })
     .then(d => d.json())
-    .then(res => {
+    .then((res: any) => {
       if (res.code === 0) {
         return res
       } else {

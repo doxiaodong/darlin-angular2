@@ -11,8 +11,8 @@ import { LoadingService } from './loading.service'
       <div class="loading"></div>
     </div>
   `,
-  styles: [
-    require('./loading.less')
+  styleUrls: [
+    './loading.less'
   ]
 })
 

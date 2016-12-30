@@ -14,8 +14,8 @@ import { CategoryService } from './category.service'
   encapsulation: ViewEncapsulation.None,
   selector: '[article-categories]',
   templateUrl: './category.template.html',
-  styles: [
-    require('./category.less')
+  styleUrls: [
+    './category.less'
   ],
   providers: [
     CategoryService

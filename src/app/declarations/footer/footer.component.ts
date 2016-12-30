@@ -13,8 +13,8 @@ import { LocalStorageService } from 'app/base/local-storage/local-storage.servic
 @Component({
   selector: '[footer]',
   templateUrl: './footer.template.html',
-  styles: [
-    require('./footer.less')
+  styleUrls: [
+    './footer.less'
   ]
 })
 

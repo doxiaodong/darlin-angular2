@@ -23,7 +23,9 @@
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "compiled",
+    "dist"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

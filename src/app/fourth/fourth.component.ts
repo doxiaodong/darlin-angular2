@@ -9,8 +9,11 @@ import {
 import { Checkmark } from 'app/share/icon'
 import { AlertService } from 'app/declarations/alert/alert.service'
 
-const sha512 = require('crypto-js/sha512')
-const md5 = require('crypto-js/md5')
+// const md5 = require('crypto-js/md5')
+// const sha512 = require('crypto-js/sha512')
+import * as cryptoJS from 'crypto-js'
+const sha512 = cryptoJS.SHA512
+const md5 = cryptoJS.MD5
 
 interface IGenpassword {
   initPassword: string
@@ -23,8 +26,8 @@ interface IGenpassword {
 @Component({
   selector: 'links',
   templateUrl: './fourth.template.html',
-  styles: [
-    require('./fourth.less')
+  styleUrls: [
+    './fourth.less'
   ],
   animations: [
     PageAnimateFn()
