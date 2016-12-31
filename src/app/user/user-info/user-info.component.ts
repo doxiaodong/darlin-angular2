@@ -19,7 +19,7 @@ import { CommentApi } from 'app/article/declarations/comment/comment.api'
 import { PicUrl } from 'app/base/pic-url/pic-url.service'
 
 @Component({
-  selector: 'user-info',
+  selector: 'comp-user-info',
   templateUrl: './user-info.template.html',
   animations: [
     PageAnimateFn()

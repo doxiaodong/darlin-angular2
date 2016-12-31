@@ -41,7 +41,7 @@ interface RegisterInterface {
 }
 
 @Component({
-  selector: '[sign-modal]',
+  selector: 'comp-sign-modal',
   templateUrl: './sign-modal.template.html',
   styleUrls: [
     './sign-modal.less'

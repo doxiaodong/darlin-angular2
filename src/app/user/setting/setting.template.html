@@ -1,4 +1,4 @@
-<div class="pages setting" [title]="'pages.account.setting' | translate" page-animate [@pageAnimateTrigger]="p.stateExpression"
+<div class="pages setting" [dire-title]="'pages.account.setting' | translate" dire-page-animate [@pageAnimateTrigger]="p.stateExpression"
   #p="pageAnimate">
   <div class="page-block">
     <div class="each-header">
@@ -14,21 +14,21 @@
             <input class="form-control" [readonly]="setting.third !== 'none'" [(ngModel)]="setting.username" name="username"
               formControlName="username"
               id="setting_username" type="text" [attr.placeholder]="'pages.account.username' | translate">
-            <icon class="active" [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" [glyph]="icon.checkmark"></icon>
+            <comp-icon class="active" [hidden]="settingForm.controls['username'].pristine || !settingForm.controls['username'].valid" [glyph]="icon.checkmark"></comp-icon>
           </div>
           <div class="form-group" [class.has-error]="!settingForm.controls['email'].pristine && !settingForm.controls['email'].valid">
             <label class="form-label" for="setting_email">{{ 'pages.account.email' | translate }}：<span class="tomato" [hidden]="settingForm.controls['email'].pristine || settingForm.controls['email'].valid">*{{ 'signModal.emailFlag' | translate }}</span></label>
             <input class="form-control" [(ngModel)]="setting.email" name="email" id="setting_email" type="email"
               formControlName="email"
               [attr.placeholder]="'pages.account.email' | translate">
-            <icon class="active" [hidden]="settingForm.controls['email'].pristine || !settingForm.controls['email'].valid" [glyph]="icon.checkmark"></icon>
+            <comp-icon class="active" [hidden]="settingForm.controls['email'].pristine || !settingForm.controls['email'].valid" [glyph]="icon.checkmark"></comp-icon>
           </div>
           <div class="form-group">
             <label class="form-label" for="setting_nickname">{{ 'pages.account.nickname' | translate }}：</label>
             <input class="form-control" [(ngModel)]="setting.nickname" name="nickname" id="setting_nickname"
               formControlName="nickname"
               type="text" [attr.placeholder]="'pages.account.nickname' | translate">
-            <icon class="active" [hidden]="settingForm.controls['nickname'].pristine || !settingForm.controls['nickname'].valid" [glyph]="icon.checkmark"></icon>
+            <comp-icon class="active" [hidden]="settingForm.controls['nickname'].pristine || !settingForm.controls['nickname'].valid" [glyph]="icon.checkmark"></comp-icon>
           </div>
           <div class="form-group" id="setting_sex">
             <label class="form-label" for="setting_sex">{{ 'pages.account.sex' | translate }}：</label>

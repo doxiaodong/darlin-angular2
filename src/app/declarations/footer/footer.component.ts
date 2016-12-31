@@ -11,7 +11,7 @@ import { LanguageInterface } from './language.interface'
 import { LocalStorageService } from 'app/base/local-storage/local-storage.service'
 
 @Component({
-  selector: '[footer]',
+  selector: 'comp-footer',
   templateUrl: './footer.template.html',
   styleUrls: [
     './footer.less'

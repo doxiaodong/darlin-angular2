@@ -21,7 +21,7 @@ const request: IRequestParams = {
 }
 
 @Component({
-  selector: '[article-comments]',
+  selector: 'comp-article-comments',
   templateUrl: './comment.template.html'
 })
 

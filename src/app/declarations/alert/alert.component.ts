@@ -15,7 +15,7 @@ interface AlertInterface {
 }
 
 @Component({
-  selector: '[alert]',
+  selector: 'comp-alert',
   templateUrl: './alert.template.html',
   styleUrls: [
     './alert.less'

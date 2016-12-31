@@ -21,7 +21,7 @@ interface IGenpassword {
 }
 
 @Component({
-  selector: 'links',
+  selector: 'comp-links',
   templateUrl: './fourth.template.html',
   styleUrls: [
     './fourth.less'

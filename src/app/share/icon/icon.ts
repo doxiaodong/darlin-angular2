@@ -6,7 +6,7 @@ import {
 } from '@angular/core'
 
 @Component({
-  selector: 'icon',
+  selector: 'comp-icon',
   encapsulation: ViewEncapsulation.None,
   template: `
     <svg class="icon" [attr.width]="width" [attr.height]="height" [attr.fill]="fill">

@@ -27,7 +27,7 @@ const request: IRequestParams = {
 }
 
 @Component({
-  selector: 'setting',
+  selector: 'comp-setting',
   templateUrl: './setting.template.html',
   animations: [
     PageAnimateFn()

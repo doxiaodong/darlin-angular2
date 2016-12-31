@@ -1,4 +1,4 @@
-<div class="fourth-word pages" [title]="'titles.fourthIndexTitle' | translate" page-animate [@pageAnimateTrigger]="p.stateExpression"
+<div class="fourth-word pages" [dire-title]="'titles.fourthIndexTitle' | translate" dire-page-animate [@pageAnimateTrigger]="p.stateExpression"
   #p="pageAnimate">
 
   <div class="page-block">
@@ -14,7 +14,7 @@
               (ngModelChange)="resetGenPassword()"
               formControlName="initPassword"
               [attr.placeholder]="'pages.fourth.initPassword' | translate">
-            <icon class="active" [hidden]="!genPasswordForm.controls['initPassword'].valid" [glyph]="icon.checkmark"></icon>
+            <comp-icon class="active" [hidden]="!genPasswordForm.controls['initPassword'].valid" [glyph]="icon.checkmark"></comp-icon>
           </div>
           <div class="form-group" [class.has-error]="!genPasswordForm.controls['key'].pristine && !genPasswordForm.controls['key'].valid">
             <label class="form-label" for="key">{{ 'pages.fourth.key' | translate }}：<span class="tomato" [hidden]="genPasswordForm.controls['key'].pristine || genPasswordForm.controls['key'].valid">*{{ 'pages.fourth.required' | translate }}</span></label>
@@ -22,7 +22,7 @@
               (ngModelChange)="resetGenPassword()"
               formControlName="key"
               type="text" [attr.placeholder]="'pages.fourth.key' | translate">
-            <icon class="active" [hidden]="!genPasswordForm.controls['key'].valid" [glyph]="icon.checkmark"></icon>
+            <comp-icon class="active" [hidden]="!genPasswordForm.controls['key'].valid" [glyph]="icon.checkmark"></comp-icon>
           </div>
           <div class="form-group">
             <label class="form-label width-0"></label>

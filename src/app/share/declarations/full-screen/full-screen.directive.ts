@@ -6,7 +6,7 @@ import {
 } from '@angular/core'
 
 @Directive({
-  selector: '[full-screen]',
+  selector: '[dire-full-screen]',
   exportAs: 'fullScreen'
 })
 

@@ -16,7 +16,7 @@ import { PageAnimateFn } from 'app/share/declarations/page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
 
 @Component({
-  selector: 'article-list',
+  selector: 'comp-article-list',
   templateUrl: './article-list.template.html',
   animations: [
     // NgForAnimateFn(),

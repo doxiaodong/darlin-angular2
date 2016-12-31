@@ -12,7 +12,7 @@ import { PageAnimateFn } from 'app/share/declarations/page-animate/page-animate'
 // import { NgForAnimateFn } from '../ngFor-animate/ngFor-animate'
 
 @Component({
-  selector: 'index',
+  selector: 'comp-index',
   templateUrl: './index.template.html',
   animations: [
     // NgForAnimateFn(),
