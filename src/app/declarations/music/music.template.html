@@ -8,10 +8,10 @@
         <a class="info">{{ song.name }}--{{ song.singer }}</a>
         <div class="action">
           <a (click)="addToSongs(song)">
-            <icon class="a" width="24" height="24" [glyph]="icon.add"></icon>
+            <comp-icon class="a" width="24" height="24" [glyph]="icon.add"></comp-icon>
           </a>
           <a (click)="playInsearch(song)">
-            <icon class="a" width="24" height="24" [glyph]="icon.play"></icon>
+            <comp-icon class="a" width="24" height="24" [glyph]="icon.play"></comp-icon>
           </a>
         </div>
       </li>
@@ -25,11 +25,11 @@
       </p>
       <ul class="songs overflow-auto" [sortablejs]="songs" [sortablejsOptions]="sortableOption">
         <li *ngFor="let song of songs; let i = index; trackBy: trackByFn" (click)="clickSelect(song)" [class.playing]="song.id === selectedSong.id">
-          <icon (click)="$event.stopPropagation()" class="a sortable-handle" width="24" height="24" [glyph]="icon.sort"></icon>
+          <comp-icon (click)="$event.stopPropagation()" class="a sortable-handle" width="24" height="24" [glyph]="icon.sort"></comp-icon>
           <a class="info">{{ i + 1 }}. {{ song.name }}--{{ song.singer }}</a>
           <div class="action">
             <a (click)="removeSong(song, $event)">
-              <icon class="a" width="24" height="24" [glyph]="icon.delete"></icon>
+              <comp-icon class="a" width="24" height="24" [glyph]="icon.delete"></comp-icon>
             </a>
           </div>
         </li>

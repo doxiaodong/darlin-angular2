@@ -1,6 +1,6 @@
-<div class="pages" [title]="'titles.articleListTitle' | translate" page-animate [@pageAnimateTrigger]="p.stateExpression" #p="pageAnimate">
-  <div class="page-block side right" article-categories>
-  </div>
+<div class="pages" [dire-title]="'titles.articleListTitle' | translate" dire-page-animate [@pageAnimateTrigger]="p.stateExpression" #p="pageAnimate">
+  <comp-article-categories class="page-block side right">
+  </comp-article-categories>
 
   <div class="page-block left">
     <div class="each-header">

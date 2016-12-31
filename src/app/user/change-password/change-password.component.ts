@@ -24,7 +24,7 @@ const request: IRequestParams = {
 }
 
 @Component({
-  selector: 'change-password',
+  selector: 'comp-change-password',
   templateUrl: './change-password.template.html',
   animations: [
     PageAnimateFn()

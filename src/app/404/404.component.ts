@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 
 @Component({
-  selector: 'notfound',
+  selector: 'comp-404',
   templateUrl: './404.template.html',
   styleUrls: [
     './404.less'

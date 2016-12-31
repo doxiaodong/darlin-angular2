@@ -8,12 +8,12 @@
       <div class="right">
         <div class="word">
           <a class="a" [routerLink]="['/account/info', comment.replyUser.username]">{{ comment.replyUser.nickname }}</a>
-          <marked class="mes markdown" [md]="comment.content"></marked>
+          <comp-marked class="mes markdown" [md]="comment.content"></comp-marked>
         </div>
         <div class="message">
           <span class="time">{{ comment.time | xdDate: lang }}</span>
           <span class="a" (click)="showReplyInput(comment, comment)">
-            <icon [glyph]="icon.reply"></icon>
+            <comp-icon [glyph]="icon.reply"></comp-icon>
             {{ 'pages.article.reply' | translate }}
           </span>
           <span class="floor">{{ comment.index }}{{ 'pages.article.floor' | translate }}</span>
@@ -29,12 +29,12 @@
                 <span class="nomal-color">&nbsp;{{ 'pages.article.lowercaseReply' | translate }}&nbsp;</span>
                 <a class="a" [routerLink]="['/account/info', subReply.replyObject.username]">{{ subReply.replyObject.nickname }}</a>：
               </div>
-              <marked class="mes markdown" [md]="subReply.content"></marked>
+              <comp-marked class="mes markdown" [md]="subReply.content"></comp-marked>
             </div>
             <div class="message">
               <span class="time">{{ subReply.time | xdDate: lang }}</span>
               <span class="a" (click)="showReplyInput(comment, subReply)">
-                <icon [glyph]="icon.reply"></icon>
+                <comp-icon [glyph]="icon.reply"></comp-icon>
                 {{ 'pages.article.reply' | translate }}
               </span>
             </div>

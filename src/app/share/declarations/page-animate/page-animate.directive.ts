@@ -4,7 +4,7 @@ import {
 } from '@angular/core'
 
 @Directive({
-  selector: '[page-animate]',
+  selector: '[dire-page-animate]',
   exportAs: 'pageAnimate'
 })
 export class PageAnimateDirective implements OnInit {

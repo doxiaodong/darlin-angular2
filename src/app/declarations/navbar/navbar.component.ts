@@ -18,7 +18,7 @@ import { SignModalService } from '../sign-modal/sign-modal.service'
 import { LoadingService } from '../loading/loading.service'
 
 @Component({
-  selector: '[navbar]',
+  selector: 'comp-navbar',
   templateUrl: './navbar.template.html',
   styleUrls: [
     './navbar.less'

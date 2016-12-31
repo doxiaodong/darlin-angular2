@@ -1,4 +1,4 @@
-<div class="pages account" [title]="'pages.account.infoTitle' | translate" page-animate [@pageAnimateTrigger]="p.stateExpression"
+<div class="pages account" [dire-title]="'pages.account.infoTitle' | translate" dire-page-animate [@pageAnimateTrigger]="p.stateExpression"
   #p="pageAnimate">
   <div class="page-block">
     <div class="each-header">
@@ -40,7 +40,7 @@
                 <span class="normal-color">{{ 'pages.account.replyWord1' | translate }}</span>
                 <a class="a" [routerLink]="['/article', reply.article.category.url, encode(reply.article.url)]">{{ reply.article.title }}</a>                {{ 'pages.account.replyWord2' | translate }}：
               </div>
-              <marked class="mes markdown" [md]="reply.content"></marked>
+              <comp-marked class="mes markdown" [md]="reply.content"></comp-marked>
             </div>
             <div class="message">
               <span class="time">{{ reply.time | xdDate: lang }}</span>
@@ -70,7 +70,7 @@
                 <span class="normal-color">{{ 'pages.account.replyOfArticleWord' | translate }}</span>
                 <a class="a" [routerLink]="['/article', reply.article.category.url, encode(reply.article.url)]">{{ reply.article.title }}</a>：
               </div>
-              <marked class="mes markdown" [md]="reply.content"></marked>
+              <comp-marked class="mes markdown" [md]="reply.content"></comp-marked>
             </div>
             <div class="message">
               <span class="time">{{ reply.time | xdDate: lang }}</span>

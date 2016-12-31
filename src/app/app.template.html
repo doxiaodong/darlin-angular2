@@ -1,12 +1,13 @@
-<div navbar [visibility]="'visibilityTitle' | translate"></div>
+<comp-navbar [dire-visibility]="'visibilityTitle' | translate"></comp-navbar>
 
 <article class="container">
   <router-outlet></router-outlet>
 </article>
 
-<div footer></div>
+<comp-footer></comp-footer>
+<comp-alert [alertOk]="'alertDefaultOk' | translate" [alertTitle]="'alertDefaultTitle' | translate"></comp-alert>
+<comp-sign-modal></comp-sign-modal>
+<comp-loading></comp-loading>
+<comp-music></comp-music>
+
 <div id="bg-picture"></div>
-<div alert [alertOk]="'alertDefaultOk' | translate" [alertTitle]="'alertDefaultTitle' | translate"></div>
-<div sign-modal></div>
-<loading></loading>
-<music></music>

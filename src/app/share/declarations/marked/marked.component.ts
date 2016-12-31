@@ -21,7 +21,7 @@ import 'emojione/assets/css/emojione.min.css' // use node_modules
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'marked',
+  selector: 'comp-marked',
 
   // use ms(md) cause performance problem
   // use Onchanges to relace

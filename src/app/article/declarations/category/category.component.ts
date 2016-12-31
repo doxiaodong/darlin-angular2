@@ -12,7 +12,7 @@ import { CategoryService } from './category.service'
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: '[article-categories]',
+  selector: 'comp-article-categories',
   templateUrl: './category.template.html',
   styleUrls: [
     './category.less'

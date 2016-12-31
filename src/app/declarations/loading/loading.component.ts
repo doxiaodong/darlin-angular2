@@ -5,7 +5,7 @@ import {
 import { LoadingService } from './loading.service'
 
 @Component({
-  selector: 'loading',
+  selector: 'comp-loading',
   template: `
     <div class="xd-loading show" *ngIf="loading.isLoading">
       <div class="loading"></div>

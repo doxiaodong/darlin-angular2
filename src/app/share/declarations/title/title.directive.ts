@@ -5,9 +5,9 @@ import {
 import { Title } from '@angular/platform-browser'
 
 @Directive({
-  selector: '[title]',
+  selector: '[dire-title]',
   inputs: [
-    't: title'
+    't: dire-title'
   ],
   providers: [Title]
 })

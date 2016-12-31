@@ -7,9 +7,9 @@ import { Title } from '@angular/platform-browser'
 import { LocalStorageService } from 'app/base/local-storage/local-storage.service'
 
 @Directive({
-  selector: '[visibility]',
+  selector: '[dire-visibility]',
   inputs: [
-    'w: visibility'
+    'w: dire-visibility'
   ],
   providers: [
     Title,

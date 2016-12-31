@@ -1,7 +1,7 @@
-<div class="pages" *ngIf="article" [title]="article.articleDetailTitle" page-animate [@pageAnimateTrigger]="p.stateExpression"
+<div class="pages" *ngIf="article" [dire-title]="article.articleDetailTitle" dire-page-animate [@pageAnimateTrigger]="p.stateExpression"
   #p="pageAnimate">
-  <div class="page-block side right" article-categories>
-  </div>
+  <comp-article-categories class="page-block side right">
+  </comp-article-categories>
 
   <div class="page-block left">
     <div class="each-header">
@@ -9,11 +9,11 @@
       <div class="changes">• {{ article.createTime | xdDate: lang }} • {{ article.category.name }}</div>
     </div>
     <div class="each-inner">
-      <marked class="each-article markdown" [md]="article.content" trust="true"></marked>
+      <comp-marked class="each-article markdown" [md]="article.content" trust="true"></comp-marked>
     </div>
   </div>
 
-  <div class="page-block left" article-comments>
-  </div>
+  <comp-article-comments class="page-block left">
+  </comp-article-comments>
 
 </div>

@@ -16,7 +16,7 @@ import { ArticleApi } from 'app/article/api/article.api'
 import { PageAnimateFn } from 'app/share/declarations/page-animate/page-animate'
 
 @Component({
-  selector: 'article-detail',
+  selector: 'comp-article-detail',
   templateUrl: './article-detail.template.html',
   animations: [
     PageAnimateFn()

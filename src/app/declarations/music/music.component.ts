@@ -22,7 +22,7 @@ const Lrc = LrcJs.Lrc
 // const Lrc = require('app/lrc.js').Lrc
 
 @Component({
-  selector: 'music',
+  selector: 'comp-music',
   templateUrl: './music.template.html',
   styleUrls: [
     './music.less'
