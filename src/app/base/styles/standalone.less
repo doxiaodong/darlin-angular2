@@ -1,0 +1,24 @@
+@import './each';
+
+.standalone {
+  & {
+    header.header {
+      height: 70px!important;
+      padding-top: 20px;
+    }
+    article.container {
+      padding: @header_height+20px 0 5px 0;
+    }
+  }
+}
+
+.standalone {
+  .music-player {
+    padding-top: 20px;
+  }
+  .list-container {
+    height: ~'calc(100% - 385px)';
+  }
+}
+
+

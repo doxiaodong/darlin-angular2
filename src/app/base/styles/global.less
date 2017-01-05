@@ -9,6 +9,7 @@
 @import "./layout/_scrollbar";
 @import "./layout/_user";
 @import "./radio";
+@import "./standalone";
 
 .sr-only {
   width: 0;
@@ -38,18 +39,6 @@
 article.container {
   padding: @header_height 0 5px 0;
   min-height: ~'calc(100% - 50px)';
-}
-
-.standalone {
-  & {
-    header.header {
-      height: 70px!important;
-      padding-top: 20px;
-    }
-    article.container {
-      padding: @header_height+20px 0 5px 0;
-    }
-  }
 }
 
 pre {
