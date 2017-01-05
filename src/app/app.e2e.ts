@@ -16,13 +16,13 @@ describe('app e2e', () => {
   })
 
   it('should have navbar', () => {
-    let subject = element(by.css('[navbar]')).isPresent()
+    let subject = element(by.css('comp-navbar')).isPresent()
     let result = true
     expect(subject).toEqual(result)
   })
 
   it('should have footer', () => {
-    let subject = element(by.css('[footer]')).isPresent()
+    let subject = element(by.css('comp-footer')).isPresent()
     let result = true
     expect(subject).toEqual(result)
   })
@@ -34,13 +34,25 @@ describe('app e2e', () => {
   })
 
   it('should have alert', () => {
-    let subject = element(by.css('[alert]')).isPresent()
+    let subject = element(by.css('comp-alert')).isPresent()
     let result = true
     expect(subject).toEqual(result)
   })
 
   it('should have sign-modal', () => {
-    let subject = element(by.css('[sign-modal]')).isPresent()
+    let subject = element(by.css('comp-sign-modal')).isPresent()
+    let result = true
+    expect(subject).toEqual(result)
+  })
+
+  it('should have loading', () => {
+    let subject = element(by.css('comp-loading')).isPresent()
+    let result = true
+    expect(subject).toEqual(result)
+  })
+
+  it('should have music', () => {
+    let subject = element(by.css('comp-music')).isPresent()
     let result = true
     expect(subject).toEqual(result)
   })
