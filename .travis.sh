@@ -6,7 +6,8 @@ npm run lint
 make formatCheck
 
 npm run test
-npm run e2e
+# Chrome version must be >= xx
+# npm run e2e
 
 npm run build:prod
 npm run build:aot
