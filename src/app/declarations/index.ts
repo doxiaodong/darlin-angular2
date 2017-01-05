@@ -6,6 +6,7 @@ import { LoadingComponent } from './loading/loading.component'
 import { MusicComponent } from './music/music.component'
 
 import { VisibilityDirective } from './visibility/visibility.directive'
+import { PlatformDirective } from './platform'
 
 export const components = [
   NavbarComponent,
@@ -20,5 +21,6 @@ export const pipes = [
 ]
 
 export const directives = [
-  VisibilityDirective
+  VisibilityDirective,
+  PlatformDirective
 ]
