@@ -25,6 +25,7 @@ export class PlatformDirective implements OnInit {
       android: ua.match(/android/i) !== null,
       webkit: ua.match(/webkit/gi) !== null,
       touch: ('ontouchstart' in window),
+      firefox: ua.match(/Firefox/i) !== null,
 
       standalone: window.navigator['standalone']
     }

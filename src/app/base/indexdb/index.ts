@@ -22,7 +22,7 @@ class DarlinDB {
   getSongs() {
     const songs = []
     this.getStore().openCursor().onsuccess = (evt) => {
-      const cursor = event.target['result']
+      const cursor = evt.target['result']
       if (cursor) {
         songs.push(cursor.value)
         cursor.continue()
