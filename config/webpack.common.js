@@ -58,28 +58,25 @@ module.exports = function(option) {
     //
     // See: http://webpack.github.io/docs/configuration.html#module
     module: {
-      // An array of automatically applied loaders.
-      //
-      // IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
-      // This means they are not resolved relative to the configuration file.
-      //
-      // See: http://webpack.github.io/docs/configuration.html#module-loaders
-      loaders: [
-
-        // Typescript loader support for .ts and Angular 2 async routes via .async.ts
-        //
-        // See: https://github.com/s-panferov/awesome-typescript-loader
+      rules: [
         {
-          test: /\.ts$/, loaders: [
+          test: /\.ts$/, use: [
             '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
             'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
             'angular2-template-loader',
-            'angular-router-loader?genDir=compiled&aot=' + AOT
+            {
+              loader: 'ng-router-loader',
+              options: {
+                loader: 'async-system',
+                genDir: 'compiled',
+                aot: AOT
+              }
+            }
           ], exclude: [/\.(spec|e2e)\.ts$/]
         },
         {
           test: /\.svg$/,
-          loader: 'svg-sprite-loader?' + JSON.stringify({
+          use: 'svg-sprite-loader?' + JSON.stringify({
             name: '[name]-[hash]'
           })
         },
@@ -87,7 +84,7 @@ module.exports = function(option) {
         // Json loader support for *.json files.
         //
         // See: https://github.com/webpack/json-loader
-        { test: /\.json$/, loader: 'json-loader', exclude: [/\.font\.json$/] },
+        { test: /\.json$/, use: 'json-loader', exclude: [/\.font\.json$/] },
 
         {
           test: /(global|\.min)\.css$/,
@@ -101,37 +98,62 @@ module.exports = function(option) {
         // Returns file content as string
         //
         // See: https://github.com/webpack/raw-loader
-        { test: /\.css$/, loader: 'raw-loader!postcss-loader', exclude: [/(global|\.min)\.css$/] },
+        {
+          test: /\.css$/, use: [
+            'raw-loader',
+            'postcss-loader'
+          ], exclude: [/(global|\.min)\.css$/]
+        },
 
         {
           test: /global\.less$/,
           loader: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
-            loader: 'css-loader?minimize!postcss-loader!less-loader'
+            loader: [
+              'css-loader?minimize',
+              'postcss-loader',
+              'less-loader'
+            ]
           })
         },
         {
           test: /global\.scss$/,
           loader: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
-            loader: 'css-loader?minimize!postcss-loader!sass-loader'
+            loader: [
+              'css-loader?minimize',
+              'postcss-loader',
+              'sass-loader'
+            ]
           })
         },
 
-        { test: /\.less$/, loader: 'raw-loader!postcss-loader!less-loader', exclude: [/global\.less$/] },
-        { test: /\.scss$/, loader: 'raw-loader!postcss-loader!sass-loader', exclude: [/global\.scss$/] },
+        {
+          test: /\.less$/, use: [
+            'raw-loader',
+            'postcss-loader',
+            'less-loader'
+          ], exclude: [/global\.less$/]
+        },
+        {
+          test: /\.scss$/, use: [
+            'raw-loader',
+            'postcss-loader',
+            'sass-loader'
+          ], exclude: [/global\.scss$/]
+        },
 
         // Raw loader support for *.html
         // Returns file content as string
         //
         // See: https://github.com/webpack/raw-loader
-        { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
+        { test: /\.html$/, use: 'raw-loader', exclude: [helpers.root('src/index.html')] },
 
-        { test: /\.md$/, loader: 'raw-loader' },
+        { test: /\.md$/, use: 'raw-loader' },
 
         {
           test: /\.(jpe?g|png|gif)$/i,
-          loaders: [
+          use: [
             `file-loader?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
             'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
           ]
