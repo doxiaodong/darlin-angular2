@@ -8,6 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlElementsPlugin = require('./webpack-plugin/html-elements')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ngcWebpack = require('ngc-webpack')
 
 const AOT = helpers.hasNpmFlag('aot')
 console.log('is aot?:', AOT)
@@ -73,7 +74,7 @@ module.exports = function(option) {
             '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
             'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
             'angular2-template-loader',
-            'angular-router-loader?genDir=compiled/src/app&aot=' + AOT
+            'angular-router-loader?genDir=compiled&aot=' + AOT
           ], exclude: [/\.(spec|e2e)\.ts$/]
         },
         {
@@ -224,7 +225,12 @@ module.exports = function(option) {
         // The (\\|\/) piece accounts for path separators in *nix and Windows
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
         helpers.root('./src') // location of oyour src
-      )
+      ),
+
+      new ngcWebpack.NgcWebpackPlugin({
+        disabled: !AOT,
+        tsConfig: helpers.root('tsconfig.aot.json')
+      })
 
     ],
 
