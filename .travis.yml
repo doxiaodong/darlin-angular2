@@ -1,10 +1,9 @@
 language: node_js
 
-node_js: "5.1"
+node_js: "6.9.1"
 
 install:
-  - npm install -g yarn
-  - yarn
+  - wget https://yarnpkg.com/latest.tar.gz && tar -xf latest.tar.gz && dist/bin/yarn
 
 # cache:
 #   directories:
