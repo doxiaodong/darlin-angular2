@@ -32,50 +32,64 @@ const METADATA = {
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
 
-  // Developer tool to enhance debugging
-  //
-  // See: http://webpack.github.io/docs/configuration.html#devtool
-  // See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
+  /** 
+   * Developer tool to enhance debugging
+   *
+   * See: http://webpack.github.io/docs/configuration.html#devtool
+   * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
+   */
   devtool: 'source-map',
   // devtool: 'hidden-source-map',
 
-  // Options affecting the output of the compilation.
-  //
-  // See: http://webpack.github.io/docs/configuration.html#output
+  /** 
+   * Options affecting the output of the compilation.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#output
+   */
   output: {
 
-    // The output directory as absolute path (required).
-    //
-    // See: http://webpack.github.io/docs/configuration.html#output-path
+    /** 
+     * The output directory as absolute path (required).
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-path
+     */
     path: helpers.root('dist'),
 
     // use static server
     publicPath: '//static.darlin.me/',
     // publicPath: '/',
 
-    // Specifies the name of each output file on disk.
-    // IMPORTANT: You must not specify an absolute path here!
-    //
-    // See: http://webpack.github.io/docs/configuration.html#output-filename
+    /** 
+     * Specifies the name of each output file on disk.
+     * IMPORTANT: You must not specify an absolute path here!
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     */
     filename: helpers.static + '[name].[chunkhash].js',
 
-    // The filename of the SourceMaps for the JavaScript files.
-    // They are inside the output.path directory.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
+    /** 
+     * The filename of the SourceMaps for the JavaScript files.
+     * They are inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
+     */
     sourceMapFilename: '[file].map',
 
-    // The filename of non-entry chunks as relative path
-    // inside the output.path directory.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+    /** 
+     * The filename of non-entry chunks as relative path
+     * inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+     */
     chunkFilename: helpers.static + '[id].[chunkhash].chunk.js'
 
   },
 
-  // Add additional plugins to the compiler.
-  //
-  // See: http://webpack.github.io/docs/configuration.html#plugins
+  /** 
+   * Add additional plugins to the compiler.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#plugins
+   */
   plugins: [
 
     new webpack.LoaderOptionsPlugin({
@@ -85,14 +99,18 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
             browsers: ['last 1 version', '> 10%']
           })
         ],
-        // Switch loaders to debug mode.
-        //
-        // See: http://webpack.github.io/docs/configuration.html#debug
+        /** 
+         * Switch loaders to debug mode.
+         *
+         * See: http://webpack.github.io/docs/configuration.html#debug
+         */
         debug: false,
-        // Html loader advanced options
-        //
-        // See: https://github.com/webpack/html-loader#advanced-options
-        // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+        /** 
+         * Html loader advanced options
+         *
+         * See: https://github.com/webpack/html-loader#advanced-options
+         * TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+         */
         htmlLoader: {
           minimize: true,
           removeAttributeQuotes: false,
@@ -124,20 +142,24 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
       dest: 'assets/i18n'
     }),
 
-    // Plugin: WebpackMd5Hash
-    // Description: Plugin to replace a standard webpack chunkhash with md5.
-    //
-    // See: https://www.npmjs.com/package/webpack-md5-hash
+    /** 
+     * Plugin: WebpackMd5Hash
+     * Description: Plugin to replace a standard webpack chunkhash with md5.
+     *
+     * See: https://www.npmjs.com/package/webpack-md5-hash
+     */
     new WebpackMd5Hash(),
 
-    // Plugin: DefinePlugin
-    // Description: Define free variables.
-    // Useful for having development builds with debug logging or adding global constants.
-    //
-    // Environment helpers
-    //
-    // See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-    // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+    /** 
+     * Plugin: DefinePlugin
+     * Description: Define free variables.
+     * Useful for having development builds with debug logging or adding global constants.
+     *
+     * Environment helpers
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     * NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+     */
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.ENV),
       'HMR': METADATA.HMR,
@@ -149,12 +171,14 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     }),
 
 
-    // Plugin: UglifyJsPlugin
-    // Description: Minimize all JavaScript output of chunks.
-    // Loaders are switched into minimizing mode.
-    //
-    // See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-    // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
+    /** 
+     * Plugin: UglifyJsPlugin
+     * Description: Minimize all JavaScript output of chunks.
+     * Loaders are switched into minimizing mode.
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+     * NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
+     */
     new UglifyJsPlugin({
       sourceMap: true,
       beautify: false, //prod
