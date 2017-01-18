@@ -21,14 +21,7 @@ console.log('is aot?:', AOT)
 module.exports = function(option) {
   const isProd = option.env === 'production'
   return {
-    // The entry point for the bundle
-    // Our Angular.js app
-    //
-    // See: http://webpack.github.io/docs/configuration.html#entry
     entry: {
-
-      // 'polyfills': './src/polyfills.ts',
-      // 'vendor': './src/vendor.ts',
       'lib': [
         './src/polyfills.ts',
         './src/vendor.ts'
@@ -37,14 +30,17 @@ module.exports = function(option) {
 
     },
 
-    // Options affecting the resolving of modules.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#resolve
+    /**
+     * Options affecting the resolving of modules.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#resolve
+     */
     resolve: {
-
-      // An array of extensions that should be used to resolve modules.
-      //
-      // See: http://webpack.github.io/docs/configuration.html#resolve-extensions
+      /**
+       * An array of extensions that should be used to resolve modules.
+       *
+       * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
+       */
       extensions: ['.ts', '.js'],
 
       alias: {
@@ -54,118 +50,136 @@ module.exports = function(option) {
 
     },
 
-    // Options affecting the normal modules.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#module
+    /**
+     * Options affecting the normal modules.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#module
+     */
     module: {
-      rules: [
-        {
-          test: /\.ts$/, use: [
-            '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-            'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
-            'angular2-template-loader',
-            {
-              loader: 'ng-router-loader',
-              options: {
-                loader: 'async-system',
-                genDir: 'compiled',
-                aot: AOT
-              }
+      rules: [{
+        test: /\.ts$/,
+        use: [
+          '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
+          'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
+          'angular2-template-loader',
+          {
+            loader: 'ng-router-loader',
+            options: {
+              loader: 'async-system',
+              genDir: 'compiled',
+              aot: AOT
             }
-          ], exclude: [/\.(spec|e2e)\.ts$/]
-        },
-        {
-          test: /\.svg$/,
-          use: 'svg-sprite-loader?' + JSON.stringify({
-            name: '[name]-[hash]'
-          })
-        },
-
-        // Json loader support for *.json files.
-        //
-        // See: https://github.com/webpack/json-loader
-        { test: /\.json$/, use: 'json-loader', exclude: [/\.font\.json$/] },
-
-        {
-          test: /(global|\.min)\.css$/,
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: 'css-loader?minimize!postcss-loader'
-          })
-        },
-
-        // Raw loader support for *.css files
-        // Returns file content as string
-        //
-        // See: https://github.com/webpack/raw-loader
-        {
-          test: /\.css$/, use: [
-            'raw-loader',
-            'postcss-loader'
-          ], exclude: [/(global|\.min)\.css$/]
-        },
-
-        {
-          test: /global\.less$/,
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: [
-              'css-loader?minimize',
-              'postcss-loader',
-              'less-loader'
-            ]
-          })
-        },
-        {
-          test: /global\.scss$/,
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: [
-              'css-loader?minimize',
-              'postcss-loader',
-              'sass-loader'
-            ]
-          })
-        },
-
-        {
-          test: /\.less$/, use: [
-            'raw-loader',
+          }
+        ],
+        exclude: [/\.(spec|e2e)\.ts$/]
+      },
+      {
+        test: /\.svg$/,
+        use: 'svg-sprite-loader?' + JSON.stringify({
+          name: '[name]-[hash]'
+        })
+      },
+      /** 
+       * Json loader support for *.json files.
+       * 
+       * See: https://github.com/webpack/json-loader
+       */
+      {
+        test: /\.json$/,
+        use: 'json-loader',
+        exclude: [/\.font\.json$/]
+      },
+      {
+        test: /(global|\.min)\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?minimize!postcss-loader'
+        })
+      },
+      /** 
+       * Raw loader support for *.css files
+       * Returns file content as string
+       * 
+       * See: https://github.com/webpack/raw-loader
+       */
+      {
+        test: /\.css$/,
+        use: [
+          'raw-loader',
+          'postcss-loader'
+        ],
+        exclude: [/(global|\.min)\.css$/]
+      },
+      {
+        test: /global\.less$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
+            'css-loader?minimize',
             'postcss-loader',
             'less-loader'
-          ], exclude: [/global\.less$/]
-        },
-        {
-          test: /\.scss$/, use: [
-            'raw-loader',
+          ]
+        })
+      },
+      {
+        test: /global\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
+            'css-loader?minimize',
             'postcss-loader',
             'sass-loader'
-          ], exclude: [/global\.scss$/]
-        },
-
-        // Raw loader support for *.html
-        // Returns file content as string
-        //
-        // See: https://github.com/webpack/raw-loader
-        { test: /\.html$/, use: 'raw-loader', exclude: [helpers.root('src/index.html')] },
-
-        { test: /\.md$/, use: 'raw-loader' },
-
-        {
-          test: /\.(jpe?g|png|gif)$/i,
-          use: [
-            `file-loader?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
-            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
           ]
-        }
-
-      ]
+        })
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'raw-loader',
+          'postcss-loader',
+          'less-loader'
+        ],
+        exclude: [/global\.less$/]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'raw-loader',
+          'postcss-loader',
+          'sass-loader'
+        ],
+        exclude: [/global\.scss$/]
+      },
+      /**
+       * Raw loader support for *.html
+       * Returns file content as string
+       * 
+       * See: https://github.com/webpack/raw-loader
+       */
+      {
+        test: /\.html$/,
+        use: 'raw-loader',
+        exclude: [helpers.root('src/index.html')]
+      },
+      {
+        test: /\.md$/,
+        use: 'raw-loader'
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [
+          `file-loader?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
+          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      }]
 
     },
 
-    // Add additional plugins to the compiler.
-    //
-    // See: http://webpack.github.io/docs/configuration.html#plugins
+    /** 
+     * Add additional plugins to the compiler.
+     * 
+     * See: http://webpack.github.io/docs/configuration.html#plugins
+     */
     plugins: [
       new HtmlElementsPlugin({
         headTags: require('./head-config.common')
@@ -183,12 +197,14 @@ module.exports = function(option) {
 
       new ExtractTextPlugin(helpers.static + 'main.[hash].css'),
 
-      // Plugin: CommonsChunkPlugin
-      // Description: Shares common code between the pages.
-      // It identifies common modules and put them into a commons chunk.
-      //
-      // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-      // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
+      /** 
+       * Plugin: CommonsChunkPlugin
+       * Description: Shares common code between the pages.
+       * It identifies common modules and put them into a commons chunk.
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
+       * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
+       */
       new webpack.optimize.CommonsChunkPlugin({
         name: ['lib']
       }),
@@ -208,12 +224,14 @@ module.exports = function(option) {
       //   name: ['lib', 'vendor'].reverse()
       // }),
 
-      // Plugin: CopyWebpackPlugin
-      // Description: Copy files and directories in webpack.
-      //
-      // Copies project static assets.
-      //
-      // See: https://www.npmjs.com/package/copy-webpack-plugin
+      /** 
+       * Plugin: CopyWebpackPlugin
+       * Description: Copy files and directories in webpack.
+       *
+       * Copies project static assets.
+       *
+       * See: https://www.npmjs.com/package/copy-webpack-plugin
+       */
       new CopyWebpackPlugin(
         [
           { from: 'src/assets', to: 'assets' },
@@ -223,12 +241,14 @@ module.exports = function(option) {
         { ignore: ['.DS_Store', 'images/**/*', 'i18n/**/*'] }
       ),
 
-      // Plugin: HtmlWebpackPlugin
-      // Description: Simplifies creation of HTML files to serve your webpack bundles.
-      // This is especially useful for webpack bundles that include a hash in the filename
-      // which changes every compilation.
-      //
-      // See: https://github.com/ampedandwired/html-webpack-plugin
+      /** 
+       * Plugin: HtmlWebpackPlugin
+       * Description: Simplifies creation of HTML files to serve your webpack bundles.
+       * This is especially useful for webpack bundles that include a hash in the filename
+       * which changes every compilation.
+       *
+       * See: https://github.com/ampedandwired/html-webpack-plugin
+       */
       new HtmlWebpackPlugin({
         template: 'src/index.html',
         minify: {
@@ -256,10 +276,12 @@ module.exports = function(option) {
 
     ],
 
-    // Include polyfills or mocks for various node stuff
-    // Description: Node configuration
-    //
-    // See: https://webpack.github.io/docs/configuration.html#node
+    /** 
+     * Include polyfills or mocks for various node stuff
+     * Description: Node configuration
+     *
+     * See: https://webpack.github.io/docs/configuration.html#node
+     */
     node: {
       global: true,
       crypto: 'empty',
