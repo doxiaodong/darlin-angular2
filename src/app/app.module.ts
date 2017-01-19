@@ -17,6 +17,10 @@ import {
   createNewHosts,
   createInputTransfer
 } from '@angularclass/hmr'
+import {
+  SimplemdeModule,
+  SIMPLEMDE_CONFIG
+} from 'ng2-simplemde'
 import { AppStore } from './app.store'
 
 import { ShareModule } from './share'
@@ -58,6 +62,23 @@ export function translateFactory(http: Http) {
       provide: TranslateLoader,
       useFactory: translateFactory,
       deps: [Http]
+    }),
+    SimplemdeModule.forRoot({
+      provide: SIMPLEMDE_CONFIG,
+      useValue: {
+        toolbar: [
+          'bold',
+          'italic',
+          'heading',
+          'quote',
+          'unordered-list',
+          'ordered-list',
+          '|',
+          'image',
+          'link'
+        ],
+        status: false
+      }
     }),
     MdButtonModule.forRoot()
   ],

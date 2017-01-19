@@ -62,8 +62,9 @@
   <form (ngSubmit)="comment(article, {content: submitForm.commentContent})" #commentForm="ngForm" class="form">
     <div class="form-group clearfix">
       <label for="add_content"></label>
-      <textarea [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" class="form-control reply-textarea"
-        type="text" id="add_content" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>
+      <simplemde [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" required></simplemde>
+      <!--<textarea [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" class="form-control reply-textarea"
+        type="text" id="add_content" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>-->
       <button md-raised-button color="primary" [disabled]="!commentInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.comment' | translate }}</button>
 
     </div>
