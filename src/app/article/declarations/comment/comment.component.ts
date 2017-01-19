@@ -27,7 +27,7 @@ const request: IRequestParams = {
   templateUrl: './comment.template.html',
   styles: [
     `
-      .reply-floor .CodeMirror, .CodeMirror-scroll {
+      .reply-floor .CodeMirror, .reply-floor .CodeMirror-scroll {
         min-height: 100px;
       }
     `
