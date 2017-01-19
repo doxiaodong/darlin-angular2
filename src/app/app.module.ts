@@ -36,9 +36,39 @@ import {
   pipes,
   directives
 } from './declarations'
+import { toggleFullscreen } from 'app/base/utils/fullscreen'
 
 export function translateFactory(http: Http) {
   return new TranslateStaticLoader(http, '/assets/i18n', '.json')
+}
+
+export function fullscreenAction(editor) {
+  const dom = editor.element.parentNode
+  toggleFullscreen(dom)
+  editor.codemirror.focus()
+}
+
+export function simplemdeValue() {
+  return {
+    toolbar: [
+      'bold',
+      'italic',
+      'heading',
+      'quote',
+      'unordered-list',
+      'ordered-list',
+      '|',
+      'image',
+      'link',
+      {
+        name: 'fullscreen',
+        action: fullscreenAction,
+        className: 'fa fa-arrows-alt no-disable no-mobile',
+        title: 'Toggle Fullscreen'
+      }
+    ],
+    status: false
+  }
 }
 
 @NgModule({
@@ -65,20 +95,7 @@ export function translateFactory(http: Http) {
     }),
     SimplemdeModule.forRoot({
       provide: SIMPLEMDE_CONFIG,
-      useValue: {
-        toolbar: [
-          'bold',
-          'italic',
-          'heading',
-          'quote',
-          'unordered-list',
-          'ordered-list',
-          '|',
-          'image',
-          'link'
-        ],
-        status: false
-      }
+      useValue: simplemdeValue()
     }),
     MdButtonModule.forRoot()
   ],
