@@ -60,6 +60,7 @@ export function simplemdeValue() {
       '|',
       'image',
       'link',
+      'preview',
       {
         name: 'fullscreen',
         action: fullscreenAction,
