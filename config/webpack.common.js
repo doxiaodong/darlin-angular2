@@ -60,16 +60,16 @@ module.exports = function(option) {
         test: /\.ts$/,
         use: [
           '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-          'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
-          'angular2-template-loader',
           {
             loader: 'ng-router-loader',
             options: {
-              loader: 'async-system',
+              loader: 'async-import',
               genDir: 'compiled',
               aot: AOT
             }
-          }
+          },
+          'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
+          'angular2-template-loader'
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
