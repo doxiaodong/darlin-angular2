@@ -18,7 +18,8 @@
       "marked",
       "highlight.js",
       "mathjax",
-      "whatwg-fetch"
+      "whatwg-fetch",
+      "crypto-js"
     ]
   },
   "exclude": [

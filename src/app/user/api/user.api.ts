@@ -11,7 +11,7 @@ import {
   RequestHandler
 } from 'app/base/http/http-interceptor/http-interceptor.provider'
 
-const aes = require('crypto-js/aes')
+import { AES as aes } from 'crypto-js'
 
 class Api {
 

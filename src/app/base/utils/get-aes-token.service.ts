@@ -1,5 +1,5 @@
 import { getCookie } from './get-cookie.service'
-const md5 = require('crypto-js/md5')
+import { MD5 as md5 } from 'crypto-js'
 
 export function getAESToken() {
   return md5(getCookie('csrftoken')).toString()
