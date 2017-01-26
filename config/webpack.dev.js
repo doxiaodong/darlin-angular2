@@ -3,11 +3,15 @@ const helpers = require('./helpers')
 const webpackMerge = require('webpack-merge') // Used to merge webpack configs
 const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
 const autoprefixer = require('autoprefixer')
+const chalk = require('chalk')
 
 /**
  * Webpack Plugins
  */
 const DefinePlugin = require('webpack/lib/DefinePlugin')
+
+const isProxyProd = helpers.hasNpmFlag('proxy-prod')
+console.log(chalk.green('is proxy prod?'), isProxyProd ? chalk.green('true') : chalk.red('false'))
 
 /**
  * Webpack Constants
@@ -140,9 +144,16 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     },
     proxy: {
       "/api": {
-        target: 'http://0.0.0.0:9999',
+        target: isProxyProd ? 'https://api.darlin.me' : 'http://0.0.0.0:9999',
+        changeOrigin: isProxyProd,
+        secure: !isProxyProd,
         pathRewrite: {
           '^/api': ''
+        },
+        onProxyReq: function(proxyReq, req, res) {
+          if (isProxyProd) {
+            proxyReq.setHeader('referer', 'https://www.darlin.me')
+          }
         }
       }
     }
