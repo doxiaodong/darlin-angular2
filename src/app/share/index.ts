@@ -18,6 +18,7 @@ import { MdButtonModule } from '@angular/material/button'
 import { IconModule } from './icon'
 import { ClipModule } from 'ng2-clip'
 import { SortablejsModule } from 'angular-sortablejs'
+import { SimplemdeModule } from 'ng2-simplemde'
 
 import {
   components,
@@ -41,7 +42,8 @@ import {
     IconModule,
     ClipModule,
     TranslateModule,
-    SortablejsModule
+    SortablejsModule,
+    SimplemdeModule
   ],
   exports: [
     FormsModule,
@@ -55,6 +57,7 @@ import {
     ClipModule,
     TranslateModule,
     SortablejsModule,
+    SimplemdeModule,
 
     ...components,
     ...pipes,

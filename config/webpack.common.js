@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const helpers = require('./helpers')
+const chalk = require('chalk')
 
 /**
  * Webpack Plugins
@@ -11,7 +12,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ngcWebpack = require('ngc-webpack')
 
 const AOT = helpers.hasNpmFlag('aot')
-console.log('is aot?:', AOT)
+console.log(chalk.green('is aot?'), AOT ? chalk.green('true') : chalk.red('false'))
 
 /**
  * Webpack configuration
@@ -60,16 +61,16 @@ module.exports = function(option) {
         test: /\.ts$/,
         use: [
           '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-          'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
-          'angular2-template-loader',
           {
             loader: 'ng-router-loader',
             options: {
-              loader: 'async-system',
+              loader: 'async-import',
               genDir: 'compiled',
               aot: AOT
             }
-          }
+          },
+          'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
+          'angular2-template-loader'
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
       },

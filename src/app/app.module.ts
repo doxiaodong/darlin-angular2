@@ -17,6 +17,10 @@ import {
   createNewHosts,
   createInputTransfer
 } from '@angularclass/hmr'
+import {
+  SimplemdeModule,
+  SIMPLEMDE_CONFIG
+} from 'ng2-simplemde'
 import { AppStore } from './app.store'
 
 import { ShareModule } from './share'
@@ -32,9 +36,40 @@ import {
   pipes,
   directives
 } from './declarations'
+import { toggleFullscreen } from 'app/base/utils/fullscreen'
 
 export function translateFactory(http: Http) {
   return new TranslateStaticLoader(http, '/assets/i18n', '.json')
+}
+
+export function fullscreenAction(editor) {
+  const dom = editor.element.parentNode
+  toggleFullscreen(dom)
+  editor.codemirror.focus()
+}
+
+export function simplemdeValue() {
+  return {
+    toolbar: [
+      'bold',
+      'italic',
+      'heading',
+      'quote',
+      'unordered-list',
+      'ordered-list',
+      '|',
+      'image',
+      'link',
+      'preview',
+      {
+        name: 'fullscreen',
+        action: fullscreenAction,
+        className: 'fa fa-arrows-alt no-disable no-mobile',
+        title: 'Toggle Fullscreen'
+      }
+    ],
+    status: false
+  }
 }
 
 @NgModule({
@@ -58,6 +93,10 @@ export function translateFactory(http: Http) {
       provide: TranslateLoader,
       useFactory: translateFactory,
       deps: [Http]
+    }),
+    SimplemdeModule.forRoot({
+      provide: SIMPLEMDE_CONFIG,
+      useValue: simplemdeValue()
     }),
     MdButtonModule.forRoot()
   ],

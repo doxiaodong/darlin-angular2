@@ -45,8 +45,9 @@
           <form class="form" #replyForm="ngForm" (ngSubmit)="reply(comment.url, {content: submitForm.replyContent, reply_object: comment.input.object}, comment.index)">
             <div class="form-group clearfix">
               <span>{{ 'pages.article.replyPlaceholder' | translate }}&nbsp;<a class="a">{{ comment.input.nickname }}</a>：</span>
-              <textarea [(ngModel)]="submitForm.replyContent" name="replyInput" #replyInput="ngModel" class="form-control reply-textarea"
-                [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>
+              <simplemde [options]="subCommentMDEOption" [(ngModel)]="submitForm.replyContent" name="replyInput" #replyInput="ngModel" required></simplemde>
+              <!--<textarea [(ngModel)]="submitForm.replyContent" name="replyInput" #replyInput="ngModel" class="form-control reply-textarea"
+                [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>-->
               <button md-raised-button color="primary" [disabled]="!replyInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.reply' | translate }}</button>
             </div>
           </form>
@@ -62,8 +63,9 @@
   <form (ngSubmit)="comment(article, {content: submitForm.commentContent})" #commentForm="ngForm" class="form">
     <div class="form-group clearfix">
       <label for="add_content"></label>
-      <textarea [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" class="form-control reply-textarea"
-        type="text" id="add_content" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>
+      <simplemde [options]="commentMDEOption" [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" required></simplemde>
+      <!--<textarea [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" class="form-control reply-textarea"
+        type="text" id="add_content" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>-->
       <button md-raised-button color="primary" [disabled]="!commentInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.comment' | translate }}</button>
 
     </div>

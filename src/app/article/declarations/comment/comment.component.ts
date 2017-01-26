@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  ViewEncapsulation,
   OnDestroy
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
@@ -21,11 +22,24 @@ const request: IRequestParams = {
 }
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'comp-article-comments',
-  templateUrl: './comment.template.html'
+  templateUrl: './comment.template.html',
+  styles: [
+    `
+      .reply-floor .CodeMirror, .reply-floor .CodeMirror-scroll {
+        min-height: 100px;
+      }
+    `
+  ]
 })
 
 export class CommentComponent implements OnInit, OnDestroy {
+
+  commentMDEOption = {}
+  subCommentMDEOption = {
+    toolbar: false
+  }
 
   private sub: any
   public icon = {

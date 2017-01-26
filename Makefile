@@ -3,6 +3,9 @@ SHELL := /bin/bash
 dev:
 	npm run start:hmr
 
+dev-prod:
+	npm run server:dev:hmr:proxy-prod
+
 build:
 	npm run build:prod
 
