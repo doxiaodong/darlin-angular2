@@ -212,8 +212,12 @@ module.exports = function(option) {
           {
             loader: 'image-webpack-loader',
             options: {
-              optimizationLevel: 7,
-              interlaced: false
+              gifsicle: {
+                interlaced: false
+              },
+              optipng: {
+                optimizationLevel: 7
+              }
             }
           }
         ]
