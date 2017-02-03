@@ -17,7 +17,7 @@ console.log(chalk.green('is aot?'), AOT ? chalk.green('true') : chalk.red('false
 /**
  * Webpack configuration
  *
- * See: http://webpack.github.io/docs/configuration.html#cli
+ * See: https://webpack.js.org/configuration/
  */
 module.exports = function(option) {
   const isProd = option.env === 'production'
@@ -34,13 +34,13 @@ module.exports = function(option) {
     /**
      * Options affecting the resolving of modules.
      *
-     * See: http://webpack.github.io/docs/configuration.html#resolve
+     * See: https://webpack.js.org/configuration/resolve/#resolve
      */
     resolve: {
       /**
        * An array of extensions that should be used to resolve modules.
        *
-       * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
+       * See: https://webpack.js.org/configuration/resolve/#resolve-extensions
        */
       extensions: ['.ts', '.js'],
 
@@ -54,7 +54,7 @@ module.exports = function(option) {
     /**
      * Options affecting the normal modules.
      *
-     * See: http://webpack.github.io/docs/configuration.html#module
+     * See: https://webpack.js.org/configuration/module/
      */
     module: {
       rules: [{
@@ -228,7 +228,7 @@ module.exports = function(option) {
     /** 
      * Add additional plugins to the compiler.
      * 
-     * See: http://webpack.github.io/docs/configuration.html#plugins
+     * See: https://webpack.js.org/configuration/plugins/
      */
     plugins: [
       new HtmlElementsPlugin({
@@ -252,27 +252,12 @@ module.exports = function(option) {
        * Description: Shares common code between the pages.
        * It identifies common modules and put them into a commons chunk.
        *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
+       * See: https://webpack.js.org/plugins/commons-chunk-plugin/
        * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
        */
       new webpack.optimize.CommonsChunkPlugin({
         name: ['lib']
       }),
-
-      // new webpack.optimize.CommonsChunkPlugin({
-      //   name: 'lib',
-      //   chunks: ['lib']
-      // }),
-
-      // new webpack.optimize.CommonsChunkPlugin({
-      //   name: 'vendor',
-      //   chunks: ['main'],
-      //   minChunks: module => /node_modules\//.test(module.resource)
-      // }),
-
-      // new webpack.optimize.CommonsChunkPlugin({
-      //   name: ['lib', 'vendor'].reverse()
-      // }),
 
       /** 
        * Plugin: CopyWebpackPlugin
@@ -316,7 +301,7 @@ module.exports = function(option) {
       new webpack.ContextReplacementPlugin(
         // The (\\|\/) piece accounts for path separators in *nix and Windows
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-        helpers.root('./src') // location of oyour src
+        helpers.root('./src') // location of your src
       ),
 
       new ngcWebpack.NgcWebpackPlugin({
@@ -330,7 +315,7 @@ module.exports = function(option) {
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration
      *
-     * See: https://webpack.github.io/docs/configuration.html#node
+     * See: https://webpack.js.org/configuration/node/
      */
     node: {
       global: true,

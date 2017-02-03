@@ -17,7 +17,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 /**
  * Webpack configuration
  *
- * See: http://webpack.github.io/docs/configuration.html#cli
+ * See: https://webpack.js.org/configuration/
  */
 module.exports = function(options) {
   return {
@@ -33,14 +33,14 @@ module.exports = function(options) {
     /**
      * Options affecting the resolving of modules.
      *
-     * See: http://webpack.github.io/docs/configuration.html#resolve
+     * See: https://webpack.js.org/configuration/resolve/
      */
     resolve: {
 
       /**
        * An array of extensions that should be used to resolve modules.
        *
-       * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
+       * See: https://webpack.js.org/configuration/resolve/#resolve-extensions
        */
       extensions: ['.ts', '.js'],
 
@@ -54,7 +54,7 @@ module.exports = function(options) {
     /**
      * Options affecting the normal modules.
      *
-     * See: http://webpack.github.io/docs/configuration.html#module
+     * See: https://webpack.js.org/configuration/module/
      */
     module: {
 
@@ -68,7 +68,7 @@ module.exports = function(options) {
         {
           enforce: 'pre',
           test: /\.ts$/,
-          loader: 'tslint-loader',
+          use: 'tslint-loader',
           exclude: [helpers.root('node_modules')]
         },
 
@@ -81,7 +81,7 @@ module.exports = function(options) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          loader: 'source-map-loader',
+          use: 'source-map-loader',
           exclude: [
             // these packages have problems with their sourcemaps
             helpers.root('node_modules/rxjs'),
@@ -90,18 +90,20 @@ module.exports = function(options) {
         },
         {
           test: /\.ts$/,
-          loader: 'ts-loader',
-          query: {
-            // use inline sourcemaps for "karma-remap-coverage" reporter
-            sourceMap: false,
-            inlineSourceMap: true,
-            compilerOptions: {
+          use: {
+            loader: 'ts-loader',
+            options: {
+              // use inline sourcemaps for "karma-remap-coverage" reporter
+              sourceMap: false,
+              inlineSourceMap: true,
+              compilerOptions: {
 
-              // Remove TypeScript helpers to be injected
-              // below by DefinePlugin
-              removeComments: true
+                // Remove TypeScript helpers to be injected
+                // below by DefinePlugin
+                removeComments: true
 
-            }
+              }
+            },
           },
           exclude: [/\.e2e\.ts$/]
         },
@@ -113,7 +115,7 @@ module.exports = function(options) {
          */
         {
           test: /\.json$/,
-          loader: 'json-loader',
+          use: 'json-loader',
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -125,7 +127,7 @@ module.exports = function(options) {
          */
         {
           test: /\.css$/,
-          loaders: ['to-string-loader', 'css-loader'],
+          use: ['to-string-loader', 'css-loader'],
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -137,7 +139,7 @@ module.exports = function(options) {
          */
         {
           test: /\.html$/,
-          loader: 'raw-loader',
+          use: 'raw-loader',
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -150,7 +152,7 @@ module.exports = function(options) {
         {
           enforce: 'post',
           test: /\.(js|ts)$/,
-          loader: 'istanbul-instrumenter-loader',
+          use: 'istanbul-instrumenter-loader',
           include: helpers.root('src'),
           exclude: [
             /\.(e2e|spec)\.ts$/,
@@ -164,7 +166,7 @@ module.exports = function(options) {
     /**
      * Add additional plugins to the compiler.
      *
-     * See: http://webpack.github.io/docs/configuration.html#plugins
+     * See: https://webpack.js.org/configuration/plugins/
      */
     plugins: [
 
@@ -175,7 +177,7 @@ module.exports = function(options) {
        *
        * Environment helpers
        *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       * See: https://webpack.js.org/plugins/define-plugin/
        */
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
       new DefinePlugin({
@@ -201,11 +203,11 @@ module.exports = function(options) {
         helpers.root('src') // location of your src
       ),
 
-      /**
-      * Plugin LoaderOptionsPlugin (experimental)
-      *
-      * See: https://gist.github.com/sokra/27b24881210b56bbaff7
-      */
+      /** 
+       * Plugin LoaderOptionsPlugin (experimental)
+       *
+       * See: https://webpack.js.org/plugins/loader-options-plugin/
+       */
       new LoaderOptionsPlugin({
         debug: true,
         options: {
@@ -227,11 +229,11 @@ module.exports = function(options) {
 
     ],
 
-    /**
+    /** 
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration
      *
-     * See: https://webpack.github.io/docs/configuration.html#node
+     * See: https://webpack.js.org/configuration/node/
      */
     node: {
       global: true,
