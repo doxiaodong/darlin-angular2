@@ -60,7 +60,13 @@ module.exports = function(option) {
       rules: [{
         test: /\.ts$/,
         use: [
-          '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
+          {
+            loader: '@angularclass/hmr-loader',
+            options: {
+              pretty: !isProd,
+              prod: isProd
+            }
+          },
           {
             loader: 'ng-router-loader',
             options: {
@@ -69,16 +75,24 @@ module.exports = function(option) {
               aot: AOT
             }
           },
-          'ts-loader?{configFileName: "tsconfig' + (AOT ? '.aot' : '') + '.json"}',
+          {
+            loader: 'ts-loader',
+            options: {
+              configFileName: 'tsconfig' + (AOT ? '.aot' : '') + '.json'
+            }
+          },
           'angular2-template-loader'
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
       {
         test: /\.svg$/,
-        use: 'svg-sprite-loader?' + JSON.stringify({
-          name: '[name]-[hash]'
-        })
+        use: {
+          loader: 'svg-sprite-loader',
+          options: {
+            name: '[name]-[hash]'
+          }
+        }
       },
       /** 
        * Json loader support for *.json files.
@@ -92,9 +106,17 @@ module.exports = function(option) {
       },
       {
         test: /(global|\.min)\.css$/,
-        loader: ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?minimize!postcss-loader'
+          loader: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
+            'postcss-loader'
+          ]
         })
       },
       /** 
@@ -113,10 +135,15 @@ module.exports = function(option) {
       },
       {
         test: /global\.less$/,
-        loader: ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: [
-            'css-loader?minimize',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
             'postcss-loader',
             'less-loader'
           ]
@@ -124,10 +151,15 @@ module.exports = function(option) {
       },
       {
         test: /global\.scss$/,
-        loader: ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: [
-            'css-loader?minimize',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
             'postcss-loader',
             'sass-loader'
           ]
@@ -169,8 +201,21 @@ module.exports = function(option) {
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: [
-          `file-loader?hash=sha512&digest=hex&name=${helpers.static}[name]-[hash]`,
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          {
+            loader: 'file-loader',
+            options: {
+              hash: 'sha512',
+              digest: 'hex',
+              name: helpers.static + '[name]-[hash]'
+            }
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              optimizationLevel: 7,
+              interlaced: false
+            }
+          }
         ]
       }]
 
