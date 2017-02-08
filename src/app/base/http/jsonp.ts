@@ -7,23 +7,23 @@ export class DJsonp {
   get(url: string, callbackname = 'callback') {
     const u = url + (url.indexOf('?') === -1 ? '?' : '&')
     return this.jsonp.get(u + callbackname + '=JSONP_CALLBACK')
-    .toPromise()
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res)
-    })
-    .then(body => {
-      if (body.code === 0) {
-        return body
-      }
-      return Promise.reject(body)
-    })
-    .catch(() => {
-      AlertService.show('jsonp error')
-    })
+      .toPromise()
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(res)
+      })
+      .then(body => {
+        if (body.code === 0) {
+          return body
+        }
+        return Promise.reject(body)
+      })
+      .catch(() => {
+        AlertService.show('jsonp error')
+      })
   }
 
-  constructor(private jsonp: Jsonp) {}
- }
+  constructor(private jsonp: Jsonp) { }
+}

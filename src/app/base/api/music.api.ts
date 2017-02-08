@@ -12,8 +12,7 @@ export class Music {
     return this.djsonp.get(
       'https://c.y.qq.com/splcloud/fcgi-bin/smartbox_new.fcg?' + params,
       'jsonpCallback'
-    )
-    .then(res => {
+    ).then(res => {
       const song = res.data.song
       if (!song) {
         return []
@@ -36,10 +35,10 @@ export class Music {
       return
     }
     return this.djsonp.get(`${API_PREFIX}/music/lyric/${id}/`, 'callback')
-    .then(res => {
-      const lyric = res.lyric
-      return base64.Base64.decode(lyric)
-    })
+      .then(res => {
+        const lyric = res.lyric
+        return base64.Base64.decode(lyric)
+      })
   }
 
   constructor(private djsonp: DJsonp) { }
