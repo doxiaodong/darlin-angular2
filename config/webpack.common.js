@@ -107,8 +107,8 @@ module.exports = function(option) {
       {
         test: /(global|\.min)\.css$/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: [
+          fallback: 'style-loader',
+          use: [
             {
               loader: 'css-loader',
               options: {
@@ -136,8 +136,8 @@ module.exports = function(option) {
       {
         test: /global\.less$/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: [
+          fallback: 'style-loader',
+          use: [
             {
               loader: 'css-loader',
               options: {
@@ -152,8 +152,8 @@ module.exports = function(option) {
       {
         test: /global\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: [
+          fallback: 'style-loader',
+          use: [
             {
               loader: 'css-loader',
               options: {
