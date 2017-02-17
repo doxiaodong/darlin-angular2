@@ -13,6 +13,7 @@ import {
 } from '@angular/http'
 import { TranslateModule } from 'ng2-translate/ng2-translate'
 import { MdRadioModule } from '@angular/material/radio'
+import { MdSlideToggleModule } from '@angular/material/slide-toggle'
 import { MdUniqueSelectionDispatcher } from '@angular/material/core'
 import { MdButtonModule } from '@angular/material/button'
 import { IconModule } from './icon'
@@ -40,6 +41,8 @@ import {
     HttpModule,
     JsonpModule,
     MdRadioModule,
+    MdSlideToggleModule,
+    MdButtonModule,
     IconModule,
     ClipModule,
     TranslateModule,
@@ -53,6 +56,7 @@ import {
     HttpModule,
     JsonpModule,
     MdRadioModule,
+    MdSlideToggleModule,
     MdButtonModule,
     IconModule,
     ClipModule,

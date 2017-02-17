@@ -19,8 +19,6 @@ import {
 import * as LrcJs from 'app/lrc.js'
 const Lrc = LrcJs.Lrc
 
-// const Lrc = require('app/lrc.js').Lrc
-
 @Component({
   selector: 'comp-music',
   templateUrl: './music.template.html',
@@ -66,6 +64,10 @@ export class MusicComponent implements OnInit, AfterViewInit {
     onSort: (e) => {
       this.updateIndexDBSongs()
     }
+  }
+
+  playModeChange(event) {
+    this.playMode = event.checked ? 'random' : 'normal'
   }
 
   trackByFn(index, item) {
