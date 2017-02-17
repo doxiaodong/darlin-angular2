@@ -44,14 +44,14 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
   /** 
    * Options affecting the output of the compilation.
    *
-   * See: http://webpack.github.io/docs/configuration.html#output
+   * See: https://webpack.js.org/configuration/output/
    */
   output: {
 
     /** 
      * The output directory as absolute path (required).
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-path
+     * See: https://webpack.js.org/configuration/output/#output-path
      */
     path: helpers.root('dist'),
 
@@ -63,7 +63,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * Specifies the name of each output file on disk.
      * IMPORTANT: You must not specify an absolute path here!
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     * See: https://webpack.js.org/configuration/output/#output-filename
      */
     filename: helpers.static + '[name].[chunkhash].js',
 
@@ -71,7 +71,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * The filename of the SourceMaps for the JavaScript files.
      * They are inside the output.path directory.
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
+     * See: https://webpack.js.org/configuration/output/#output-sourcemapfilename
      */
     sourceMapFilename: '[file].map',
 
@@ -79,32 +79,34 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * The filename of non-entry chunks as relative path
      * inside the output.path directory.
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+     * See: https://webpack.js.org/configuration/output/#output-chunkfilename
      */
-    chunkFilename: helpers.static + '[id].[chunkhash].chunk.js'
+    chunkFilename: helpers.static + '[id].[chunkhash].chunk.js',
+
+    jsonpFunction: 'jp'
 
   },
 
   /** 
    * Add additional plugins to the compiler.
    *
-   * See: http://webpack.github.io/docs/configuration.html#plugins
+   * See: https://webpack.js.org/configuration/plugins/
    */
   plugins: [
 
+    /** 
+     * Plugin LoaderOptionsPlugin (experimental)
+     *
+     * See: https://webpack.js.org/plugins/loader-options-plugin/
+     */
     new webpack.LoaderOptionsPlugin({
+      debug: false,
       options: {
         postcss: [
           autoprefixer({
             browsers: ['last 1 version', '> 10%']
           })
         ],
-        /** 
-         * Switch loaders to debug mode.
-         *
-         * See: http://webpack.github.io/docs/configuration.html#debug
-         */
-        debug: false,
         /** 
          * Html loader advanced options
          *
@@ -157,7 +159,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      *
      * Environment helpers
      *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     * See: https://webpack.js.org/plugins/define-plugin/
      * NOTE: when adding more properties make sure you include them in custom-typings.d.ts
      */
     new DefinePlugin({
@@ -176,7 +178,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * Description: Minimize all JavaScript output of chunks.
      * Loaders are switched into minimizing mode.
      *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+     * See: https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
      * NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
      */
     new UglifyJsPlugin({

@@ -44,14 +44,14 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
   /** 
    * Options affecting the output of the compilation.
    *
-   * See: http://webpack.github.io/docs/configuration.html#output
+   * See: https://webpack.js.org/configuration/output/
    */
   output: {
 
     /** 
      * The output directory as absolute path (required).
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-path
+     * See: https://webpack.js.org/configuration/output/#output-path
      */
     path: helpers.root('dist'),
 
@@ -61,7 +61,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * Specifies the name of each output file on disk.
      * IMPORTANT: You must not specify an absolute path here!
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     * See: https://webpack.js.org/configuration/output/#output-filename
      */
     filename: '[name].bundle.js',
 
@@ -69,7 +69,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * The filename of the SourceMaps for the JavaScript files.
      * They are inside the output.path directory.
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
+     * See: https://webpack.js.org/configuration/output/#output-sourcemapfilename
      */
     sourceMapFilename: '[name].map',
 
@@ -77,26 +77,26 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      * The filename of non-entry chunks as relative path
      * inside the output.path directory.
      *
-     * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+     * See: https://webpack.js.org/configuration/output/#output-chunkfilename
      */
     chunkFilename: '[id].chunk.js'
 
   },
 
   plugins: [
+    /** 
+     * Plugin LoaderOptionsPlugin (experimental)
+     *
+     * See: https://webpack.js.org/plugins/loader-options-plugin/
+     */
     new webpack.LoaderOptionsPlugin({
+      debug: true,
       options: {
         postcss: [
           autoprefixer({
             browsers: ['last 1 version', '> 10%']
           })
         ],
-        /** 
-         * Switch loaders to debug mode.
-         *
-         * See: http://webpack.github.io/docs/configuration.html#debug
-         */
-        debug: true,
         tslint: {
           emitErrors: false,
           failOnHint: false,
@@ -112,7 +112,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      *
      * Environment helpers
      *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     * See: https://webpack.js.org/plugins/define-plugin/
      * NOTE: when adding more properties make sure you include them in custom-typings.d.ts
      */
     new DefinePlugin({
@@ -132,7 +132,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
    * The server emits information about the compilation state to the client,
    * which reacts to those events.
    *
-   * See: https://webpack.github.io/docs/webpack-dev-server.html
+   * See: https://webpack.js.org/configuration/dev-server/
    */
   devServer: {
     port: METADATA.port,

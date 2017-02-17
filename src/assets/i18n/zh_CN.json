@@ -135,7 +135,6 @@
   "music": {
     "buttonWord": "音乐",
     "playList": "播放列表",
-    "random": "随机播放",
-    "normal": "顺序播放"
+    "random": "随机播放"
   }
 }

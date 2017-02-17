@@ -135,7 +135,6 @@
   "music": {
     "buttonWord": "Music",
     "playList": "Play list",
-    "random": "Random play",
-    "normal": "Normal play"
+    "random": "Random play"
   }
 }

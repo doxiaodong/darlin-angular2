@@ -13,3 +13,10 @@ import '@angular/router'
 import 'rxjs/add/operator/toPromise'
 import 'rxjs/Subject'
 import 'rxjs/add/operator/debounceTime'
+
+// material
+import 'hammerjs'
+import '@angular/material/core'
+import '@angular/material/radio'
+import '@angular/material/slide-toggle'
+import '@angular/material/button'
