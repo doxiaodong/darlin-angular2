@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import API_PREFIX from 'app/base/api-prefix/api-prefix.service'
 import { URLSearchParams } from '@angular/http'
-import { DJsonp } from 'app/base/http'
+import { DJsonp } from 'app/base/fetch'
 
 @Injectable()
 export class Music {

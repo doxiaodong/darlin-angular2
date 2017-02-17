@@ -9,8 +9,7 @@ import {
 } from '@angular/forms'
 import {
   HttpModule,
-  JsonpModule,
-  BrowserJsonp
+  JsonpModule
 } from '@angular/http'
 import { TranslateModule } from 'ng2-translate/ng2-translate'
 import { MdRadioModule } from '@angular/material/radio'
@@ -20,10 +19,7 @@ import { IconModule } from './icon'
 import { ClipModule } from 'ng2-clip'
 import { SortablejsModule } from 'angular-sortablejs'
 import { SimplemdeModule } from 'ng2-simplemde'
-import {
-  CustomBrowserJsonp,
-  DJsonp
-} from 'app/base/http'
+import { DJsonp } from 'app/base/fetch'
 
 import {
   components,
@@ -70,7 +66,6 @@ import {
   ],
   providers: [
     MdUniqueSelectionDispatcher,
-    { provide: BrowserJsonp, useClass: CustomBrowserJsonp },
     DJsonp
   ]
 })
