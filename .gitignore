@@ -13,8 +13,6 @@ coverage/
 
 compiled/
 
-yarn.lock
-
 *.js
 *.d.ts
 *.js.map

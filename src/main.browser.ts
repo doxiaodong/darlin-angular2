@@ -8,8 +8,6 @@ function main(): Promise<any> {
 
   if ('production' === ENV) {
     enableProdMode()
-  } else {
-    GLOBAL_VALUE.PIC_STATIC_URL_HOST = ''
   }
 
   return platformBrowserDynamic()

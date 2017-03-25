@@ -4,7 +4,7 @@ import {
   style,
   // transition,
   trigger
-} from '@angular/core'
+} from '@angular/animations'
 
 export function PageAnimateFn() {
   return trigger('pageAnimateTrigger', [

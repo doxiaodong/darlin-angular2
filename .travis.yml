@@ -2,12 +2,10 @@ language: node_js
 
 node_js: "6.9.1"
 
-install:
-  - wget https://yarnpkg.com/latest.tar.gz && tar -xf latest.tar.gz && dist/bin/yarn
-
-# cache:
-#   directories:
-#     - $TRAVIS_BUILD_DIR/node_modules
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 before_script:
   - export CHROME_BIN=chromium-browser
