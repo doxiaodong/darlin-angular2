@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
   group
-} from '@angular/core'
+} from '@angular/animations'
 
 export function NgForAnimateFn() {
   return trigger('ngForAnimateTrigger', [

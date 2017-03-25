@@ -1,7 +1,10 @@
 const staticCacheName = 'static'
 const version = 'v1::'
 const cacheKeys = [
-  /static\.darlin\.me/
+  /static\.darlin\.me/,
+  /cdn\.tristana\.cc/,
+  /cdn\.mathjax\.org/,
+  /cdn\.jsdelivr\.net/
 ]
 
 self.addEventListener('activate', function(event) {

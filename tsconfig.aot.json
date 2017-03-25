@@ -22,8 +22,7 @@
       "node",
       // "marked",
       // "highlight.js",
-      "mathjax",
-      "whatwg-fetch"
+      "mathjax"
     ]
   },
   "exclude": [

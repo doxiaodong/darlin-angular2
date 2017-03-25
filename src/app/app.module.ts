@@ -5,6 +5,7 @@ import {
 import { APP_BASE_HREF } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Http } from '@angular/http'
 import { MdButtonModule } from '@angular/material/button'
 import {
@@ -86,6 +87,7 @@ export function simplemdeValue() {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ShareModule.forRoot(),
 
     RouterModule.forRoot(ROUTES),
