@@ -7,6 +7,7 @@ import { BaseApi } from 'app/base/api/base.api'
 class User {
 
   private _updateUser = new Subject<UserInterface>()
+  private requestingUser: Promise<UserInterface>
   private hasGotUserInfoBefore: boolean = false
   updateUser$ = this._updateUser.asObservable()
 
@@ -25,12 +26,19 @@ class User {
   get(): any {
     if (this.isSignin() || this.hasGotUserInfoBefore) {
       return Promise.resolve(this.userInfo)
-    } else {
-      return this.getFromApi().then(userInfo => {
-        this.hasGotUserInfoBefore = true
-        return Promise.resolve(this.userInfo)
-      })
     }
+    if (this.requestingUser) {
+      return this.requestingUser
+    }
+
+    this.requestingUser = this.getFromApi().then(userInfo => {
+      this.requestingUser = null
+      this.hasGotUserInfoBefore = true
+      return Promise.resolve(this.userInfo)
+    })
+
+    return this.requestingUser
+
   }
 
   clear(): UserInterface {
