@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:alpine
 RUN mkdir -p /usr/app
 WORKDIR /usr/app
 COPY dist/ /usr/app
