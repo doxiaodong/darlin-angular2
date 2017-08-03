@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
 
+import * as bg404 from '../../image-loader/404-bg.jpg'
+
 @Component({
   selector: 'comp-404',
   templateUrl: './404.template.html',
@@ -9,6 +11,6 @@ import { Component } from '@angular/core'
 })
 
 export class Page404Component {
-  public bg404: string = require('../../image-loader/404-bg.jpg')
+  public bg404: string = bg404
   constructor() { }
 }

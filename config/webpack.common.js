@@ -90,7 +90,7 @@ module.exports = function(option) {
         use: {
           loader: 'svg-sprite-loader',
           options: {
-            name: '[name]-[hash]'
+            runtimeCompat: true
           }
         }
       },
@@ -115,7 +115,10 @@ module.exports = function(option) {
                 minimize: true
               }
             },
-            'postcss-loader'
+            {
+              loader: 'postcss-loader',
+              options: helpers.postcssConfig
+            }
           ]
         })
       },
@@ -129,7 +132,10 @@ module.exports = function(option) {
         test: /\.css$/,
         use: [
           'raw-loader',
-          'postcss-loader'
+          {
+            loader: 'postcss-loader',
+            options: helpers.postcssConfig
+          }
         ],
         exclude: [/(global|\.min)\.css$/]
       },
@@ -144,7 +150,10 @@ module.exports = function(option) {
                 minimize: true
               }
             },
-            'postcss-loader',
+            {
+              loader: 'postcss-loader',
+              options: helpers.postcssConfig
+            },
             'less-loader'
           ]
         })
@@ -160,7 +169,10 @@ module.exports = function(option) {
                 minimize: true
               }
             },
-            'postcss-loader',
+            {
+              loader: 'postcss-loader',
+              options: helpers.postcssConfig
+            },
             'sass-loader'
           ]
         })
@@ -169,7 +181,10 @@ module.exports = function(option) {
         test: /\.less$/,
         use: [
           'raw-loader',
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: helpers.postcssConfig
+          },
           'less-loader'
         ],
         exclude: [/global\.less$/]
@@ -178,7 +193,10 @@ module.exports = function(option) {
         test: /\.scss$/,
         use: [
           'raw-loader',
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: helpers.postcssConfig
+          },
           'sass-loader'
         ],
         exclude: [/global\.scss$/]

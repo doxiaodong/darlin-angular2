@@ -3,6 +3,7 @@ const version = 'v1::'
 const cacheKeys = [
   /static\.darlin\.me/,
   /cdn\.tristana\.cc/,
+  /cdn\.bootcss\.com/,
   /cdn\.mathjax\.org/,
   /cdn\.jsdelivr\.net/
 ]

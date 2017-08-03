@@ -1,4 +1,5 @@
 const path = require('path')
+const autoprefixer = require('autoprefixer')
 
 const EVENT = process.env.npm_lifecycle_event || ''
 
@@ -21,3 +22,10 @@ exports.hasNpmFlag = hasNpmFlag
 exports.root = root
 
 exports.static = 'assets/'
+exports.postcssConfig = {
+  plugins: [
+    autoprefixer({
+      browsers: ['last 1 version', '> 10%']
+    })
+  ]
+}
