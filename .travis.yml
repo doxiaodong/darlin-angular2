@@ -1,9 +1,11 @@
 language: node_js
 
-node_js: "6.9.1"
+node_js: "8"
+
+install:
+  - npm i --registry https://registry.npmjs.org
 
 cache:
-  yarn: true
   directories:
     - node_modules
 

@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const helpers = require('./helpers') // Helper: root(), and rootDir() are defined at the bottom
 const webpackMerge = require('webpack-merge') // Used to merge webpack configs
 const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
-const autoprefixer = require('autoprefixer')
 
 /**
  * Webpack Plugins
@@ -102,11 +101,6 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     new webpack.LoaderOptionsPlugin({
       debug: false,
       options: {
-        postcss: [
-          autoprefixer({
-            browsers: ['last 1 version', '> 10%']
-          })
-        ],
         /** 
          * Html loader advanced options
          *

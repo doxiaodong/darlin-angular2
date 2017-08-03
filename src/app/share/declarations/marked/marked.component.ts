@@ -17,7 +17,7 @@ import * as emojione from 'emojione'
 import './markdown.global.less'
 import './tomorrow.night.global.css'
 import './highlight.number.global.less'
-import 'emojione/assets/css/emojione.min.css' // use node_modules
+import 'emojione/extras/css/emojione.min.css' // use node_modules
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -84,7 +84,7 @@ function loadMathJax(callback) {
     return
   }
   const script = document.createElement('script')
-  script.src = 'https://cdn.tristana.cc/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  script.src = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML'
   const s = document.getElementsByTagName('script')[0]
   s.parentNode.insertBefore(script, s)
   script.addEventListener('load', callback)

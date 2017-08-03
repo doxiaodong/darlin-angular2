@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const helpers = require('./helpers')
 const webpackMerge = require('webpack-merge') // Used to merge webpack configs
 const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
-const autoprefixer = require('autoprefixer')
 const chalk = require('chalk')
 
 /**
@@ -92,11 +91,6 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {
-        postcss: [
-          autoprefixer({
-            browsers: ['last 1 version', '> 10%']
-          })
-        ],
         tslint: {
           emitErrors: false,
           failOnHint: false,

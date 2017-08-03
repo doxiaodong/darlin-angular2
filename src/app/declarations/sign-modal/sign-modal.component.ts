@@ -24,6 +24,8 @@ import {
   requesting
 } from 'app/base/requesting'
 
+import * as qqImageSrc from '../../../image-loader/qq.png'
+
 const request: IRequestParams = {
   requesting: false
 }
@@ -61,7 +63,7 @@ export class SignModalComponent implements OnInit {
   public showModal: boolean = false
   public signinModel: boolean = true
 
-  public qqImageSrc: string = require('../../../image-loader/qq.png')
+  public qqImageSrc: string = qqImageSrc
   public user: UserInterface
 
   public signin: SigninInterface
