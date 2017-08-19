@@ -5,7 +5,7 @@ export class MarkedService {
 
   private options: any = {}
 
-  setRenderer(obj: any): MarkedStatic {
+  setRenderer(obj: any) {
     let render = new marked.Renderer()
     let o = Object.keys(obj)
     let l = o.length
@@ -21,7 +21,7 @@ export class MarkedService {
     this.options = obj // TODO: use merge
   }
 
-  init(): MarkedStatic {
+  init() {
     return marked
   }
 
