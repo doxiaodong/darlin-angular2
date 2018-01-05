@@ -8,16 +8,12 @@ import {
   ReactiveFormsModule
 } from '@angular/forms'
 import {
-  HttpModule,
-  JsonpModule
+  HttpModule
 } from '@angular/http'
 import { TranslateModule } from 'ng2-translate/ng2-translate'
-import {
-  MdRadioModule,
-  MdSlideToggleModule,
-  MdButtonModule,
-  UniqueSelectionDispatcher
-} from '@angular/material'
+import { MatRadioModule } from '@angular/material/radio'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatButtonModule } from '@angular/material/button'
 import { IconModule } from './icon'
 import { ClipModule } from 'ng2-clip'
 import { SortablejsModule } from 'angular-sortablejs'
@@ -41,10 +37,9 @@ import {
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    JsonpModule,
-    MdRadioModule,
-    MdSlideToggleModule,
-    MdButtonModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatButtonModule,
     IconModule,
     ClipModule,
     TranslateModule,
@@ -56,10 +51,9 @@ import {
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    JsonpModule,
-    MdRadioModule,
-    MdSlideToggleModule,
-    MdButtonModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatButtonModule,
     IconModule,
     ClipModule,
     TranslateModule,
@@ -71,7 +65,6 @@ import {
     ...directives
   ],
   providers: [
-    UniqueSelectionDispatcher,
     DJsonp
   ]
 })

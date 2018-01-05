@@ -21,7 +21,7 @@
         </div>
       </article>
       <footer class="xd-footer">
-        <button md-raised-button color="primary" [disabled]="!signinForm.valid || requesting" class="signin-button" type="submit">{{ 'signModal.signin' | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!signinForm.valid || requesting" class="signin-button" type="submit">{{ 'signModal.signin' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = false">{{ 'signModal.register' | translate }}</span>
         <a class="a aside" (click)="githubLogin()">Github</a>
         <a class="a aside qq-weibo" (click)="qqLogin()">
@@ -60,8 +60,8 @@
             <comp-icon [hidden]="registerForm.controls['r_password'].pristine || !registerForm.controls['r_password'].valid" class="active" [glyph]="icon.checkmark"></comp-icon>
           </div>
           <div class="form-group" [class.has-error]="!registerForm.controls['r_rePassword'].pristine && !registerForm.controls['r_rePassword'].valid">
-            <label for="register_pwd" class="form-label">{{ 'signModal.rePassword' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['r_rePassword'].pristine || registerForm.controls['r_rePassword'].valid">&nbsp;{{ 'signModal.rePasswordFlag' | translate }}</span></label>
-            <input name="r_rePassword" class="form-control" id="register_pwd"
+            <label for="register_rpwd" class="form-label">{{ 'signModal.rePassword' | translate }}<span class="tomato">*</span>：<span class="tomato" [hidden]="registerForm.controls['r_rePassword'].pristine || registerForm.controls['r_rePassword'].valid">&nbsp;{{ 'signModal.rePasswordFlag' | translate }}</span></label>
+            <input name="r_rePassword" class="form-control" id="register_rpwd"
               formControlName="r_rePassword"
               type="password" [attr.placeholder]="'signModal.rePasswordFlag' | translate">
             <comp-icon [hidden]="registerForm.controls['r_rePassword'].pristine || !registerForm.controls['r_rePassword'].valid" class="active" [glyph]="icon.checkmark"></comp-icon>
@@ -76,7 +76,7 @@
         </div>
       </article>
       <footer class="xd-footer">
-        <button md-raised-button color="primary" [disabled]="!registerForm.valid || requesting" class="register-button" type="submit">{{ 'signModal.register' | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.valid || requesting" class="register-button" type="submit">{{ 'signModal.register' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = true">{{ 'signModal.signin' | translate }}</span>
       </footer>
       <comp-icon class="xd-modal-close" width="34" height="34" [glyph]="icon.close" (click)="closeShowModal()"></comp-icon>

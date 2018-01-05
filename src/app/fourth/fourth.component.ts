@@ -69,7 +69,7 @@ export class FourthIndexComponent {
 
   public genPasswordFn(): void {
     let pString: string = sha512(this.gen.initPassword).toString()
-    let kString: string = sha512(this.gen.key)
+    let kString: string = sha512(this.gen.key).toString()
     let shaString: string = sha512(pString + kString).toString()
     this.gen.output = md5(shaString).toString()
     this.gen.output15 = this.gen.output.slice(0, 14)

@@ -10,4 +10,4 @@ npm run test
 # npm run e2e
 
 npm run build:prod
-npm run build:aot
+# npm run build:aot

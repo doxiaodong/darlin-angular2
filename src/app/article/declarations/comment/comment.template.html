@@ -48,7 +48,7 @@
               <simplemde [options]="subCommentMDEOption" [(ngModel)]="submitForm.replyContent" name="replyInput" #replyInput="ngModel" required></simplemde>
               <!--<textarea [(ngModel)]="submitForm.replyContent" name="replyInput" #replyInput="ngModel" class="form-control reply-textarea"
                 [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>-->
-              <button md-raised-button color="primary" [disabled]="!replyInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.reply' | translate }}</button>
+              <button mat-raised-button color="primary" [disabled]="!replyInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.reply' | translate }}</button>
             </div>
           </form>
         </li>
@@ -66,7 +66,7 @@
       <simplemde [options]="commentMDEOption" [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" required></simplemde>
       <!--<textarea [(ngModel)]="submitForm.commentContent" name="commentInput" #commentInput="ngModel" class="form-control reply-textarea"
         type="text" id="add_content" [attr.placeholder]="'pages.article.commentPlaceholder' | translate" required></textarea>-->
-      <button md-raised-button color="primary" [disabled]="!commentInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.comment' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!commentInput.valid || requesting" class="reply-button" type="submit">{{ 'pages.article.comment' | translate }}</button>
 
     </div>
   </form>

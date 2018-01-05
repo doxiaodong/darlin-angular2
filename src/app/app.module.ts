@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Http } from '@angular/http'
-import { MdButtonModule } from '@angular/material'
 import {
   TranslateModule,
   TranslateLoader,
@@ -99,8 +98,7 @@ export function simplemdeValue() {
     SimplemdeModule.forRoot({
       provide: SIMPLEMDE_CONFIG,
       useValue: simplemdeValue()
-    }),
-    MdButtonModule
+    })
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
