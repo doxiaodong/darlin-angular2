@@ -21,6 +21,19 @@ export class Music {
     })
   }
 
+  // getAddress({mid, id}) {
+  //   const params = new URLSearchParams()
+  //   params.set('songmid', mid)
+  //   params.set('format', 'jsonp')
+  //   return this.djsonp.get(
+  //     'https://c.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?' + params,
+  //     'callback'
+  //   ).then(res => {
+  //     const url = res.url && res.url[id]
+  //     return url.replace('ws.stream.qqmusic.qq.com', 'https://dl.stream.qqmusic.qq.com')
+  //   })
+  // }
+
   getHotKey() {
     return this.djsonp.get('https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg', 'jsonpCallback')
       .then(res => {

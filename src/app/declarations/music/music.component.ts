@@ -51,6 +51,8 @@ export class MusicComponent implements OnInit, AfterViewInit {
 
   currentLyric: string
 
+  // currentURL: string = ''
+
   lrc
   playMode: 'normal' | 'random' = 'normal'
 
@@ -116,9 +118,20 @@ export class MusicComponent implements OnInit, AfterViewInit {
     if (!this.selectedSong.id) {
       return ''
     }
-    // return `http://ws.stream.qqmusic.qq.com/${this.selectedSong.id}.m4a?fromtag=46`
-    return `https://music.tristana.cc/${this.selectedSong.id}.m4a?fromtag=46`
+    return `https://dl.stream.qqmusic.qq.com/C100${this.selectedSong.mid}.m4a`
   }
+
+  // getSongURL() {
+  //   if (!this.selectedSong.id) {
+  //     this.currentURL = ''
+  //     return Promise.resolve('')
+  //   }
+
+  //   return this.music.getAddress(this.selectedSong)
+  //     .then((url) => {
+  //       this.currentURL = url
+  //     })
+  // }
 
   clickSelect(song) {
     if (this.selectedSong.id === song.id) {
@@ -132,10 +145,14 @@ export class MusicComponent implements OnInit, AfterViewInit {
       this.lrc.stop()
       this.lrc = null
     }
-    this.getLyric(song.id)
+    this.selectedSong = song
+
+    Promise.all([
+      // this.getSongURL(),
+      this.getLyric(song.id)
+    ])
       .then(() => {
         this.currentLyric = ''
-        this.selectedSong = song
 
         if (this.selectedSong.id) {
           const audio = this.audio.nativeElement
