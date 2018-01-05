@@ -19,7 +19,7 @@
     <div class="item list-container list">
       <p *ngIf="songs.length > 0">{{ 'music.playList' | translate }}:
         <span class="pull-right">
-          <md-slide-toggle color="primary" [checked]="isRandomMode" (change)="playModeChange($event)">{{ 'music.random' | translate }}</md-slide-toggle>
+          <mat-slide-toggle color="primary" [checked]="isRandomMode" (change)="playModeChange($event)">{{ 'music.random' | translate }}</mat-slide-toggle>
         </span>
       </p>
       <ul class="songs overflow-auto" [sortablejs]="songs" [sortablejsOptions]="sortableOption">

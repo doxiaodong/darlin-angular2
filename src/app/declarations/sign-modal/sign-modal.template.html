@@ -21,7 +21,7 @@
         </div>
       </article>
       <footer class="xd-footer">
-        <button md-raised-button color="primary" [disabled]="!signinForm.valid || requesting" class="signin-button" type="submit">{{ 'signModal.signin' | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!signinForm.valid || requesting" class="signin-button" type="submit">{{ 'signModal.signin' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = false">{{ 'signModal.register' | translate }}</span>
         <a class="a aside" (click)="githubLogin()">Github</a>
         <a class="a aside qq-weibo" (click)="qqLogin()">
@@ -76,7 +76,7 @@
         </div>
       </article>
       <footer class="xd-footer">
-        <button md-raised-button color="primary" [disabled]="!registerForm.valid || requesting" class="register-button" type="submit">{{ 'signModal.register' | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.valid || requesting" class="register-button" type="submit">{{ 'signModal.register' | translate }}</button>
         <span class="a aside other-side" (click)="signinModel = true">{{ 'signModal.signin' | translate }}</span>
       </footer>
       <comp-icon class="xd-modal-close" width="34" height="34" [glyph]="icon.close" (click)="closeShowModal()"></comp-icon>

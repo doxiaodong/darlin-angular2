@@ -22,7 +22,7 @@
         </li>
         <li class="article" *ngIf="!articles.length">{{ 'pages.article.none' | translate }}</li>
         <li class="article load-more" *ngIf="hasMore">
-          <button md-raised-button color="primary" class="btn" (click)="getMoreArticles()">{{ 'loadMore' | translate }}</button>
+          <button mat-raised-button color="primary" class="btn" (click)="getMoreArticles()">{{ 'loadMore' | translate }}</button>
         </li>
       </ul>
 
