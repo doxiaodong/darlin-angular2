@@ -118,7 +118,7 @@ export class MusicComponent implements OnInit, AfterViewInit {
     if (!this.selectedSong.id) {
       return ''
     }
-    return `https://dl.stream.qqmusic.qq.com/C100${this.selectedSong.mid}.m4a`
+    return `https://dl.stream.qqmusic.qq.com/C100${this.selectedSong.mid}.m4a?fromtag=38`
   }
 
   // getSongURL() {
