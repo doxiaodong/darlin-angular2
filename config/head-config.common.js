@@ -9,10 +9,7 @@ module.exports = {
     { rel: 'apple-touch-icon', sizes: '120x120', href: '/assets/icon/v1.4/apple-icon-120x120.png' },
     { rel: 'apple-touch-icon', sizes: '144x144', href: '/assets/icon/v1.4/apple-icon-144x144.png' },
     { rel: 'apple-touch-icon', sizes: '152x152', href: '/assets/icon/v1.4/apple-icon-152x152.png' },
-    { rel: 'apple-touch-icon', sizes: '180x180', href: '/assets/icon/v1.4/apple-icon-180x180.png' },
-
-    /** <link> tags for a Web App Manifest **/
-    { rel: 'manifest', href: '/assets/manifest.json?v=1.4' }
+    { rel: 'apple-touch-icon', sizes: '180x180', href: '/assets/icon/v1.4/apple-icon-180x180.png' }
   ],
   meta: [
     { charset: 'utf-8' },
