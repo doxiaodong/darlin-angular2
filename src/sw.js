@@ -1,7 +1,8 @@
 const staticCacheName = 'static'
-const version = 'v1::'
+const version = 'v2::'
 const cacheKeys = [
   /static\.darlin\.me/,
+  /www\.darlin\.me\/assets\//,
   /cdn\.tristana\.cc/,
   /cdn\.bootcss\.com/,
   /cdn\.mathjax\.org/,
