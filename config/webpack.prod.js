@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const SriPlugin = require('webpack-subresource-integrity')
 const helpers = require('./helpers') // Helper: root(), and rootDir() are defined at the bottom
 const webpackMerge = require('webpack-merge') // Used to merge webpack configs
 const commonConfig = require('./webpack.common.js') // The settings that are common to prod and dev
@@ -82,7 +83,9 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      */
     chunkFilename: helpers.static + '[id].[chunkhash].chunk.js',
 
-    jsonpFunction: 'jp'
+    jsonpFunction: 'jp',
+    
+    crossOriginLoading: 'anonymous'
 
   },
 
@@ -92,6 +95,10 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
    * See: https://webpack.js.org/configuration/plugins/
    */
   plugins: [
+
+    new SriPlugin({
+      hashFuncNames: ['sha256', 'sha384']
+    }),
 
     /** 
      * Plugin LoaderOptionsPlugin (experimental)
