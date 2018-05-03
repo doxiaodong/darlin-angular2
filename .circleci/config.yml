@@ -23,6 +23,6 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS registry.us-west-1.aliyuncs.com
             docker push registry.us-west-1.aliyuncs.com/darlin/www:latest
       - save_cache:
-          key: darlin-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: www-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
