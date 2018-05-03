@@ -4,6 +4,7 @@ const cacheKeys = [
   /static\.darlin\.me/,
   /www\.darlin\.me\/assets\//,
   /cdn\.tristana\.cc/,
+  /static\.tristana\.cc/,
   /cdn\.bootcss\.com/,
   /cdn\.mathjax\.org/,
   /cdn\.jsdelivr\.net/
