@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/workspace
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - restore_cache:
+          key: www-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install dependencies
+          command: npm i --registry https://registry.npmjs.org
+      - run:
+          name: Build
+          command: npm run build:aot
+      - run:
+          name: Docker
+          command: |
+            docker build . -t registry.us-west-1.aliyuncs.com/darlin/www:latest
+            docker login -u $DOCKER_USER -p $DOCKER_PASS registry.us-west-1.aliyuncs.com
+            docker push registry.us-west-1.aliyuncs.com/darlin/www:latest
+      - save_cache:
+          key: darlin-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
