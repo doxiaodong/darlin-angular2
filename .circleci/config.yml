@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Docker
           command: |
-            DOCKER_TAG=$(date +"%Y%m%d%H%M%S")
+            DOCKER_TAG=$(date -u +"%Y%m%d%H%M%S")
             docker build . -t registry.us-west-1.aliyuncs.com/darlin/www:latest
             docker tag registry.us-west-1.aliyuncs.com/darlin/www:latest registry.us-west-1.aliyuncs.com/darlin/www:$DOCKER_TAG
             docker login -u $DOCKER_USER -p $DOCKER_PASS registry.us-west-1.aliyuncs.com
