@@ -56,7 +56,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     path: helpers.root('dist'),
 
     // use static server
-    publicPath: '//upstatic.tristana.cc/www/',
+    publicPath: '//upcdn.tristana.cc/www/',
     // publicPath: '/',
 
     /** 
