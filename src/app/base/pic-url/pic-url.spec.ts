@@ -9,7 +9,7 @@ describe('pic-url.service.ts get complete head picture', () => {
   it('should get complete url normally', inject([], () => {
 
     expect(pu.getUrl('aaa/bbb/c.png'))
-      .toEqual('//media.darlin.me/aaa/bbb/c.png-headPicture')
+      .toEqual('//media.tristana.cc/aaa/bbb/c.png-headPicture')
 
   }))
 
