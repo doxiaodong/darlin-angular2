@@ -151,7 +151,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
      *
      * See: https://www.npmjs.com/package/webpack-md5-hash
      */
-    new WebpackMd5Hash(),
+    // new WebpackMd5Hash(),
 
     /** 
      * Plugin: DefinePlugin
