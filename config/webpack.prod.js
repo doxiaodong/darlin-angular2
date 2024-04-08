@@ -56,8 +56,8 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     path: helpers.root('dist'),
 
     // use static server
-    publicPath: '//upcdn.tristana.cc/www/',
-    // publicPath: '/',
+    // publicPath: '//upcdn.tristana.cc/www/',
+    publicPath: '/',
 
     /** 
      * Specifies the name of each output file on disk.
